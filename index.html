@@ -1,95 +1,66 @@
-<!DOCTYPE html>
-<html>
-    <head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
-    <link rel="alternate icon" type="image/png" href="/img/favicon.png">
-    <title>Hexo | </title>
-    
-<link rel="stylesheet" href="/css/reset.css">
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"><title>Hexo</title><meta name="author" content="John Doe"><link rel="shortcut icon" href="/img/favicon.png"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><meta name="generator" content="Hexo 6.1.0"></head><body><header id="page_header"><div class="header_wrap"><div id="blog_name"><a class="blog_title" id="site-name" href="/">Hexo</a></div><button class="menus_icon"><div class="navicon"></div></button><ul class="menus_items"><li class="menus_item"><a class="site-page" href="/#Publications"> Publications</a></li><li class="menus_item"><a class="site-page" href="/"> About</a></li><li class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://phower.me"> Blog</a></li></ul></div></header><main id="page_main"><div class="side-card sticky"><div class="card-wrap" itemscope itemtype="http://schema.org/Person"><div class="author-avatar"><img class="avatar-img" src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/profile.png'" alt="avatar"></div><div class="author-discrip"><h3>John Doe</h3><p class="author-bio">Your biography can be writed down here.</p></div><div class="author-links"><button class="btn m-social-links">Links</button><ul class="social-icons"><li><a class="social-icon" href="/" target="_blank"><i class="fab fa-twitter" aria-hidden="true"></i></a></li><li><a class="social-icon" href="/" target="_blank"><i class="fab fa-facebook-square" aria-hidden="true"></i></a></li><li><a class="social-icon" href="/" target="_blank"><i class="fab fa-github" aria-hidden="true"></i></a></li><li><a class="social-icon" href="/" target="_blank"><i class="fab fa-stack-overflow" aria-hidden="true"></i></a></li><li><a class="social-icon" href="/" target="_blank"><i class="fab fa-linkedin" aria-hidden="true"></i></a></li><li><a class="social-icon" href="/" target="_blank"><i class="fab fa-weibo" aria-hidden="true"></i></a></li><li><a class="social-icon" href="/" target="_blank"><i class="fab fa-weixin" aria-hidden="true"></i></a></li><li><a class="social-icon" href="/" target="_blank"><i class="fab fa-qq" aria-hidden="true"></i></a></li><li><a class="social-icon" href="/" target="_blank"><i class="fas fa-envelope" aria-hidden="true"></i></a></li><li><a class="social-icon" href="/" target="_blank"><i class="fas fa-rss" aria-hidden="true"></i></a></li></ul><ul class="social-links"><li><a class="e-social-link" href="/" target="_blank"><i class="fas fa-graduation-cap" aria-hidden="true"></i><span>Google Scholar</span></a></li><li><a class="e-social-link" href="/" target="_blank"><i class="fab fa-orcid" aria-hidden="true"></i><span>ORCID</span></a></li></ul></div><a class="cv-links" href="/attaches/CV.pdf" target="_blank"><i class="fas fa-file-pdf" aria-hidden="true"><span>My Detail CV.</span></i></a></div></div><div class="page" itemscope itemtype="http://schema.org/CreativeWork"><article><p><br><br></p>
+<h2 id="1、所需要准备的环境"><a href="#1、所需要准备的环境" class="headerlink" title="1、所需要准备的环境"></a><strong>1、所需要准备的环境</strong></h2><ul>
+<li>git-bash</li>
+<li>nodeJs (npm)</li>
+<li>vscode</li>
+<li>github account</li>
+</ul>
+<p><br><br></p>
+<h2 id="2、创建-github-仓库"><a href="#2、创建-github-仓库" class="headerlink" title="2、创建 github 仓库"></a><strong>2、创建 github 仓库</strong></h2><br>
 
-    
-<link rel="stylesheet" href="/css/style.css">
+<p>仓库的名称必须是： username.github.io <br><br>访问 url ：<a target="_blank" rel="noopener" href="https://www.username.guthub.io/">https://www.username.guthub.io</a> <br></p>
+<p><br><br></p>
+<h2 id="3、配置-SSH-key"><a href="#3、配置-SSH-key" class="headerlink" title="3、配置 SSH key"></a><strong>3、配置 SSH key</strong></h2><br>
 
-    
-<link rel="stylesheet" href="/css/markdown.css">
+<p>测试是否配置成功：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
 
-    
-<link rel="stylesheet" href="/css/fonts.css">
+<p><br><br></p>
+<h2 id="4、配置-hexo"><a href="#4、配置-hexo" class="headerlink" title="4、配置 hexo"></a><strong>4、配置 hexo</strong></h2><br>
 
-<meta name="generator" content="Hexo 6.1.0"></head>
-    <body>
-        <div class="paper">
-            <div class="paper-main">
-                
-                    <div class="header">
-    <a class="logo" href="/">Hexo</a>
-    <ul class="nav">
-        
-        <li><a href="/">首页</a></li>
-        
-        <li><a href="/archives">归档</a></li>
-        
-        <li><a href="/about">关于</a></li>
-        
-    </ul>
-</div>
-                
-                <div class="post-list">
-    
-    <div class="post">
-        <a class="post-title" href="/2022/03/18/%E4%BD%BF%E7%94%A8-hexo-github-%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">使用 hexo + github 搭建个人博客</a>
-        <div class="post-except">
-            使用 hexo + github 搭建个人博客
-1、所需要准备的环境
-git-bash
-nodeJs (npm)
-vscode
-github account
+<p>第一步是安装：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo</span><br></pre></td></tr></table></figure>
 
+<p>第二步时初始化：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd ../hexo</span><br><span class="line">hexo init</span><br></pre></td></tr></table></figure>
 
-2、创建 github 仓库
+<p>生成和启动服务：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure>
 
-仓库的名称必须是： username.github.io 访问 url ：https://www.username.guthub.io 
+<p><br><br></p>
+<h2 id="5、hexo-主题"><a href="#5、hexo-主题" class="headerlink" title="5、hexo 主题"></a><strong>5、hexo 主题</strong></h2><br>
 
-3、配置 SSH key
+<p><a target="_blank" rel="noopener" href="https://hexo.io/themes">https://hexo.io/themes</a> 下载相关的主题，并安装 <br><br>安装到 hexo&#x2F;themes 下</p>
+<br>
 
-测试是否配置成功：
-1ssh -T git@github.com
+<p>修改配置文件 _config.yml</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">theme: xxx</span><br></pre></td></tr></table></figure>
+<br>
 
+<p>配置关联 github 信息：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repository: git@github.com:username/username.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
+<br>
 
-4、配置 hexo
+<p>安装插件并上传到 github：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-devoloper-git --save</span><br><span class="line">hexo d </span><br></pre></td></tr></table></figure>
+<br>
+<br>
 
-第一步是安装：
-1npm 
-            <a class="read-more" href="/2022/03/18/%E4%BD%BF%E7%94%A8-hexo-github-%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/"> ... </a>
-        </div>
-        <div class="post-date">2022.03.18</div>
-    </div>
-    
-</div>
+<h2 id="6、hexo-常用指令"><a href="#6、hexo-常用指令" class="headerlink" title="6、hexo 常用指令"></a><strong>6、hexo 常用指令</strong></h2><br>
 
-                <div class="footer">
-    <span>Copyright © 2022 Hexo</span>
-    <span>Theme Designed By <a target="_blank" href="https://zheli.design/one-paper">這Li</a></span>
-</div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">hexo n &#x27;text&#x27;       # 新建文章</span><br><span class="line">hexo n page &#x27;text&#x27;  # 新建页面</span><br><span class="line">hexo clean          # 清空配置</span><br><span class="line">hexo g              # 生成页面</span><br><span class="line">hexo s              # 开启端口映射</span><br><span class="line">hexo d              # 上传代码</span><br><span class="line">hexo help</span><br><span class="line">hexo version</span><br></pre></td></tr></table></figure>
 
+<p>另外：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">使用 &lt;!-- more --&gt; 可以控制文章显示的字数</span><br></pre></td></tr></table></figure>
 
-<link rel="stylesheet" href="/css/a11y-dark.min.css">
+<p><br><br></p>
+<h2 id="7、github-上的设置"><a href="#7、github-上的设置" class="headerlink" title="7、github 上的设置"></a><strong>7、github 上的设置</strong></h2><br>
 
-
-<script src="/js/highlight.min.js"></script>
-
-
-<script src="/js/highlightjs-line-numbers.js"></script>
-
-
-<script>
-    hljs.initHighlightingOnLoad();
-    hljs.initLineNumbersOnLoad();
-</script>
-
-            </div>
-        </div>
-    </body>
-</html>
+<p><a target="_blank" rel="noopener" href="https://docs.github.com/cn/pages/quickstart">https://docs.github.com/cn/pages/quickstart</a></p>
+<p>几个要求：</p>
+<ul>
+<li>仓库必须是 public</li>
+<li>随便选择一个主题</li>
+<li>等待30分钟</li>
+</ul>
+</article></div></main><div class="nav-wrap"><div class="nav"><button class="site-nav"><div class="navicon"></div></button><ul class="nav_items"><li class="nav_item"><a class="nav-page" href="/#Publications"> Publications</a></li><li class="nav_item"><a class="nav-page" href="/"> About</a></li><li class="nav_item"><a class="nav-page" target="_blank" rel="noopener" href="https://phower.me"> Blog</a></li></ul></div><div class="cd-top"><i class="fa fa-arrow-up" aria-hidden="true"></i></div></div><footer id="page_footer"><div class="footer_wrap"><div class="copyright">&copy;2020 - 2022 by John Doe</div><div class="theme-info">Powered by <a target="_blank" href="https://hexo.io" rel="nofollow noopener">Hexo</a> & <a target="_blank" href="https://github.com/PhosphorW/hexo-theme-academia" rel="nofollow noopener">Academia Theme</a></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery-pjax@latest/jquery.pjax.min.js"></script><script src="/js/main.js"></script></body></html>
