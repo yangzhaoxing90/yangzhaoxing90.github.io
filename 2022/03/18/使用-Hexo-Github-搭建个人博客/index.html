@@ -18,6 +18,7 @@
   <link 
     rel="icon" 
     href="/img/author.png">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css">
   <title>使用 Hexo + Github 搭建个人博客</title>
   
     
@@ -48,7 +49,7 @@
         content="2022-05-15">
       <meta 
         property="og:article:author" 
-        content="theme-kaze">
+        content="Bluee">
       
         
           <meta 
@@ -151,6 +152,9 @@
   
   
   
+    
+    <link rel="prefetch" href="//cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" as="script">
+  
   
   
   
@@ -178,7 +182,7 @@
           src="/img/author.png" 
           alt="blog logo">
       
-      <span class="navbar-logo-dsc">theme-kaze demo</span>
+      <span class="navbar-logo-dsc">Bluee's blog</span>
     </span>
   </div>
   <div class="navbar-menu">
@@ -278,7 +282,7 @@
     
     
       <span class="dot"></span>
-      <span>287 words</span>
+      <span>286 words</span>
     
   </div>
   
@@ -306,64 +310,58 @@
     id="section" 
     class="post-content">
     <p><br><br></p>
-<h2 id="1、所需要准备的环境"><a href="#1、所需要准备的环境" class="headerlink" title="1、所需要准备的环境"></a><strong>1、所需要准备的环境</strong></h2><ul>
+<h2 id="1-所需要准备的环境"><a class="markdownIt-Anchor" href="#1-所需要准备的环境"></a> <strong>1、所需要准备的环境</strong></h2>
+<ul>
 <li>git-bash</li>
 <li>nodeJs (npm)</li>
 <li>vscode</li>
 <li>github account</li>
 </ul>
 <p><br><br></p>
-<h2 id="2、创建-github-仓库"><a href="#2、创建-github-仓库" class="headerlink" title="2、创建 github 仓库"></a><strong>2、创建 github 仓库</strong></h2><br>
-
-<p>仓库的名称必须是： username.github.io <br><br>访问 url ：<a target="_blank" rel="noopener" href="https://www.username.guthub.io/">https://www.username.guthub.io</a> <br></p>
+<h2 id="2-创建-github-仓库"><a class="markdownIt-Anchor" href="#2-创建-github-仓库"></a> <strong>2、创建 github 仓库</strong></h2>
+<br>
+<p>仓库的名称必须是： <a target="_blank" rel="noopener" href="http://username.github.io">username.github.io</a> <br><br>
+访问 url ：<a target="_blank" rel="noopener" href="https://www.username.guthub.io">https://www.username.guthub.io</a> <br></p>
 <p><br><br></p>
-<h2 id="3、配置-SSH-key"><a href="#3、配置-SSH-key" class="headerlink" title="3、配置 SSH key"></a><strong>3、配置 SSH key</strong></h2><br>
-
+<h2 id="3-配置-ssh-key"><a class="markdownIt-Anchor" href="#3-配置-ssh-key"></a> <strong>3、配置 SSH key</strong></h2>
+<br>
 <p>测试是否配置成功：</p>
 <pre class="highlight"><span class="line">ssh -T git@github.com</span><br></pre>
-
 <p><br><br></p>
-<h2 id="4、配置-hexo"><a href="#4、配置-hexo" class="headerlink" title="4、配置 hexo"></a><strong>4、配置 hexo</strong></h2><br>
-
+<h2 id="4-配置-hexo"><a class="markdownIt-Anchor" href="#4-配置-hexo"></a> <strong>4、配置 hexo</strong></h2>
+<br>
 <p>第一步是安装：</p>
 <pre class="highlight"><span class="line">npm install -g hexo</span><br></pre>
-
 <p>第二步时初始化：</p>
 <pre class="highlight"><span class="line">cd ../hexo</span><br><span class="line">hexo init</span><br></pre>
-
 <p>生成和启动服务：</p>
 <pre class="highlight"><span class="line">hexo g</span><br><span class="line">hexo s</span><br></pre>
-
 <p><br><br></p>
-<h2 id="5、hexo-主题"><a href="#5、hexo-主题" class="headerlink" title="5、hexo 主题"></a><strong>5、hexo 主题</strong></h2><br>
-
-<p><a target="_blank" rel="noopener" href="https://hexo.io/themes">https://hexo.io/themes</a> 下载相关的主题，并安装 <br><br>安装到 hexo&#x2F;themes 下</p>
+<h2 id="5-hexo-主题"><a class="markdownIt-Anchor" href="#5-hexo-主题"></a> <strong>5、hexo 主题</strong></h2>
 <br>
-
+<p><a target="_blank" rel="noopener" href="https://hexo.io/themes">https://hexo.io/themes</a> 下载相关的主题，并安装 <br><br>
+安装到 hexo/themes 下</p>
+<br>
 <p>修改配置文件 _config.yml</p>
 <pre class="highlight"><span class="line">theme: xxx</span><br></pre>
 <br>
-
 <p>配置关联 github 信息：</p>
 <pre class="highlight"><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repository: git@github.com:username/username.github.io.git</span><br><span class="line">  branch: master</span><br></pre>
 <br>
-
 <p>安装插件并上传到 github：</p>
 <pre class="highlight"><span class="line">npm install hexo-devoloper-git --save</span><br><span class="line">hexo d </span><br></pre>
 <br>
-
-<p>使用了 kaze 主题：<br><a target="_blank" rel="noopener" href="https://github.com/theme-kaze/hexo-theme-Kaze">https://github.com/theme-kaze/hexo-theme-Kaze</a></p>
+<p>使用了 kaze 主题：<br>
+<a target="_blank" rel="noopener" href="https://github.com/theme-kaze/hexo-theme-Kaze">https://github.com/theme-kaze/hexo-theme-Kaze</a></p>
 <p><br><br></p>
-<h2 id="6、hexo-常用指令"><a href="#6、hexo-常用指令" class="headerlink" title="6、hexo 常用指令"></a><strong>6、hexo 常用指令</strong></h2><br>
-
+<h2 id="6-hexo-常用指令"><a class="markdownIt-Anchor" href="#6-hexo-常用指令"></a> <strong>6、hexo 常用指令</strong></h2>
+<br>
 <pre class="highlight"><span class="line">hexo n &#x27;text&#x27;       # 新建文章</span><br><span class="line">hexo n page &#x27;text&#x27;  # 新建页面</span><br><span class="line">hexo clean          # 清空配置</span><br><span class="line">hexo g              # 生成页面</span><br><span class="line">hexo s              # 开启端口映射</span><br><span class="line">hexo d              # 上传代码</span><br><span class="line">hexo help</span><br><span class="line">hexo version</span><br></pre>
-
 <p>另外：</p>
 <pre class="highlight"><span class="line">使用 &lt;!-- more --&gt; 可以控制文章显示的字数</span><br></pre>
-
 <p><br><br></p>
-<h2 id="7、github-上的设置"><a href="#7、github-上的设置" class="headerlink" title="7、github 上的设置"></a><strong>7、github 上的设置</strong></h2><br>
-
+<h2 id="7-github-上的设置"><a class="markdownIt-Anchor" href="#7-github-上的设置"></a> <strong>7、github 上的设置</strong></h2>
+<br>
 <p><a target="_blank" rel="noopener" href="https://docs.github.com/cn/pages/quickstart">https://docs.github.com/cn/pages/quickstart</a></p>
 <p>几个要求：</p>
 <ul>
@@ -383,7 +381,7 @@
             target="_blank" 
             rel="nofollow noopener noreferrer" 
             href="/about">
-            theme-kaze
+            Bluee
           </a>
         </p>
         <p>
@@ -427,7 +425,7 @@
     style="padding-right: 2px;">
   </i>TOC
 </div>
-<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E6%89%80%E9%9C%80%E8%A6%81%E5%87%86%E5%A4%87%E7%9A%84%E7%8E%AF%E5%A2%83"><span class="toc-text">1、所需要准备的环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E5%88%9B%E5%BB%BA-github-%E4%BB%93%E5%BA%93"><span class="toc-text">2、创建 github 仓库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81%E9%85%8D%E7%BD%AE-SSH-key"><span class="toc-text">3、配置 SSH key</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%E3%80%81%E9%85%8D%E7%BD%AE-hexo"><span class="toc-text">4、配置 hexo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5%E3%80%81hexo-%E4%B8%BB%E9%A2%98"><span class="toc-text">5、hexo 主题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6%E3%80%81hexo-%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4"><span class="toc-text">6、hexo 常用指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7%E3%80%81github-%E4%B8%8A%E7%9A%84%E8%AE%BE%E7%BD%AE"><span class="toc-text">7、github 上的设置</span></a></li></ol>
+<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%89%80%E9%9C%80%E8%A6%81%E5%87%86%E5%A4%87%E7%9A%84%E7%8E%AF%E5%A2%83"><span class="toc-text"> 1、所需要准备的环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%88%9B%E5%BB%BA-github-%E4%BB%93%E5%BA%93"><span class="toc-text"> 2、创建 github 仓库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E9%85%8D%E7%BD%AE-ssh-key"><span class="toc-text"> 3、配置 SSH key</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E9%85%8D%E7%BD%AE-hexo"><span class="toc-text"> 4、配置 hexo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-hexo-%E4%B8%BB%E9%A2%98"><span class="toc-text"> 5、hexo 主题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-hexo-%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4"><span class="toc-text"> 6、hexo 常用指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-github-%E4%B8%8A%E7%9A%84%E8%AE%BE%E7%BD%AE"><span class="toc-text"> 7、github 上的设置</span></a></li></ol>
 </div></main>
             <aside class="left-column">
               
@@ -440,13 +438,13 @@
     height="88"
     alt="author avatar">
 
-<p class="author-name">theme-kaze</p>
-<p class="author-description">designed by theme-kaze</p>
+<p class="author-name">Bluee</p>
+<p class="author-description">A programmer with interest</p>
 <div class="author-message">
   <a 
     class="author-posts-count" 
     href="/archives">
-    <span>5</span>
+    <span>16</span>
     <span>Posts</span>
   </a>
   <a 
@@ -458,7 +456,7 @@
   <a 
     class="author-tags-count" 
     href="/tags">
-    <span>7</span>
+    <span>20</span>
     <span>Tags</span>
   </a>
 </div>
@@ -475,7 +473,7 @@
     style="padding-right: 2px;">
   </i>TOC
 </div>
-<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E6%89%80%E9%9C%80%E8%A6%81%E5%87%86%E5%A4%87%E7%9A%84%E7%8E%AF%E5%A2%83"><span class="toc-text">1、所需要准备的环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E5%88%9B%E5%BB%BA-github-%E4%BB%93%E5%BA%93"><span class="toc-text">2、创建 github 仓库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81%E9%85%8D%E7%BD%AE-SSH-key"><span class="toc-text">3、配置 SSH key</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%E3%80%81%E9%85%8D%E7%BD%AE-hexo"><span class="toc-text">4、配置 hexo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5%E3%80%81hexo-%E4%B8%BB%E9%A2%98"><span class="toc-text">5、hexo 主题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6%E3%80%81hexo-%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4"><span class="toc-text">6、hexo 常用指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7%E3%80%81github-%E4%B8%8A%E7%9A%84%E8%AE%BE%E7%BD%AE"><span class="toc-text">7、github 上的设置</span></a></li></ol>
+<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%89%80%E9%9C%80%E8%A6%81%E5%87%86%E5%A4%87%E7%9A%84%E7%8E%AF%E5%A2%83"><span class="toc-text"> 1、所需要准备的环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%88%9B%E5%BB%BA-github-%E4%BB%93%E5%BA%93"><span class="toc-text"> 2、创建 github 仓库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E9%85%8D%E7%BD%AE-ssh-key"><span class="toc-text"> 3、配置 SSH key</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E9%85%8D%E7%BD%AE-hexo"><span class="toc-text"> 4、配置 hexo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-hexo-%E4%B8%BB%E9%A2%98"><span class="toc-text"> 5、hexo 主题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-hexo-%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4"><span class="toc-text"> 6、hexo 常用指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-github-%E4%B8%8A%E7%9A%84%E8%AE%BE%E7%BD%AE"><span class="toc-text"> 7、github 上的设置</span></a></li></ol>
       </div>
     </article>
   
@@ -523,9 +521,9 @@
       </a>
     
       <a 
-        href="/tags/hexo/" 
-        title="hexo">
-        <div class="tags-list-item">hexo</div>
+        href="/tags/%E5%BE%AE%E7%A7%AF%E5%88%86/" 
+        title="微积分">
+        <div class="tags-list-item">微积分</div>
       </a>
     
       <a 
@@ -535,15 +533,69 @@
       </a>
     
       <a 
-        href="/tags/html/" 
-        title="html">
-        <div class="tags-list-item">html</div>
+        href="/tags/Linux/" 
+        title="Linux">
+        <div class="tags-list-item">Linux</div>
+      </a>
+    
+      <a 
+        href="/tags/Unix/" 
+        title="Unix">
+        <div class="tags-list-item">Unix</div>
+      </a>
+    
+      <a 
+        href="/tags/atCoder/" 
+        title="atCoder">
+        <div class="tags-list-item">atCoder</div>
+      </a>
+    
+      <a 
+        href="/tags/hexo/" 
+        title="hexo">
+        <div class="tags-list-item">hexo</div>
       </a>
     
       <a 
         href="/tags/xd/" 
         title="xd">
         <div class="tags-list-item">xd</div>
+      </a>
+    
+      <a 
+        href="/tags/leetcode/" 
+        title="leetcode">
+        <div class="tags-list-item">leetcode</div>
+      </a>
+    
+      <a 
+        href="/tags/spring/" 
+        title="spring">
+        <div class="tags-list-item">spring</div>
+      </a>
+    
+      <a 
+        href="/tags/%E8%A7%82%E5%90%8E%E6%84%9F/" 
+        title="观后感">
+        <div class="tags-list-item">观后感</div>
+      </a>
+    
+      <a 
+        href="/tags/jsp/" 
+        title="jsp">
+        <div class="tags-list-item">jsp</div>
+      </a>
+    
+      <a 
+        href="/tags/servlet/" 
+        title="servlet">
+        <div class="tags-list-item">servlet</div>
+      </a>
+    
+      <a 
+        href="/tags/MySQL/" 
+        title="MySQL">
+        <div class="tags-list-item">MySQL</div>
       </a>
     
   </div>
@@ -564,7 +616,7 @@
     style="padding-right: 2px;">
   </i>TOC
 </div>
-<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E6%89%80%E9%9C%80%E8%A6%81%E5%87%86%E5%A4%87%E7%9A%84%E7%8E%AF%E5%A2%83"><span class="toc-text">1、所需要准备的环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E5%88%9B%E5%BB%BA-github-%E4%BB%93%E5%BA%93"><span class="toc-text">2、创建 github 仓库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81%E9%85%8D%E7%BD%AE-SSH-key"><span class="toc-text">3、配置 SSH key</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%E3%80%81%E9%85%8D%E7%BD%AE-hexo"><span class="toc-text">4、配置 hexo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5%E3%80%81hexo-%E4%B8%BB%E9%A2%98"><span class="toc-text">5、hexo 主题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6%E3%80%81hexo-%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4"><span class="toc-text">6、hexo 常用指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7%E3%80%81github-%E4%B8%8A%E7%9A%84%E8%AE%BE%E7%BD%AE"><span class="toc-text">7、github 上的设置</span></a></li></ol>
+<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%89%80%E9%9C%80%E8%A6%81%E5%87%86%E5%A4%87%E7%9A%84%E7%8E%AF%E5%A2%83"><span class="toc-text"> 1、所需要准备的环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%88%9B%E5%BB%BA-github-%E4%BB%93%E5%BA%93"><span class="toc-text"> 2、创建 github 仓库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E9%85%8D%E7%BD%AE-ssh-key"><span class="toc-text"> 3、配置 SSH key</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E9%85%8D%E7%BD%AE-hexo"><span class="toc-text"> 4、配置 hexo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-hexo-%E4%B8%BB%E9%A2%98"><span class="toc-text"> 5、hexo 主题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-hexo-%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4"><span class="toc-text"> 6、hexo 常用指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-github-%E4%B8%8A%E7%9A%84%E8%AE%BE%E7%BD%AE"><span class="toc-text"> 7、github 上的设置</span></a></li></ol>
     </article>
   
   
@@ -579,23 +631,23 @@
   <div class="recent-posts-list">
     
       <div class="recent-posts-item">
-        <div class="recent-posts-item-title">2022-05-15</div>
-        <a href="/2022/05/15/HTML5/"><div class="recent-posts-item-content">HTML5</div></a>
+        <div class="recent-posts-item-title">2022-08-08</div>
+        <a href="/2022/08/08/MapleStory-Stronger-Guide/"><div class="recent-posts-item-content">MapleStory Stronger Guide</div></a>
       </div>
     
       <div class="recent-posts-item">
-        <div class="recent-posts-item-title">2022-03-22</div>
-        <a href="/2022/03/22/%E4%BA%91%E4%BB%93%E5%82%A8%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%AE%9E%E4%BE%8B%E6%B5%81%E7%A8%8B/"><div class="recent-posts-item-content">云仓储微信小程序的实例流程</div></a>
+        <div class="recent-posts-item-title">2022-08-04</div>
+        <a href="/2022/08/04/Servlet-and-Jsp/"><div class="recent-posts-item-content">Servlet and Jsp</div></a>
       </div>
     
       <div class="recent-posts-item">
-        <div class="recent-posts-item-title">2022-03-21</div>
-        <a href="/2022/03/21/Axure-vantUI-%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%9A%84%E7%95%8C%E9%9D%A2%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88/"><div class="recent-posts-item-content">Axure + VantUI + 微信小程序的界面设计方案</div></a>
+        <div class="recent-posts-item-title">2022-08-03</div>
+        <a href="/2022/08/03/book-post-view/"><div class="recent-posts-item-content">book post view</div></a>
       </div>
     
       <div class="recent-posts-item">
-        <div class="recent-posts-item-title">2022-03-18</div>
-        <a href="/2022/03/18/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%B7%A5%E5%85%B7%E7%9A%84%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/"><div class="recent-posts-item-content">微信小程序工具的下载安装使用</div></a>
+        <div class="recent-posts-item-title">2022-07-25</div>
+        <a href="/2022/07/25/Spring%20Framework%205.3.22/"><div class="recent-posts-item-content">Spring-Framework 5.3.22</div></a>
       </div>
     
   </div>
@@ -628,7 +680,7 @@
         <a 
           href="/" 
           class="footer-link">
-          theme-kaze demo
+          Bluee's blog
         </a>
       </div>
     </div>
@@ -703,6 +755,9 @@
   <i class="iconfont icon-search button-icon"></i>
 </a> 
      
+     
+      
+ 
      
      
       <script>

@@ -18,6 +18,7 @@
   <link 
     rel="icon" 
     href="/img/author.png">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css">
   <title>微信小程序工具的下载安装使用</title>
   
     
@@ -48,7 +49,7 @@
         content="2022-05-15">
       <meta 
         property="og:article:author" 
-        content="theme-kaze">
+        content="Bluee">
       
         
           <meta 
@@ -151,6 +152,9 @@
   
   
   
+    
+    <link rel="prefetch" href="//cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" as="script">
+  
   
   
   
@@ -178,7 +182,7 @@
           src="/img/author.png" 
           alt="blog logo">
       
-      <span class="navbar-logo-dsc">theme-kaze demo</span>
+      <span class="navbar-logo-dsc">Bluee's blog</span>
     </span>
   </div>
   <div class="navbar-menu">
@@ -310,15 +314,20 @@
 <p>快速开始：</p>
 <p><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/wxcloud/quick-start/miniprogram.html">https://developers.weixin.qq.com/miniprogram/dev/wxcloud/quick-start/miniprogram.html</a></p>
 <p><br><br></p>
-<h2 id="1-下载微信开发者工具"><a href="#1-下载微信开发者工具" class="headerlink" title="1. 下载微信开发者工具"></a>1. 下载微信开发者工具</h2><p>   <a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html">https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html</a></p>
+<h2 id="1-下载微信开发者工具"><a class="markdownIt-Anchor" href="#1-下载微信开发者工具"></a> 1. 下载微信开发者工具</h2>
+<p><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html">https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html</a></p>
 <p><br><br></p>
-<h2 id="2-注册微信小程序获取-AppID"><a href="#2-注册微信小程序获取-AppID" class="headerlink" title="2. 注册微信小程序获取 AppID"></a>2. 注册微信小程序获取 AppID</h2><p>   <a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/wxamp/home/guide">https://mp.weixin.qq.com/wxamp/home/guide</a></p>
+<h2 id="2-注册微信小程序获取-appid"><a class="markdownIt-Anchor" href="#2-注册微信小程序获取-appid"></a> 2. 注册微信小程序获取 AppID</h2>
+<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/wxamp/home/guide">https://mp.weixin.qq.com/wxamp/home/guide</a></p>
 <p><br><br></p>
-<h2 id="3-创建小程序-使用微信云开发，填入-AppID"><a href="#3-创建小程序-使用微信云开发，填入-AppID" class="headerlink" title="3. 创建小程序 (使用微信云开发，填入 AppID)"></a>3. 创建小程序 (使用微信云开发，填入 AppID)</h2><p>   <img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../images/wx_register.png" class="lozad post-image"src="/../images/wx_register.png"></p>
+<h2 id="3-创建小程序-使用微信云开发填入-appid"><a class="markdownIt-Anchor" href="#3-创建小程序-使用微信云开发填入-appid"></a> 3. 创建小程序 (使用微信云开发，填入 AppID)</h2>
+<p><img src="/../images/wx_register.png" alt srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../images/wx_register.png" class="lozad post-image"></p>
 <p><br><br></p>
-<h2 id="4-创建云环境"><a href="#4-创建云环境" class="headerlink" title="4. 创建云环境"></a>4. 创建云环境</h2><p>   <img  srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../images/wx_cloud_env.png" class="lozad post-image"src="/../images/wx_cloud_env.png"></p>
+<h2 id="4-创建云环境"><a class="markdownIt-Anchor" href="#4-创建云环境"></a> 4. 创建云环境</h2>
+<p><img src="/../images/wx_cloud_env.png" alt srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../images/wx_cloud_env.png" class="lozad post-image"></p>
 <p><br><br></p>
-<h2 id="5-进行开发"><a href="#5-进行开发" class="headerlink" title="5. 进行开发"></a>5. 进行开发</h2>
+<h2 id="5-进行开发"><a class="markdownIt-Anchor" href="#5-进行开发"></a> 5. 进行开发</h2>
+
   </div>
   <div>
     
@@ -330,7 +339,7 @@
             target="_blank" 
             rel="nofollow noopener noreferrer" 
             href="/about">
-            theme-kaze
+            Bluee
           </a>
         </p>
         <p>
@@ -388,7 +397,7 @@
     style="padding-right: 2px;">
   </i>TOC
 </div>
-<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E4%B8%8B%E8%BD%BD%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91%E8%80%85%E5%B7%A5%E5%85%B7"><span class="toc-text">1. 下载微信开发者工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%B3%A8%E5%86%8C%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%8E%B7%E5%8F%96-AppID"><span class="toc-text">2. 注册微信小程序获取 AppID</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%88%9B%E5%BB%BA%E5%B0%8F%E7%A8%8B%E5%BA%8F-%E4%BD%BF%E7%94%A8%E5%BE%AE%E4%BF%A1%E4%BA%91%E5%BC%80%E5%8F%91%EF%BC%8C%E5%A1%AB%E5%85%A5-AppID"><span class="toc-text">3. 创建小程序 (使用微信云开发，填入 AppID)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%88%9B%E5%BB%BA%E4%BA%91%E7%8E%AF%E5%A2%83"><span class="toc-text">4. 创建云环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E8%BF%9B%E8%A1%8C%E5%BC%80%E5%8F%91"><span class="toc-text">5. 进行开发</span></a></li></ol>
+<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E4%B8%8B%E8%BD%BD%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91%E8%80%85%E5%B7%A5%E5%85%B7"><span class="toc-text"> 1. 下载微信开发者工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%B3%A8%E5%86%8C%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%8E%B7%E5%8F%96-appid"><span class="toc-text"> 2. 注册微信小程序获取 AppID</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%88%9B%E5%BB%BA%E5%B0%8F%E7%A8%8B%E5%BA%8F-%E4%BD%BF%E7%94%A8%E5%BE%AE%E4%BF%A1%E4%BA%91%E5%BC%80%E5%8F%91%E5%A1%AB%E5%85%A5-appid"><span class="toc-text"> 3. 创建小程序 (使用微信云开发，填入 AppID)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%88%9B%E5%BB%BA%E4%BA%91%E7%8E%AF%E5%A2%83"><span class="toc-text"> 4. 创建云环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E8%BF%9B%E8%A1%8C%E5%BC%80%E5%8F%91"><span class="toc-text"> 5. 进行开发</span></a></li></ol>
 </div></main>
             <aside class="left-column">
               
@@ -401,13 +410,13 @@
     height="88"
     alt="author avatar">
 
-<p class="author-name">theme-kaze</p>
-<p class="author-description">designed by theme-kaze</p>
+<p class="author-name">Bluee</p>
+<p class="author-description">A programmer with interest</p>
 <div class="author-message">
   <a 
     class="author-posts-count" 
     href="/archives">
-    <span>5</span>
+    <span>16</span>
     <span>Posts</span>
   </a>
   <a 
@@ -419,7 +428,7 @@
   <a 
     class="author-tags-count" 
     href="/tags">
-    <span>7</span>
+    <span>20</span>
     <span>Tags</span>
   </a>
 </div>
@@ -436,7 +445,7 @@
     style="padding-right: 2px;">
   </i>TOC
 </div>
-<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E4%B8%8B%E8%BD%BD%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91%E8%80%85%E5%B7%A5%E5%85%B7"><span class="toc-text">1. 下载微信开发者工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%B3%A8%E5%86%8C%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%8E%B7%E5%8F%96-AppID"><span class="toc-text">2. 注册微信小程序获取 AppID</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%88%9B%E5%BB%BA%E5%B0%8F%E7%A8%8B%E5%BA%8F-%E4%BD%BF%E7%94%A8%E5%BE%AE%E4%BF%A1%E4%BA%91%E5%BC%80%E5%8F%91%EF%BC%8C%E5%A1%AB%E5%85%A5-AppID"><span class="toc-text">3. 创建小程序 (使用微信云开发，填入 AppID)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%88%9B%E5%BB%BA%E4%BA%91%E7%8E%AF%E5%A2%83"><span class="toc-text">4. 创建云环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E8%BF%9B%E8%A1%8C%E5%BC%80%E5%8F%91"><span class="toc-text">5. 进行开发</span></a></li></ol>
+<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E4%B8%8B%E8%BD%BD%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91%E8%80%85%E5%B7%A5%E5%85%B7"><span class="toc-text"> 1. 下载微信开发者工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%B3%A8%E5%86%8C%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%8E%B7%E5%8F%96-appid"><span class="toc-text"> 2. 注册微信小程序获取 AppID</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%88%9B%E5%BB%BA%E5%B0%8F%E7%A8%8B%E5%BA%8F-%E4%BD%BF%E7%94%A8%E5%BE%AE%E4%BF%A1%E4%BA%91%E5%BC%80%E5%8F%91%E5%A1%AB%E5%85%A5-appid"><span class="toc-text"> 3. 创建小程序 (使用微信云开发，填入 AppID)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%88%9B%E5%BB%BA%E4%BA%91%E7%8E%AF%E5%A2%83"><span class="toc-text"> 4. 创建云环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E8%BF%9B%E8%A1%8C%E5%BC%80%E5%8F%91"><span class="toc-text"> 5. 进行开发</span></a></li></ol>
       </div>
     </article>
   
@@ -484,9 +493,9 @@
       </a>
     
       <a 
-        href="/tags/hexo/" 
-        title="hexo">
-        <div class="tags-list-item">hexo</div>
+        href="/tags/%E5%BE%AE%E7%A7%AF%E5%88%86/" 
+        title="微积分">
+        <div class="tags-list-item">微积分</div>
       </a>
     
       <a 
@@ -496,15 +505,69 @@
       </a>
     
       <a 
-        href="/tags/html/" 
-        title="html">
-        <div class="tags-list-item">html</div>
+        href="/tags/Linux/" 
+        title="Linux">
+        <div class="tags-list-item">Linux</div>
+      </a>
+    
+      <a 
+        href="/tags/Unix/" 
+        title="Unix">
+        <div class="tags-list-item">Unix</div>
+      </a>
+    
+      <a 
+        href="/tags/atCoder/" 
+        title="atCoder">
+        <div class="tags-list-item">atCoder</div>
+      </a>
+    
+      <a 
+        href="/tags/hexo/" 
+        title="hexo">
+        <div class="tags-list-item">hexo</div>
       </a>
     
       <a 
         href="/tags/xd/" 
         title="xd">
         <div class="tags-list-item">xd</div>
+      </a>
+    
+      <a 
+        href="/tags/leetcode/" 
+        title="leetcode">
+        <div class="tags-list-item">leetcode</div>
+      </a>
+    
+      <a 
+        href="/tags/spring/" 
+        title="spring">
+        <div class="tags-list-item">spring</div>
+      </a>
+    
+      <a 
+        href="/tags/%E8%A7%82%E5%90%8E%E6%84%9F/" 
+        title="观后感">
+        <div class="tags-list-item">观后感</div>
+      </a>
+    
+      <a 
+        href="/tags/jsp/" 
+        title="jsp">
+        <div class="tags-list-item">jsp</div>
+      </a>
+    
+      <a 
+        href="/tags/servlet/" 
+        title="servlet">
+        <div class="tags-list-item">servlet</div>
+      </a>
+    
+      <a 
+        href="/tags/MySQL/" 
+        title="MySQL">
+        <div class="tags-list-item">MySQL</div>
       </a>
     
   </div>
@@ -525,7 +588,7 @@
     style="padding-right: 2px;">
   </i>TOC
 </div>
-<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E4%B8%8B%E8%BD%BD%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91%E8%80%85%E5%B7%A5%E5%85%B7"><span class="toc-text">1. 下载微信开发者工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%B3%A8%E5%86%8C%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%8E%B7%E5%8F%96-AppID"><span class="toc-text">2. 注册微信小程序获取 AppID</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%88%9B%E5%BB%BA%E5%B0%8F%E7%A8%8B%E5%BA%8F-%E4%BD%BF%E7%94%A8%E5%BE%AE%E4%BF%A1%E4%BA%91%E5%BC%80%E5%8F%91%EF%BC%8C%E5%A1%AB%E5%85%A5-AppID"><span class="toc-text">3. 创建小程序 (使用微信云开发，填入 AppID)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%88%9B%E5%BB%BA%E4%BA%91%E7%8E%AF%E5%A2%83"><span class="toc-text">4. 创建云环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E8%BF%9B%E8%A1%8C%E5%BC%80%E5%8F%91"><span class="toc-text">5. 进行开发</span></a></li></ol>
+<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E4%B8%8B%E8%BD%BD%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91%E8%80%85%E5%B7%A5%E5%85%B7"><span class="toc-text"> 1. 下载微信开发者工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%B3%A8%E5%86%8C%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%8E%B7%E5%8F%96-appid"><span class="toc-text"> 2. 注册微信小程序获取 AppID</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%88%9B%E5%BB%BA%E5%B0%8F%E7%A8%8B%E5%BA%8F-%E4%BD%BF%E7%94%A8%E5%BE%AE%E4%BF%A1%E4%BA%91%E5%BC%80%E5%8F%91%E5%A1%AB%E5%85%A5-appid"><span class="toc-text"> 3. 创建小程序 (使用微信云开发，填入 AppID)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%88%9B%E5%BB%BA%E4%BA%91%E7%8E%AF%E5%A2%83"><span class="toc-text"> 4. 创建云环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E8%BF%9B%E8%A1%8C%E5%BC%80%E5%8F%91"><span class="toc-text"> 5. 进行开发</span></a></li></ol>
     </article>
   
   
@@ -540,23 +603,23 @@
   <div class="recent-posts-list">
     
       <div class="recent-posts-item">
-        <div class="recent-posts-item-title">2022-05-15</div>
-        <a href="/2022/05/15/HTML5/"><div class="recent-posts-item-content">HTML5</div></a>
+        <div class="recent-posts-item-title">2022-08-08</div>
+        <a href="/2022/08/08/MapleStory-Stronger-Guide/"><div class="recent-posts-item-content">MapleStory Stronger Guide</div></a>
       </div>
     
       <div class="recent-posts-item">
-        <div class="recent-posts-item-title">2022-03-22</div>
-        <a href="/2022/03/22/%E4%BA%91%E4%BB%93%E5%82%A8%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%AE%9E%E4%BE%8B%E6%B5%81%E7%A8%8B/"><div class="recent-posts-item-content">云仓储微信小程序的实例流程</div></a>
+        <div class="recent-posts-item-title">2022-08-04</div>
+        <a href="/2022/08/04/Servlet-and-Jsp/"><div class="recent-posts-item-content">Servlet and Jsp</div></a>
       </div>
     
       <div class="recent-posts-item">
-        <div class="recent-posts-item-title">2022-03-21</div>
-        <a href="/2022/03/21/Axure-vantUI-%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%9A%84%E7%95%8C%E9%9D%A2%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88/"><div class="recent-posts-item-content">Axure + VantUI + 微信小程序的界面设计方案</div></a>
+        <div class="recent-posts-item-title">2022-08-03</div>
+        <a href="/2022/08/03/book-post-view/"><div class="recent-posts-item-content">book post view</div></a>
       </div>
     
       <div class="recent-posts-item">
-        <div class="recent-posts-item-title">2022-03-18</div>
-        <a href="/2022/03/18/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%B7%A5%E5%85%B7%E7%9A%84%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/"><div class="recent-posts-item-content">微信小程序工具的下载安装使用</div></a>
+        <div class="recent-posts-item-title">2022-07-25</div>
+        <a href="/2022/07/25/Spring%20Framework%205.3.22/"><div class="recent-posts-item-content">Spring-Framework 5.3.22</div></a>
       </div>
     
   </div>
@@ -589,7 +652,7 @@
         <a 
           href="/" 
           class="footer-link">
-          theme-kaze demo
+          Bluee's blog
         </a>
       </div>
     </div>
@@ -664,6 +727,9 @@
   <i class="iconfont icon-search button-icon"></i>
 </a> 
      
+     
+      
+ 
      
      
       <script>

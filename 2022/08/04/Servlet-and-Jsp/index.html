@@ -1,0 +1,1310 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="UTF-8">
+  <meta 
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <meta 
+    http-equiv="X-UA-Compatible" 
+    content="ie=edge">
+  <meta 
+    name="theme-color" 
+    content="#fff" 
+    id="theme-color">
+  <meta 
+    name="description" 
+    content="Hexo">
+  <link 
+    rel="icon" 
+    href="/img/author.png">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css">
+  <title>Servlet and Jsp</title>
+  
+    
+      <meta 
+        property="og:title" 
+        content="Servlet and Jsp">
+    
+    
+      <meta 
+        property="og:url" 
+        content="https://yangzhaoxing90.github.io/2022/08/04/Servlet-and-Jsp/index.html">
+    
+    
+      <meta 
+        property="og:img" 
+        content="/img/author.png">
+    
+    
+    
+      <meta 
+        property="og:type" 
+        content="article">
+      <meta 
+        property="og:article:published_time" 
+        content="2022-08-04">
+      <meta 
+        property="og:article:modified_time" 
+        content="2022-08-08">
+      <meta 
+        property="og:article:author" 
+        content="Bluee">
+      
+        
+          <meta 
+            property="og:article:tag" 
+            content="servlet">
+        
+          <meta 
+            property="og:article:tag" 
+            content="jsp">
+        
+      
+    
+  
+  <script>
+    function loadScript(url, cb) {
+      var script = document.createElement('script');
+      script.src = url;
+      if (cb) script.onload = cb;
+      script.async = true;
+      document.body.appendChild(script);
+    }
+    function loadCSS(href, data, attr) {
+      var sheet = document.createElement('link');
+      sheet.ref = 'stylesheet';
+      sheet.href = href;
+      sheet.dataset[data] = attr;
+      document.head.appendChild(sheet);
+    }
+    function changeCSS(cssFile, data, attr) {
+      var oldlink = document.querySelector(data);
+      var newlink = document.createElement("link");
+      newlink.setAttribute("rel", "stylesheet");
+      newlink.setAttribute("href", cssFile);
+      newlink.dataset.prism = attr;
+      document.head.replaceChild(newlink, oldlink);
+    }
+  </script>
+  
+    
+  
+  <script>
+    // control reverse button
+    var reverseDarkList = {
+      dark: 'light',
+      light: 'dark'
+    };
+    var themeColor = {
+      dark: '#1c1c1e',
+      light: '#fff'
+    }
+    // get the data of css prefers-color-scheme
+    var getCssMediaQuery = function() {
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    };
+    // reverse current darkmode setting function
+    var reverseDarkModeSetting = function() {
+      var setting = localStorage.getItem('user-color-scheme');
+      if(reverseDarkList[setting]) {
+        setting = reverseDarkList[setting];
+      } else if(setting === null) {
+        setting = reverseDarkList[getCssMediaQuery()];
+      } else {
+        return;
+      }
+      localStorage.setItem('user-color-scheme', setting);
+      return setting;
+    };
+    // apply current darkmode setting
+  </script>
+  
+    <script>
+      var setDarkmode = function(mode) {
+      var setting = mode || localStorage.getItem('user-color-scheme');
+      if(setting === getCssMediaQuery()) {
+        document.documentElement.removeAttribute('data-user-color-scheme');
+        localStorage.removeItem('user-color-scheme');
+        document.getElementById('theme-color').content = themeColor[setting];
+        document.getElementById('theme-color').dataset.mode = setting;
+      } else if(reverseDarkList[setting]) {
+        document.documentElement.setAttribute('data-user-color-scheme', setting);
+        document.getElementById('theme-color').content = themeColor[setting];
+        document.getElementById('theme-color').dataset.mode = setting;
+      } else {
+        document.documentElement.removeAttribute('data-user-color-scheme');
+        localStorage.removeItem('user-color-scheme');
+        document.getElementById('theme-color').content = themeColor[getCssMediaQuery()];
+        document.getElementById('theme-color').dataset.mode = getCssMediaQuery();
+      }
+    };
+    setDarkmode();
+    </script>
+  
+  
+  <link rel="preload" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css" as="style" >
+  <link rel="preload" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css" as="style" >
+  
+  
+    <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.js" as="script">
+    <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.css" as="style" >
+  
+  
+    <link rel="preload" href="/js/lib/lozad.min.js" as="script">
+  
+  
+  
+  
+    
+    <link rel="prefetch" href="//cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" as="script">
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/main.css">
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css">
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css">
+  
+    <link rel="stylesheet" href="/js/lib/lightbox/baguetteBox.min.css">
+  
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+  <body>
+    <div class="wrapper">
+       
+      <nav class="navbar">
+  <div class="navbar-logo">
+    <span class="navbar-logo-main">
+      
+        <img 
+          class="navbar-logo-img"
+          width="32"
+          height="32"
+          src="/img/author.png" 
+          alt="blog logo">
+      
+      <span class="navbar-logo-dsc">Bluee's blog</span>
+    </span>
+  </div>
+  <div class="navbar-menu">
+    
+      <a 
+        href="/" 
+        class="navbar-menu-item">
+        
+          Home
+        
+      </a>
+    
+      <a 
+        href="/archives" 
+        class="navbar-menu-item">
+        
+          Archive
+        
+      </a>
+    
+      <a 
+        href="/tags" 
+        class="navbar-menu-item">
+        
+          Tags
+        
+      </a>
+    
+      <a 
+        href="/categories" 
+        class="navbar-menu-item">
+        
+          Categories
+        
+      </a>
+    
+      <a 
+        href="/about" 
+        class="navbar-menu-item">
+        
+          About
+        
+      </a>
+    
+      <a 
+        href="/links" 
+        class="navbar-menu-item">
+        
+          Friends
+        
+      </a>
+    
+    <a 
+      class="navbar-menu-item darknavbar" 
+      id="dark">
+      <i class="iconfont icon-weather"></i>
+    </a>
+    <a 
+      class="navbar-menu-item searchnavbar" 
+      id="search">
+      <i 
+        class="iconfont icon-search" 
+        style="font-size: 1.2rem; font-weight: 400;">
+      </i>
+    </a>
+  </div>
+</nav> 
+      
+      <div 
+        id="local-search" 
+        style="display: none">
+        <input
+          class="navbar-menu-item"
+          id="search-input"
+          placeholder="请输入搜索内容..." />
+        <div id="search-content"></div>
+      </div>
+      
+      <div class="section-wrap">
+        <div class="container">
+          <div class="columns">
+            <main class="main-column">
+<article class="card card-content">
+  <header>
+    <h1 class="post-title">
+      Servlet and Jsp
+    </h1>
+  </header>
+  <div class="post-meta post-show-meta">
+    <time datetime="2022-08-04T01:48:33.000Z">
+      <i 
+        class="iconfont icon-calendar" 
+        style="margin-right: 2px;">
+      </i>
+      <span>2022-08-04</span>
+    </time>
+    
+    
+      <span class="dot"></span>
+      <span>5.9k words</span>
+    
+  </div>
+  
+    <div 
+      class="post-meta post-show-meta" 
+      style="margin-top: -10px;">
+      <div style="display: flex; align-items: center;">
+        <i 
+          class="iconfont icon-biaoqian" 
+          style="margin-right: 2px; font-size: 1.15rem;">
+        </i>
+        
+          
+          <a 
+            href="/tags/servlet/" 
+            class="post-meta-link">
+            servlet
+          </a>
+        
+          
+            <span class="dot"></span>
+          
+          <a 
+            href="/tags/jsp/" 
+            class="post-meta-link">
+            jsp
+          </a>
+        
+      </div>
+    </div>
+  
+  </header>
+  <div 
+    id="section" 
+    class="post-content">
+    <p>版本要求:</p>
+<blockquote>
+<p>servlet 3.0<br>
+jsp 2.2<br>
+java 6 以上</p>
+</blockquote>
+<h2 id="servlet"><a class="markdownIt-Anchor" href="#servlet"></a> Servlet</h2>
+<p>本章介绍 Servlet API</p>
+<h3 id="11-servlet-api-概述"><a class="markdownIt-Anchor" href="#11-servlet-api-概述"></a> 1.1 Servlet API 概述</h3>
+<p>Servlet API 有四个Java包:</p>
+<blockquote>
+<p>javax.servlet<br>
+javax.servlet.http<br>
+javax.servlet.annotation<br>
+javax.servlet.descriptor</p>
+</blockquote>
+<p>javax.servlet 中的主要成员:</p>
+<p><img src="/../images/javax.servlet.png" alt="javax.servlt" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../images/javax.servlet.png" class="lozad post-image"></p>
+<p>Servlet 接口定义了 Servlet 和 Servlet 容器的契约:</p>
+<ol>
+<li>Servlet 容器会把 Servlet 加载到内存中</li>
+<li>并在 Servlet 实例中调用特定的方法</li>
+</ol>
+<p>Servlet 相关实例:</p>
+<ol>
+<li>请求 : ServletRequest</li>
+<li>响应 : ServletResponse</li>
+<li>环境 : ServletContext</li>
+<li>配置信息: ServletConfig</li>
+</ol>
+<h3 id="12-servlet"><a class="markdownIt-Anchor" href="#12-servlet"></a> 1.2 Servlet</h3>
+<p>Servlet 接口定义了 5 个方法:</p>
+<pre class="highlight"><span class="line"><span class="keyword">void</span> <span class="title function_">init</span><span class="params">(ServletConfig config)</span> <span class="keyword">throws</span> ServletException</span><br><span class="line"><span class="keyword">void</span> <span class="title function_">service</span><span class="params">(ServletRequest req, ServletResponse res)</span> <span class="keyword">throws</span> </span><br><span class="line">ServletException, java.io.IOException</span><br><span class="line"><span class="keyword">void</span> <span class="title function_">destroy</span><span class="params">()</span></span><br><span class="line">java.lang.String <span class="title function_">getServletInfo</span><span class="params">()</span></span><br><span class="line">ServletConfig <span class="title function_">getServletConfig</span><span class="params">()</span></span><br></pre>
+<p>Servlet 生命周期:</p>
+<blockquote>
+<p>init - 第一次请求 Servlet 时容器会调用这个方法, 后续的请求不再调用<br>
+service - 每次请求 Servlet 都会调用, 这里编写业务代码<br>
+destroy - 销毁 Servlet 时调用, 如容器关闭时</p>
+</blockquote>
+<p>Servlet 的两个非生命周期方法:</p>
+<blockquote>
+<p>getServletInfo - 返回 Servlet 的描述<br>
+getServletConfig() - 返回由 Servlet 容器传递给 init 方法 ServletConfig</p>
+</blockquote>
+<h3 id="13-编写基础的-servlet-应用"><a class="markdownIt-Anchor" href="#13-编写基础的-servlet-应用"></a> 1.3 编写基础的 Servlet 应用</h3>
+<p>应用程序的目录结构:</p>
+<p><img src="/../images/servlet_app_document.png" alt="servlet 应用的目录结构" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../images/servlet_app_document.png" class="lozad post-image"></p>
+<blockquote>
+<p>classes: Servlet 类和其他 Java 类都必须放在这<br>
+lib: 部署 Servlet 需要的 jar 文件, Servlet API jar 文件不需要部署在这, tomcat 已经包含了<br>
+JSP/HTML/图像等其他资源文件, 需要放在子目录下, 如 image 等等<br>
+若希望某个资源可以被 Servlet 访问, 而不能被用户访问, 则放入 WEB-INF 下</p>
+</blockquote>
+<p>附录A见部署 servlet 的多种方法.</p>
+<p>推荐使用打成 war 包的方式部署<br>
+war - 指的是以 war 作为扩展名的 jar 文件<br>
+使用 jar 来打成 war 包:</p>
+<pre class="highlight"><span class="line">jar -cvf app_name.war *</span><br></pre>
+<h3 id="14-servletrequest"><a class="markdownIt-Anchor" href="#14-servletrequest"></a> 1.4 ServletRequest</h3>
+<p>ServletRequest 中的部分方法:</p>
+<pre class="highlight"><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">getContentLength</span><span class="params">()</span></span><br><span class="line">返回请求主体中的字节数, 如果不知道字节的长度, 则返回 <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> java.lang.String <span class="title function_">getContentType</span><span class="params">()</span></span><br><span class="line">返回主体请求的 MIME 类型, 如果不知道类型, 则返回 <span class="literal">null</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> java.lang.String <span class="title function_">getParameter</span><span class="params">(java.lang.String name)</span></span><br><span class="line">返回指定请求参数的值 </span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> java.lang.String <span class="title function_">getProtocol</span><span class="params">()</span></span><br><span class="line">返回这个 HTTP 请求的协议名称和版本号</span><br><span class="line"></span><br></pre>
+<p>getParameter 是最常用的:</p>
+<ol>
+<li>用来返回一个 HTML 表单域的值 (1.10)</li>
+<li>可以用来获取查询字符串的值 (1.9)</li>
+</ol>
+<h3 id="15-servletresponse"><a class="markdownIt-Anchor" href="#15-servletresponse"></a> 1.5 ServletResponse</h3>
+<ol>
+<li>getWriter 方法, 返回 java.io.PrintWriter, 默认采用 ISO-8859-1 编码</li>
+<li>getOutputStream, 用来传输二进制数据, 通常不用</li>
+<li>在发送任何 HTML 标签响应之前, 应该先调用 setContentType 设置响应类型</li>
+</ol>
+<h3 id="16-servletconfig"><a class="markdownIt-Anchor" href="#16-servletconfig"></a> 1.6 ServletConfig</h3>
+<p>ServletConfig 可以通过 @WebServlet 或者 DD (部署描述文件 web.xml) 传递一个 Servlet 配置信息, 配置信息的初始参数是一个键值对</p>
+<p>从 Servlet 内部获取初始参数的值:</p>
+<pre class="highlight"><span class="line">java.lang.String <span class="title function_">getInitParameter</span><span class="params">(java.lang.String name)</span></span><br><span class="line">返回初始参数值</span><br><span class="line"></span><br><span class="line">java.util.Enumeration&lt;java.lang.String&gt; getInitParameterNames()</span><br><span class="line">返回所有初始参数名称</span><br><span class="line"></span><br><span class="line">ServletContext <span class="title function_">getServletContext</span><span class="params">()</span></span><br><span class="line">(see <span class="number">1.7</span>)</span><br></pre>
+<h3 id="17-servletcontext"><a class="markdownIt-Anchor" href="#17-servletcontext"></a> 1.7 ServletContext</h3>
+<p>表示 Servlet 应用程序</p>
+<p>有了 ServletContext 就可以共享能通过应用程序的所有资源访问信息, 促进 Web 对象动态注册</p>
+<p>保存在 ServletContext 中的对象称为属性</p>
+<pre class="highlight"><span class="line">java.lang.Object <span class="title function_">getAttribute</span><span class="params">(java.lang.String name)</span> </span><br><span class="line">java.util.Enumeration&lt;java.lang.String&gt; getAttributeNames()</span><br><span class="line"><span class="keyword">void</span> <span class="title function_">setAttribute</span><span class="params">(java.lang.String name, java.lang.Object object)</span></span><br><span class="line"><span class="keyword">void</span> <span class="title function_">removeAttribute</span><span class="params">(java.lang.String name)</span></span><br></pre>
+<blockquote>
+<p>上述方法案例 (第 8 章)<br>
+利用 ServletContext 动态注册 Web 对象 (第 17 章)</p>
+</blockquote>
+<h3 id="18-genericservlet"><a class="markdownIt-Anchor" href="#18-genericservlet"></a> 1.8 GenericServlet</h3>
+<p>实现了 Servlet 和 ServletConfig 这两个接口:</p>
+<blockquote>
+<p>init 方法中赋值 ServletConfig<br>
+为 Servlet 所有方法提供默认实现<br>
+提供方法来包装 ServletConfig 中的方法</p>
+</blockquote>
+<h3 id="19-http-servlet"><a class="markdownIt-Anchor" href="#19-http-servlet"></a> 1.9 HTTP Servlet</h3>
+<p><img src="../images/javax.servlet.http.png" alt="javax.servlet.http" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="../images/javax.servlet.http.png" class="lozad post-image"></p>
+<p>HttpServlet :</p>
+<blockquote>
+<p>继承 GenericServlet<br>
+HttpServletRequest 和 HttpServletResponse 表示 Servlet 请求和响应</p>
+</blockquote>
+<p>HttpServlet 的两项特性 :</p>
+<blockquote>
+<p>不覆盖 service 方法, 只覆盖 doGet 或者 doPost<br>
+用 HttpServletRequest 和 HttpServletResponse 代替 ServletRequest 和 ServletResponse</p>
+</blockquote>
+<p>HttpServletRequest :</p>
+<pre class="highlight"><span class="line">java.lang.String <span class="title function_">getContextPath</span><span class="params">()</span></span><br><span class="line">返回表示请求 context 的 URI 部分 </span><br><span class="line"></span><br><span class="line">Cookie[] getCookies()</span><br><span class="line">返回一个 Cookie 对象数组 </span><br><span class="line"></span><br><span class="line">java.lang.String <span class="title function_">getHeader</span><span class="params">(java.lang.String name)</span> </span><br><span class="line">返回指定 HTTP 标头的值</span><br><span class="line"></span><br><span class="line">java.lang.String <span class="title function_">getMethod</span><span class="params">()</span></span><br><span class="line">返回发出这条请求的 HTTP 方法的名称 </span><br><span class="line"></span><br><span class="line">java.lang.String <span class="title function_">getQueryString</span><span class="params">()</span></span><br><span class="line">返回请求 URL 中的查询字符串 </span><br><span class="line"></span><br><span class="line">HttpSession <span class="title function_">getSession</span><span class="params">()</span></span><br><span class="line">返回与这个请求相关的 session 对象, 若没找到则创建新的 session 对象</span><br><span class="line"></span><br><span class="line">HttpSession <span class="title function_">getSession</span><span class="params">(<span class="type">boolean</span> create)</span></span><br><span class="line">返回与这个请求有关的 session 对象, 若没找到, 且 create 为 <span class="literal">true</span>, 则创建新的 session 对象</span><br></pre>
+<p>HttpServletResponse :</p>
+<pre class="highlight"><span class="line"><span class="keyword">void</span> <span class="title function_">addCookie</span><span class="params">(Cookie cookie)</span></span><br><span class="line">给这个响应对象添加 cookie</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> <span class="title function_">addHeader</span><span class="params">(java.lang.String name, java.lang.String value)</span></span><br><span class="line">给这个响应对象添加标头 </span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> <span class="title function_">sendRedirect</span><span class="params">(java.lang.String location)</span></span><br><span class="line">发送响应代号, 将浏览器重定向到指定的位置</span><br></pre>
+<h3 id="110-处理-html-表单"><a class="markdownIt-Anchor" href="#110-处理-html-表单"></a> 1.10 处理 HTML 表单</h3>
+<p>当用户提交表单时, 表单元素中输入的值会被当作请求参数发送至服务器:</p>
+<blockquote>
+<p>html 输入域 (文本、密码等): 文本值会当作字符串发送服务器, 永远不为 null<br>
+html select 元素 : 发送选择的值作为字符串<br>
+多值选择 select multiple : 发送一个字符串数组, 需要用 getParameterValues 处理<br>
+复选框 : 被选中的复选框将字符 “on” 发送至服务器, 没被选中不发送任何内容<br>
+单选按钮 : 将选中的值发送, 没选中任何值, 则不发送<br>
+表单包含许多同名的输入元素: 所有值都会提交, getParameterValues 来获取<br>
+表单 action 缺失时, 会自动提交给发出请求的 URL</p>
+</blockquote>
+<h3 id="111-使用部署描述符"><a class="markdownIt-Anchor" href="#111-使用部署描述符"></a> 1.11 使用部署描述符</h3>
+<p>web.xml 并放入 WEB-INF 下</p>
+<p>使用部署描述符的优势 :</p>
+<blockquote>
+<p>能使用 @WebServlet 中不存在的属性, 如 load-on-startup, 使得 Servlet 在开始时就加载, 而不必等到使用时<br>
+如果需要修改配置值, 如 Servlet 路径, 就不需要重新编译 Servlet 类</p>
+</blockquote>
+<h2 id="session-管理"><a class="markdownIt-Anchor" href="#session-管理"></a> Session 管理</h2>
+<p>本章讲解用于保存状态的 4 种方法:</p>
+<blockquote>
+<p>网址重写 (URL rewriting)<br>
+隐藏域<br>
+cookie<br>
+HttpSession 对象</p>
+</blockquote>
+<h3 id="21-网址重写"><a class="markdownIt-Anchor" href="#21-网址重写"></a> 2.1 网址重写</h3>
+<p>是一种 Session 追踪技术, 需要将一个或多个 token 作为查询字符串添加到 URL 种</p>
+<p>格式:</p>
+<pre class="highlight"><span class="line">url?key-1=value-1&amp;key-2=value-2...&amp;key-n=value-n </span><br></pre>
+<h3 id="22-隐藏域"><a class="markdownIt-Anchor" href="#22-隐藏域"></a> 2.2 隐藏域</h3>
+<p>只有当页面包含表单, 或者可以在页面中添加表单, 才适合使用隐藏域</p>
+<p>input 标签的 hidden 属性, 使得服务器知道要修改的物品的 id</p>
+<h3 id="23-cookie"><a class="markdownIt-Anchor" href="#23-cookie"></a> 2.3 cookie</h3>
+<p>cookie 是自动在 Web 服务器和浏览器之间来回传递的一小块信息</p>
+<p>对于 Web 浏览器而言, 每台 Web 服务器最多可以支持 20 个 cookie</p>
+<p>cookie 的不足之处在于, 用户可以修改浏览器设置来拒绝接收 cookie</p>
+<blockquote>
+<p>javax.servlet.http.Cookie<br>
+httpServletResponse.addCookie(cookie) 将一个 cookie 发送给浏览器<br>
+httpServletRequest.getCookies()<br>
+没有办法能直接删除 cookie, 为了删除 cookie 只能创建一个同名的 cookie, 将 maxAge 设置为 0</p>
+</blockquote>
+<h3 id="24-httpsession-对象"><a class="markdownIt-Anchor" href="#24-httpsession-对象"></a> 2.4 HttpSession 对象</h3>
+<p>所有 Session 追踪技术中 HttpSession 是最强大的</p>
+<p>用户可以没有或者有一个 HttpSession, 并且只能访问他/她自己的 HttpSession</p>
+<p>HttpSession 是用户第一次访问某个网站时自动创建的</p>
+<p>通过在 HttpSession 中调用 getSession 方法</p>
+<pre class="highlight"><span class="line">HttpSession <span class="title function_">getSession</span><span class="params">()</span> </span><br><span class="line">返回当前的 HttpSession, 如果没有, 则创建一个新的返回</span><br><span class="line"></span><br><span class="line">HttpSession <span class="title function_">getSession</span><span class="params">(<span class="type">boolean</span> create)</span></span><br><span class="line">getSession(<span class="literal">false</span>) - 返回当前的 HttpSession, 如若没有返回 <span class="literal">null</span></span><br><span class="line"><span class="title function_">getSession</span><span class="params">(<span class="literal">true</span>)</span> = getSession()</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> <span class="title function_">setAttribute</span><span class="params">(java.lang.String name, java.lang.Object value)</span> </span><br><span class="line">将一个值放入 HttpSession 中 (放入 HttpSession 中的值是放入内存中的)</span><br><span class="line">放入 HttpSession 中的值不一定是 String, 也可以是任意 Java 对象, 只要实现了 java.io.Serializable 接口即可</span><br><span class="line"></span><br><span class="line">java.lang.Object <span class="title function_">getAttribute</span><span class="params">(java.lang.String name)</span> </span><br><span class="line">获取 HttpSession 中保存的对象的值 </span><br><span class="line"></span><br><span class="line">java.util.Enumeration&lt;java.lang.String&gt; getAttributeNames() </span><br><span class="line">迭代 HttpSession 中的所有属性名</span><br><span class="line"></span><br><span class="line">java.lang.String <span class="title function_">getId</span><span class="params">()</span></span><br><span class="line">获取 HttpSession 标识符</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">getMaxInactiveInterval</span><span class="params">()</span></span><br><span class="line">返回用户离开的秒数 </span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> <span class="title function_">setmaxInactiveInterval</span><span class="params">(<span class="type">int</span> seconds)</span></span><br><span class="line">为个别 HttpSession 的 Session期限 设置一个不同的值</span><br></pre>
+<blockquote>
+<p>HttpSession 的值不能发送至客户端, 而是 Servlet 容器为它所创建的每一个 HttpSession 生成唯一标识符<br>
+并将这个唯一标识符作为一个 token 发送给 浏览器, 一般是名为 JSESSIONID 的 cookie<br>
+或者作为一个 jsessionid 参数加载 URL 后面<br>
+invalidate 方法, 强制 session 过期; 默认情况下, HTTPSession 在用户静默一段时间后过期 (16 章)</p>
+</blockquote>
+<h2 id="jsp"><a class="markdownIt-Anchor" href="#jsp"></a> JSP</h2>
+<p>JSP 的注释、隐式对象, 三个句法元素 (指令、脚本元素、动作)</p>
+<p>JSP 可以用标准语法或者 XML 语法进行编写 (只介绍标准语法)</p>
+<h3 id="31-jsp-概述"><a class="markdownIt-Anchor" href="#31-jsp-概述"></a> 3.1 JSP 概述</h3>
+<p>JSP 其实是一个 Servlet</p>
+<p>JSP 不需要编译, 可以用任何文本编辑器来编写</p>
+<p>JSP 页面是在 JSP 容器里运行的, Servlet 容器一般也是 JSP 容器</p>
+<p>第一次请求 JSP 页面时, Servlet/JSP 容器要做两件事 :</p>
+<blockquote>
+<p>将 JSP 页面转换为 JSP 页面实现类 (javax.servlet.jsp.JspPage 或 javax.servlet.jsp.HttpJspPage)<br>
+若转换成功, Servlet/Jsp 容器将会编译 Servlet 类</p>
+</blockquote>
+<p>对于后续的请求, Servlet/JSP 容器会查看这个 JSP 页面自最后一次转换以来是否修改过, 若修改过,<br>
+就会重新转换、重新编译并执行</p>
+<p>第一次调用 JSP 总是比后来的请求的响应时间更长, 可以这样解决 :</p>
+<blockquote>
+<p>配置应用程序, 在程序启动时就调用所有 JSP 页面<br>
+预先编译 JSP, 让他们以 Servlet 的方式进行部署</p>
+</blockquote>
+<p>JSP 的 API:</p>
+<blockquote>
+<p>javax.servlet.jsp 核心类和接口<br>
+javax.servlet.jsp.target 用于开发定制标签的类型<br>
+javax.el 为 Unified Expression Language 提供 API<br>
+javax.servlet.jsp.el 提供 Servlet/JSP 容器必须支持的类, 以便支持 JSP 中的 Expression Language</p>
+</blockquote>
+<p>元素对于 JSP 转换器有特别的含义:</p>
+<blockquote>
+<p>&lt;% - 代表 java 代码的开始<br>
+%&gt; - 代表 java 代码的结束<br>
+不属于元素的其他内容都是模板数据, 如 html 标签和文本<br>
+tomcat 的 work 下看到 jsp 转换的文件, 是一个 Servlet, 并且继承了 org.apache.jasper.runtime.HttpJspBase<br>
+&lt;%…%&gt; 块称为 scriplet (3.5 节)<br>
+page 指令可以导入 java 库 (3.4 节)</p>
+</blockquote>
+<h3 id="32-备注"><a class="markdownIt-Anchor" href="#32-备注"></a> 3.2 备注</h3>
+<p>两种备注:</p>
+<ol>
+<li>Jsp 备注, 注明该页面的作用</li>
+<li>HTML/XHTML 备注, 将被发送至浏览器</li>
+</ol>
+<pre class="highlight"><span class="line">&lt;%-- retrieve products to display --%&gt;</span><br><span class="line">这是一个 JSP 备注, 它不能嵌套使用</span><br><span class="line"></span><br><span class="line">&lt;!-- [comments here] --&gt;</span><br><span class="line">HTML/XHTML 备注</span><br></pre>
+<h3 id="33-隐式对象"><a class="markdownIt-Anchor" href="#33-隐式对象"></a> 3.3 隐式对象</h3>
+<p><img src="/../images/jsp%E9%9A%90%E5%BC%8F%E5%AF%B9%E8%B1%A1.png" alt="jsp隐式对象" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../images/jsp%E9%9A%90%E5%BC%8F%E5%AF%B9%E8%B1%A1.png" class="lozad post-image"></p>
+<blockquote>
+<p>javax.servlet.jsp.PageContext 可以通过方法访问 request、response 等<br>
+但是意义不大, PageContext 还允许利用 Expression Language 访问哪些对象 (第 4 章)</p>
+</blockquote>
+<pre class="highlight"><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title function_">setAttribute</span><span class="params">(java.lang.String name, java.lang.Object value, <span class="type">int</span> scope)</span> </span><br><span class="line">PageContext 允许在某个范围内存取数据 </span><br><span class="line"></span><br></pre>
+<p>scope 可以有四个值：</p>
+<ol>
+<li>PAGE_SCOPE - 值只能在同一个 jsp 页面中使用</li>
+<li>REQUEST_SCOPE - HttpRequest 范围</li>
+<li>SESSION_SCOPE - HttpSession 范围</li>
+<li>APPLICATION_SCOPE - ServletContext 范围</li>
+</ol>
+<p>jsp 隐式条件:</p>
+<ul>
+<li>隐式对象 out 引用 javax.servlet.jsp.JspWriter</li>
+<li>类似于 HttpServletResponse 中调用 getWriter() 得到的 Java.io.PrintWriter</li>
+<li>JSP 页面默认返回 text/html 类型</li>
+</ul>
+<h3 id="34-指令"><a class="markdownIt-Anchor" href="#34-指令"></a> 3.4 指令</h3>
+<p>指令是一种 JSP 句法元素, 指示 JSP 转换器应该如何将一个页面转换为 Servlet 命令</p>
+<p>page 指令:</p>
+<blockquote>
+<p>告诉 JSP 转换器隐式对象 out 应该使用多大的容量空间<br>
+要使用哪些内容类型<br>
+要导入哪些 java 类型</p>
+</blockquote>
+<p>语法:</p>
+<pre class="highlight"><span class="line">&lt;%@ page attribute1=<span class="string">&quot;value1&quot;</span> attribute2=<span class="string">&quot;value2&quot;</span> ... %&gt;</span><br><span class="line">@ 和 page 之间的空格是可选的 </span><br><span class="line">attribute1 和 attribute2 是 page 指令的属性</span><br></pre>
+<p>page 指令的属性列表:</p>
+<ol>
+<li>import - 指定要导入的 java 类型 (隐式导入的包: java.lang、javax.servlet、javax.servlet.http、javax.servlet.jsp)</li>
+<li>session - 值为 true, 表示参与页面 session 管理, 否则为 false. 默认值为 true, 若之前没有 HttpSession, 则会自动创建</li>
+<li>buffer - 指定 out 的缓存区大小, 以千字节为单位 (kb), 值为 none 表示不使用缓存, 直接输出 PrintWriter</li>
+<li>autoFlush - 默认值为 true, 缓存满时自动刷新输出. 值为 false, 刷新缓存需要手动调用 response.flush(), 否则缓存满了抛出异常</li>
+<li>isThreadSafe - JSP 作者建议不要使用这个属性. 表示页面的线程安全级别.</li>
+<li>info - 指定所生成 Servlet 的 getServletInfo 的返回值</li>
+<li>errorPage - 表示负责处理该页面可能出现错误的页面</li>
+<li>isErrorPage - 表示该页面是否负责处理错误</li>
+<li>contentType - 指定 response 的内容类型, 默认值为 text/html</li>
+<li>pageEncoding - 指定页面的字符编码, 默认值为 ISO-8859-1</li>
+<li>isELIgnored - 表明是否忽略 EL 表达式.</li>
+<li>language - 指定页面所用的脚本语言, 默认是 java, JSP2.2中唯一有效值</li>
+<li>extends - 指定这个 JSP 页面的实现类必须扩展超类, 很少使用该属性</li>
+<li>deferredSyntaxAllowedAsLiteral - 指明是否允许用字符序列 (作为该页面和编译单元的 String 字面值), 默认值是 false</li>
+<li>trimDirectiveWhitespaces - 是否输出时删除只包含空格的模板文本, 默认值为 false, 即不删除</li>
+</ol>
+<p>page 指令可以放在页面的任何位置, 但是包含 contentType 或者 pageEncoding 就要放在所有模板数据之前</p>
+<p>include 指令:</p>
+<blockquote>
+<p>可以将另一个页面的内容放入当前 JSP 页面<br>
+一个 JSP 可以有多个 include</p>
+</blockquote>
+<p>include 语法:</p>
+<pre class="highlight"><span class="line">&lt;%@ include file=<span class="string">&quot;url&quot;</span> %&gt;</span><br><span class="line"></span><br><span class="line">@ 和 include 之间的空格可选, url 表示文件的相对路径</span><br><span class="line">若 url 以 / 开头, 则在服务器中被解读为绝对路径 </span><br><span class="line">否则被解析为相对当前 jsp 文件所在位置的路径</span><br></pre>
+<p>按照规范, include 文件的拓展名为 jspf, 表示为 jsp fragment.</p>
+<h3 id="35-脚本元素"><a class="markdownIt-Anchor" href="#35-脚本元素"></a> 3.5 脚本元素</h3>
+<p>第二种 JSP 句法元素是脚本元素, 它将 Java 代码合并成一个 JSP 页面,<br>
+脚本元素有 3 种类型 :</p>
+<blockquote>
+<p>Scriptlet<br>
+声明<br>
+表达式</p>
+</blockquote>
+<p>Scriptlet 是一个 Java 代码块, 以 &lt;% 开始 %&gt; 结束</p>
+<p>表达式 :</p>
+<pre class="highlight"><span class="line">Today is &lt;%=java.util.Calendar.getInstance().getTime()%&gt;</span><br><span class="line">结果会传给 out.print()</span><br></pre>
+<p>声明 :</p>
+<pre class="highlight"><span class="line">&lt;%!</span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">getTodayDate</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">java</span>.util.Date();</span><br><span class="line">    &#125;</span><br><span class="line">%&gt;</span><br><span class="line">声明了一个 getTodayDate 方法 </span><br></pre>
+<p>可以利用声明覆盖 Servlet 的 init 和 destroy 方法:</p>
+<blockquote>
+<p>jspInit - JSP 页面初始化时调用<br>
+jspDestroy - JSP 页面要被销毁时调用</p>
+</blockquote>
+<p>关闭脚本元素<br>
+随着 JSP 2.0 的发展, 推荐使用 EL 表达式来访问服务端对象, 而不是在 JSP 写 Java 代码</p>
+<pre class="highlight"><span class="line"><span class="tag">&lt;<span class="name">jsp-property-group</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>*.jsp<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">scripting-invalid</span>&gt;</span>true<span class="tag">&lt;/<span class="name">scripting-invalid</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">jsp-property-group</span>&gt;</span></span><br></pre>
+<h3 id="36-动作"><a class="markdownIt-Anchor" href="#36-动作"></a> 3.6 动作</h3>
+<p>第三种句法元素是动作 (Action), 它们被编译成执行某个操作的 Java 代码<br>
+本章讨论能被 JSP 容器支持的标准动作</p>
+<p>useBean :</p>
+<blockquote>
+<p>创建一个与某 Java 对象相关的脚本变量</p>
+</blockquote>
+<pre class="highlight"><span class="line">&lt;jsp:useBean id=<span class="string">&quot;today&quot;</span> class=<span class="string">&quot;java.util.Date&quot;</span> /&gt;</span><br><span class="line">将 today 变量与 Date 对象关联起来</span><br></pre>
+<p>setProperty 和 getProperty :</p>
+<blockquote>
+<p>setProperty 在 Java 对象中保存一个属性<br>
+getProperty 获取一个 Java 对象的属性</p>
+</blockquote>
+<pre class="highlight"><span class="line">&lt;jsp:useBean id=<span class="string">&quot;employee&quot;</span> class=<span class="string">&quot;app03a.Employee&quot;</span></span><br><span class="line">&lt;jsp:setProperty name=<span class="string">&quot;employee&quot;</span> property=<span class="string">&quot;firstName&quot;</span> value=<span class="string">&quot;Abigail&quot;</span>/&gt;</span><br><span class="line">First Name: &lt;jsp:getProperty name=<span class="string">&quot;employee&quot;</span> property=<span class="string">&quot;firstName&quot;</span> /&gt;</span><br></pre>
+<p>include :</p>
+<blockquote>
+<p>动态的包含另一个资源, 可以包含另一个 JSP 页面、一个 Servlet 或者 一个静态的 HTML 页面</p>
+</blockquote>
+<pre class="highlight"><span class="line">&lt;jsp:include page=<span class="string">&quot;jspf/menu/jsp&quot;</span>&gt;</span><br><span class="line">    &lt;jsp:param name=<span class="string">&quot;text&quot;</span> value=<span class="string">&quot;How are you?&quot;</span>&gt;</span><br><span class="line">&lt;/jsp:include&gt;</span><br></pre>
+<p>forward:</p>
+<blockquote>
+<p>将当前页面跳转到另一个不同资源</p>
+</blockquote>
+<pre class="highlight"><span class="line">&lt;jsp:forward page=<span class="string">&quot;jspf/login.jsp&quot;</span>&gt;</span><br><span class="line">    &lt;jsp:param name=<span class="string">&quot;text&quot;</span> value=<span class="string">&quot;Please login&quot;</span>&gt;</span><br><span class="line">&lt;/jsp:forward&gt;</span><br></pre>
+<p>错误处理:</p>
+<blockquote>
+<p>利用 page 的 isErrorPage 属性<br>
+其他页面使用 errorPage 指定, 未捕捉的异常会自动跳转 error 页面</p>
+</blockquote>
+<h2 id="el"><a class="markdownIt-Anchor" href="#el"></a> EL</h2>
+<p>JSP 2.0 中最重要的特性之一 Expression Language (EL) , JSP 设计者可以用它访问应用程序</p>
+<p>EL 最早出现在 JSTL 1.0 中, JSP 2.0 以来, 不需要 JSTL 就可以使用 EL</p>
+<p>本章只关注针对非 JSF 开发者的 EL</p>
+<h3 id="41-el-语法"><a class="markdownIt-Anchor" href="#41-el-语法"></a> 4.1 EL 语法</h3>
+<pre class="highlight"><span class="line">$&#123;expression&#125; </span><br></pre>
+<p>两个表达式相连</p>
+<pre class="highlight"><span class="line">$&#123;4+4&#125;$&#123;5+5&#125; -&gt; 810</span><br></pre>
+<p>EL 在某个标签属性中, 将会运算这个表达式</p>
+<pre class="highlight"><span class="line">&lt;my:tag someAttribute=&quot;$&#123;2+2&#125;&quot;/&gt; -&gt; &lt;my:tag someAttribute=&quot;4&quot;&gt;</span><br><span class="line">若想保留 $&#123;, 则通过 \$&#123; 来转义 </span><br></pre>
+<p>保留字 (不能用作标识符) :</p>
+<p><img src="/../images/el_reserve_word.png" alt="EL 表达式保留字" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../images/el_reserve_word.png" class="lozad post-image"></p>
+<p>[] 和 . 运算:</p>
+<blockquote>
+<p>用于访问某个对象的属性</p>
+</blockquote>
+<pre class="highlight"><span class="line">$&#123;object[&quot;propertyName&quot;]&#125;</span><br><span class="line">$&#123;object.propertyName&#125;</span><br></pre>
+<p>如果 propertyName 不是一个合法的 Java 变量名称, 则只能使用 []</p>
+<pre class="highlight"><span class="line">$&#123;header[&quot;accept-language&quot;]&#125;</span><br></pre>
+<p>级联访问属性:</p>
+<pre class="highlight"><span class="line">$&#123;pageContext[&quot;request&quot;][&quot;servletPath&quot;]&#125;</span><br></pre>
+<p>访问 HttpSession, 可以使用语法 :</p>
+<pre class="highlight"><span class="line">$&#123;pageContext.session&#125;</span><br><span class="line">$&#123;pageContext.session.id&#125; - 输出 token </span><br></pre>
+<p>运算规则:</p>
+<blockquote>
+<p>EL 表达式的运算是从左到右的<br>
+具体规则 p93</p>
+</blockquote>
+<h3 id="42-访问-javabean"><a class="markdownIt-Anchor" href="#42-访问-javabean"></a> 4.2 访问 JavaBean</h3>
+<pre class="highlight"><span class="line">$&#123;beanName[&quot;propertyName&quot;]&#125;</span><br><span class="line">$&#123;beanName.propertyName&#125;</span><br></pre>
+<h3 id="43-el-隐式对象"><a class="markdownIt-Anchor" href="#43-el-隐式对象"></a> 4.3 EL 隐式对象</h3>
+<p>EL 隐式对象帮助访问 Jsp 隐式对象</p>
+<p><img src="/../images/el_implicit_object.png" alt="EL 隐式对象" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../images/el_implicit_object.png" class="lozad post-image"></p>
+<p>pageContext:</p>
+<blockquote>
+<p>表示 javax.servlet.jsp.PageContext<br>
+它包含所有 JSP 的隐式对象</p>
+</blockquote>
+<pre class="highlight"><span class="line">$&#123;pageContext.request&#125;</span><br><span class="line">$&#123;pageContext[&quot;request&quot;]&#125;</span><br><span class="line">可以获得 ServletRequest </span><br><span class="line"></span><br><span class="line">$&#123;pageContext[&quot;request&quot;][&quot;method&quot;]&#125;</span><br><span class="line">可以获取请求方法</span><br></pre>
+<p>initParam:</p>
+<pre class="highlight"><span class="line">$&#123;initParam.password&#125;</span><br><span class="line">$&#123;initParam[&quot;password&quot;]&#125;</span><br><span class="line">可以获得 context(PageContext) 的参数 password </span><br></pre>
+<p>param:</p>
+<pre class="highlight"><span class="line">$&#123;param.userName&#125;</span><br><span class="line">$&#123;param[&quot;userName&quot;]&#125;</span><br><span class="line">用于获取请求参数 </span><br></pre>
+<p>paramValues:</p>
+<pre class="highlight"><span class="line">包含所有请求参数的参数名作为键的 Map </span><br><span class="line">每个键的值都是字符串数组, 包含指定参数名称的所有值 </span><br><span class="line"></span><br><span class="line">$&#123;paramValues.selectedOptions[0]&#125;</span><br><span class="line">$&#123;paramValues.selectedOptions[1]&#125;</span><br><span class="line">获得 selectedOptions 参数的第一个和第二个值</span><br></pre>
+<p>header:</p>
+<pre class="highlight"><span class="line">表示包含所有请求标头的 Map </span><br><span class="line"></span><br><span class="line">$&#123;header[&quot;accept-language&quot;]&#125;</span><br><span class="line">$&#123;header.connection&#125;</span><br></pre>
+<p>headerValues:</p>
+<pre class="highlight"><span class="line">表示一个包含所有请求头并以标头名称作为键的 Map </span><br><span class="line">但是它的值是字符串数字 </span><br><span class="line"></span><br><span class="line">$&#123;headerValues[&quot;accept-language&quot;][0]&#125;</span><br></pre>
+<p>cookie:</p>
+<pre class="highlight"><span class="line">cookie 对象表示包含当前 HttpServletRequest 中所有 cookie 的 Map </span><br><span class="line"></span><br><span class="line">$&#123;cookie.jsessionid.value&#125;</span><br><span class="line">获取 jsessionid 的值 </span><br><span class="line">$&#123;cookie.jsessionid.path&#125;</span><br><span class="line">获取 jsessionid 的路径值</span><br></pre>
+<p>applicationScope、sessionScope、requestScope 及 pageScope:</p>
+<pre class="highlight"><span class="line">可以获取相对应范围的变量值 </span><br><span class="line"></span><br><span class="line">$&#123;applicationScope.myVar&#125;</span><br></pre>
+<p>有作用范围的对象指的是放在以下这些对象中作为属性的对象:</p>
+<blockquote>
+<p>PageContext<br>
+ServletRequest<br>
+HttpSession<br>
+ServletContext</p>
+</blockquote>
+<p>有作用范围的对象可以直接用 EL 表达式访问:</p>
+<pre class="highlight"><span class="line">$&#123;today&#125;</span><br><span class="line"></span><br><span class="line">访问顺序为:</span><br><span class="line">1. PageContext  </span><br><span class="line">2. ServletRequest  </span><br><span class="line">3. HttpSession  </span><br><span class="line">4. ServletContext  </span><br></pre>
+<h3 id="44-使用其他-el-运算符"><a class="markdownIt-Anchor" href="#44-使用其他-el-运算符"></a> 4.4 使用其他 EL 运算符</h3>
+<p>算术运算符:</p>
+<blockquote>
+<p>加法/减法/乘法/除法(/ 和 div)/模(% 和 mod)</p>
+</blockquote>
+<p>关系运算符:</p>
+<blockquote>
+<p>等于/不等于/大于/大于或等于/小于/小于或等于</p>
+</blockquote>
+<p>逻辑运算符:</p>
+<blockquote>
+<p>AND/OR/NOT</p>
+</blockquote>
+<p>条件运算符:</p>
+<pre class="highlight"><span class="line">$&#123;statement? A:B&#125;</span><br></pre>
+<p>empty 运算符:</p>
+<pre class="highlight"><span class="line">用来校验一些值是否为 null 或 空 </span><br><span class="line"></span><br><span class="line">$&#123;empty x&#125;</span><br><span class="line">若 x 为 null -&gt; true  </span><br><span class="line">若 x 是长度为 0 的字符串 -&gt; true </span><br><span class="line">若 x 是空 Map、空数组、空集合 -&gt; true</span><br><span class="line">否则 -&gt; false</span><br></pre>
+<h3 id="45-使用-el"><a class="markdownIt-Anchor" href="#45-使用-el"></a> 4.5 使用 EL</h3>
+<h3 id="46-在-jsp-20-及更高版本中配置-el"><a class="markdownIt-Anchor" href="#46-在-jsp-20-及更高版本中配置-el"></a> 4.6 在 JSP 2.0 及更高版本中配置 EL</h3>
+<p>实现无脚本的 JSP 页面:</p>
+<pre class="highlight"><span class="line"><span class="tag">&lt;<span class="name">jsp-config</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">jsp-property-group</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>*.jsp<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">scripting-invalid</span>&gt;</span>true<span class="tag">&lt;/<span class="name">scripting-invalid</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">jsp-property-group</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">jsp-config</span>&gt;</span></span><br></pre>
+<p>关闭 EL 运算:</p>
+<ol>
+<li>
+<p>page 指令</p>
+ <pre class="highlight"><span class="line">&lt;%@ page isELIgnored=<span class="string">&quot;true&quot;</span> %&gt;</span><br></pre>
+</li>
+<li>
+<p>部署描述符</p>
+ <pre class="highlight"><span class="line"><span class="tag">&lt;<span class="name">jsp-config</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">jsp-property-group</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>*.jsp<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">el-ignore</span>&gt;</span>true<span class="tag">&lt;/<span class="name">el-ignore</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">jsp-property-group</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">jsp-config</span>&gt;</span></span><br></pre>
+</li>
+</ol>
+<h2 id="jstl"><a class="markdownIt-Anchor" href="#jstl"></a> JSTL</h2>
+<p>JSTL 是一个定制标签库, 用于解决一些常见的问题</p>
+<p>迭代一个集合、条件测试、XML处理、数据库访问和数据操作等</p>
+<p>本章主要讨论 JSTL 中最重要的标签, 尤其是访问限制域对象, 迭代集合及格式化数字和日期的那些标签</p>
+<h3 id="51-下载-jstl"><a class="markdownIt-Anchor" href="#51-下载-jstl"></a> 5.1 下载 JSTL</h3>
+<h3 id="52-jstl-类库"><a class="markdownIt-Anchor" href="#52-jstl-类库"></a> 5.2 JSTL 类库</h3>
+<p>JSTL 类库可以分为 5 类 (JSTL 1.2)</p>
+<p><img src="/../images/jstl_mark_lib_01.png" alt="JSTL标签类库01" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../images/jstl_mark_lib_01.png" class="lozad post-image"></p>
+<p><img src="/../images/jstl_mark_lib_02.png" alt="JSTL标签类库02" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../images/jstl_mark_lib_02.png" class="lozad post-image"></p>
+<p>在 JSP 页面中使用 JSTL 必须使用 taglib 指令:</p>
+<pre class="highlight"><span class="line">&lt;%@ taglib uri=<span class="string">&quot;uri&quot;</span> prefix=<span class="string">&quot;prefix&quot;</span> %&gt;</span><br><span class="line"></span><br><span class="line">&lt;%@ taglib uri=<span class="string">&quot;http://java.sun.com/jsp/jstl/core&quot;</span> prefix=<span class="string">&quot;c&quot;</span> %&gt;</span><br><span class="line">为了使用 Core 类库, 必须在 JSP 开头处这样声明</span><br></pre>
+<p>注意事项:</p>
+<blockquote>
+<p>标签的属性名称后面加 (*) 表示属性是必须的<br>
+(+) 表示该属性的 rtexprvalue 元素为 true, 表示是动态的, false 表示只能用静态字符串</p>
+</blockquote>
+<h3 id="53-通用动作指令"><a class="markdownIt-Anchor" href="#53-通用动作指令"></a> 5.3 通用动作指令</h3>
+<p>Core 类库中的用来操作限域变量的 3 个通用动作指令: out、set 和 remove.</p>
+<p>out 标签:</p>
+<blockquote>
+<p>out 标签对表达式进行运算, 并将结果输出到 JspWriter</p>
+</blockquote>
+<pre class="highlight"><span class="line">out 标签的两种语法形式</span><br><span class="line"></span><br><span class="line">&lt;c:out value=&quot;value&quot; [escapeXml=&quot;&#123;&gt;true|false&#125;&quot;] [default=&quot;defaultValue&quot;] /&gt;</span><br><span class="line">&lt;c:out value=&quot;value&quot; [escapeXml=&quot;&#123;&gt;true|false&#125;&quot;]&gt;</span><br><span class="line">    default value </span><br><span class="line">&lt;/c:out&gt;</span><br><span class="line"></span><br><span class="line">[] 表示可选属性, 加了&gt;的值是默认值</span><br></pre>
+<p><img src="/../images/out_mark_attr.png" alt="out attribute" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../images/out_mark_attr.png" class="lozad post-image"></p>
+<p>set 标签:</p>
+<blockquote>
+<p>创建一个字符串和引用该字符串的一个限域变量<br>
+创建一个限域变量, 并引用已经存在的某个限域变量<br>
+设置限域变量属性<br>
+使用 set 标签设置的限域变量整个 JSP 页面都可以使用</p>
+</blockquote>
+<pre class="highlight"><span class="line">set 标签语法有 4 种形式 </span><br><span class="line"></span><br><span class="line">&lt;c:set value=&quot;value&quot; var=&quot;varName&quot; [scope=&quot;&#123;&gt;page|request|session|application&#125;&quot;] /&gt;</span><br><span class="line">第一种形式, value 可以是字符串, 或者是现有的限域对象</span><br><span class="line"></span><br><span class="line">&lt;c:set var=&quot;varName&quot; [scope=&quot;&#123;&gt;page|request|session|application&#125;&quot;]&gt;</span><br><span class="line">    body content</span><br><span class="line">&lt;/c:set&gt;</span><br><span class="line">第二种形式, 允许主体中有 jsp 代码</span><br><span class="line"></span><br><span class="line">&lt;c:set target=&quot;target&quot; property=&quot;propertyName&quot; value=&quot;value&quot; /&gt;</span><br><span class="line">第三种形式, 设置限域对象的属性值, target 中用 EL 表达式 </span><br><span class="line"></span><br><span class="line">&lt;c:set target=&quot;target&quot; property=&quot;propertyName&quot;&gt;</span><br><span class="line">    body content </span><br><span class="line">&lt;/c:set&gt;</span><br><span class="line">第四种形式, 值作为主体内容传递 </span><br></pre>
+<p><img src="/../images/set_mark_attr.png" alt="set mark attribute" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../images/set_mark_attr.png" class="lozad post-image"></p>
+<p>remove 标签:</p>
+<blockquote>
+<p>利用 remove 标签删除限域对象</p>
+</blockquote>
+<pre class="highlight"><span class="line">&lt;c:remove var=&quot;varName&quot; [scope=&quot;&#123;&gt;page|request|session|application&#125;&quot;] /&gt;</span><br><span class="line">注意: 限域变量的引用并没有删除, 其他引用该对象的变量还可以正常工作</span><br></pre>
+<p><img src="/../images/remove_mark_attr.png" alt="remove mark attribute" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../images/remove_mark_attr.png" class="lozad post-image"></p>
+<h3 id="54-条件式动作指令"><a class="markdownIt-Anchor" href="#54-条件式动作指令"></a> 5.4 条件式动作指令</h3>
+<p>JSTL 中有四个条件式动作指令:</p>
+<ol>
+<li>if</li>
+<li>choose</li>
+<li>when</li>
+<li>otherwise</li>
+</ol>
+<p>if 标签:</p>
+<pre class="highlight"><span class="line">&lt;c:if test=&quot;testCondition&quot; var=&quot;varName&quot; [scope=&quot;&#123;&gt;page|request|session|application&#125;&quot;] /&gt;</span><br><span class="line">第一种形式, 计算 test 的值, 利用 var 属性设置限域变量名引用 Boolean 对象 </span><br><span class="line"></span><br><span class="line">&lt;c:if test=&quot;testCondition&quot; [var=&quot;varName&quot;] [scope=&quot;&#123;&gt;page|request|session|application&#125;&quot;]</span><br><span class="line">    body content </span><br><span class="line">&lt;/c:if&gt;</span><br><span class="line">内容是 jsp, 如果测试条件为 true, 它就会得到处理</span><br></pre>
+<p><img src="/../images/if_mark_attr.png" alt="if mark attribute" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../images/if_mark_attr.png" class="lozad post-image"></p>
+<p>choose、when 和 otherwise 标签:</p>
+<pre class="highlight"><span class="line">&lt;c:choose&gt;</span><br><span class="line">    &lt;c:when test=&quot;condition1&quot;&gt;</span><br><span class="line">        content1 </span><br><span class="line">    &lt;/c:when&gt; </span><br><span class="line">    &lt;c:when test=&quot;condition2&quot;&gt;</span><br><span class="line">        content2</span><br><span class="line">    &lt;/c:when&gt;</span><br><span class="line">    &lt;c:otherwise&gt;</span><br><span class="line">        content3</span><br><span class="line">    &lt;/c:otherwise&gt;</span><br><span class="line">&lt;/c:choose&gt;</span><br></pre>
+<h3 id="55-iterator-动作指令"><a class="markdownIt-Anchor" href="#55-iterator-动作指令"></a> 5.5 iterator 动作指令</h3>
+<p>迭代一个对象集合, iterator 非常好用</p>
+<p>JSTL 提供了两个标签:</p>
+<blockquote>
+<p>forEach<br>
+forTokens</p>
+</blockquote>
+<p>forEach 标签:</p>
+<pre class="highlight"><span class="line">&lt;c:forEach [var=&quot;varName&quot;] begin=&quot;begin&quot; end=&quot;end&quot; step=&quot;step&quot;&gt;</span><br><span class="line">    body content </span><br><span class="line">&lt;/c:forEach&gt;</span><br><span class="line">将 body 的内容重复多次 </span><br><span class="line"></span><br><span class="line">&lt;c:forEach items=&quot;collection&quot; [var=&quot;varName&quot;] [varStatus=&quot;varStatusName&quot;] [begin=&quot;begin&quot;] [end=&quot;end&quot;] [step=&quot;step&quot;]&gt;</span><br><span class="line">    body content </span><br><span class="line">&lt;/c:forEach&gt;</span><br><span class="line">主体内容为 JSP </span><br></pre>
+<p><img src="/../images/forEach_mark_attr.png" alt="forEach mark attribute" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../images/forEach_mark_attr.png" class="lozad post-image"></p>
+<pre class="highlight"><span class="line">还可以利用 forEach 来遍历一个 Map</span><br><span class="line"></span><br><span class="line">&lt;c:forEach var=&quot;mapItem&quot; items=&quot;map&quot;&gt;</span><br><span class="line">    $&#123;mapItem.key&#125; : $&#123;mapItem.value&#125;</span><br><span class="line">&lt;/c:forEach&gt;</span><br></pre>
+<p>forTokens 标签:</p>
+<pre class="highlight"><span class="line">&lt;c:forTokens items=&quot;stringOfTokens&quot; delims=&quot;delimiters&quot; [var=&quot;varName&quot;] [varStatus=&quot;varStatusName&quot;] [begin=&quot;begin&quot;] [end=&quot;end&quot;] [step=&quot;step&quot;]&gt;</span><br><span class="line">    body content </span><br><span class="line">&lt;/c:forTokens&gt;</span><br><span class="line">主体内容为 JSP </span><br></pre>
+<p><img src="/../images/forTokens_mark_attr.png" alt="forTokens mark attribute" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../images/forTokens_mark_attr.png" class="lozad post-image"></p>
+<h3 id="56-格式化动作指令"><a class="markdownIt-Anchor" href="#56-格式化动作指令"></a> 5.6 格式化动作指令</h3>
+<p>JSTL 提供了格式化和解析数字和日期的标签:</p>
+<blockquote>
+<p>formatNumber、formatDate、timeZone、setTimeZone、parseNumber 及 parseDate</p>
+</blockquote>
+<p>formatNumber:</p>
+<p><img src="/../images/formatNumber_attr.png" alt="formatNumber attribute" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../images/formatNumber_attr.png" class="lozad post-image"></p>
+<p>ISO 4217 货币代码:</p>
+<p><img src="/../images/iso4217_1.png" alt="iso4217_1" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../images/iso4217_1.png" class="lozad post-image"></p>
+<p><img src="/../images/iso4217_2.png" alt="iso4217_2" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../images/iso4217_2.png" class="lozad post-image"></p>
+<p>使用 formatNumber:</p>
+<p><img src="/../images/formatNumber_mark_example.png" alt="formatNumber Example" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../images/formatNumber_mark_example.png" class="lozad post-image"></p>
+<p>formatDate:</p>
+<p>用来格式化日期输出</p>
+<p><img src="/../images/formatDate_attr.png" alt="formatDate attribute" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../images/formatDate_attr.png" class="lozad post-image"></p>
+<p>timeZone:</p>
+<p>用来指定时区</p>
+<pre class="highlight"><span class="line">&lt;fmt:timeZone value=&quot;timeZone&quot;&gt;</span><br><span class="line">    body content </span><br><span class="line">&lt;/fmt:timeZone&gt;</span><br><span class="line"></span><br><span class="line">主体是 JSP </span><br></pre>
+<p><img src="/../images/timeZone_1.png" alt="timeZone" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../images/timeZone_1.png" class="lozad post-image"></p>
+<p><img src="/../images/timeZone_2.png" alt="timeZone" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../images/timeZone_2.png" class="lozad post-image"></p>
+<p>setTimeZone:</p>
+<p>将指定的时区保存在限域变量</p>
+<pre class="highlight"><span class="line">&lt;fmt:setTimeZone value=&quot;timeZone&quot; [var=&quot;varName&quot;] [scope=&quot;&#123;&gt;page|request|session|application&#125;&quot;]</span><br><span class="line">/&gt;</span><br></pre>
+<p><img src="/../images/setTImeZone_attr.png" alt="setTimeZone mark attribute" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../images/setTImeZone_attr.png" class="lozad post-image"></p>
+<p>parseNumber:</p>
+<p><img src="/../images/parseNumber_attr.png" alt="parseNumber attribute" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../images/parseNumber_attr.png" class="lozad post-image"></p>
+<p>parseDate:</p>
+<p><img src="/../images/parseDate_attr.png" alt="parseDate attribute" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/../images/parseDate_attr.png" class="lozad post-image"></p>
+<h3 id="57-函数"><a class="markdownIt-Anchor" href="#57-函数"></a> 5.7 函数</h3>
+<p>JSTL 还定义了一组函数, 可以用在 EL 表达式中</p>
+<pre class="highlight"><span class="line">&lt;%@ taglib uri=<span class="string">&quot;http://java.sun.com/jsp/jstl/functions&quot;</span> prefix=<span class="string">&quot;fn&quot;</span> %&gt;</span><br></pre>
+<p>调用的格式:</p>
+<pre class="highlight"><span class="line">$&#123;fn:functionName&#125;</span><br></pre>
+<p>大多数都是用于字符串的函数:</p>
+<blockquote>
+<p>contains(string, substring) -&gt; Boolean<br>
+containsIgnoreCase(string, substring) -&gt; Boolean<br>
+endsWith(string, suffix) -&gt; Boolean<br>
+escapeXml(string) -&gt; String<br>
+indexOf(string, substring) -&gt; Integer<br>
+join(array, seperator) -&gt; String<br>
+length(input) -&gt; Integer<br>
+replace(string, beforeSubstring, afterSubstring) -&gt; String<br>
+split(string, delimiters) -&gt; String[]<br>
+startsWith(string, prefix) -&gt; Boolean<br>
+substring(string, beginIndex, endIndex) -&gt; String<br>
+substringAfter(string, substring) -&gt; String<br>
+substringBefore(string, substring) -&gt; String<br>
+toLowerCase(string) -&gt; String<br>
+toUpperCase(string) -&gt; String<br>
+trim(string) -&gt; String</p>
+</blockquote>
+<h2 id="编写和定制标签"><a class="markdownIt-Anchor" href="#编写和定制标签"></a> 编写和定制标签</h2>
+<p>通过拓展 javax.servlet.jsp.tagext 包</p>
+
+  </div>
+  <div>
+    
+      <div 
+        class="post-note note-warning copyright" 
+        style="margin-top: 42px">
+        <p>
+          <span style="font-weight: bold;">作者：</span><a 
+            target="_blank" 
+            rel="nofollow noopener noreferrer" 
+            href="/about">
+            Bluee
+          </a>
+        </p>
+        <p>
+          <span style="font-weight: bold;">文章链接：</span><a 
+            target="_blank" 
+            rel="nofollow noopener noreferrer" 
+            href="https://yangzhaoxing90.github.io/2022/08/04/Servlet-and-Jsp/">
+            https://yangzhaoxing90.github.io/2022/08/04/Servlet-and-Jsp/
+          </a>
+        </p>
+        <p><span style="font-weight: bold;">版权声明：</span>本博客所有文章除特别声明外，均采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0 协议</a>。转载请注明出处！</p>
+      </div>
+    
+  </div>
+</article>
+<div class="nav">
+  
+    <div class="nav-item-prev">
+      <a 
+        href="/2022/08/08/MapleStory-Stronger-Guide/" 
+        class="nav-link">
+        <i class="iconfont icon-left nav-prev-icon"></i>
+        <div>
+          <div class="nav-label">Prev</div>
+          
+            <div class="nav-title">MapleStory Stronger Guide </div>
+          
+        </div>
+      </a>
+    </div>
+  
+  
+    <div class="nav-item-next">
+      <a 
+        href="/2022/08/03/book-post-view/" 
+        class="nav-link">
+        <div>
+          <div class="nav-label">Next</div>
+          
+            <div class="nav-title">book post view </div>
+          
+        </div>
+        <i class="iconfont icon-right nav-next-icon"></i>
+      </a>
+    </div>
+  
+</div>
+
+<div 
+  class="card card-content toc-card" 
+  id="mobiletoc">
+  <div class="toc-header">
+  <i 
+    class="iconfont icon-menu" 
+    style="padding-right: 2px;">
+  </i>TOC
+</div>
+<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#servlet"><span class="toc-text"> Servlet</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#11-servlet-api-%E6%A6%82%E8%BF%B0"><span class="toc-text"> 1.1 Servlet API 概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-servlet"><span class="toc-text"> 1.2 Servlet</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-%E7%BC%96%E5%86%99%E5%9F%BA%E7%A1%80%E7%9A%84-servlet-%E5%BA%94%E7%94%A8"><span class="toc-text"> 1.3 编写基础的 Servlet 应用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-servletrequest"><span class="toc-text"> 1.4 ServletRequest</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#15-servletresponse"><span class="toc-text"> 1.5 ServletResponse</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16-servletconfig"><span class="toc-text"> 1.6 ServletConfig</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#17-servletcontext"><span class="toc-text"> 1.7 ServletContext</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#18-genericservlet"><span class="toc-text"> 1.8 GenericServlet</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#19-http-servlet"><span class="toc-text"> 1.9 HTTP Servlet</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#110-%E5%A4%84%E7%90%86-html-%E8%A1%A8%E5%8D%95"><span class="toc-text"> 1.10 处理 HTML 表单</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#111-%E4%BD%BF%E7%94%A8%E9%83%A8%E7%BD%B2%E6%8F%8F%E8%BF%B0%E7%AC%A6"><span class="toc-text"> 1.11 使用部署描述符</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#session-%E7%AE%A1%E7%90%86"><span class="toc-text"> Session 管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#21-%E7%BD%91%E5%9D%80%E9%87%8D%E5%86%99"><span class="toc-text"> 2.1 网址重写</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#22-%E9%9A%90%E8%97%8F%E5%9F%9F"><span class="toc-text"> 2.2 隐藏域</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#23-cookie"><span class="toc-text"> 2.3 cookie</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#24-httpsession-%E5%AF%B9%E8%B1%A1"><span class="toc-text"> 2.4 HttpSession 对象</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jsp"><span class="toc-text"> JSP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#31-jsp-%E6%A6%82%E8%BF%B0"><span class="toc-text"> 3.1 JSP 概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#32-%E5%A4%87%E6%B3%A8"><span class="toc-text"> 3.2 备注</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#33-%E9%9A%90%E5%BC%8F%E5%AF%B9%E8%B1%A1"><span class="toc-text"> 3.3 隐式对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#34-%E6%8C%87%E4%BB%A4"><span class="toc-text"> 3.4 指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#35-%E8%84%9A%E6%9C%AC%E5%85%83%E7%B4%A0"><span class="toc-text"> 3.5 脚本元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#36-%E5%8A%A8%E4%BD%9C"><span class="toc-text"> 3.6 动作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#el"><span class="toc-text"> EL</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#41-el-%E8%AF%AD%E6%B3%95"><span class="toc-text"> 4.1 EL 语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#42-%E8%AE%BF%E9%97%AE-javabean"><span class="toc-text"> 4.2 访问 JavaBean</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#43-el-%E9%9A%90%E5%BC%8F%E5%AF%B9%E8%B1%A1"><span class="toc-text"> 4.3 EL 隐式对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#44-%E4%BD%BF%E7%94%A8%E5%85%B6%E4%BB%96-el-%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-text"> 4.4 使用其他 EL 运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#45-%E4%BD%BF%E7%94%A8-el"><span class="toc-text"> 4.5 使用 EL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#46-%E5%9C%A8-jsp-20-%E5%8F%8A%E6%9B%B4%E9%AB%98%E7%89%88%E6%9C%AC%E4%B8%AD%E9%85%8D%E7%BD%AE-el"><span class="toc-text"> 4.6 在 JSP 2.0 及更高版本中配置 EL</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jstl"><span class="toc-text"> JSTL</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#51-%E4%B8%8B%E8%BD%BD-jstl"><span class="toc-text"> 5.1 下载 JSTL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#52-jstl-%E7%B1%BB%E5%BA%93"><span class="toc-text"> 5.2 JSTL 类库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#53-%E9%80%9A%E7%94%A8%E5%8A%A8%E4%BD%9C%E6%8C%87%E4%BB%A4"><span class="toc-text"> 5.3 通用动作指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#54-%E6%9D%A1%E4%BB%B6%E5%BC%8F%E5%8A%A8%E4%BD%9C%E6%8C%87%E4%BB%A4"><span class="toc-text"> 5.4 条件式动作指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#55-iterator-%E5%8A%A8%E4%BD%9C%E6%8C%87%E4%BB%A4"><span class="toc-text"> 5.5 iterator 动作指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#56-%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%8A%A8%E4%BD%9C%E6%8C%87%E4%BB%A4"><span class="toc-text"> 5.6 格式化动作指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#57-%E5%87%BD%E6%95%B0"><span class="toc-text"> 5.7 函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E5%86%99%E5%92%8C%E5%AE%9A%E5%88%B6%E6%A0%87%E7%AD%BE"><span class="toc-text"> 编写和定制标签</span></a></li></ol>
+</div></main>
+            <aside class="left-column">
+              
+              <div class="card card-author">
+                
+  <img 
+    src="/img/author.png" 
+    class="author-img"
+    width="88"
+    height="88"
+    alt="author avatar">
+
+<p class="author-name">Bluee</p>
+<p class="author-description">A programmer with interest</p>
+<div class="author-message">
+  <a 
+    class="author-posts-count" 
+    href="/archives">
+    <span>16</span>
+    <span>Posts</span>
+  </a>
+  <a 
+    class="author-categories-count" 
+    href="/categories">
+    <span>0</span>
+    <span>Categories</span>
+  </a>
+  <a 
+    class="author-tags-count" 
+    href="/tags">
+    <span>20</span>
+    <span>Tags</span>
+  </a>
+</div>
+
+              </div>
+               <div class="sticky-tablet">
+  
+  
+    <article class="display-when-two-columns spacer">
+      <div class="card card-content toc-card">
+        <div class="toc-header">
+  <i 
+    class="iconfont icon-menu" 
+    style="padding-right: 2px;">
+  </i>TOC
+</div>
+<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#servlet"><span class="toc-text"> Servlet</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#11-servlet-api-%E6%A6%82%E8%BF%B0"><span class="toc-text"> 1.1 Servlet API 概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-servlet"><span class="toc-text"> 1.2 Servlet</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-%E7%BC%96%E5%86%99%E5%9F%BA%E7%A1%80%E7%9A%84-servlet-%E5%BA%94%E7%94%A8"><span class="toc-text"> 1.3 编写基础的 Servlet 应用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-servletrequest"><span class="toc-text"> 1.4 ServletRequest</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#15-servletresponse"><span class="toc-text"> 1.5 ServletResponse</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16-servletconfig"><span class="toc-text"> 1.6 ServletConfig</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#17-servletcontext"><span class="toc-text"> 1.7 ServletContext</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#18-genericservlet"><span class="toc-text"> 1.8 GenericServlet</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#19-http-servlet"><span class="toc-text"> 1.9 HTTP Servlet</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#110-%E5%A4%84%E7%90%86-html-%E8%A1%A8%E5%8D%95"><span class="toc-text"> 1.10 处理 HTML 表单</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#111-%E4%BD%BF%E7%94%A8%E9%83%A8%E7%BD%B2%E6%8F%8F%E8%BF%B0%E7%AC%A6"><span class="toc-text"> 1.11 使用部署描述符</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#session-%E7%AE%A1%E7%90%86"><span class="toc-text"> Session 管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#21-%E7%BD%91%E5%9D%80%E9%87%8D%E5%86%99"><span class="toc-text"> 2.1 网址重写</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#22-%E9%9A%90%E8%97%8F%E5%9F%9F"><span class="toc-text"> 2.2 隐藏域</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#23-cookie"><span class="toc-text"> 2.3 cookie</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#24-httpsession-%E5%AF%B9%E8%B1%A1"><span class="toc-text"> 2.4 HttpSession 对象</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jsp"><span class="toc-text"> JSP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#31-jsp-%E6%A6%82%E8%BF%B0"><span class="toc-text"> 3.1 JSP 概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#32-%E5%A4%87%E6%B3%A8"><span class="toc-text"> 3.2 备注</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#33-%E9%9A%90%E5%BC%8F%E5%AF%B9%E8%B1%A1"><span class="toc-text"> 3.3 隐式对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#34-%E6%8C%87%E4%BB%A4"><span class="toc-text"> 3.4 指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#35-%E8%84%9A%E6%9C%AC%E5%85%83%E7%B4%A0"><span class="toc-text"> 3.5 脚本元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#36-%E5%8A%A8%E4%BD%9C"><span class="toc-text"> 3.6 动作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#el"><span class="toc-text"> EL</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#41-el-%E8%AF%AD%E6%B3%95"><span class="toc-text"> 4.1 EL 语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#42-%E8%AE%BF%E9%97%AE-javabean"><span class="toc-text"> 4.2 访问 JavaBean</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#43-el-%E9%9A%90%E5%BC%8F%E5%AF%B9%E8%B1%A1"><span class="toc-text"> 4.3 EL 隐式对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#44-%E4%BD%BF%E7%94%A8%E5%85%B6%E4%BB%96-el-%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-text"> 4.4 使用其他 EL 运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#45-%E4%BD%BF%E7%94%A8-el"><span class="toc-text"> 4.5 使用 EL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#46-%E5%9C%A8-jsp-20-%E5%8F%8A%E6%9B%B4%E9%AB%98%E7%89%88%E6%9C%AC%E4%B8%AD%E9%85%8D%E7%BD%AE-el"><span class="toc-text"> 4.6 在 JSP 2.0 及更高版本中配置 EL</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jstl"><span class="toc-text"> JSTL</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#51-%E4%B8%8B%E8%BD%BD-jstl"><span class="toc-text"> 5.1 下载 JSTL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#52-jstl-%E7%B1%BB%E5%BA%93"><span class="toc-text"> 5.2 JSTL 类库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#53-%E9%80%9A%E7%94%A8%E5%8A%A8%E4%BD%9C%E6%8C%87%E4%BB%A4"><span class="toc-text"> 5.3 通用动作指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#54-%E6%9D%A1%E4%BB%B6%E5%BC%8F%E5%8A%A8%E4%BD%9C%E6%8C%87%E4%BB%A4"><span class="toc-text"> 5.4 条件式动作指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#55-iterator-%E5%8A%A8%E4%BD%9C%E6%8C%87%E4%BB%A4"><span class="toc-text"> 5.5 iterator 动作指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#56-%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%8A%A8%E4%BD%9C%E6%8C%87%E4%BB%A4"><span class="toc-text"> 5.6 格式化动作指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#57-%E5%87%BD%E6%95%B0"><span class="toc-text"> 5.7 函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E5%86%99%E5%92%8C%E5%AE%9A%E5%88%B6%E6%A0%87%E7%AD%BE"><span class="toc-text"> 编写和定制标签</span></a></li></ol>
+      </div>
+    </article>
+  
+  
+  <article class="card card-content categories-widget">
+    <div class="categories-card">
+  <div class="categories-header">
+    <i 
+      class="iconfont icon-fenlei" 
+      style="padding-right: 2px;">
+    </i>Categories
+  </div>
+  <div class="categories-list">
+    
+  </div>
+</div>
+  </article>
+  
+  <article class="card card-content tags-widget">
+    <div class="tags-card">
+  <div class="tags-header">
+    <i 
+      class="iconfont icon-biaoqian" 
+      style="padding-right: 2px;">
+    </i>hot tags
+  </div>
+  <div class="tags-list">
+    
+      <a 
+        href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" 
+        title="微信小程序">
+        <div class="tags-list-item">微信小程序</div>
+      </a>
+    
+      <a 
+        href="/tags/vantui/" 
+        title="vantui">
+        <div class="tags-list-item">vantui</div>
+      </a>
+    
+      <a 
+        href="/tags/axure/" 
+        title="axure">
+        <div class="tags-list-item">axure</div>
+      </a>
+    
+      <a 
+        href="/tags/%E5%BE%AE%E7%A7%AF%E5%88%86/" 
+        title="微积分">
+        <div class="tags-list-item">微积分</div>
+      </a>
+    
+      <a 
+        href="/tags/%E5%BE%AE%E4%BF%A1%E4%BA%91%E5%BC%80%E5%8F%91/" 
+        title="微信云开发">
+        <div class="tags-list-item">微信云开发</div>
+      </a>
+    
+      <a 
+        href="/tags/Linux/" 
+        title="Linux">
+        <div class="tags-list-item">Linux</div>
+      </a>
+    
+      <a 
+        href="/tags/Unix/" 
+        title="Unix">
+        <div class="tags-list-item">Unix</div>
+      </a>
+    
+      <a 
+        href="/tags/atCoder/" 
+        title="atCoder">
+        <div class="tags-list-item">atCoder</div>
+      </a>
+    
+      <a 
+        href="/tags/hexo/" 
+        title="hexo">
+        <div class="tags-list-item">hexo</div>
+      </a>
+    
+      <a 
+        href="/tags/xd/" 
+        title="xd">
+        <div class="tags-list-item">xd</div>
+      </a>
+    
+      <a 
+        href="/tags/leetcode/" 
+        title="leetcode">
+        <div class="tags-list-item">leetcode</div>
+      </a>
+    
+      <a 
+        href="/tags/spring/" 
+        title="spring">
+        <div class="tags-list-item">spring</div>
+      </a>
+    
+      <a 
+        href="/tags/%E8%A7%82%E5%90%8E%E6%84%9F/" 
+        title="观后感">
+        <div class="tags-list-item">观后感</div>
+      </a>
+    
+      <a 
+        href="/tags/jsp/" 
+        title="jsp">
+        <div class="tags-list-item">jsp</div>
+      </a>
+    
+      <a 
+        href="/tags/servlet/" 
+        title="servlet">
+        <div class="tags-list-item">servlet</div>
+      </a>
+    
+      <a 
+        href="/tags/MySQL/" 
+        title="MySQL">
+        <div class="tags-list-item">MySQL</div>
+      </a>
+    
+  </div>
+</div>
+  </article>
+  
+  
+</div>
+            </aside>
+            <aside class="right-column">
+              <div class="sticky-widescreen">
+  
+  
+    <article class="card card-content toc-card">
+      <div class="toc-header">
+  <i 
+    class="iconfont icon-menu" 
+    style="padding-right: 2px;">
+  </i>TOC
+</div>
+<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#servlet"><span class="toc-text"> Servlet</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#11-servlet-api-%E6%A6%82%E8%BF%B0"><span class="toc-text"> 1.1 Servlet API 概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-servlet"><span class="toc-text"> 1.2 Servlet</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-%E7%BC%96%E5%86%99%E5%9F%BA%E7%A1%80%E7%9A%84-servlet-%E5%BA%94%E7%94%A8"><span class="toc-text"> 1.3 编写基础的 Servlet 应用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-servletrequest"><span class="toc-text"> 1.4 ServletRequest</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#15-servletresponse"><span class="toc-text"> 1.5 ServletResponse</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16-servletconfig"><span class="toc-text"> 1.6 ServletConfig</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#17-servletcontext"><span class="toc-text"> 1.7 ServletContext</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#18-genericservlet"><span class="toc-text"> 1.8 GenericServlet</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#19-http-servlet"><span class="toc-text"> 1.9 HTTP Servlet</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#110-%E5%A4%84%E7%90%86-html-%E8%A1%A8%E5%8D%95"><span class="toc-text"> 1.10 处理 HTML 表单</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#111-%E4%BD%BF%E7%94%A8%E9%83%A8%E7%BD%B2%E6%8F%8F%E8%BF%B0%E7%AC%A6"><span class="toc-text"> 1.11 使用部署描述符</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#session-%E7%AE%A1%E7%90%86"><span class="toc-text"> Session 管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#21-%E7%BD%91%E5%9D%80%E9%87%8D%E5%86%99"><span class="toc-text"> 2.1 网址重写</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#22-%E9%9A%90%E8%97%8F%E5%9F%9F"><span class="toc-text"> 2.2 隐藏域</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#23-cookie"><span class="toc-text"> 2.3 cookie</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#24-httpsession-%E5%AF%B9%E8%B1%A1"><span class="toc-text"> 2.4 HttpSession 对象</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jsp"><span class="toc-text"> JSP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#31-jsp-%E6%A6%82%E8%BF%B0"><span class="toc-text"> 3.1 JSP 概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#32-%E5%A4%87%E6%B3%A8"><span class="toc-text"> 3.2 备注</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#33-%E9%9A%90%E5%BC%8F%E5%AF%B9%E8%B1%A1"><span class="toc-text"> 3.3 隐式对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#34-%E6%8C%87%E4%BB%A4"><span class="toc-text"> 3.4 指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#35-%E8%84%9A%E6%9C%AC%E5%85%83%E7%B4%A0"><span class="toc-text"> 3.5 脚本元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#36-%E5%8A%A8%E4%BD%9C"><span class="toc-text"> 3.6 动作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#el"><span class="toc-text"> EL</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#41-el-%E8%AF%AD%E6%B3%95"><span class="toc-text"> 4.1 EL 语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#42-%E8%AE%BF%E9%97%AE-javabean"><span class="toc-text"> 4.2 访问 JavaBean</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#43-el-%E9%9A%90%E5%BC%8F%E5%AF%B9%E8%B1%A1"><span class="toc-text"> 4.3 EL 隐式对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#44-%E4%BD%BF%E7%94%A8%E5%85%B6%E4%BB%96-el-%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-text"> 4.4 使用其他 EL 运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#45-%E4%BD%BF%E7%94%A8-el"><span class="toc-text"> 4.5 使用 EL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#46-%E5%9C%A8-jsp-20-%E5%8F%8A%E6%9B%B4%E9%AB%98%E7%89%88%E6%9C%AC%E4%B8%AD%E9%85%8D%E7%BD%AE-el"><span class="toc-text"> 4.6 在 JSP 2.0 及更高版本中配置 EL</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jstl"><span class="toc-text"> JSTL</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#51-%E4%B8%8B%E8%BD%BD-jstl"><span class="toc-text"> 5.1 下载 JSTL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#52-jstl-%E7%B1%BB%E5%BA%93"><span class="toc-text"> 5.2 JSTL 类库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#53-%E9%80%9A%E7%94%A8%E5%8A%A8%E4%BD%9C%E6%8C%87%E4%BB%A4"><span class="toc-text"> 5.3 通用动作指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#54-%E6%9D%A1%E4%BB%B6%E5%BC%8F%E5%8A%A8%E4%BD%9C%E6%8C%87%E4%BB%A4"><span class="toc-text"> 5.4 条件式动作指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#55-iterator-%E5%8A%A8%E4%BD%9C%E6%8C%87%E4%BB%A4"><span class="toc-text"> 5.5 iterator 动作指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#56-%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%8A%A8%E4%BD%9C%E6%8C%87%E4%BB%A4"><span class="toc-text"> 5.6 格式化动作指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#57-%E5%87%BD%E6%95%B0"><span class="toc-text"> 5.7 函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E5%86%99%E5%92%8C%E5%AE%9A%E5%88%B6%E6%A0%87%E7%AD%BE"><span class="toc-text"> 编写和定制标签</span></a></li></ol>
+    </article>
+  
+  
+  <article class="card card-content">
+    <div class="recent-posts-card">
+  <div class="recent-posts-header">
+    <i 
+      class="iconfont icon-wenzhang_huaban" 
+      style="padding-right: 2px;">
+    </i>Recent Posts
+  </div>
+  <div class="recent-posts-list">
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2022-08-08</div>
+        <a href="/2022/08/08/MapleStory-Stronger-Guide/"><div class="recent-posts-item-content">MapleStory Stronger Guide</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2022-08-04</div>
+        <a href="/2022/08/04/Servlet-and-Jsp/"><div class="recent-posts-item-content">Servlet and Jsp</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2022-08-03</div>
+        <a href="/2022/08/03/book-post-view/"><div class="recent-posts-item-content">book post view</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2022-07-25</div>
+        <a href="/2022/07/25/Spring%20Framework%205.3.22/"><div class="recent-posts-item-content">Spring-Framework 5.3.22</div></a>
+      </div>
+    
+  </div>
+</div>
+  </article>
+  
+  
+</div>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </div>
+     
+    <footer class="footer">
+  <div class="footer-container">
+    <div>
+      <div class="footer-dsc">
+        <span>
+          Copyright ©
+          
+            2020
+          
+          
+                - 
+                2022
+          
+        </span>
+        &nbsp;
+        <a 
+          href="/" 
+          class="footer-link">
+          Bluee's blog
+        </a>
+      </div>
+    </div>
+
+    
+      <div class="footer-dsc">
+        
+          Powered by
+          <a 
+            href="https://hexo.io/" 
+            class="footer-link" 
+            target="_blank" 
+            rel="nofollow noopener noreferrer">
+            &nbsp;Hexo
+          </a>
+        
+        
+          <span>&nbsp;|&nbsp;</span>
+        
+        
+          Theme -
+          <a 
+            href="https://github.com/theme-kaze" 
+            class="footer-link" 
+            target="_blank"
+            rel="nofollow noopener noreferrer">
+            &nbsp;Kaze
+          </a>
+        
+      </div>
+    
+    
+    
+    
+</footer>
+ 
+    
+  <a 
+    role="button" 
+    id="scrollbutton" 
+    class="basebutton" 
+    aria-label="回到顶部">
+    <i class="iconfont icon-arrowleft button-icon"></i>
+  </a>
+
+<a 
+  role="button" 
+  id="menubutton"
+  aria-label="menu button"
+  class="basebutton">
+  <i class="iconfont icon-menu button-icon"></i>
+</a>
+<a 
+  role="button" 
+  id="popbutton" 
+  class="basebutton" 
+  aria-label="控制中心">
+  <i class="iconfont icon-expand button-icon"></i>
+</a>
+<a 
+  role="button" 
+  id="darkbutton" 
+  class="basebutton darkwidget" 
+  aria-label="夜色模式">
+  <i class="iconfont icon-weather button-icon"></i>
+</a>
+<a 
+  role="button" 
+  id="searchbutton" 
+  class="basebutton searchwidget" 
+  aria-label="搜索">
+  <i class="iconfont icon-search button-icon"></i>
+</a> 
+     
+     
+      
+ 
+     
+     
+      <script>
+  var addImgLayout = function () {
+    var img = document.querySelectorAll('.post-content img')
+    var i
+    for (i = 0; i < img.length; i++) {
+      var wrapper = document.createElement('a')
+      wrapper.setAttribute('href', img[i].getAttribute('data-src'))
+      wrapper.setAttribute('aria-label', 'illustration')
+      wrapper.style.cssText =
+        'width: 100%; display: flex; justify-content: center;'
+      if (img[i].alt) wrapper.dataset.caption = img[i].alt
+      wrapper.dataset.nolink = true
+      img[i].before(wrapper)
+      wrapper.append(img[i])
+      var divWrap = document.createElement('div')
+      divWrap.classList.add('gallery')
+      wrapper.before(divWrap)
+      divWrap.append(wrapper)
+    }
+    baguetteBox.run('.gallery')
+  }
+</script>
+<script>
+  loadScript(
+    "/js/lib/lightbox/baguetteBox.min.js",
+    addImgLayout
+  )
+</script>
+ 
+     
+     
+    <script src="/js/main.js"></script> 
+     
+    
+      <script>
+        var addLazyload = function () {
+          var observer = lozad('.lozad', {
+            load: function (el) {
+              el.srcset = el.getAttribute('data-src')
+            },
+            loaded: function (el) {
+              el.classList.add('loaded')
+            },
+          })
+          observer.observe()
+        }
+      </script>
+      <script>
+        loadScript('/js/lib/lozad.min.js', addLazyload)
+      </script>
+     
+    
+    
+  </body>
+</html>

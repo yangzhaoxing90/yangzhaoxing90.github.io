@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="UTF-8">
+  <meta 
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <meta 
+    http-equiv="X-UA-Compatible" 
+    content="ie=edge">
+  <meta 
+    name="theme-color" 
+    content="#fff" 
+    id="theme-color">
+  <meta 
+    name="description" 
+    content="Hexo">
+  <link 
+    rel="icon" 
+    href="/img/author.png">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css">
+  <title>MySQL 5.7.10 Reference</title>
+  
+    
+      <meta 
+        property="og:title" 
+        content="MySQL 5.7.10 Reference">
+    
+    
+      <meta 
+        property="og:url" 
+        content="https://yangzhaoxing90.github.io/2022/05/20/Mysql%205.7.10%20Reference/index.html">
+    
+    
+      <meta 
+        property="og:img" 
+        content="/img/author.png">
+    
+    
+    
+      <meta 
+        property="og:type" 
+        content="article">
+      <meta 
+        property="og:article:published_time" 
+        content="2022-05-20">
+      <meta 
+        property="og:article:modified_time" 
+        content="2022-06-30">
+      <meta 
+        property="og:article:author" 
+        content="Bluee">
+      
+        
+          <meta 
+            property="og:article:tag" 
+            content="MySQL">
+        
+      
+    
+  
+  <script>
+    function loadScript(url, cb) {
+      var script = document.createElement('script');
+      script.src = url;
+      if (cb) script.onload = cb;
+      script.async = true;
+      document.body.appendChild(script);
+    }
+    function loadCSS(href, data, attr) {
+      var sheet = document.createElement('link');
+      sheet.ref = 'stylesheet';
+      sheet.href = href;
+      sheet.dataset[data] = attr;
+      document.head.appendChild(sheet);
+    }
+    function changeCSS(cssFile, data, attr) {
+      var oldlink = document.querySelector(data);
+      var newlink = document.createElement("link");
+      newlink.setAttribute("rel", "stylesheet");
+      newlink.setAttribute("href", cssFile);
+      newlink.dataset.prism = attr;
+      document.head.replaceChild(newlink, oldlink);
+    }
+  </script>
+  
+    
+  
+  <script>
+    // control reverse button
+    var reverseDarkList = {
+      dark: 'light',
+      light: 'dark'
+    };
+    var themeColor = {
+      dark: '#1c1c1e',
+      light: '#fff'
+    }
+    // get the data of css prefers-color-scheme
+    var getCssMediaQuery = function() {
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    };
+    // reverse current darkmode setting function
+    var reverseDarkModeSetting = function() {
+      var setting = localStorage.getItem('user-color-scheme');
+      if(reverseDarkList[setting]) {
+        setting = reverseDarkList[setting];
+      } else if(setting === null) {
+        setting = reverseDarkList[getCssMediaQuery()];
+      } else {
+        return;
+      }
+      localStorage.setItem('user-color-scheme', setting);
+      return setting;
+    };
+    // apply current darkmode setting
+  </script>
+  
+    <script>
+      var setDarkmode = function(mode) {
+      var setting = mode || localStorage.getItem('user-color-scheme');
+      if(setting === getCssMediaQuery()) {
+        document.documentElement.removeAttribute('data-user-color-scheme');
+        localStorage.removeItem('user-color-scheme');
+        document.getElementById('theme-color').content = themeColor[setting];
+        document.getElementById('theme-color').dataset.mode = setting;
+      } else if(reverseDarkList[setting]) {
+        document.documentElement.setAttribute('data-user-color-scheme', setting);
+        document.getElementById('theme-color').content = themeColor[setting];
+        document.getElementById('theme-color').dataset.mode = setting;
+      } else {
+        document.documentElement.removeAttribute('data-user-color-scheme');
+        localStorage.removeItem('user-color-scheme');
+        document.getElementById('theme-color').content = themeColor[getCssMediaQuery()];
+        document.getElementById('theme-color').dataset.mode = getCssMediaQuery();
+      }
+    };
+    setDarkmode();
+    </script>
+  
+  
+  <link rel="preload" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css" as="style" >
+  <link rel="preload" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css" as="style" >
+  
+  
+    <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.js" as="script">
+    <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.css" as="style" >
+  
+  
+    <link rel="preload" href="/js/lib/lozad.min.js" as="script">
+  
+  
+  
+  
+    
+    <link rel="prefetch" href="//cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" as="script">
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/main.css">
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css">
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css">
+  
+    <link rel="stylesheet" href="/js/lib/lightbox/baguetteBox.min.css">
+  
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+  <body>
+    <div class="wrapper">
+       
+      <nav class="navbar">
+  <div class="navbar-logo">
+    <span class="navbar-logo-main">
+      
+        <img 
+          class="navbar-logo-img"
+          width="32"
+          height="32"
+          src="/img/author.png" 
+          alt="blog logo">
+      
+      <span class="navbar-logo-dsc">Bluee's blog</span>
+    </span>
+  </div>
+  <div class="navbar-menu">
+    
+      <a 
+        href="/" 
+        class="navbar-menu-item">
+        
+          Home
+        
+      </a>
+    
+      <a 
+        href="/archives" 
+        class="navbar-menu-item">
+        
+          Archive
+        
+      </a>
+    
+      <a 
+        href="/tags" 
+        class="navbar-menu-item">
+        
+          Tags
+        
+      </a>
+    
+      <a 
+        href="/categories" 
+        class="navbar-menu-item">
+        
+          Categories
+        
+      </a>
+    
+      <a 
+        href="/about" 
+        class="navbar-menu-item">
+        
+          About
+        
+      </a>
+    
+      <a 
+        href="/links" 
+        class="navbar-menu-item">
+        
+          Friends
+        
+      </a>
+    
+    <a 
+      class="navbar-menu-item darknavbar" 
+      id="dark">
+      <i class="iconfont icon-weather"></i>
+    </a>
+    <a 
+      class="navbar-menu-item searchnavbar" 
+      id="search">
+      <i 
+        class="iconfont icon-search" 
+        style="font-size: 1.2rem; font-weight: 400;">
+      </i>
+    </a>
+  </div>
+</nav> 
+      
+      <div 
+        id="local-search" 
+        style="display: none">
+        <input
+          class="navbar-menu-item"
+          id="search-input"
+          placeholder="请输入搜索内容..." />
+        <div id="search-content"></div>
+      </div>
+      
+      <div class="section-wrap">
+        <div class="container">
+          <div class="columns">
+            <main class="main-column">
+<article class="card card-content">
+  <header>
+    <h1 class="post-title">
+      MySQL 5.7.10 Reference
+    </h1>
+  </header>
+  <div class="post-meta post-show-meta">
+    <time datetime="2022-05-20T02:11:48.000Z">
+      <i 
+        class="iconfont icon-calendar" 
+        style="margin-right: 2px;">
+      </i>
+      <span>2022-05-20</span>
+    </time>
+    
+    
+      <span class="dot"></span>
+      <span>744 words</span>
+    
+  </div>
+  
+    <div 
+      class="post-meta post-show-meta" 
+      style="margin-top: -10px;">
+      <div style="display: flex; align-items: center;">
+        <i 
+          class="iconfont icon-biaoqian" 
+          style="margin-right: 2px; font-size: 1.15rem;">
+        </i>
+        
+          
+          <a 
+            href="/tags/MySQL/" 
+            class="post-meta-link">
+            MySQL
+          </a>
+        
+      </div>
+    </div>
+  
+  </header>
+  <div 
+    id="section" 
+    class="post-content">
+    <br>
+<h2 id="how-to-report-bugs-or-problems"><a class="markdownIt-Anchor" href="#how-to-report-bugs-or-problems"></a> How to Report Bugs or Problems</h2>
+<br>
+<p><a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/5.7/en/bug-reports.html">https://dev.mysql.com/doc/refman/5.7/en/bug-reports.html</a> <br><br>
+full text<br>
+<br></p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/">https://dev.mysql.com/doc/</a> search the problem</li>
+<li>check the MySQL version</li>
+<li>For solutions to some common problems, <a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/5.7/en/problems.html">https://dev.mysql.com/doc/refman/5.7/en/problems.html</a></li>
+<li>Search the bugs database at  <a target="_blank" rel="noopener" href="http://bugs.mysql.com/">http://bugs.mysql.com/</a></li>
+</ol>
+<p><br><br></p>
+<h2 id="mysql-extensions-to-standard-sql"><a class="markdownIt-Anchor" href="#mysql-extensions-to-standard-sql"></a> MySQL Extensions to Standard SQL</h2>
+<br>
+<p><a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/5.7/en/extensions-to-ansi.html">https://dev.mysql.com/doc/refman/5.7/en/extensions-to-ansi.html</a> <br><br>
+full text<br>
+<br></p>
+<h3 id="organization-of-data-on-disk"><a class="markdownIt-Anchor" href="#organization-of-data-on-disk"></a> Organization of data on disk</h3>
+<br>
+<ol>
+<li>MySQL maps each database to a directory under the MySQL data directory, and maps tables within a database to file names in the database directory.</li>
+<li>Database and table names are case-sensitive in MySQL server.</li>
+<li>You can use standard system command to back up, move, rename, delete and copy tables that are managed by MyISAM engine. (it preferable to use rename table or alter table …)</li>
+</ol>
+<p><br><br></p>
+<h3 id="general-language-syntax"><a class="markdownIt-Anchor" href="#general-language-syntax"></a> General language syntax</h3>
+<br>
+<ol>
+<li>By default, strings can be enclosed by &quot; or '.</li>
+<li>\ is the escape character in strings.</li>
+<li>In SQL statements, you can access tables from different databases with the db_name.tb1_name syntax.</li>
+</ol>
+<p><br><br></p>
+<h3 id="sql-statement-syntax"><a class="markdownIt-Anchor" href="#sql-statement-syntax"></a> SQL statement syntax</h3>
+<br>
+<ol>
+<li>The <a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/5.7/en/analyze-table.html"> ANALYZE TABLE</a>, <a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/5.7/en/check-table.html"> CHECK TABLE</a>, <a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/5.7/en/optimize-table.html">OPTIMIZE TABLE</a> and <a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/5.7/en/repair-table.html">REPAIR TABLE</a> statements.</li>
+<li>The <a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/5.7/en/create-database.html">CREATE DATABASE</a>, <a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/5.7/en/drop-database.html">DROP DATABASE</a> and <a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/5.7/en/alter-database.html">ALTER DATABASE</a> statements.</li>
+<li>The <a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/5.7/en/do.html">DO</a> statement.</li>
+<li><a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/5.7/en/explain.html">EXPALIN SELECT</a> to obtain a description of how tables are processed by the query optimizer.</li>
+<li>The <a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/5.7/en/flush.html">FLUSH</a> and <a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/5.7/en/reset.html">RESET</a> statement.</li>
+<li>The <a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/5.7/en/set-variable.html">SET</a> statement.</li>
+<li>The <a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/5.7/en/show.html">SHOW</a> statement.</li>
+<li>Use of <a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/5.7/en/load-data.html">Load DATA</a></li>
+<li>Use of <a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/5.7/en/rename-table.html">RENAME TABLE</a></li>
+<li>Use of <a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/5.7/en/replace.html">REPLACE</a> instead of <a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/5.7/en/delete.html">DELETE</a> plus <a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/5.7/en/insert.html">INSERT</a>.</li>
+<li>Use of CHANGE col_name, DROP col_name, or <a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/5.7/en/drop-index.html">DROP INDEX</a>, IGNORE or RENAME in <a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/5.7/en/alter-table.html">ALTER TABLE</a> statements. Use of multiple ADD, ALTER, DROP, or CHANGE clauses in an <a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/5.7/en/alter-table.html">ALTER TABLE</a> statement.</li>
+<li>Use of index names, indexes on a prefix of a column, and use of INDEX or KEY in <a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/5.7/en/create-table.html">CREATE TABLE</a> statements.</li>
+<li>Use of TEMPORARY or IF NOT EXISTS with <a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/5.7/en/create-table.html">CREATE TABLE</a>.</li>
+<li>Use of IF EXISTS with <a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/5.7/en/drop-table.html">DROP TABLE</a> and <a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/5.7/en/drop-database.html">DROP DATABASE</a>.</li>
+<li>The capability of dropping multiple tables with a single <a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/5.7/en/drop-table.html">DROP TABLE</a> statement.</li>
+<li>The ORDER BY and LIMIT clauses of the <a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/5.7/en/update.html">UPDATE</a> and <a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/5.7/en/delete.html">DELETE</a> statements.</li>
+<li>INSERT INTO tbl_name SET col_name = … syntax.</li>
+<li>The DELAYED clause of the <a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/5.7/en/insert.html">INSERT</a> and <a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/5.7/en/replace.html">REPLACE</a> statements.</li>
+<li>The LOW_PRIORITY clause of the <a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/5.7/en/insert.html">INSERT</a>, <a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/5.7/en/replace.html">REPLACE</a>, <a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/5.7/en/delete.html">DELETE</a>, and <a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/5.7/en/update.html">UPDATE</a> statements.</li>
+<li>Use of INTO OUTFILE or INTO DUMPFILE in <a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/5.7/en/select.html">SELECT</a> statements.</li>
+<li>Options such as STRAIGHT_JOIN or SQL_SMALL_RESULT in <a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/5.7/en/select.html">SELECT</a> statements.</li>
+<li>You don’t need to name all selected columns in the GROUP BY clause.This gives better performance for some very specific, but quite normal queries. <a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/5.7/en/aggregate-functions-and-modifiers.html">Aggregate Functions</a></li>
+<li>You can specify ASC and DESC with GROUP BY, not just with ORDER BY.</li>
+<li>The ability to set variables in a statement with the := assignment operator.</li>
+</ol>
+<p><br><br></p>
+<h3 id="data-types"><a class="markdownIt-Anchor" href="#data-types"></a> Data types</h3>
+<br>
+<ol>
+<li>The MEDIUMINT, SET, and ENUM data types, and the various BLOB and TEXT data types.</li>
+<li>The AUTO_INCREMENT, BINARY, NULL, UNSIGNED, and ZEROFILL data type attributes.</li>
+</ol>
+<p><br><br></p>
+<h3 id="functions-and-operators"><a class="markdownIt-Anchor" href="#functions-and-operators"></a> Functions and operators</h3>
+<br>
+<ol>
+<li>MySQL Server supports aliases for many functions.For example, all string functions support both standard SQL syntax and ODBC syntax.</li>
+<li>MySQL Server understands the || and &amp;&amp; operators to mean logical OR and AND, as in the C programming language.</li>
+<li>Use of <a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/5.7/en/aggregate-functions.html#function_count">COUNT(DISTINCT value_list)</a> where value_list has more than one element.</li>
+<li>String comparisons are case-insensitive by default, with sort ordering determined by the collation of the current character set, which is latin1 (cp1252 West European) by default.</li>
+<li>The % operator is a synonym for MOD(). N % M is equivalent to MOD(N, M).</li>
+<li>The =, &lt;&gt;, &lt;=, &lt;, &gt;=, &gt;, &lt;&lt;, &gt;&gt;, &lt;=&gt;, AND, OR, or LIKE operators may be used in expressions in the output column list (to the left of the FROM) in SELECT statements.</li>
+<li>The <a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/5.7/en/information-functions.html#function_last-insert-id">LAST_INSERT_ID()</a> function returns the most recent AUTO_INCREMENT value.</li>
+<li>LIKE is permitted on numeric values.</li>
+<li>The REGEXP and NOT REGEXP extended regular expression operators.</li>
+<li>CONCAT() or CHAR() with one argument or more than two arguments.</li>
+<li>The BIT_COUNT(), CASE, ELT(), FROM_DAYS(), FORMAT(), IF(), PASSWORD(), ENCRYPT(), MD5(), ENCODE(), DECODE(), PERIOD_ADD(), PERIOD_DIFF(), TO_DAYS(), and WEEKDAY() functions.</li>
+<li>Use of TRIM() to trim substrings. Standard SQL supports removal of single characters only.</li>
+<li>The GROUP BY functions STD(), BIT_OR(), BIT_AND(), BIT_XOR(), and GROUP_CONCAT().</li>
+</ol>
+<p><br><br></p>
+<h2 id="mysql-differences-from-standard-sql"><a class="markdownIt-Anchor" href="#mysql-differences-from-standard-sql"></a> MySQL Differences from Standard SQL</h2>
+<br>
+<p><a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/5.7/en/differences-from-ansi.html">https://dev.mysql.com/doc/refman/5.7/en/differences-from-ansi.html</a> <br><br>
+full text<br>
+<br><br></p>
+<h3 id="select-into-table-differences"><a class="markdownIt-Anchor" href="#select-into-table-differences"></a> SELECT INTO TABLE Differences</h3>
+<br>
+<ol>
+<li>MySQL Server doesn’t support the SELECT … INTO TABLE statement, supports the INSERT INTO … SELECT statement.<br><br></li>
+</ol>
+<h3 id="update-differences"><a class="markdownIt-Anchor" href="#update-differences"></a> UPDATE Differences</h3>
+<br>
+<pre class="highlight"><span class="line">UPDATE t1 SET col1 = col1 + 1, col2 = col1;  </span><br></pre>
+<p>The result col1 and col2 have the same value. <br><br></p>
+<h3 id="foreign-key-constraint-differences"><a class="markdownIt-Anchor" href="#foreign-key-constraint-differences"></a> FOREIGN KEY Constraint Differences</h3>
+<br>
+
+  </div>
+  <div>
+    
+      <div 
+        class="post-note note-warning copyright" 
+        style="margin-top: 42px">
+        <p>
+          <span style="font-weight: bold;">作者：</span><a 
+            target="_blank" 
+            rel="nofollow noopener noreferrer" 
+            href="/about">
+            Bluee
+          </a>
+        </p>
+        <p>
+          <span style="font-weight: bold;">文章链接：</span><a 
+            target="_blank" 
+            rel="nofollow noopener noreferrer" 
+            href="https://yangzhaoxing90.github.io/2022/05/20/Mysql%205.7.10%20Reference/">
+            https://yangzhaoxing90.github.io/2022/05/20/Mysql%205.7.10%20Reference/
+          </a>
+        </p>
+        <p><span style="font-weight: bold;">版权声明：</span>本博客所有文章除特别声明外，均采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0 协议</a>。转载请注明出处！</p>
+      </div>
+    
+  </div>
+</article>
+<div class="nav">
+  
+    <div class="nav-item-prev">
+      <a 
+        href="/2022/05/30/Unix%20and%20Linux%20%E5%A4%A7%E5%AD%A6%E6%95%99%E7%A8%8B/" 
+        class="nav-link">
+        <i class="iconfont icon-left nav-prev-icon"></i>
+        <div>
+          <div class="nav-label">Prev</div>
+          
+            <div class="nav-title">Unix and Linux 大学教程 </div>
+          
+        </div>
+      </a>
+    </div>
+  
+  
+    <div class="nav-item-next">
+      <a 
+        href="/2022/05/15/HTML5/" 
+        class="nav-link">
+        <div>
+          <div class="nav-label">Next</div>
+          
+            <div class="nav-title">HTML5 </div>
+          
+        </div>
+        <i class="iconfont icon-right nav-next-icon"></i>
+      </a>
+    </div>
+  
+</div>
+
+<div 
+  class="card card-content toc-card" 
+  id="mobiletoc">
+  <div class="toc-header">
+  <i 
+    class="iconfont icon-menu" 
+    style="padding-right: 2px;">
+  </i>TOC
+</div>
+<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#how-to-report-bugs-or-problems"><span class="toc-text"> How to Report Bugs or Problems</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mysql-extensions-to-standard-sql"><span class="toc-text"> MySQL Extensions to Standard SQL</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#organization-of-data-on-disk"><span class="toc-text"> Organization of data on disk</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#general-language-syntax"><span class="toc-text"> General language syntax</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sql-statement-syntax"><span class="toc-text"> SQL statement syntax</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#data-types"><span class="toc-text"> Data types</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#functions-and-operators"><span class="toc-text"> Functions and operators</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mysql-differences-from-standard-sql"><span class="toc-text"> MySQL Differences from Standard SQL</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#select-into-table-differences"><span class="toc-text"> SELECT INTO TABLE Differences</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#update-differences"><span class="toc-text"> UPDATE Differences</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#foreign-key-constraint-differences"><span class="toc-text"> FOREIGN KEY Constraint Differences</span></a></li></ol></li></ol>
+</div></main>
+            <aside class="left-column">
+              
+              <div class="card card-author">
+                
+  <img 
+    src="/img/author.png" 
+    class="author-img"
+    width="88"
+    height="88"
+    alt="author avatar">
+
+<p class="author-name">Bluee</p>
+<p class="author-description">A programmer with interest</p>
+<div class="author-message">
+  <a 
+    class="author-posts-count" 
+    href="/archives">
+    <span>16</span>
+    <span>Posts</span>
+  </a>
+  <a 
+    class="author-categories-count" 
+    href="/categories">
+    <span>0</span>
+    <span>Categories</span>
+  </a>
+  <a 
+    class="author-tags-count" 
+    href="/tags">
+    <span>20</span>
+    <span>Tags</span>
+  </a>
+</div>
+
+              </div>
+               <div class="sticky-tablet">
+  
+  
+    <article class="display-when-two-columns spacer">
+      <div class="card card-content toc-card">
+        <div class="toc-header">
+  <i 
+    class="iconfont icon-menu" 
+    style="padding-right: 2px;">
+  </i>TOC
+</div>
+<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#how-to-report-bugs-or-problems"><span class="toc-text"> How to Report Bugs or Problems</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mysql-extensions-to-standard-sql"><span class="toc-text"> MySQL Extensions to Standard SQL</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#organization-of-data-on-disk"><span class="toc-text"> Organization of data on disk</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#general-language-syntax"><span class="toc-text"> General language syntax</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sql-statement-syntax"><span class="toc-text"> SQL statement syntax</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#data-types"><span class="toc-text"> Data types</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#functions-and-operators"><span class="toc-text"> Functions and operators</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mysql-differences-from-standard-sql"><span class="toc-text"> MySQL Differences from Standard SQL</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#select-into-table-differences"><span class="toc-text"> SELECT INTO TABLE Differences</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#update-differences"><span class="toc-text"> UPDATE Differences</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#foreign-key-constraint-differences"><span class="toc-text"> FOREIGN KEY Constraint Differences</span></a></li></ol></li></ol>
+      </div>
+    </article>
+  
+  
+  <article class="card card-content categories-widget">
+    <div class="categories-card">
+  <div class="categories-header">
+    <i 
+      class="iconfont icon-fenlei" 
+      style="padding-right: 2px;">
+    </i>Categories
+  </div>
+  <div class="categories-list">
+    
+  </div>
+</div>
+  </article>
+  
+  <article class="card card-content tags-widget">
+    <div class="tags-card">
+  <div class="tags-header">
+    <i 
+      class="iconfont icon-biaoqian" 
+      style="padding-right: 2px;">
+    </i>hot tags
+  </div>
+  <div class="tags-list">
+    
+      <a 
+        href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" 
+        title="微信小程序">
+        <div class="tags-list-item">微信小程序</div>
+      </a>
+    
+      <a 
+        href="/tags/vantui/" 
+        title="vantui">
+        <div class="tags-list-item">vantui</div>
+      </a>
+    
+      <a 
+        href="/tags/axure/" 
+        title="axure">
+        <div class="tags-list-item">axure</div>
+      </a>
+    
+      <a 
+        href="/tags/%E5%BE%AE%E7%A7%AF%E5%88%86/" 
+        title="微积分">
+        <div class="tags-list-item">微积分</div>
+      </a>
+    
+      <a 
+        href="/tags/%E5%BE%AE%E4%BF%A1%E4%BA%91%E5%BC%80%E5%8F%91/" 
+        title="微信云开发">
+        <div class="tags-list-item">微信云开发</div>
+      </a>
+    
+      <a 
+        href="/tags/Linux/" 
+        title="Linux">
+        <div class="tags-list-item">Linux</div>
+      </a>
+    
+      <a 
+        href="/tags/Unix/" 
+        title="Unix">
+        <div class="tags-list-item">Unix</div>
+      </a>
+    
+      <a 
+        href="/tags/atCoder/" 
+        title="atCoder">
+        <div class="tags-list-item">atCoder</div>
+      </a>
+    
+      <a 
+        href="/tags/hexo/" 
+        title="hexo">
+        <div class="tags-list-item">hexo</div>
+      </a>
+    
+      <a 
+        href="/tags/xd/" 
+        title="xd">
+        <div class="tags-list-item">xd</div>
+      </a>
+    
+      <a 
+        href="/tags/leetcode/" 
+        title="leetcode">
+        <div class="tags-list-item">leetcode</div>
+      </a>
+    
+      <a 
+        href="/tags/spring/" 
+        title="spring">
+        <div class="tags-list-item">spring</div>
+      </a>
+    
+      <a 
+        href="/tags/%E8%A7%82%E5%90%8E%E6%84%9F/" 
+        title="观后感">
+        <div class="tags-list-item">观后感</div>
+      </a>
+    
+      <a 
+        href="/tags/jsp/" 
+        title="jsp">
+        <div class="tags-list-item">jsp</div>
+      </a>
+    
+      <a 
+        href="/tags/servlet/" 
+        title="servlet">
+        <div class="tags-list-item">servlet</div>
+      </a>
+    
+      <a 
+        href="/tags/MySQL/" 
+        title="MySQL">
+        <div class="tags-list-item">MySQL</div>
+      </a>
+    
+  </div>
+</div>
+  </article>
+  
+  
+</div>
+            </aside>
+            <aside class="right-column">
+              <div class="sticky-widescreen">
+  
+  
+    <article class="card card-content toc-card">
+      <div class="toc-header">
+  <i 
+    class="iconfont icon-menu" 
+    style="padding-right: 2px;">
+  </i>TOC
+</div>
+<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#how-to-report-bugs-or-problems"><span class="toc-text"> How to Report Bugs or Problems</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mysql-extensions-to-standard-sql"><span class="toc-text"> MySQL Extensions to Standard SQL</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#organization-of-data-on-disk"><span class="toc-text"> Organization of data on disk</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#general-language-syntax"><span class="toc-text"> General language syntax</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sql-statement-syntax"><span class="toc-text"> SQL statement syntax</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#data-types"><span class="toc-text"> Data types</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#functions-and-operators"><span class="toc-text"> Functions and operators</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mysql-differences-from-standard-sql"><span class="toc-text"> MySQL Differences from Standard SQL</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#select-into-table-differences"><span class="toc-text"> SELECT INTO TABLE Differences</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#update-differences"><span class="toc-text"> UPDATE Differences</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#foreign-key-constraint-differences"><span class="toc-text"> FOREIGN KEY Constraint Differences</span></a></li></ol></li></ol>
+    </article>
+  
+  
+  <article class="card card-content">
+    <div class="recent-posts-card">
+  <div class="recent-posts-header">
+    <i 
+      class="iconfont icon-wenzhang_huaban" 
+      style="padding-right: 2px;">
+    </i>Recent Posts
+  </div>
+  <div class="recent-posts-list">
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2022-08-08</div>
+        <a href="/2022/08/08/MapleStory-Stronger-Guide/"><div class="recent-posts-item-content">MapleStory Stronger Guide</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2022-08-04</div>
+        <a href="/2022/08/04/Servlet-and-Jsp/"><div class="recent-posts-item-content">Servlet and Jsp</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2022-08-03</div>
+        <a href="/2022/08/03/book-post-view/"><div class="recent-posts-item-content">book post view</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2022-07-25</div>
+        <a href="/2022/07/25/Spring%20Framework%205.3.22/"><div class="recent-posts-item-content">Spring-Framework 5.3.22</div></a>
+      </div>
+    
+  </div>
+</div>
+  </article>
+  
+  
+</div>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </div>
+     
+    <footer class="footer">
+  <div class="footer-container">
+    <div>
+      <div class="footer-dsc">
+        <span>
+          Copyright ©
+          
+            2020
+          
+          
+                - 
+                2022
+          
+        </span>
+        &nbsp;
+        <a 
+          href="/" 
+          class="footer-link">
+          Bluee's blog
+        </a>
+      </div>
+    </div>
+
+    
+      <div class="footer-dsc">
+        
+          Powered by
+          <a 
+            href="https://hexo.io/" 
+            class="footer-link" 
+            target="_blank" 
+            rel="nofollow noopener noreferrer">
+            &nbsp;Hexo
+          </a>
+        
+        
+          <span>&nbsp;|&nbsp;</span>
+        
+        
+          Theme -
+          <a 
+            href="https://github.com/theme-kaze" 
+            class="footer-link" 
+            target="_blank"
+            rel="nofollow noopener noreferrer">
+            &nbsp;Kaze
+          </a>
+        
+      </div>
+    
+    
+    
+    
+</footer>
+ 
+    
+  <a 
+    role="button" 
+    id="scrollbutton" 
+    class="basebutton" 
+    aria-label="回到顶部">
+    <i class="iconfont icon-arrowleft button-icon"></i>
+  </a>
+
+<a 
+  role="button" 
+  id="menubutton"
+  aria-label="menu button"
+  class="basebutton">
+  <i class="iconfont icon-menu button-icon"></i>
+</a>
+<a 
+  role="button" 
+  id="popbutton" 
+  class="basebutton" 
+  aria-label="控制中心">
+  <i class="iconfont icon-expand button-icon"></i>
+</a>
+<a 
+  role="button" 
+  id="darkbutton" 
+  class="basebutton darkwidget" 
+  aria-label="夜色模式">
+  <i class="iconfont icon-weather button-icon"></i>
+</a>
+<a 
+  role="button" 
+  id="searchbutton" 
+  class="basebutton searchwidget" 
+  aria-label="搜索">
+  <i class="iconfont icon-search button-icon"></i>
+</a> 
+     
+     
+      
+ 
+     
+     
+      <script>
+  var addImgLayout = function () {
+    var img = document.querySelectorAll('.post-content img')
+    var i
+    for (i = 0; i < img.length; i++) {
+      var wrapper = document.createElement('a')
+      wrapper.setAttribute('href', img[i].getAttribute('data-src'))
+      wrapper.setAttribute('aria-label', 'illustration')
+      wrapper.style.cssText =
+        'width: 100%; display: flex; justify-content: center;'
+      if (img[i].alt) wrapper.dataset.caption = img[i].alt
+      wrapper.dataset.nolink = true
+      img[i].before(wrapper)
+      wrapper.append(img[i])
+      var divWrap = document.createElement('div')
+      divWrap.classList.add('gallery')
+      wrapper.before(divWrap)
+      divWrap.append(wrapper)
+    }
+    baguetteBox.run('.gallery')
+  }
+</script>
+<script>
+  loadScript(
+    "/js/lib/lightbox/baguetteBox.min.js",
+    addImgLayout
+  )
+</script>
+ 
+     
+     
+    <script src="/js/main.js"></script> 
+     
+    
+      <script>
+        var addLazyload = function () {
+          var observer = lozad('.lozad', {
+            load: function (el) {
+              el.srcset = el.getAttribute('data-src')
+            },
+            loaded: function (el) {
+              el.classList.add('loaded')
+            },
+          })
+          observer.observe()
+        }
+      </script>
+      <script>
+        loadScript('/js/lib/lozad.min.js', addLazyload)
+      </script>
+     
+    
+    
+  </body>
+</html>
