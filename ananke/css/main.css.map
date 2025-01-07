@@ -1,7 +1,7 @@
 {
 	"version": 3,
 	"file": "main.css",
-	"sourceRoot": "/Users/lance/Downloads/test",
+	"sourceRoot": "/Users/lance/blog",
 	"sources": [
 		"ananke/css/main.css"
 	],
