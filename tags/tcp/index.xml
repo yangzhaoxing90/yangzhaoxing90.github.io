@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>TCP on Bluee&#39;s Blog</title>
+        <link>https://yangzhaoxing90.github.io/tags/tcp/</link>
+        <description>Recent content in TCP on Bluee&#39;s Blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en</language>
+        <lastBuildDate>Wed, 10 Jan 2024 14:00:00 +0000</lastBuildDate><atom:link href="https://yangzhaoxing90.github.io/tags/tcp/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>图解 TCP/IP</title>
+        <link>https://yangzhaoxing90.github.io/p/%E5%9B%BE%E8%A7%A3-tcp/ip/</link>
+        <pubDate>Wed, 10 Jan 2024 14:00:00 +0000</pubDate>
+        
+        <guid>https://yangzhaoxing90.github.io/p/%E5%9B%BE%E8%A7%A3-tcp/ip/</guid>
+        <description>&lt;img src="https://yangzhaoxing90.github.io/p/%E5%9B%BE%E8%A7%A3-tcp/ip/splash.jpg" alt="Featured image of post 图解 TCP/IP" /&gt;&lt;h2 id=&#34;网络基础知识&#34;&gt;网络基础知识
+&lt;/h2&gt;&lt;p&gt;计算机网络出现的背景：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;计算机普及&lt;/li&gt;
+&lt;li&gt;计算机间信息共享的需求 (从局域网到广域网)&lt;/li&gt;
+&lt;li&gt;私有网络发展为互联网&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;协议是什么：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;例如： TCP/IP/HTTP &amp;hellip;&lt;/li&gt;
+&lt;li&gt;协议的必要性 (计算机通信时的约定，计算机间遵守相同的协议就能通信)&lt;/li&gt;
+&lt;li&gt;分组交换协议 (将通信的数据分割成一个个包作为较小的单位进行传输)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;协议由谁规定:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;计算机通信的最初, 每家厂商都自己产出网络产品进行通信, 没有标准化&lt;/li&gt;
+&lt;li&gt;ISO 制定了 OSI 国际标准, 对通信系统进行了标准化&lt;/li&gt;
+&lt;li&gt;TCP/IP 标准化是由 IEFT 所推进的&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;协议分层：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;协议分层模型，每层都接受它下层提供的服务，并负责为它的上层提供服务&lt;/li&gt;
+&lt;li&gt;上下层的交互所遵循的约定叫接口，同层交互所遵循的约定叫协议&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;OSI 参考模型：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;OSI 将复杂的通信协议分成了易于理解的 7 层&lt;/li&gt;
+&lt;li&gt;OSI 参考模型和 OSI 协议不是一回事&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://yangzhaoxing90.github.io/p/%E5%9B%BE%E8%A7%A3-tcp/ip/osi.png&#34;
+	width=&#34;1440&#34;
+	height=&#34;838&#34;
+	srcset=&#34;https://yangzhaoxing90.github.io/p/%E5%9B%BE%E8%A7%A3-tcp/ip/osi_hu7038633253661165645.png 480w, https://yangzhaoxing90.github.io/p/%E5%9B%BE%E8%A7%A3-tcp/ip/osi_hu17308383727710722636.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;osi&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;171&#34;
+		data-flex-basis=&#34;412px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;OSI 各层的作用：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;应用层 (电子邮件协议、远程登录协议、文件传输协议， 是针对每个应用的协议)&lt;/li&gt;
+&lt;li&gt;表示层 (设备固有格式到网络标准格式的转换)&lt;/li&gt;
+&lt;li&gt;会话层 (通信管理，负责建立和断开通信连接)&lt;/li&gt;
+&lt;li&gt;传输层 (管理两个节点间的数据传输，负责可靠传输)&lt;/li&gt;
+&lt;li&gt;网络层 (地址管理、路由选择)&lt;/li&gt;
+&lt;li&gt;数据链路层 (数据帧和比特流转换)&lt;/li&gt;
+&lt;li&gt;物理层 (比特流和电子信号转换)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;传输方式分类：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;面向有连接（发送数据前需要建立通信线路）和面向无连接 （发送端自由发送数据）&lt;/li&gt;
+&lt;li&gt;电路交换 (电话网，过时) 和分组交换&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;电路交换：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;通信线路是独占的，计算机之间的通信效率低&lt;/li&gt;
+&lt;li&gt;通过交换机建立通信电路&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;分组交换：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;将数据分成多个数据包，按照一定顺序排列之后分别发送&lt;/li&gt;
+&lt;li&gt;所有计算机可以一起收发数据，提高了通信线路的利用率&lt;/li&gt;
+&lt;li&gt;分组交换中由(分组交换机)路由器连接通信线路&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;传输方式根据接收端的数据分类：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;单播 (Unicast) (1对1通信)&lt;/li&gt;
+&lt;li&gt;广播 (Broadcast) (1对多通信)&lt;/li&gt;
+&lt;li&gt;任播 (Anycast) （组内任选一台）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;地址:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;每层协议地址不同，TCP/IP 的 MAC 地址， IP地址，端口号等；应用层可以将电子邮件作为地址&lt;/li&gt;
+&lt;li&gt;地址的唯一性 （单播、广播、任播，如何实现地址唯一）&lt;/li&gt;
+&lt;li&gt;地址的层次性 （MAC地址、IP地址的分层）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;地址的唯一性：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;单播的例子 （一年级一班的xxx同学请起立）&lt;/li&gt;
+&lt;li&gt;多播的例子 （一年级一班同学请起立）&lt;/li&gt;
+&lt;li&gt;任播的例子 （一年级一班的哪位同学请起立）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;地址的层次性：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;IP 地址由网络号和主机号两部分组成&lt;/li&gt;
+&lt;li&gt;MAC 地址由制造商识别号、制造商内部产品编号和产品通用编号确保唯一性&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;网络的构成要素：&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;网卡&lt;/th&gt;
+          &lt;th&gt;使得计算机联网的设备&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;中继器&lt;/td&gt;
+          &lt;td&gt;物理层上延长网络的设备&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;网桥/2层交换机&lt;/td&gt;
+          &lt;td&gt;数据链路层上延长网络的设备&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;路由器/3层交换机&lt;/td&gt;
+          &lt;td&gt;通过网络层转发数据分组&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;4~7 层交换机&lt;/td&gt;
+          &lt;td&gt;处理传输层以上各层网络传输的设备&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;网关&lt;/td&gt;
+          &lt;td&gt;转换协议的设备&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;img src=&#34;https://yangzhaoxing90.github.io/p/%E5%9B%BE%E8%A7%A3-tcp/ip/data_link.png&#34;
+	width=&#34;1456&#34;
+	height=&#34;1066&#34;
+	srcset=&#34;https://yangzhaoxing90.github.io/p/%E5%9B%BE%E8%A7%A3-tcp/ip/data_link_hu11463283548321700441.png 480w, https://yangzhaoxing90.github.io/p/%E5%9B%BE%E8%A7%A3-tcp/ip/data_link_hu15522160823150262046.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;数据链路&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;136&#34;
+		data-flex-basis=&#34;327px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;传输速率和吞吐量：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;传输速率 （带宽）（相当于通车的车道，车道越多一次允许通过的车辆越多）&lt;/li&gt;
+&lt;li&gt;吞吐量就是实际传输速率, 还包含了 cpu 的处理能力、网络的拥堵程度、报文中数据字段的占用份额等&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;网卡：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;网络接口卡 (NIC), 也叫 网络适配器、网卡、LAN 卡&lt;/li&gt;
+&lt;li&gt;现今计算机都内置网卡&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;中继器：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;电信号或光信号经过中继器放大再传给另一个电缆&lt;/li&gt;
+&lt;li&gt;物理层设备&lt;/li&gt;
+&lt;li&gt;不能在传输速度不同的媒介中转发&lt;/li&gt;
+&lt;li&gt;集线器可以看作多口中继器&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;网桥：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;数据链路层设备&lt;/li&gt;
+&lt;li&gt;能够识别数据帧，临时存于内存，然后生成新的数据帧，转发给相连的另一个网段&lt;/li&gt;
+&lt;li&gt;数据帧中的数据位 FCS 用于校验数据是否正确达到目的地&lt;/li&gt;
+&lt;li&gt;网桥还能通过地址自学机制和过滤功能控制网络流量&lt;/li&gt;
+&lt;li&gt;这里的地址是 MAC 地址、硬件地址、物理地址和适配器地址， NIC 分配的具体地址&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;路由器：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;网络层设备&lt;/li&gt;
+&lt;li&gt;对分组报文进行转发&lt;/li&gt;
+&lt;li&gt;路由器可以连接不同的数据链路&lt;/li&gt;
+&lt;li&gt;路由器还有可以分担网络负荷的作用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;4～7 层交换机：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;传输层至应用层设备&lt;/li&gt;
+&lt;li&gt;分析收发数据，并对其进行特殊处理 （如负载均衡器）&lt;/li&gt;
+&lt;li&gt;带宽控制、广域网加速器、特殊应用访问加速、防火墙&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;网关：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;传输层到应用层的数据进行转换和转发的设备&lt;/li&gt;
+&lt;li&gt;如互联网邮箱和手机邮箱的转换&lt;/li&gt;
+&lt;li&gt;代理服务器，防火墙&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;网络的构成：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;边缘网络 （高速公路的出入口）&lt;/li&gt;
+&lt;li&gt;主干网络 （高速公路）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;tcpip-基础知识&#34;&gt;TCP/IP 基础知识
+&lt;/h2&gt;&lt;p&gt;计算机厂商跟风支持 TCP/IP 的历史原因：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;军用技术 （美国国防部），使用迂回线路替代中心线路，防止整个网络一点破坏和瘫痪&lt;/li&gt;
+&lt;li&gt;ARPANET 的诞生，分组交换技术的应用，巨大规模网络的鼻祖&lt;/li&gt;
+&lt;li&gt;TCP/IP 诞生， ARPANET 的唯一指定协议&lt;/li&gt;
+&lt;li&gt;Unix 系统的普及&lt;/li&gt;
+&lt;li&gt;商用互联网服务&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://yangzhaoxing90.github.io/p/%E5%9B%BE%E8%A7%A3-tcp/ip/tcp_his.png&#34;
+	width=&#34;1520&#34;
+	height=&#34;768&#34;
+	srcset=&#34;https://yangzhaoxing90.github.io/p/%E5%9B%BE%E8%A7%A3-tcp/ip/tcp_his_hu1639045848845040508.png 480w, https://yangzhaoxing90.github.io/p/%E5%9B%BE%E8%A7%A3-tcp/ip/tcp_his_hu13711540828713070312.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;tcp-ip 基础&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;197&#34;
+		data-flex-basis=&#34;475px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;TCP/IP 的标准化：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;IP、ICMP、TCP、UDP、TELNET、FTP 以及 HTTP 都属于 TCP/IP 族&lt;/li&gt;
+&lt;li&gt;开放性和实用性两大特点&lt;/li&gt;
+&lt;li&gt;IEFT 讨论制定 TCP/IP 的开放性&lt;/li&gt;
+&lt;li&gt;RFC文档记录了协议的内容，实现和运用，以及实验相关信息，通过编号组织每个协议的标准化请求&lt;/li&gt;
+&lt;li&gt;若是要修改协议内容，要发一个新的 RFC 文档，老的作废&lt;/li&gt;
+&lt;li&gt;STD 编号用来记载哪个编号制定哪个协议&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;TCP/IP 的标准化流程：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;一个协议的标准化一定要经过 IETF 讨论&lt;/li&gt;
+&lt;li&gt;互联网草案阶段，如果认为可以进行标准化 （6个月）&lt;/li&gt;
+&lt;li&gt;就记入 RFC 进入提议标准阶段 （IESG IETF 的主要成员的批准，就能被编入 RFC）&lt;/li&gt;
+&lt;li&gt;草案标准阶段&lt;/li&gt;
+&lt;li&gt;最后才是真正的标准阶段&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://yangzhaoxing90.github.io/p/%E5%9B%BE%E8%A7%A3-tcp/ip/flowable.png&#34;
+	width=&#34;1506&#34;
+	height=&#34;1134&#34;
+	srcset=&#34;https://yangzhaoxing90.github.io/p/%E5%9B%BE%E8%A7%A3-tcp/ip/flowable_hu213971978693100754.png 480w, https://yangzhaoxing90.github.io/p/%E5%9B%BE%E8%A7%A3-tcp/ip/flowable_hu7927484762306643722.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;tcp-ip 标准化&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;132&#34;
+		data-flex-basis=&#34;318px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;RFC 的获取方法：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;http://www.rfc-editor.org/rfc/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;http://www.rfc-editor.org/rfc/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;http://www.rfc-editor.org/in-notes/std/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;http://www.rfc-editor.org/in-notes/std/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;http://www.rfc-editor.org/in-notes/fyi&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;http://www.rfc-editor.org/in-notes/fyi&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;http://www.rfc-editor.org/internet-drafts/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;http://www.rfc-editor.org/internet-drafts/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;互联网:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;由 ARPANET 网发展而来，互连全世界的计算机网络&lt;/li&gt;
+&lt;li&gt;互联网的每个网络都是骨干网和末端网组成，每个网络通过 NOC 相连，连接异构网络需要用 IX 的支持&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://yangzhaoxing90.github.io/p/%E5%9B%BE%E8%A7%A3-tcp/ip/internet.png&#34;
+	width=&#34;1478&#34;
+	height=&#34;1010&#34;
+	srcset=&#34;https://yangzhaoxing90.github.io/p/%E5%9B%BE%E8%A7%A3-tcp/ip/internet_hu4313849635524119714.png 480w, https://yangzhaoxing90.github.io/p/%E5%9B%BE%E8%A7%A3-tcp/ip/internet_hu1025507060055233479.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;internet&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;146&#34;
+		data-flex-basis=&#34;351px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;TCP/IP 协议分层模型&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;OSI 参考模型&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://yangzhaoxing90.github.io/p/%E5%9B%BE%E8%A7%A3-tcp/ip/tcp_ip_osi.png&#34;
+	width=&#34;1452&#34;
+	height=&#34;902&#34;
+	srcset=&#34;https://yangzhaoxing90.github.io/p/%E5%9B%BE%E8%A7%A3-tcp/ip/tcp_ip_osi_hu12593029778040712015.png 480w, https://yangzhaoxing90.github.io/p/%E5%9B%BE%E8%A7%A3-tcp/ip/tcp_ip_osi_hu400235009166079670.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;tcp_ip_osi&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;160&#34;
+		data-flex-basis=&#34;386px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;TCP/IP 物理层&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;负责传输数据的硬件&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;TCP/IP 网络接口层 (数据链路层)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;让 NIC 起作用的驱动程序&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;互联网层 （网络层）&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;IP 协议 （主机的标识）&lt;/li&gt;
+&lt;li&gt;ICMP 协议 （网络健康诊断）&lt;/li&gt;
+&lt;li&gt;ARP 协议 （从IP中解析MAC地址的协议）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;TCP/IP 传输层&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;TCP 协议 （面向有连接的传输协议）&lt;/li&gt;
+&lt;li&gt;UDP 协议 （面向无连接的传输协议）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;TCP/IP 应用层&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;WWW&lt;/li&gt;
+&lt;li&gt;HTTP&lt;/li&gt;
+&lt;li&gt;HTML&lt;/li&gt;
+&lt;li&gt;SMTP&lt;/li&gt;
+&lt;li&gt;FTP&lt;/li&gt;
+&lt;li&gt;远程登录 （TELENT 和 SSH）&lt;/li&gt;
+&lt;li&gt;SNMP&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;TCP/IP 通信示例&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;数据包首部 （每个分层都会在数据包前附加一个首部）&lt;/li&gt;
+&lt;li&gt;应用程序发送数据包 -&amp;gt; 附加 TCP 首部 -&amp;gt; 附加 IP 首部 -&amp;gt; 附加以太网首部 -&amp;gt; 发送到目标主机 -&amp;gt; 解析以太网首部 -&amp;gt; 解析 IP 首部 -&amp;gt; 解析 TCP 首部 -&amp;gt; 获取信息&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;数据链路&#34;&gt;数据链路
+&lt;/h2&gt;</description>
+        </item>
+        
+    </channel>
+</rss>
