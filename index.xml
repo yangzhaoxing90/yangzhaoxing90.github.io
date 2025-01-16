@@ -188,14 +188,13 @@
 &lt;p&gt;网卡：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;网络接口卡 (NIC), 也叫 网络适配器、网卡、LAN 卡&lt;/li&gt;
-&lt;li&gt;现今计算机都内置网卡&lt;/li&gt;
+&lt;li&gt;现今计算机都内置网卡，用于计算机连入网络&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;中继器：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;电信号或光信号经过中继器放大再传给另一个电缆&lt;/li&gt;
 &lt;li&gt;物理层设备&lt;/li&gt;
 &lt;li&gt;不能在传输速度不同的媒介中转发&lt;/li&gt;
-&lt;li&gt;集线器可以看作多口中继器&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;网桥：&lt;/p&gt;
 &lt;ul&gt;
@@ -366,7 +365,316 @@
 &lt;li&gt;应用程序发送数据包 -&amp;gt; 附加 TCP 首部 -&amp;gt; 附加 IP 首部 -&amp;gt; 附加以太网首部 -&amp;gt; 发送到目标主机 -&amp;gt; 解析以太网首部 -&amp;gt; 解析 IP 首部 -&amp;gt; 解析 TCP 首部 -&amp;gt; 获取信息&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;数据链路&#34;&gt;数据链路
-&lt;/h2&gt;</description>
+&lt;/h2&gt;&lt;p&gt;TCP/IP 对数据链路及以下部分 (物理层) 未做定义&lt;/p&gt;
+&lt;p&gt;数据链路层协议定义了通过通信媒介互连的设备之间传输的规范&lt;/p&gt;
+&lt;p&gt;数据链路通信媒介&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;双绞线电缆&lt;/li&gt;
+&lt;li&gt;同轴电缆&lt;/li&gt;
+&lt;li&gt;光纤&lt;/li&gt;
+&lt;li&gt;电波&lt;/li&gt;
+&lt;li&gt;红外线&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;各个设备间也会通过交换机、网桥、中继器等中转数据&lt;/p&gt;
+&lt;p&gt;OSI 中数据链路层的相关技术&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;MAC寻址&lt;/li&gt;
+&lt;li&gt;介质共享&lt;/li&gt;
+&lt;li&gt;非公有网络&lt;/li&gt;
+&lt;li&gt;分组交换&lt;/li&gt;
+&lt;li&gt;环路检测&lt;/li&gt;
+&lt;li&gt;VLAN&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;数据链路层传输方式&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;以太网&lt;/li&gt;
+&lt;li&gt;WLAN&lt;/li&gt;
+&lt;li&gt;PPP&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;数据链路可以视为网络传输中的最小单位&lt;/p&gt;
+&lt;p&gt;MAC 地址 （用于识别数据链路中互连的节点）&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/%E5%9B%BE%E8%A7%A3-tcp/ip/mac_addr.png&#34;
+	width=&#34;1440&#34;
+	height=&#34;474&#34;
+	srcset=&#34;http://localhost:1313/p/%E5%9B%BE%E8%A7%A3-tcp/ip/mac_addr_hu4032551871423022889.png 480w, http://localhost:1313/p/%E5%9B%BE%E8%A7%A3-tcp/ip/mac_addr_hu2863831584677238456.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;IEEE802.3 规范 MAC 地址&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;303&#34;
+		data-flex-basis=&#34;729px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;厂商识别码 (OUI)&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;http://standards.ieee.org/develop/regauth/oui/pubic.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;http://standards.ieee.org/develop/regauth/oui/pubic.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;http://standards.ieee.org/develop/regauth/oui/index.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;http://standards.ieee.org/develop/regauth/oui/index.html&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;共享介质型网络&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;指由多个设备共享一个通信介质的一种网络&lt;/li&gt;
+&lt;li&gt;两种介质访问控制方式： 争用方式、令牌传递方式&lt;/li&gt;
+&lt;li&gt;争用方式，指争夺获取数据传输的权利 （CSMA），采用先到先得的方式占用信道发送数据&lt;/li&gt;
+&lt;li&gt;CSMA/CD 方式，发生冲突则立即释放信道，再重新争用&lt;/li&gt;
+&lt;li&gt;令牌传递方式， 只有获得令牌才能发送数据&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;非共享介质型网络&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;对介质采用一种传输控制的方式&lt;/li&gt;
+&lt;li&gt;每个站直连交换机，由交换机负责转发数据帧&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;根据MAC地址转发&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;交换集线器，以太网交换机&lt;/li&gt;
+&lt;li&gt;转发表 （根据MAC地址决定发送接口）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;环路检测技术&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;生成树的方式： IEEE802.1D定义，每个网桥必须在 1-10s 内相互交换 BPDU 包，从而判断哪些端口使用或不使用，以便消除环路&lt;/li&gt;
+&lt;li&gt;一旦发生故障，则自动切换通信线路，利用没有被使用的端口继续进行传输&lt;/li&gt;
+&lt;li&gt;源路由法&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;VLAN&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;使用带有 VLAN 技术的网桥，就可以不用修改实际的布线，只需要修改网络的结构就行了&lt;/li&gt;
+&lt;li&gt;VLAN 就是根据交换机不同的端口，区分成不同的网段&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/%E5%9B%BE%E8%A7%A3-tcp/ip/vlan.png&#34;
+	width=&#34;1044&#34;
+	height=&#34;554&#34;
+	srcset=&#34;http://localhost:1313/p/%E5%9B%BE%E8%A7%A3-tcp/ip/vlan_hu10207055684991013527.png 480w, http://localhost:1313/p/%E5%9B%BE%E8%A7%A3-tcp/ip/vlan_hu7401504065656612149.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;VLAN&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;188&#34;
+		data-flex-basis=&#34;452px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;以太网&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;IEEE 802.3 规范的以太网被称为 802.3 以太网&lt;/li&gt;
+&lt;li&gt;以太网普及之初，使用同一根同轴电缆的共享介质的连接方式&lt;/li&gt;
+&lt;li&gt;现在一般采用终端与交换机之间，独占电缆的方式&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;以太网的分类&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;10BASE，100BASE，指的是传输速率&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/%E5%9B%BE%E8%A7%A3-tcp/ip/yitai.png&#34;
+	width=&#34;1462&#34;
+	height=&#34;1160&#34;
+	srcset=&#34;http://localhost:1313/p/%E5%9B%BE%E8%A7%A3-tcp/ip/yitai_hu3482618805594335159.png 480w, http://localhost:1313/p/%E5%9B%BE%E8%A7%A3-tcp/ip/yitai_hu13744392201518076288.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;以太网分类&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;126&#34;
+		data-flex-basis=&#34;302px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;以太网帧格式&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;前段叫前导码，表示一个以太帧的开始，8个字节&lt;/li&gt;
+&lt;li&gt;前导码末尾是 SFD 域，它的值是 11&lt;/li&gt;
+&lt;li&gt;前导码后面是帧的本体，本体的前端是首部，14个字节，6个字节的目标MAC地址，6个字节的源MAC地址，2个字节的上层协议类型&lt;/li&gt;
+&lt;li&gt;帧尾是 FCS 4个字节&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/%E5%9B%BE%E8%A7%A3-tcp/ip/yitai_data.png&#34;
+	width=&#34;1352&#34;
+	height=&#34;542&#34;
+	srcset=&#34;http://localhost:1313/p/%E5%9B%BE%E8%A7%A3-tcp/ip/yitai_data_hu1323619257108685547.png 480w, http://localhost:1313/p/%E5%9B%BE%E8%A7%A3-tcp/ip/yitai_data_hu1089363214766002145.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;以太网数据帧&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;249&#34;
+		data-flex-basis=&#34;598px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;主要的协议类型&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/%E5%9B%BE%E8%A7%A3-tcp/ip/protocol_type.png&#34;
+	width=&#34;1556&#34;
+	height=&#34;1446&#34;
+	srcset=&#34;http://localhost:1313/p/%E5%9B%BE%E8%A7%A3-tcp/ip/protocol_type_hu812027578744058379.png 480w, http://localhost:1313/p/%E5%9B%BE%E8%A7%A3-tcp/ip/protocol_type_hu4070056585939063028.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;以太网主要协议类型编码&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;107&#34;
+		data-flex-basis=&#34;258px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;关于协议类型更多的细节&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;http://standards.ieee.org/regauth/ethertype/eth.txt&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;http://standards.ieee.org/regauth/ethertype/eth.txt&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;http://www.iana.org/assignments/ethernet-numbers&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;http://www.iana.org/assignments/ethernet-numbers&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;VLAN 会追加 4 个字节 (类型[16bit]、优先度[3bit]、CFI[1bit]、VLAN ID[12bit])&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;无线通信&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;通常采用电磁波、红外线、激光等方式进行传播&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/%E5%9B%BE%E8%A7%A3-tcp/ip/wifi.png&#34;
+	width=&#34;1472&#34;
+	height=&#34;706&#34;
+	srcset=&#34;http://localhost:1313/p/%E5%9B%BE%E8%A7%A3-tcp/ip/wifi_hu12375436040466000378.png 480w, http://localhost:1313/p/%E5%9B%BE%E8%A7%A3-tcp/ip/wifi_hu16668630040648440795.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;无线通信的种类&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;208&#34;
+		data-flex-basis=&#34;500px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;IEEE802.11定义了无线LAN&lt;/li&gt;
+&lt;li&gt;IEEE802.11b 和 IEEE802.11g (2.4GHz)&lt;/li&gt;
+&lt;li&gt;IEEE802.11a (5GHz)&lt;/li&gt;
+&lt;li&gt;IEEE802.11n, MINO 技术&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;PPP&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;点对点&lt;/li&gt;
+&lt;li&gt;PPP 只属于链路层的协议，不包含物理层&lt;/li&gt;
+&lt;li&gt;可以使用电话线、ISDN、专线、ATM线路、ADSL、有线电视通过 PPPoE&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;LCP 和 NCP&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;PPP 主要功能包含两个协议，不依赖上层的 LCP 和依赖上层的 NCP&lt;/li&gt;
+&lt;li&gt;若上层为 IP，NCP 也称作 IPCP&lt;/li&gt;
+&lt;li&gt;LCP 主要负责建立和断开连接、设置最大接收单元、设置验证协议以及设置是否进行通信质量的监控&lt;/li&gt;
+&lt;li&gt;IPCP 则负责 IP 地址设置和是否进行 TCP/IP 首部压缩等设备&lt;/li&gt;
+&lt;li&gt;PAP 和 CHAP 通信双向验证协议&lt;/li&gt;
+&lt;li&gt;CHAP 和 OTP&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;PPP 的帧格式&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;8位字节标志码 (01111110)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/%E5%9B%BE%E8%A7%A3-tcp/ip/ppp.png&#34;
+	width=&#34;1388&#34;
+	height=&#34;264&#34;
+	srcset=&#34;http://localhost:1313/p/%E5%9B%BE%E8%A7%A3-tcp/ip/ppp_hu17312455044737331756.png 480w, http://localhost:1313/p/%E5%9B%BE%E8%A7%A3-tcp/ip/ppp_hu9362860258098035970.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;PPP&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;525&#34;
+		data-flex-basis=&#34;1261px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;PPPoE&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/%E5%9B%BE%E8%A7%A3-tcp/ip/PPPoE.png&#34;
+	width=&#34;1298&#34;
+	height=&#34;516&#34;
+	srcset=&#34;http://localhost:1313/p/%E5%9B%BE%E8%A7%A3-tcp/ip/PPPoE_hu9854516153107553754.png 480w, http://localhost:1313/p/%E5%9B%BE%E8%A7%A3-tcp/ip/PPPoE_hu11006092230372911304.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;PPPoE&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;251&#34;
+		data-flex-basis=&#34;603px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;ATM&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;面向连接的数据链路&lt;/li&gt;
+&lt;li&gt;以信元 (5字节首部+48字节数据) 作为单位进行传输的&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;POS&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;一种在 SDH 上进行通信的一种协议&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;FDDI&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;分布式光线数据接口&lt;/li&gt;
+&lt;li&gt;采用令牌环的访问方式&lt;/li&gt;
+&lt;li&gt;DAS 和 SAS 的概念&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Token Ring&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;令牌环网源自 IBM 开发的令牌环 LAN 技术&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;100VG-AnyLAN&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;IEEE802.12 规范定义的一种网络协议&lt;/li&gt;
+&lt;li&gt;VG 是 Voice Grade 的缩写，指语音级&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;光纤通道&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;实现高速数据通信的一种数据链路&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;HIPPI&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;用于连接大型计算机&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;IEEE1394&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;家庭局域网，也叫 FireWire, i.Link&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;HDMI&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;高清晰多媒体接口&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;iSCSI&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;个人电脑连接硬盘的 SCSI 标准应用于 TCP/IP 网络上的一种标准&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;InfiniBand&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;针对高端服务器的一种超高速传输接口技术&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;DOCSIS&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;有线电视传输行业的标准&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;高速 PLC&lt;/p&gt;
+&lt;p&gt;公共网络&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;模拟电话线路&lt;/li&gt;
+&lt;li&gt;移动通信服务&lt;/li&gt;
+&lt;li&gt;ADSL (模拟电话)&lt;/li&gt;
+&lt;li&gt;FTTH (光纤到户)&lt;/li&gt;
+&lt;li&gt;有线电视&lt;/li&gt;
+&lt;li&gt;专线&lt;/li&gt;
+&lt;li&gt;VPN (IP-VPN, 广域以太网)&lt;/li&gt;
+&lt;li&gt;公共无线 LAN&lt;/li&gt;
+&lt;li&gt;X.25&lt;/li&gt;
+&lt;li&gt;帧中继&lt;/li&gt;
+&lt;li&gt;ISDN&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;ip-协议&#34;&gt;IP 协议
+&lt;/h2&gt;&lt;p&gt;跨越多种数据链路，需要借助网络层&lt;/p&gt;
+&lt;p&gt;IP 基础知识&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;IP寻址&lt;/li&gt;
+&lt;li&gt;路由&lt;/li&gt;
+&lt;li&gt;IP分包与组包&lt;/li&gt;
+&lt;/ul&gt;
+</description>
         </item>
         <item>
         <title>西尔斯亲密育儿</title>
