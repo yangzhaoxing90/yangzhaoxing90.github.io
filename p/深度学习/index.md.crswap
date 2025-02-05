@@ -1,0 +1,38 @@
+---
+title: 深度学习
+description: 《深度学习》是深度学习领域唯一的综合性图书，全称也叫做深度学习 AI圣经(Deep Learning)，由三位全球知名专家IanGoodfellow、YoshuaBengio、AaronCourville编著，全书囊括了数学及相关概念的背景知识，包括线性代数、概率论、信息论、数值优化以及机器学习中的相关内容
+slug: 深度学习
+date: 2025-02-05 00:00:00+0000
+image: cover.jpg
+math: true
+categories:
+    - 深度学习
+tags:
+    - 深度学习
+weight: 1       # You can add weight to some posts to override the default sorting (date descending)
+---
+
+
+## 引言
+
+AI 深度学习： 层次化的概念形成的图的方法
+
+知识库：用形式化的语言对关于世界的知识进行硬编码
+
+机器学习：从原始数据中，自己提取模式的能力
+
+表示学习：使用机器学习来发掘表示本身
+
+![深度学习](dp.png)
+
+
+## 深度学习的历史趋势
+
+控制论 (简单的线性模型)
+
+$$
+    f(x, w) = x_1w_1 + ... + x_nw_n
+$$
+
+
+## 

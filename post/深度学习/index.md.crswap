@@ -1,0 +1,26 @@
+---
+title: 深度学习
+description: 
+slug: 深度学习
+date: 2025-02-05 09:30:00+0000
+image: cover.jpg
+categories:
+    - 深度学习
+tags:
+    - 深度学习
+weight: 1       # You can add weight to some posts to override the default sorting (date descending)
+---
+
+## 引言
+
+AI 深度学习： 层次化的概念形成的图的方法
+
+知识库：用形式化的语言对关于世界的知识进行硬编码
+
+机器学习：从原始数据中，自己提取模式的能力
+
+表示学习：使用机器学习来发掘表示本身
+
+![深度学习](dp.png)
+
+
