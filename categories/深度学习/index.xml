@@ -13,7 +13,9 @@
         
         <guid>http://localhost:1313/p/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</guid>
         <description>&lt;img src="http://localhost:1313/p/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/cover.jpg" alt="Featured image of post 深度学习" /&gt;&lt;h2 id=&#34;引言&#34;&gt;引言
-&lt;/h2&gt;&lt;p&gt;AI 深度学习： 层次化的概念形成的图的方法&lt;/p&gt;
+&lt;/h2&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/MingchaoZhu/DeepLearning?tab=readme-ov-file&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://github.com/MingchaoZhu/DeepLearning?tab=readme-ov-file&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;AI 深度学习： 层次化的概念形成的图的方法&lt;/p&gt;
 &lt;p&gt;知识库：用形式化的语言对关于世界的知识进行硬编码&lt;/p&gt;
 &lt;p&gt;机器学习：从原始数据中，自己提取模式的能力&lt;/p&gt;
 &lt;p&gt;表示学习：使用机器学习来发掘表示本身&lt;/p&gt;

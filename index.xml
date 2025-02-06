@@ -6,7 +6,31 @@
         <description>Recent content on Bluee&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
-        <lastBuildDate>Wed, 05 Feb 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 06 Feb 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>云南旅游计划</title>
+        <link>http://localhost:1313/p/%E4%BA%91%E5%8D%97%E6%97%85%E6%B8%B8%E8%AE%A1%E5%88%92/</link>
+        <pubDate>Thu, 06 Feb 2025 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/p/%E4%BA%91%E5%8D%97%E6%97%85%E6%B8%B8%E8%AE%A1%E5%88%92/</guid>
+        <description>&lt;img src="http://localhost:1313/p/%E4%BA%91%E5%8D%97%E6%97%85%E6%B8%B8%E8%AE%A1%E5%88%92/cover.jpeg" alt="Featured image of post 云南旅游计划" /&gt;&lt;h2 id=&#34;旅游攻略制定模版&#34;&gt;旅游攻略制定模版
+&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;确定旅游的目的&lt;/li&gt;
+&lt;li&gt;确定旅游时间&lt;/li&gt;
+&lt;li&gt;确认目的地以及想要看的景观&lt;/li&gt;
+&lt;li&gt;确认交通方式及住宿及其费用&lt;/li&gt;
+&lt;li&gt;制定总体行程流程&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;旅游的目的&#34;&gt;旅游的目的
+&lt;/h2&gt;&lt;p&gt;体验不同地方的人文，看看不太常见的风景，放松身心，吃当地特色美食&lt;/p&gt;
+&lt;h2 id=&#34;旅游时间&#34;&gt;旅游时间
+&lt;/h2&gt;&lt;p&gt;2026.02.11 (南小年) - 2026.02.15 (除夕前)&lt;/p&gt;
+&lt;h2 id=&#34;旅游目的地及景观&#34;&gt;旅游目的地及景观
+&lt;/h2&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://yn66.ynyljr.top/yulin003/yn/?plan=PC%E2%80%94%E4%BA%91%E5%8D%97%E6%A0%B8%E5%BF%83%E8%AF%8D&amp;amp;unit=%E4%BA%91%E5%8D%97%E6%A0%B8%E5%BF%83%E8%AF%8D22&amp;amp;keyword=%7B%E4%BA%91%E5%8D%97%7D%E6%9C%89%E5%95%A5%E7%8E%A9%E7%9A%84&amp;amp;e_matchtype=2&amp;amp;e_creative=110299221962&amp;amp;e_adposition=cl1&amp;amp;e_keywordid=992109551467&amp;amp;e_keywordid2=992109551467&amp;amp;bd_vid=10507676760043397697&amp;amp;hdfshare=18088991395&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;&lt;mark&gt;云南旅游攻略参考文章&lt;/mark&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;heading&#34;&gt;
+&lt;/h2&gt;</description>
+        </item>
+        <item>
         <title>linear algebra</title>
         <link>http://localhost:1313/p/linear-algebra/</link>
         <pubDate>Wed, 05 Feb 2025 00:00:00 +0000</pubDate>
@@ -21,7 +45,9 @@
         
         <guid>http://localhost:1313/p/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</guid>
         <description>&lt;img src="http://localhost:1313/p/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/cover.jpg" alt="Featured image of post 深度学习" /&gt;&lt;h2 id=&#34;引言&#34;&gt;引言
-&lt;/h2&gt;&lt;p&gt;AI 深度学习： 层次化的概念形成的图的方法&lt;/p&gt;
+&lt;/h2&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/MingchaoZhu/DeepLearning?tab=readme-ov-file&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://github.com/MingchaoZhu/DeepLearning?tab=readme-ov-file&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;AI 深度学习： 层次化的概念形成的图的方法&lt;/p&gt;
 &lt;p&gt;知识库：用形式化的语言对关于世界的知识进行硬编码&lt;/p&gt;
 &lt;p&gt;机器学习：从原始数据中，自己提取模式的能力&lt;/p&gt;
 &lt;p&gt;表示学习：使用机器学习来发掘表示本身&lt;/p&gt;
@@ -741,6 +767,14 @@ In the event loop, the queue is checked on each iteration and if a waiting event
 &lt;/h2&gt;&lt;h2 id=&#34;creating-additional-windows&#34;&gt;Creating additional windows
 &lt;/h2&gt;&lt;h2 id=&#34;creating-applications-with-qt-designer&#34;&gt;Creating applications with Qt Designer
 &lt;/h2&gt;</description>
+        </item>
+        <item>
+        <title>婴儿哄睡总结</title>
+        <link>http://localhost:1313/p/%E5%A9%B4%E5%84%BF%E5%93%84%E7%9D%A1%E6%80%BB%E7%BB%93/</link>
+        <pubDate>Fri, 02 Feb 2024 11:30:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/p/%E5%A9%B4%E5%84%BF%E5%93%84%E7%9D%A1%E6%80%BB%E7%BB%93/</guid>
+        <description>&lt;img src="http://localhost:1313/cover.jpg" alt="Featured image of post 婴儿哄睡总结" /&gt;</description>
         </item>
         <item>
         <title>新生儿护理资源合集</title>
@@ -1627,6 +1661,9 @@ In the event loop, the queue is checked on each iteration and if a waiting event
 &lt;ul&gt;
 &lt;li&gt;选择一个洗澡的地方，要靠近厨房或浴室，保持温暖并通风&lt;/li&gt;
 &lt;li&gt;备好必要物品&lt;/li&gt;
+&lt;li&gt;先用温水洗宝宝的脸，尤其是耳朵后面的地方、两个耳郭里面，以及脖子褶皱的地方&lt;/li&gt;
+&lt;li&gt;要是宝宝皮肤出汗、出油或者脏了，就用一块性质温和的香皂，但不要用脸上&lt;/li&gt;
+&lt;li&gt;用橄榄球式的&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;备好必要的物品&lt;/p&gt;
 &lt;ul&gt;
@@ -1636,6 +1673,18 @@ In the event loop, the queue is checked on each iteration and if a waiting event
 &lt;li&gt;连帽毛巾&lt;/li&gt;
 &lt;li&gt;尿布&lt;/li&gt;
 &lt;li&gt;干净衣服&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;在浴盆里面洗澡&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;确保水温合适&lt;/li&gt;
+&lt;li&gt;唱歌，眼神交流&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;洗澡有关的问题&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;该多长时间给宝宝洗一次澡 (一周洗一两次)&lt;/li&gt;
+&lt;li&gt;给宝宝用什么样的香皂和洗发香波 （温和型）&lt;/li&gt;
+&lt;li&gt;应该给宝宝用润肤油和爽身粉 （保湿霜）&lt;/li&gt;
+&lt;li&gt;宝宝每次洗澡时都要尖叫，怎样才能让他喜欢上洗澡 （）&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;让宝宝舒服&#34;&gt;让宝宝舒服
 &lt;/h3&gt;&lt;h3 id=&#34;安抚奶嘴用还是不用&#34;&gt;安抚奶嘴：用还是不用
