@@ -1,0 +1,150 @@
+---
+title: Springboot 技术架构内幕
+description: 从源码的角度解析 Springboot 的工作原理
+slug: Springboot 技术架构内幕
+date: 2025-02-06 00:00:00+0000
+image: cover.png
+categories:
+    - Spring
+tags:
+    - Spring
+weight: 1       # You can add weight to some posts to override the default sorting (date descending)
+---
+
+## 获取 springboot 源码
+
+idea 中创建 springboot 项目，引入 springboot 的 pom 依赖，然后 maven 下载源码
+
+```pom.xml
+   <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.7.18</version>
+    </parent>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-autoconfigure-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <exclude>
+                            <groupId>org.springframework.boot</groupId>
+                            <artifactId>spring-boot-autoconfigure-processor</artifactId>
+                        </exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+```
+
+获取了 springboot 2.7.18 的源码
+
+
+## springboot 的核心运行逻辑
+
+Spring Boot 最核心的功能就是自动装配，基于 "约定优于配置" 的原则
+
+使用 Spring Boot 的时候，只需要引入对应的 Starters ，Spring Boot 启动时就会自动加载相关的依赖，配置相应的初始化参数
+
+以最快捷、简单的形式对第三方软件进行集成
+
+![Spring Boot 自动配置核心运行原理](core.png)
+
+入口类
+
+    - 由 @SpringBootApplication 注解的类
+    - main() 函数，Spring Boot 项目的入口函数
+
+@SpringBootApplication
+
+    - 包含了 @EnableAutoConfiguration 注解
+    - exclude 排除指定配置类
+    - excludeName 排除指定配置类名
+    - scanBasePackages 指定扫描基础包，激活注解组件的初始化
+    - scanBasePacakgeClasses 指定扫描的类，用于初始化
+    - proxyBeanMethods 指定是否代理 @Bean 方法以强制执行 bean 的生命周期行为
+    - 包含了 @ComponentScan
+    - 包含了 @SpringBootConfiguration 组合了 @Configuration
+
+
+ @AliasFor 注解
+    
+    - 用于桥接到其他注解，该注解的属性中指定了所桥接的注解类
+    - 可以减少用户使用多注解带来的麻烦
+
+
+![Spring Boot 注解组合](annotation.png)
+
+
+@EnableAutoConfiguration 注解
+
+    - Spring 无法自动配置 @Configuration 注解的类，该注解可以根据约定自动管理它
+    - 主要功能是启动 Spring 应用程序上下文的时候进行自动配置
+    - ENABLED_OVERRIDE_PROPERTY 用来开启/关闭自动配置
+    - exclude 排除指定配置类
+    - excludeName 排除指定配置类名
+    - @EnableAutoConfiguration 注解的类所在的包，会作为 @Entity 被扫描的根路径，所以需要放到最外面
+    - AutoConfigurationlmportSelector 类
+
+@Import 注解
+
+    - 主要提供导入配置类的功能
+    - 和 xml 中的 <import> 作用一样，可以通过 @Import 引入 @Configuration 注解的类
+    - 也可以导入实现 ImportSelector 或 ImportBeanDefinitionRegistrar 的类
+    - 还可以通过 @Import 导入 POJO 
+
+ImportSelector 接口
+
+    - ImportSelector 决定可以引入哪些 @Configuration
+    - String[] selectImports(AnnotationMetadata importingClassMetadata)
+    - AnnotationMetadata 内包含了被 @Import 注解的类的注解信息
+    - 实现 ImportSelector 的同时又实现了 Aware 接口, Spring 保证会在调用 ImportSelector 之前会先调用 四个 Aware 方法
+
+AutoConfigurationImportSelector 类
+
+    - 实现了 4 个 Aware 接口
+    - 实现了 DeferredImportSelector 接口，与 ImportSelector 的区别是前者会在所有 @Configuration 加载完之后再加载返回的配置类
+    - ImportSelector 会在之前去加载返回的配置类
+    - DefferedImportSelector 提供了 getImportGroup 实现自定义的 Configuration 加载顺序，也可通过  @Order 注解或 Ordered 接口来指定加载顺序
+
+![流程图](flow.png)
+
+@Conditional 条件注解
+
+    - 可以根据是否满足指定的条件决定是否进行 Bean 的实例化及装配
+    - Condition 数组，的 matches 方法全部返回 true，该注解的类才会被加载
+
+![衍生注解](condition.png)
+
+
+
+## Spring Boot 构造流程源码分析
+
+Spring 启动时都做了些什么，从 main() 开始
+
+SpringApplication
+
+    - run 方法
+
+![SpringApplication 实例化流程](application.png)
+
+ApplicationContextInitializer 加载
+
+    - SpringIOC 容器提供的接口，允许用于在 ConfigurableApplicationContext 类型的 ApplicationContext 做 refresh 之前进行设置
+
+ApplicationListenr
