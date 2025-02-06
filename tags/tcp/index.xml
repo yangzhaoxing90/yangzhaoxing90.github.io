@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>TCP on Bluee&#39;s Blog</title>
-        <link>http://localhost:1313/tags/tcp/</link>
+        <link>https://yangzhaoxing90.github.io/tags/tcp/</link>
         <description>Recent content in TCP on Bluee&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
-        <lastBuildDate>Wed, 10 Jan 2024 14:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/tcp/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 10 Jan 2024 14:00:00 +0000</lastBuildDate><atom:link href="https://yangzhaoxing90.github.io/tags/tcp/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>图解 TCP/IP</title>
-        <link>http://localhost:1313/p/%E5%9B%BE%E8%A7%A3-tcp/ip/</link>
+        <link>https://yangzhaoxing90.github.io/p/%E5%9B%BE%E8%A7%A3-tcp/ip/</link>
         <pubDate>Wed, 10 Jan 2024 14:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/p/%E5%9B%BE%E8%A7%A3-tcp/ip/</guid>
-        <description>&lt;img src="http://localhost:1313/p/%E5%9B%BE%E8%A7%A3-tcp/ip/splash.jpg" alt="Featured image of post 图解 TCP/IP" /&gt;&lt;h2 id=&#34;网络基础知识&#34;&gt;网络基础知识
+        <guid>https://yangzhaoxing90.github.io/p/%E5%9B%BE%E8%A7%A3-tcp/ip/</guid>
+        <description>&lt;img src="https://yangzhaoxing90.github.io/p/%E5%9B%BE%E8%A7%A3-tcp/ip/splash.jpg" alt="Featured image of post 图解 TCP/IP" /&gt;&lt;h2 id=&#34;网络基础知识&#34;&gt;网络基础知识
 &lt;/h2&gt;&lt;p&gt;计算机网络出现的背景：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;计算机普及&lt;/li&gt;
@@ -41,10 +41,10 @@
 &lt;li&gt;OSI 将复杂的通信协议分成了易于理解的 7 层&lt;/li&gt;
 &lt;li&gt;OSI 参考模型和 OSI 协议不是一回事&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/%E5%9B%BE%E8%A7%A3-tcp/ip/osi.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://yangzhaoxing90.github.io/p/%E5%9B%BE%E8%A7%A3-tcp/ip/osi.png&#34;
 	width=&#34;1440&#34;
 	height=&#34;838&#34;
-	srcset=&#34;http://localhost:1313/p/%E5%9B%BE%E8%A7%A3-tcp/ip/osi_hu7038633253661165645.png 480w, http://localhost:1313/p/%E5%9B%BE%E8%A7%A3-tcp/ip/osi_hu17308383727710722636.png 1024w&#34;
+	srcset=&#34;https://yangzhaoxing90.github.io/p/%E5%9B%BE%E8%A7%A3-tcp/ip/osi_hu7038633253661165645.png 480w, https://yangzhaoxing90.github.io/p/%E5%9B%BE%E8%A7%A3-tcp/ip/osi_hu17308383727710722636.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;osi&#34;
@@ -135,10 +135,10 @@
       &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/%E5%9B%BE%E8%A7%A3-tcp/ip/data_link.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://yangzhaoxing90.github.io/p/%E5%9B%BE%E8%A7%A3-tcp/ip/data_link.png&#34;
 	width=&#34;1456&#34;
 	height=&#34;1066&#34;
-	srcset=&#34;http://localhost:1313/p/%E5%9B%BE%E8%A7%A3-tcp/ip/data_link_hu11463283548321700441.png 480w, http://localhost:1313/p/%E5%9B%BE%E8%A7%A3-tcp/ip/data_link_hu15522160823150262046.png 1024w&#34;
+	srcset=&#34;https://yangzhaoxing90.github.io/p/%E5%9B%BE%E8%A7%A3-tcp/ip/data_link_hu11463283548321700441.png 480w, https://yangzhaoxing90.github.io/p/%E5%9B%BE%E8%A7%A3-tcp/ip/data_link_hu15522160823150262046.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;数据链路&#34;
@@ -206,10 +206,10 @@
 &lt;li&gt;Unix 系统的普及&lt;/li&gt;
 &lt;li&gt;商用互联网服务&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/%E5%9B%BE%E8%A7%A3-tcp/ip/tcp_his.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://yangzhaoxing90.github.io/p/%E5%9B%BE%E8%A7%A3-tcp/ip/tcp_his.png&#34;
 	width=&#34;1520&#34;
 	height=&#34;768&#34;
-	srcset=&#34;http://localhost:1313/p/%E5%9B%BE%E8%A7%A3-tcp/ip/tcp_his_hu1639045848845040508.png 480w, http://localhost:1313/p/%E5%9B%BE%E8%A7%A3-tcp/ip/tcp_his_hu13711540828713070312.png 1024w&#34;
+	srcset=&#34;https://yangzhaoxing90.github.io/p/%E5%9B%BE%E8%A7%A3-tcp/ip/tcp_his_hu1639045848845040508.png 480w, https://yangzhaoxing90.github.io/p/%E5%9B%BE%E8%A7%A3-tcp/ip/tcp_his_hu13711540828713070312.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;tcp-ip 基础&#34;
@@ -237,10 +237,10 @@
 &lt;li&gt;草案标准阶段&lt;/li&gt;
 &lt;li&gt;最后才是真正的标准阶段&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/%E5%9B%BE%E8%A7%A3-tcp/ip/flowable.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://yangzhaoxing90.github.io/p/%E5%9B%BE%E8%A7%A3-tcp/ip/flowable.png&#34;
 	width=&#34;1506&#34;
 	height=&#34;1134&#34;
-	srcset=&#34;http://localhost:1313/p/%E5%9B%BE%E8%A7%A3-tcp/ip/flowable_hu213971978693100754.png 480w, http://localhost:1313/p/%E5%9B%BE%E8%A7%A3-tcp/ip/flowable_hu7927484762306643722.png 1024w&#34;
+	srcset=&#34;https://yangzhaoxing90.github.io/p/%E5%9B%BE%E8%A7%A3-tcp/ip/flowable_hu213971978693100754.png 480w, https://yangzhaoxing90.github.io/p/%E5%9B%BE%E8%A7%A3-tcp/ip/flowable_hu7927484762306643722.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;tcp-ip 标准化&#34;
@@ -267,10 +267,10 @@
 &lt;li&gt;由 ARPANET 网发展而来，互连全世界的计算机网络&lt;/li&gt;
 &lt;li&gt;互联网的每个网络都是骨干网和末端网组成，每个网络通过 NOC 相连，连接异构网络需要用 IX 的支持&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/%E5%9B%BE%E8%A7%A3-tcp/ip/internet.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://yangzhaoxing90.github.io/p/%E5%9B%BE%E8%A7%A3-tcp/ip/internet.png&#34;
 	width=&#34;1478&#34;
 	height=&#34;1010&#34;
-	srcset=&#34;http://localhost:1313/p/%E5%9B%BE%E8%A7%A3-tcp/ip/internet_hu4313849635524119714.png 480w, http://localhost:1313/p/%E5%9B%BE%E8%A7%A3-tcp/ip/internet_hu1025507060055233479.png 1024w&#34;
+	srcset=&#34;https://yangzhaoxing90.github.io/p/%E5%9B%BE%E8%A7%A3-tcp/ip/internet_hu4313849635524119714.png 480w, https://yangzhaoxing90.github.io/p/%E5%9B%BE%E8%A7%A3-tcp/ip/internet_hu1025507060055233479.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;internet&#34;
@@ -285,10 +285,10 @@
 &lt;ul&gt;
 &lt;li&gt;OSI 参考模型&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/%E5%9B%BE%E8%A7%A3-tcp/ip/tcp_ip_osi.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://yangzhaoxing90.github.io/p/%E5%9B%BE%E8%A7%A3-tcp/ip/tcp_ip_osi.png&#34;
 	width=&#34;1452&#34;
 	height=&#34;902&#34;
-	srcset=&#34;http://localhost:1313/p/%E5%9B%BE%E8%A7%A3-tcp/ip/tcp_ip_osi_hu12593029778040712015.png 480w, http://localhost:1313/p/%E5%9B%BE%E8%A7%A3-tcp/ip/tcp_ip_osi_hu400235009166079670.png 1024w&#34;
+	srcset=&#34;https://yangzhaoxing90.github.io/p/%E5%9B%BE%E8%A7%A3-tcp/ip/tcp_ip_osi_hu12593029778040712015.png 480w, https://yangzhaoxing90.github.io/p/%E5%9B%BE%E8%A7%A3-tcp/ip/tcp_ip_osi_hu400235009166079670.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;tcp_ip_osi&#34;
@@ -362,10 +362,10 @@
 &lt;/ul&gt;
 &lt;p&gt;数据链路可以视为网络传输中的最小单位&lt;/p&gt;
 &lt;p&gt;MAC 地址 （用于识别数据链路中互连的节点）&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/%E5%9B%BE%E8%A7%A3-tcp/ip/mac_addr.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://yangzhaoxing90.github.io/p/%E5%9B%BE%E8%A7%A3-tcp/ip/mac_addr.png&#34;
 	width=&#34;1440&#34;
 	height=&#34;474&#34;
-	srcset=&#34;http://localhost:1313/p/%E5%9B%BE%E8%A7%A3-tcp/ip/mac_addr_hu4032551871423022889.png 480w, http://localhost:1313/p/%E5%9B%BE%E8%A7%A3-tcp/ip/mac_addr_hu2863831584677238456.png 1024w&#34;
+	srcset=&#34;https://yangzhaoxing90.github.io/p/%E5%9B%BE%E8%A7%A3-tcp/ip/mac_addr_hu4032551871423022889.png 480w, https://yangzhaoxing90.github.io/p/%E5%9B%BE%E8%A7%A3-tcp/ip/mac_addr_hu2863831584677238456.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;IEEE802.3 规范 MAC 地址&#34;
@@ -412,10 +412,10 @@
 &lt;li&gt;使用带有 VLAN 技术的网桥，就可以不用修改实际的布线，只需要修改网络的结构就行了&lt;/li&gt;
 &lt;li&gt;VLAN 就是根据交换机不同的端口，区分成不同的网段&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/%E5%9B%BE%E8%A7%A3-tcp/ip/vlan.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://yangzhaoxing90.github.io/p/%E5%9B%BE%E8%A7%A3-tcp/ip/vlan.png&#34;
 	width=&#34;1044&#34;
 	height=&#34;554&#34;
-	srcset=&#34;http://localhost:1313/p/%E5%9B%BE%E8%A7%A3-tcp/ip/vlan_hu10207055684991013527.png 480w, http://localhost:1313/p/%E5%9B%BE%E8%A7%A3-tcp/ip/vlan_hu7401504065656612149.png 1024w&#34;
+	srcset=&#34;https://yangzhaoxing90.github.io/p/%E5%9B%BE%E8%A7%A3-tcp/ip/vlan_hu10207055684991013527.png 480w, https://yangzhaoxing90.github.io/p/%E5%9B%BE%E8%A7%A3-tcp/ip/vlan_hu7401504065656612149.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;VLAN&#34;
@@ -436,10 +436,10 @@
 &lt;ul&gt;
 &lt;li&gt;10BASE，100BASE，指的是传输速率&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/%E5%9B%BE%E8%A7%A3-tcp/ip/yitai.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://yangzhaoxing90.github.io/p/%E5%9B%BE%E8%A7%A3-tcp/ip/yitai.png&#34;
 	width=&#34;1462&#34;
 	height=&#34;1160&#34;
-	srcset=&#34;http://localhost:1313/p/%E5%9B%BE%E8%A7%A3-tcp/ip/yitai_hu3482618805594335159.png 480w, http://localhost:1313/p/%E5%9B%BE%E8%A7%A3-tcp/ip/yitai_hu13744392201518076288.png 1024w&#34;
+	srcset=&#34;https://yangzhaoxing90.github.io/p/%E5%9B%BE%E8%A7%A3-tcp/ip/yitai_hu3482618805594335159.png 480w, https://yangzhaoxing90.github.io/p/%E5%9B%BE%E8%A7%A3-tcp/ip/yitai_hu13744392201518076288.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;以太网分类&#34;
@@ -457,10 +457,10 @@
 &lt;li&gt;前导码后面是帧的本体，本体的前端是首部，14个字节，6个字节的目标MAC地址，6个字节的源MAC地址，2个字节的上层协议类型&lt;/li&gt;
 &lt;li&gt;帧尾是 FCS 4个字节&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/%E5%9B%BE%E8%A7%A3-tcp/ip/yitai_data.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://yangzhaoxing90.github.io/p/%E5%9B%BE%E8%A7%A3-tcp/ip/yitai_data.png&#34;
 	width=&#34;1352&#34;
 	height=&#34;542&#34;
-	srcset=&#34;http://localhost:1313/p/%E5%9B%BE%E8%A7%A3-tcp/ip/yitai_data_hu1323619257108685547.png 480w, http://localhost:1313/p/%E5%9B%BE%E8%A7%A3-tcp/ip/yitai_data_hu1089363214766002145.png 1024w&#34;
+	srcset=&#34;https://yangzhaoxing90.github.io/p/%E5%9B%BE%E8%A7%A3-tcp/ip/yitai_data_hu1323619257108685547.png 480w, https://yangzhaoxing90.github.io/p/%E5%9B%BE%E8%A7%A3-tcp/ip/yitai_data_hu1089363214766002145.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;以太网数据帧&#34;
@@ -474,10 +474,10 @@
 &lt;ul&gt;
 &lt;li&gt;主要的协议类型&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/%E5%9B%BE%E8%A7%A3-tcp/ip/protocol_type.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://yangzhaoxing90.github.io/p/%E5%9B%BE%E8%A7%A3-tcp/ip/protocol_type.png&#34;
 	width=&#34;1556&#34;
 	height=&#34;1446&#34;
-	srcset=&#34;http://localhost:1313/p/%E5%9B%BE%E8%A7%A3-tcp/ip/protocol_type_hu812027578744058379.png 480w, http://localhost:1313/p/%E5%9B%BE%E8%A7%A3-tcp/ip/protocol_type_hu4070056585939063028.png 1024w&#34;
+	srcset=&#34;https://yangzhaoxing90.github.io/p/%E5%9B%BE%E8%A7%A3-tcp/ip/protocol_type_hu812027578744058379.png 480w, https://yangzhaoxing90.github.io/p/%E5%9B%BE%E8%A7%A3-tcp/ip/protocol_type_hu4070056585939063028.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;以太网主要协议类型编码&#34;
@@ -500,10 +500,10 @@
 &lt;ul&gt;
 &lt;li&gt;通常采用电磁波、红外线、激光等方式进行传播&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/%E5%9B%BE%E8%A7%A3-tcp/ip/wifi.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://yangzhaoxing90.github.io/p/%E5%9B%BE%E8%A7%A3-tcp/ip/wifi.png&#34;
 	width=&#34;1472&#34;
 	height=&#34;706&#34;
-	srcset=&#34;http://localhost:1313/p/%E5%9B%BE%E8%A7%A3-tcp/ip/wifi_hu12375436040466000378.png 480w, http://localhost:1313/p/%E5%9B%BE%E8%A7%A3-tcp/ip/wifi_hu16668630040648440795.png 1024w&#34;
+	srcset=&#34;https://yangzhaoxing90.github.io/p/%E5%9B%BE%E8%A7%A3-tcp/ip/wifi_hu12375436040466000378.png 480w, https://yangzhaoxing90.github.io/p/%E5%9B%BE%E8%A7%A3-tcp/ip/wifi_hu16668630040648440795.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;无线通信的种类&#34;
@@ -539,10 +539,10 @@
 &lt;ul&gt;
 &lt;li&gt;8位字节标志码 (01111110)&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/%E5%9B%BE%E8%A7%A3-tcp/ip/ppp.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://yangzhaoxing90.github.io/p/%E5%9B%BE%E8%A7%A3-tcp/ip/ppp.png&#34;
 	width=&#34;1388&#34;
 	height=&#34;264&#34;
-	srcset=&#34;http://localhost:1313/p/%E5%9B%BE%E8%A7%A3-tcp/ip/ppp_hu17312455044737331756.png 480w, http://localhost:1313/p/%E5%9B%BE%E8%A7%A3-tcp/ip/ppp_hu9362860258098035970.png 1024w&#34;
+	srcset=&#34;https://yangzhaoxing90.github.io/p/%E5%9B%BE%E8%A7%A3-tcp/ip/ppp_hu17312455044737331756.png 480w, https://yangzhaoxing90.github.io/p/%E5%9B%BE%E8%A7%A3-tcp/ip/ppp_hu9362860258098035970.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;PPP&#34;
@@ -554,10 +554,10 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;PPPoE&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/%E5%9B%BE%E8%A7%A3-tcp/ip/PPPoE.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://yangzhaoxing90.github.io/p/%E5%9B%BE%E8%A7%A3-tcp/ip/PPPoE.png&#34;
 	width=&#34;1298&#34;
 	height=&#34;516&#34;
-	srcset=&#34;http://localhost:1313/p/%E5%9B%BE%E8%A7%A3-tcp/ip/PPPoE_hu9854516153107553754.png 480w, http://localhost:1313/p/%E5%9B%BE%E8%A7%A3-tcp/ip/PPPoE_hu11006092230372911304.png 1024w&#34;
+	srcset=&#34;https://yangzhaoxing90.github.io/p/%E5%9B%BE%E8%A7%A3-tcp/ip/PPPoE_hu9854516153107553754.png 480w, https://yangzhaoxing90.github.io/p/%E5%9B%BE%E8%A7%A3-tcp/ip/PPPoE_hu11006092230372911304.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;PPPoE&#34;

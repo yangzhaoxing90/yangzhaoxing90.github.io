@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+    <head><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="网络基础知识 计算机网络出现的背景：\n计算机普及 计算机间信息共享的需求 (从局域网到广域网) 私有网络发展为互联网 协议是什么：\n例如： TCP/IP/HTTP &hellip; 协议的必要性 (计算机通信时的约定，计算机间遵守相同的协议就能通信) 分组交换协议 (将通信的数据分割成一个个包作为较小的单位进行传输) 协议由谁规定:\n计算机通信的最初, 每家厂商都自己产出网络产品进行通信, 没有标准化 ISO 制定了 OSI 国际标准, 对通信系统进行了标准化 TCP/IP 标准化是由 IEFT 所推进的 协议分层：\n协议分层模型，每层都接受它下层提供的服务，并负责为它的上层提供服务 上下层的交互所遵循的约定叫接口，同层交互所遵循的约定叫协议 OSI 参考模型：\nOSI 将复杂的通信协议分成了易于理解的 7 层 OSI 参考模型和 OSI 协议不是一回事 OSI 各层的作用：\n应用层 (电子邮件协议、远程登录协议、文件传输协议， 是针对每个应用的协议) 表示层 (设备固有格式到网络标准格式的转换) 会话层 (通信管理，负责建立和断开通信连接) 传输层 (管理两个节点间的数据传输，负责可靠传输) 网络层 (地址管理、路由选择) 数据链路层 (数据帧和比特流转换) 物理层 (比特流和电子信号转换) 传输方式分类：\n面向有连接（发送数据前需要建立通信线路）和面向无连接 （发送端自由发送数据） 电路交换 (电话网，过时) 和分组交换 电路交换：\n">
 <title>图解 TCP/IP</title>
 
-<link rel='canonical' href='http://localhost:1313/p/%E5%9B%BE%E8%A7%A3-tcp/ip/'>
+<link rel='canonical' href='https://yangzhaoxing90.github.io/p/%E5%9B%BE%E8%A7%A3-tcp/ip/'>
 
 <link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="图解 TCP/IP">
 <meta property='og:description' content="网络基础知识 计算机网络出现的背景：\n计算机普及 计算机间信息共享的需求 (从局域网到广域网) 私有网络发展为互联网 协议是什么：\n例如： TCP/IP/HTTP &hellip; 协议的必要性 (计算机通信时的约定，计算机间遵守相同的协议就能通信) 分组交换协议 (将通信的数据分割成一个个包作为较小的单位进行传输) 协议由谁规定:\n计算机通信的最初, 每家厂商都自己产出网络产品进行通信, 没有标准化 ISO 制定了 OSI 国际标准, 对通信系统进行了标准化 TCP/IP 标准化是由 IEFT 所推进的 协议分层：\n协议分层模型，每层都接受它下层提供的服务，并负责为它的上层提供服务 上下层的交互所遵循的约定叫接口，同层交互所遵循的约定叫协议 OSI 参考模型：\nOSI 将复杂的通信协议分成了易于理解的 7 层 OSI 参考模型和 OSI 协议不是一回事 OSI 各层的作用：\n应用层 (电子邮件协议、远程登录协议、文件传输协议， 是针对每个应用的协议) 表示层 (设备固有格式到网络标准格式的转换) 会话层 (通信管理，负责建立和断开通信连接) 传输层 (管理两个节点间的数据传输，负责可靠传输) 网络层 (地址管理、路由选择) 数据链路层 (数据帧和比特流转换) 物理层 (比特流和电子信号转换) 传输方式分类：\n面向有连接（发送数据前需要建立通信线路）和面向无连接 （发送端自由发送数据） 电路交换 (电话网，过时) 和分组交换 电路交换：\n">
-<meta property='og:url' content='http://localhost:1313/p/%E5%9B%BE%E8%A7%A3-tcp/ip/'>
+<meta property='og:url' content='https://yangzhaoxing90.github.io/p/%E5%9B%BE%E8%A7%A3-tcp/ip/'>
 <meta property='og:site_name' content='Bluee&#39;s Blog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='TCP' /><meta property='article:published_time' content='2024-01-10T14:00:00&#43;00:00'/><meta property='article:modified_time' content='2024-01-10T14:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/p/%E5%9B%BE%E8%A7%A3-tcp/ip/splash.jpg' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='TCP' /><meta property='article:published_time' content='2024-01-10T14:00:00&#43;00:00'/><meta property='article:modified_time' content='2024-01-10T14:00:00&#43;00:00'/><meta property='og:image' content='https://yangzhaoxing90.github.io/p/%E5%9B%BE%E8%A7%A3-tcp/ip/splash.jpg' />
 <meta name="twitter:title" content="图解 TCP/IP">
 <meta name="twitter:description" content="网络基础知识 计算机网络出现的背景：\n计算机普及 计算机间信息共享的需求 (从局域网到广域网) 私有网络发展为互联网 协议是什么：\n例如： TCP/IP/HTTP &hellip; 协议的必要性 (计算机通信时的约定，计算机间遵守相同的协议就能通信) 分组交换协议 (将通信的数据分割成一个个包作为较小的单位进行传输) 协议由谁规定:\n计算机通信的最初, 每家厂商都自己产出网络产品进行通信, 没有标准化 ISO 制定了 OSI 国际标准, 对通信系统进行了标准化 TCP/IP 标准化是由 IEFT 所推进的 协议分层：\n协议分层模型，每层都接受它下层提供的服务，并负责为它的上层提供服务 上下层的交互所遵循的约定叫接口，同层交互所遵循的约定叫协议 OSI 参考模型：\nOSI 将复杂的通信协议分成了易于理解的 7 层 OSI 参考模型和 OSI 协议不是一回事 OSI 各层的作用：\n应用层 (电子邮件协议、远程登录协议、文件传输协议， 是针对每个应用的协议) 表示层 (设备固有格式到网络标准格式的转换) 会话层 (通信管理，负责建立和断开通信连接) 传输层 (管理两个节点间的数据传输，负责可靠传输) 网络层 (地址管理、路由选择) 数据链路层 (数据帧和比特流转换) 物理层 (比特流和电子信号转换) 传输方式分类：\n面向有连接（发送数据前需要建立通信线路）和面向无连接 （发送端自由发送数据） 电路交换 (电话网，过时) 和分组交换 电路交换：\n"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='http://localhost:1313/p/%E5%9B%BE%E8%A7%A3-tcp/ip/splash.jpg' />
+    <meta name="twitter:image" content='https://yangzhaoxing90.github.io/p/%E5%9B%BE%E8%A7%A3-tcp/ip/splash.jpg' />
     <link rel="shortcut icon" href="/favicon.png" />
 
     </head>
@@ -1164,7 +1164,7 @@
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/ts/main.e130a36b189a3b82b47cdabd0354e4c94dd710590484c71e7a0979635e8ab61a.js" defer></script>
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');
