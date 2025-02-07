@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Spring on Bluee&#39;s Blog</title>
-        <link>https://yangzhaoxing90.github.io/tags/spring/</link>
+        <link>http://localhost:1313/tags/spring/</link>
         <description>Recent content in Spring on Bluee&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
-        <lastBuildDate>Thu, 06 Feb 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://yangzhaoxing90.github.io/tags/spring/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 06 Feb 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/spring/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Springboot 技术架构内幕</title>
-        <link>https://yangzhaoxing90.github.io/p/springboot-%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%86%85%E5%B9%95/</link>
+        <link>http://localhost:1313/p/springboot-%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%86%85%E5%B9%95/</link>
         <pubDate>Thu, 06 Feb 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://yangzhaoxing90.github.io/p/springboot-%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%86%85%E5%B9%95/</guid>
-        <description>&lt;img src="https://yangzhaoxing90.github.io/p/springboot-%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%86%85%E5%B9%95/cover.png" alt="Featured image of post Springboot 技术架构内幕" /&gt;&lt;h2 id=&#34;获取-springboot-源码&#34;&gt;获取 springboot 源码
+        <guid>http://localhost:1313/p/springboot-%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%86%85%E5%B9%95/</guid>
+        <description>&lt;img src="http://localhost:1313/p/springboot-%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%86%85%E5%B9%95/cover.png" alt="Featured image of post Springboot 技术架构内幕" /&gt;&lt;h2 id=&#34;获取-springboot-源码&#34;&gt;获取 springboot 源码
 &lt;/h2&gt;&lt;p&gt;idea 中创建 springboot 项目，引入 springboot 的 pom 依赖，然后 maven 下载源码&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -93,10 +93,10 @@
 &lt;/h2&gt;&lt;p&gt;Spring Boot 最核心的功能就是自动装配，基于 &amp;ldquo;约定优于配置&amp;rdquo; 的原则&lt;/p&gt;
 &lt;p&gt;使用 Spring Boot 的时候，只需要引入对应的 Starters ，Spring Boot 启动时就会自动加载相关的依赖，配置相应的初始化参数&lt;/p&gt;
 &lt;p&gt;以最快捷、简单的形式对第三方软件进行集成&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://yangzhaoxing90.github.io/p/springboot-%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%86%85%E5%B9%95/core.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/springboot-%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%86%85%E5%B9%95/core.png&#34;
 	width=&#34;1500&#34;
 	height=&#34;620&#34;
-	srcset=&#34;https://yangzhaoxing90.github.io/p/springboot-%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%86%85%E5%B9%95/core_hu5225165375518620081.png 480w, https://yangzhaoxing90.github.io/p/springboot-%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%86%85%E5%B9%95/core_hu16418861872814690463.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/springboot-%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%86%85%E5%B9%95/core_hu5225165375518620081.png 480w, http://localhost:1313/p/springboot-%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%86%85%E5%B9%95/core_hu16418861872814690463.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;Spring Boot 自动配置核心运行原理&#34;
@@ -108,27 +108,30 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;入口类&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;- 由 @SpringBootApplication 注解的类
-- main() 函数，Spring Boot 项目的入口函数
-&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;由 @SpringBootApplication 注解的类&lt;/li&gt;
+&lt;li&gt;main() 函数，Spring Boot 项目的入口函数&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;@SpringBootApplication&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;- 包含了 @EnableAutoConfiguration 注解
-- exclude 排除指定配置类
-- excludeName 排除指定配置类名
-- scanBasePackages 指定扫描基础包，激活注解组件的初始化
-- scanBasePacakgeClasses 指定扫描的类，用于初始化
-- proxyBeanMethods 指定是否代理 @Bean 方法以强制执行 bean 的生命周期行为
-- 包含了 @ComponentScan
-- 包含了 @SpringBootConfiguration 组合了 @Configuration
-&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;包含了 @EnableAutoConfiguration 注解&lt;/li&gt;
+&lt;li&gt;exclude 排除指定配置类&lt;/li&gt;
+&lt;li&gt;excludeName 排除指定配置类名&lt;/li&gt;
+&lt;li&gt;scanBasePackages 指定扫描基础包，激活注解组件的初始化&lt;/li&gt;
+&lt;li&gt;scanBasePacakgeClasses 指定扫描的类，用于初始化&lt;/li&gt;
+&lt;li&gt;proxyBeanMethods 指定是否代理 @Bean 方法以强制执行 bean 的生命周期行为&lt;/li&gt;
+&lt;li&gt;包含了 @ComponentScan&lt;/li&gt;
+&lt;li&gt;包含了 @SpringBootConfiguration 组合了 @Configuration&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;@AliasFor 注解&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;- 用于桥接到其他注解，该注解的属性中指定了所桥接的注解类
-- 可以减少用户使用多注解带来的麻烦
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://yangzhaoxing90.github.io/p/springboot-%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%86%85%E5%B9%95/annotation.png&#34;
+&lt;ul&gt;
+&lt;li&gt;用于桥接到其他注解，该注解的属性中指定了所桥接的注解类&lt;/li&gt;
+&lt;li&gt;可以减少用户使用多注解带来的麻烦&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/springboot-%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%86%85%E5%B9%95/annotation.png&#34;
 	width=&#34;1574&#34;
 	height=&#34;712&#34;
-	srcset=&#34;https://yangzhaoxing90.github.io/p/springboot-%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%86%85%E5%B9%95/annotation_hu16254419350479984405.png 480w, https://yangzhaoxing90.github.io/p/springboot-%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%86%85%E5%B9%95/annotation_hu6613831997304450829.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/springboot-%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%86%85%E5%B9%95/annotation_hu16254419350479984405.png 480w, http://localhost:1313/p/springboot-%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%86%85%E5%B9%95/annotation_hu6613831997304450829.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;Spring Boot 注解组合&#34;
@@ -140,36 +143,40 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;@EnableAutoConfiguration 注解&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;- Spring 无法自动配置 @Configuration 注解的类，该注解可以根据约定自动管理它
-- 主要功能是启动 Spring 应用程序上下文的时候进行自动配置
-- ENABLED_OVERRIDE_PROPERTY 用来开启/关闭自动配置
-- exclude 排除指定配置类
-- excludeName 排除指定配置类名
-- @EnableAutoConfiguration 注解的类所在的包，会作为 @Entity 被扫描的根路径，所以需要放到最外面
-- AutoConfigurationlmportSelector 类
-&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;Spring 无法自动配置 @Configuration 注解的类，该注解可以根据约定自动管理它&lt;/li&gt;
+&lt;li&gt;主要功能是启动 Spring 应用程序上下文的时候进行自动配置&lt;/li&gt;
+&lt;li&gt;ENABLED_OVERRIDE_PROPERTY 用来开启/关闭自动配置&lt;/li&gt;
+&lt;li&gt;exclude 排除指定配置类&lt;/li&gt;
+&lt;li&gt;excludeName 排除指定配置类名&lt;/li&gt;
+&lt;li&gt;@EnableAutoConfiguration 注解的类所在的包，会作为 @Entity 被扫描的根路径，所以需要放到最外面&lt;/li&gt;
+&lt;li&gt;AutoConfigurationlmportSelector 类&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;@Import 注解&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;- 主要提供导入配置类的功能
-- 和 xml 中的 &amp;lt;import&amp;gt; 作用一样，可以通过 @Import 引入 @Configuration 注解的类
-- 也可以导入实现 ImportSelector 或 ImportBeanDefinitionRegistrar 的类
-- 还可以通过 @Import 导入 POJO 
-&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;主要提供导入配置类的功能&lt;/li&gt;
+&lt;li&gt;和 xml 中的 &lt;import&gt; 作用一样，可以通过 @Import 引入 @Configuration 注解的类&lt;/li&gt;
+&lt;li&gt;也可以导入实现 ImportSelector 或 ImportBeanDefinitionRegistrar 的类&lt;/li&gt;
+&lt;li&gt;还可以通过 @Import 导入 POJO&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;ImportSelector 接口&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;- ImportSelector 决定可以引入哪些 @Configuration
-- String[] selectImports(AnnotationMetadata importingClassMetadata)
-- AnnotationMetadata 内包含了被 @Import 注解的类的注解信息
-- 实现 ImportSelector 的同时又实现了 Aware 接口, Spring 保证会在调用 ImportSelector 之前会先调用 四个 Aware 方法
-&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;ImportSelector 决定可以引入哪些 @Configuration&lt;/li&gt;
+&lt;li&gt;String[] selectImports(AnnotationMetadata importingClassMetadata)&lt;/li&gt;
+&lt;li&gt;AnnotationMetadata 内包含了被 @Import 注解的类的注解信息&lt;/li&gt;
+&lt;li&gt;实现 ImportSelector 的同时又实现了 Aware 接口, Spring 保证会在调用 ImportSelector 之前会先调用 四个 Aware 方法&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;AutoConfigurationImportSelector 类&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;- 实现了 4 个 Aware 接口
-- 实现了 DeferredImportSelector 接口，与 ImportSelector 的区别是前者会在所有 @Configuration 加载完之后再加载返回的配置类
-- ImportSelector 会在之前去加载返回的配置类
-- DefferedImportSelector 提供了 getImportGroup 实现自定义的 Configuration 加载顺序，也可通过  @Order 注解或 Ordered 接口来指定加载顺序
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://yangzhaoxing90.github.io/p/springboot-%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%86%85%E5%B9%95/flow.png&#34;
+&lt;ul&gt;
+&lt;li&gt;实现了 4 个 Aware 接口&lt;/li&gt;
+&lt;li&gt;实现了 DeferredImportSelector 接口，与 ImportSelector 的区别是前者会在所有 @Configuration 加载完之后再加载返回的配置类&lt;/li&gt;
+&lt;li&gt;ImportSelector 会在之前去加载返回的配置类&lt;/li&gt;
+&lt;li&gt;DefferedImportSelector 提供了 getImportGroup 实现自定义的 Configuration 加载顺序，也可通过  @Order 注解或 Ordered 接口来指定加载顺序&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/springboot-%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%86%85%E5%B9%95/flow.png&#34;
 	width=&#34;1652&#34;
 	height=&#34;628&#34;
-	srcset=&#34;https://yangzhaoxing90.github.io/p/springboot-%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%86%85%E5%B9%95/flow_hu15747881245389058637.png 480w, https://yangzhaoxing90.github.io/p/springboot-%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%86%85%E5%B9%95/flow_hu10118569980014834693.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/springboot-%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%86%85%E5%B9%95/flow_hu15747881245389058637.png 480w, http://localhost:1313/p/springboot-%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%86%85%E5%B9%95/flow_hu10118569980014834693.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;流程图&#34;
@@ -181,13 +188,14 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;@Conditional 条件注解&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;- 可以根据是否满足指定的条件决定是否进行 Bean 的实例化及装配
-- Condition 数组，的 matches 方法全部返回 true，该注解的类才会被加载
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://yangzhaoxing90.github.io/p/springboot-%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%86%85%E5%B9%95/condition.png&#34;
+&lt;ul&gt;
+&lt;li&gt;可以根据是否满足指定的条件决定是否进行 Bean 的实例化及装配&lt;/li&gt;
+&lt;li&gt;Condition 数组，的 matches 方法全部返回 true，该注解的类才会被加载&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/springboot-%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%86%85%E5%B9%95/condition.png&#34;
 	width=&#34;1682&#34;
 	height=&#34;890&#34;
-	srcset=&#34;https://yangzhaoxing90.github.io/p/springboot-%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%86%85%E5%B9%95/condition_hu4710963682319440029.png 480w, https://yangzhaoxing90.github.io/p/springboot-%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%86%85%E5%B9%95/condition_hu15406467566988047060.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/springboot-%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%86%85%E5%B9%95/condition_hu4710963682319440029.png 480w, http://localhost:1313/p/springboot-%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%86%85%E5%B9%95/condition_hu15406467566988047060.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;衍生注解&#34;
@@ -201,14 +209,15 @@
 &lt;h2 id=&#34;spring-boot-构造流程源码分析&#34;&gt;Spring Boot 构造流程源码分析
 &lt;/h2&gt;&lt;p&gt;Spring 启动时都做了些什么，从 main() 开始&lt;/p&gt;
 &lt;p&gt;SpringApplication&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;- run 方法
-- 实例化流程
-- 定制化配置
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://yangzhaoxing90.github.io/p/springboot-%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%86%85%E5%B9%95/application.png&#34;
+&lt;ul&gt;
+&lt;li&gt;run 方法&lt;/li&gt;
+&lt;li&gt;实例化流程&lt;/li&gt;
+&lt;li&gt;定制化配置&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/springboot-%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%86%85%E5%B9%95/application.png&#34;
 	width=&#34;1686&#34;
 	height=&#34;568&#34;
-	srcset=&#34;https://yangzhaoxing90.github.io/p/springboot-%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%86%85%E5%B9%95/application_hu8087445338159229294.png 480w, https://yangzhaoxing90.github.io/p/springboot-%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%86%85%E5%B9%95/application_hu4163270169878035282.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/springboot-%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%86%85%E5%B9%95/application_hu8087445338159229294.png 480w, http://localhost:1313/p/springboot-%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%86%85%E5%B9%95/application_hu4163270169878035282.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;SpringApplication 实例化流程&#34;
@@ -220,21 +229,23 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;ApplicationContextInitializer 加载&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;- SpringIOC 容器提供的接口，允许用于在 ConfigurableApplicationContext 类型的 ApplicationContext 做 refresh 之前进行设置
-&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;SpringIOC 容器提供的接口，允许用于在 ConfigurableApplicationContext 类型的 ApplicationContext 做 refresh 之前进行设置&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;ApplicationListener 加载&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;- 容器初始化完成后，需要处理一些数据的加载、初始化缓存、特定任务的注册等操作
-&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;容器初始化完成后，需要处理一些数据的加载、初始化缓存、特定任务的注册等操作&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h2 id=&#34;spring-boot-运行流程源码分析&#34;&gt;Spring Boot 运行流程源码分析
 &lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;SpringApplicationRunListeners&lt;/li&gt;
 &lt;li&gt;ApplicationArguments&lt;/li&gt;
 &lt;li&gt;ConfigurableEnvironment&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;https://yangzhaoxing90.github.io/p/springboot-%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%86%85%E5%B9%95/run.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/springboot-%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%86%85%E5%B9%95/run.png&#34;
 	width=&#34;1692&#34;
 	height=&#34;610&#34;
-	srcset=&#34;https://yangzhaoxing90.github.io/p/springboot-%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%86%85%E5%B9%95/run_hu16209340884954307384.png 480w, https://yangzhaoxing90.github.io/p/springboot-%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%86%85%E5%B9%95/run_hu3854797964152787494.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/springboot-%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%86%85%E5%B9%95/run_hu16209340884954307384.png 480w, http://localhost:1313/p/springboot-%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%86%85%E5%B9%95/run_hu3854797964152787494.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;run 方法核心流程&#34;
@@ -246,13 +257,14 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;SpringApplicationRunListeners 监听器&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;- 提供了针对 Listener 的各种遍历操作
-- 它是 run 方法的监听器
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://yangzhaoxing90.github.io/p/springboot-%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%86%85%E5%B9%95/run_listener.png&#34;
+&lt;ul&gt;
+&lt;li&gt;提供了针对 Listener 的各种遍历操作&lt;/li&gt;
+&lt;li&gt;它是 run 方法的监听器&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/springboot-%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%86%85%E5%B9%95/run_listener.png&#34;
 	width=&#34;1624&#34;
 	height=&#34;940&#34;
-	srcset=&#34;https://yangzhaoxing90.github.io/p/springboot-%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%86%85%E5%B9%95/run_listener_hu6626999079211902478.png 480w, https://yangzhaoxing90.github.io/p/springboot-%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%86%85%E5%B9%95/run_listener_hu13500775061324686004.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/springboot-%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%86%85%E5%B9%95/run_listener_hu6626999079211902478.png 480w, http://localhost:1313/p/springboot-%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%86%85%E5%B9%95/run_listener_hu13500775061324686004.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;run 监听器流程&#34;
@@ -264,9 +276,46 @@
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;EventPublishingRunListener&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;- 使用内建的 SimpleApplicationEventMulticaster 来广播在上下文刷新之前触发的事件
-- 
-&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;使用内建的 SimpleApplicationEventMulticaster 来广播在上下文刷新之前触发的事件&lt;/li&gt;
+&lt;li&gt;初始化完成后，会遍历 SpringApplication 的所有 ApplicationListener 实例，将它们与 SimpleApplicationEventMulticaster 进行关联&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/springboot-%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%86%85%E5%B9%95/event.png&#34;
+	width=&#34;1508&#34;
+	height=&#34;266&#34;
+	srcset=&#34;http://localhost:1313/p/springboot-%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%86%85%E5%B9%95/event_hu16712447682961438701.png 480w, http://localhost:1313/p/springboot-%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%86%85%E5%B9%95/event_hu3049577476740859950.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;EventPublishingRunListener 事件处理流程&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;566&#34;
+		data-flex-basis=&#34;1360px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;ApplicationArguments&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;DefaultApplicationArguments(args)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;ConfigurableEnvironment&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;提供当前运行环境的公开接口，如配置文件 profiles 的各类系统属性和变量的设置、添加、读取、合并等功能&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/springboot-%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%86%85%E5%B9%95/context.png&#34;
+	width=&#34;1584&#34;
+	height=&#34;740&#34;
+	srcset=&#34;http://localhost:1313/p/springboot-%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%86%85%E5%B9%95/context_hu230935631384489880.png 480w, http://localhost:1313/p/springboot-%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%86%85%E5%B9%95/context_hu1202808575082649000.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Spring 应用上下文准备流程&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;214&#34;
+		data-flex-basis=&#34;513px&#34;
+	
+&gt;&lt;/p&gt;
 </description>
         </item>
         

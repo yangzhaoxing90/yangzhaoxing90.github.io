@@ -2,72 +2,80 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Categories on Bluee&#39;s Blog</title>
-        <link>https://yangzhaoxing90.github.io/categories/</link>
+        <link>http://localhost:1313/categories/</link>
         <description>Recent content in Categories on Bluee&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
-        <lastBuildDate>Thu, 06 Feb 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://yangzhaoxing90.github.io/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 07 Feb 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Netty</title>
+        <link>http://localhost:1313/categories/netty/</link>
+        <pubDate>Fri, 07 Feb 2025 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/categories/netty/</guid>
+        <description></description>
+        </item>
+        <item>
         <title>Spring</title>
-        <link>https://yangzhaoxing90.github.io/categories/spring/</link>
+        <link>http://localhost:1313/categories/spring/</link>
         <pubDate>Thu, 06 Feb 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://yangzhaoxing90.github.io/categories/spring/</guid>
+        <guid>http://localhost:1313/categories/spring/</guid>
         <description></description>
         </item>
         <item>
         <title>旅游</title>
-        <link>https://yangzhaoxing90.github.io/categories/%E6%97%85%E6%B8%B8/</link>
+        <link>http://localhost:1313/categories/%E6%97%85%E6%B8%B8/</link>
         <pubDate>Thu, 06 Feb 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://yangzhaoxing90.github.io/categories/%E6%97%85%E6%B8%B8/</guid>
+        <guid>http://localhost:1313/categories/%E6%97%85%E6%B8%B8/</guid>
         <description></description>
         </item>
         <item>
         <title>育儿</title>
-        <link>https://yangzhaoxing90.github.io/categories/%E8%82%B2%E5%84%BF/</link>
+        <link>http://localhost:1313/categories/%E8%82%B2%E5%84%BF/</link>
         <pubDate>Thu, 06 Feb 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://yangzhaoxing90.github.io/categories/%E8%82%B2%E5%84%BF/</guid>
+        <guid>http://localhost:1313/categories/%E8%82%B2%E5%84%BF/</guid>
         <description></description>
         </item>
         <item>
         <title>深度学习</title>
-        <link>https://yangzhaoxing90.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</link>
+        <link>http://localhost:1313/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</link>
         <pubDate>Wed, 05 Feb 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://yangzhaoxing90.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</guid>
+        <guid>http://localhost:1313/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</guid>
         <description></description>
         </item>
         <item>
         <title>线性代数</title>
-        <link>https://yangzhaoxing90.github.io/categories/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/</link>
+        <link>http://localhost:1313/categories/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/</link>
         <pubDate>Wed, 05 Feb 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://yangzhaoxing90.github.io/categories/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/</guid>
+        <guid>http://localhost:1313/categories/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/</guid>
         <description></description>
         </item>
         <item>
         <title>Pyside</title>
-        <link>https://yangzhaoxing90.github.io/categories/pyside/</link>
+        <link>http://localhost:1313/categories/pyside/</link>
         <pubDate>Tue, 21 Jan 2025 16:00:00 +0000</pubDate>
         
-        <guid>https://yangzhaoxing90.github.io/categories/pyside/</guid>
+        <guid>http://localhost:1313/categories/pyside/</guid>
         <description></description>
         </item>
         <item>
         <title>网络</title>
-        <link>https://yangzhaoxing90.github.io/categories/%E7%BD%91%E7%BB%9C/</link>
+        <link>http://localhost:1313/categories/%E7%BD%91%E7%BB%9C/</link>
         <pubDate>Wed, 10 Jan 2024 14:00:00 +0000</pubDate>
         
-        <guid>https://yangzhaoxing90.github.io/categories/%E7%BD%91%E7%BB%9C/</guid>
+        <guid>http://localhost:1313/categories/%E7%BD%91%E7%BB%9C/</guid>
         <description></description>
         </item>
         <item>
         <title>Guide</title>
-        <link>https://yangzhaoxing90.github.io/categories/guide/</link>
+        <link>http://localhost:1313/categories/guide/</link>
         <pubDate>Thu, 07 Sep 2023 00:00:00 +0000</pubDate>
         
-        <guid>https://yangzhaoxing90.github.io/categories/guide/</guid>
+        <guid>http://localhost:1313/categories/guide/</guid>
         <description></description>
         </item>
         
