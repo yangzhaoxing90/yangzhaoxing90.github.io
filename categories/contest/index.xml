@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Contest on Bluee&#39;s Blog</title>
+        <link>https://yangzhaoxing90.github.io/categories/contest/</link>
+        <description>Recent content in Contest on Bluee&#39;s Blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en</language>
+        <lastBuildDate>Sat, 08 Feb 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://yangzhaoxing90.github.io/categories/contest/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Topic list</title>
+        <link>https://yangzhaoxing90.github.io/p/topic-list/</link>
+        <pubDate>Sat, 08 Feb 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://yangzhaoxing90.github.io/p/topic-list/</guid>
+        <description>&lt;img src="https://yangzhaoxing90.github.io/p/topic-list/cover.png" alt="Featured image of post Topic list" /&gt;&lt;h2 id=&#34;站点资源&#34;&gt;站点资源
+&lt;/h2&gt;&lt;p&gt;学习资源站 &lt;a class=&#34;link&#34; href=&#34;https://youkn0wwho.academy/topic-list&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://youkn0wwho.academy/topic-list&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;刷题站 &lt;a class=&#34;link&#34; href=&#34;https://vjudge.net/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://vjudge.net/&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;basics&#34;&gt;Basics
+&lt;/h2&gt;&lt;h3 id=&#34;what-is-programming&#34;&gt;What is Programming？
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;pass&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;intro-to-c-and-setting-up-the-environment&#34;&gt;Intro to C++ and Setting up the Environment
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;最后还是选择了用 vscode + glang 进行编译的方式&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;data-types-variables-and-input-output&#34;&gt;Data Types, Variables and Input Output
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;掌握基本的输入输出语法 (cin, cout)&lt;/li&gt;
+&lt;li&gt;基本数据类型 (int, long long, char, float, double)&lt;/li&gt;
+&lt;li&gt;掌握变量的用法 (const, &amp;hellip;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;operators&#34;&gt;Operators
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;算术操作符 (+,-,*,/,%)&lt;/li&gt;
+&lt;li&gt;赋值操作符 (=，+=，-=，*=，/=，%=)&lt;/li&gt;
+&lt;li&gt;关系运算符 (==,!=,&amp;gt;,&amp;lt;,&amp;gt;=,&amp;lt;=)&lt;/li&gt;
+&lt;li&gt;逻辑运算符 (&amp;amp;&amp;amp;,||,!)&lt;/li&gt;
+&lt;li&gt;比特操作运算符 (&amp;amp;,|,^,~,&amp;laquo;,&amp;raquo;)&lt;/li&gt;
+&lt;li&gt;其他特殊操作符 (sizeof,?:,&amp;amp;,.,-&amp;gt;,&amp;laquo;,&amp;raquo;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;conditional-statements&#34;&gt;Conditional Statements
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;if else&lt;/li&gt;
+&lt;li&gt;switch case&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;loops&#34;&gt;Loops
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;for&lt;/li&gt;
+&lt;li&gt;while&lt;/li&gt;
+&lt;li&gt;do while&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

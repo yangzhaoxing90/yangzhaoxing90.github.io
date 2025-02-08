@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Netty on Bluee&#39;s Blog</title>
-        <link>http://localhost:1313/categories/netty/</link>
+        <link>https://yangzhaoxing90.github.io/categories/netty/</link>
         <description>Recent content in Netty on Bluee&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
-        <lastBuildDate>Fri, 07 Feb 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/netty/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 07 Feb 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://yangzhaoxing90.github.io/categories/netty/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Netty 源码剖析与应用</title>
-        <link>http://localhost:1313/p/netty-%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90%E4%B8%8E%E5%BA%94%E7%94%A8/</link>
+        <link>https://yangzhaoxing90.github.io/p/netty-%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90%E4%B8%8E%E5%BA%94%E7%94%A8/</link>
         <pubDate>Fri, 07 Feb 2025 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/p/netty-%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90%E4%B8%8E%E5%BA%94%E7%94%A8/</guid>
-        <description>&lt;img src="http://localhost:1313/p/netty-%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90%E4%B8%8E%E5%BA%94%E7%94%A8/cover.png" alt="Featured image of post Netty 源码剖析与应用" /&gt;&lt;h2 id=&#34;netty-服务端构建&#34;&gt;Netty 服务端构建
-&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/netty-%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90%E4%B8%8E%E5%BA%94%E7%94%A8/server.png&#34;
+        <guid>https://yangzhaoxing90.github.io/p/netty-%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90%E4%B8%8E%E5%BA%94%E7%94%A8/</guid>
+        <description>&lt;img src="https://yangzhaoxing90.github.io/p/netty-%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90%E4%B8%8E%E5%BA%94%E7%94%A8/cover.png" alt="Featured image of post Netty 源码剖析与应用" /&gt;&lt;h2 id=&#34;netty-服务端构建&#34;&gt;Netty 服务端构建
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://yangzhaoxing90.github.io/p/netty-%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90%E4%B8%8E%E5%BA%94%E7%94%A8/server.png&#34;
 	width=&#34;1698&#34;
 	height=&#34;992&#34;
-	srcset=&#34;http://localhost:1313/p/netty-%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90%E4%B8%8E%E5%BA%94%E7%94%A8/server_hu1118106400977726323.png 480w, http://localhost:1313/p/netty-%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90%E4%B8%8E%E5%BA%94%E7%94%A8/server_hu3175322821992134415.png 1024w&#34;
+	srcset=&#34;https://yangzhaoxing90.github.io/p/netty-%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90%E4%B8%8E%E5%BA%94%E7%94%A8/server_hu1118106400977726323.png 480w, https://yangzhaoxing90.github.io/p/netty-%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90%E4%B8%8E%E5%BA%94%E7%94%A8/server_hu3175322821992134415.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;Netty 服务端构建&#34;
@@ -163,10 +163,10 @@
 &lt;h3 id=&#34;java-多线程交互的例子&#34;&gt;Java 多线程交互的例子
 &lt;/h3&gt;&lt;p&gt;模拟 1 条主线程循环写数据，另外 99 条子线程，每条子线程模拟睡眠 1s，再给主线程发送结果&lt;/p&gt;
 &lt;p&gt;最终主线程阻塞获取 99 条子线程响应的结果数据&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/netty-%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90%E4%B8%8E%E5%BA%94%E7%94%A8/multi_thread_uml.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://yangzhaoxing90.github.io/p/netty-%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90%E4%B8%8E%E5%BA%94%E7%94%A8/multi_thread_uml.png&#34;
 	width=&#34;1490&#34;
 	height=&#34;932&#34;
-	srcset=&#34;http://localhost:1313/p/netty-%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90%E4%B8%8E%E5%BA%94%E7%94%A8/multi_thread_uml_hu6000340618299149963.png 480w, http://localhost:1313/p/netty-%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90%E4%B8%8E%E5%BA%94%E7%94%A8/multi_thread_uml_hu716216368393037477.png 1024w&#34;
+	srcset=&#34;https://yangzhaoxing90.github.io/p/netty-%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90%E4%B8%8E%E5%BA%94%E7%94%A8/multi_thread_uml_hu6000340618299149963.png 480w, https://yangzhaoxing90.github.io/p/netty-%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90%E4%B8%8E%E5%BA%94%E7%94%A8/multi_thread_uml_hu716216368393037477.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;多线程交互 UML&#34;
@@ -182,10 +182,10 @@
 &lt;p&gt;SubThread: 子线程, 用于模拟服务器处理, 根据 RequestFuture 构建响应结果&lt;/p&gt;
 &lt;p&gt;Response: 响应结果类&lt;/p&gt;
 &lt;h3 id=&#34;netty-客户端服务端的交互流程&#34;&gt;Netty 客户端服务端的交互流程
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/netty-%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90%E4%B8%8E%E5%BA%94%E7%94%A8/client_server_flow.png&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://yangzhaoxing90.github.io/p/netty-%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90%E4%B8%8E%E5%BA%94%E7%94%A8/client_server_flow.png&#34;
 	width=&#34;1522&#34;
 	height=&#34;942&#34;
-	srcset=&#34;http://localhost:1313/p/netty-%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90%E4%B8%8E%E5%BA%94%E7%94%A8/client_server_flow_hu18368177664190026472.png 480w, http://localhost:1313/p/netty-%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90%E4%B8%8E%E5%BA%94%E7%94%A8/client_server_flow_hu7491726867147704530.png 1024w&#34;
+	srcset=&#34;https://yangzhaoxing90.github.io/p/netty-%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90%E4%B8%8E%E5%BA%94%E7%94%A8/client_server_flow_hu18368177664190026472.png 480w, https://yangzhaoxing90.github.io/p/netty-%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90%E4%B8%8E%E5%BA%94%E7%94%A8/client_server_flow_hu7491726867147704530.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;客户端服务端交互流程&#34;

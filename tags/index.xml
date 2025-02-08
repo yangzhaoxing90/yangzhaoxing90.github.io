@@ -2,80 +2,88 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Tags on Bluee&#39;s Blog</title>
-        <link>http://localhost:1313/tags/</link>
+        <link>https://yangzhaoxing90.github.io/tags/</link>
         <description>Recent content in Tags on Bluee&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
-        <lastBuildDate>Fri, 07 Feb 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>Netty</title>
-        <link>http://localhost:1313/tags/netty/</link>
-        <pubDate>Fri, 07 Feb 2025 00:00:00 +0000</pubDate>
+        <lastBuildDate>Sat, 08 Feb 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://yangzhaoxing90.github.io/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Contest</title>
+        <link>https://yangzhaoxing90.github.io/tags/contest/</link>
+        <pubDate>Sat, 08 Feb 2025 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/tags/netty/</guid>
-        <description></description>
-        </item>
-        <item>
-        <title>Spring</title>
-        <link>http://localhost:1313/tags/spring/</link>
-        <pubDate>Thu, 06 Feb 2025 00:00:00 +0000</pubDate>
-        
-        <guid>http://localhost:1313/tags/spring/</guid>
+        <guid>https://yangzhaoxing90.github.io/tags/contest/</guid>
         <description></description>
         </item>
         <item>
         <title>旅游</title>
-        <link>http://localhost:1313/tags/%E6%97%85%E6%B8%B8/</link>
+        <link>https://yangzhaoxing90.github.io/tags/%E6%97%85%E6%B8%B8/</link>
+        <pubDate>Sat, 08 Feb 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://yangzhaoxing90.github.io/tags/%E6%97%85%E6%B8%B8/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Netty</title>
+        <link>https://yangzhaoxing90.github.io/tags/netty/</link>
+        <pubDate>Fri, 07 Feb 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://yangzhaoxing90.github.io/tags/netty/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Spring</title>
+        <link>https://yangzhaoxing90.github.io/tags/spring/</link>
         <pubDate>Thu, 06 Feb 2025 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/tags/%E6%97%85%E6%B8%B8/</guid>
+        <guid>https://yangzhaoxing90.github.io/tags/spring/</guid>
         <description></description>
         </item>
         <item>
         <title>育儿</title>
-        <link>http://localhost:1313/tags/%E8%82%B2%E5%84%BF/</link>
+        <link>https://yangzhaoxing90.github.io/tags/%E8%82%B2%E5%84%BF/</link>
         <pubDate>Thu, 06 Feb 2025 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/tags/%E8%82%B2%E5%84%BF/</guid>
+        <guid>https://yangzhaoxing90.github.io/tags/%E8%82%B2%E5%84%BF/</guid>
         <description></description>
         </item>
         <item>
         <title>深度学习</title>
-        <link>http://localhost:1313/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</link>
+        <link>https://yangzhaoxing90.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</link>
         <pubDate>Wed, 05 Feb 2025 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</guid>
+        <guid>https://yangzhaoxing90.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</guid>
         <description></description>
         </item>
         <item>
         <title>线性代数</title>
-        <link>http://localhost:1313/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/</link>
+        <link>https://yangzhaoxing90.github.io/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/</link>
         <pubDate>Wed, 05 Feb 2025 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/</guid>
+        <guid>https://yangzhaoxing90.github.io/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/</guid>
         <description></description>
         </item>
         <item>
         <title>Python</title>
-        <link>http://localhost:1313/tags/python/</link>
+        <link>https://yangzhaoxing90.github.io/tags/python/</link>
         <pubDate>Tue, 21 Jan 2025 16:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/tags/python/</guid>
+        <guid>https://yangzhaoxing90.github.io/tags/python/</guid>
         <description></description>
         </item>
         <item>
         <title>TCP</title>
-        <link>http://localhost:1313/tags/tcp/</link>
+        <link>https://yangzhaoxing90.github.io/tags/tcp/</link>
         <pubDate>Wed, 10 Jan 2024 14:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/tags/tcp/</guid>
+        <guid>https://yangzhaoxing90.github.io/tags/tcp/</guid>
         <description></description>
         </item>
         <item>
         <title>Guide</title>
-        <link>http://localhost:1313/tags/guide/</link>
+        <link>https://yangzhaoxing90.github.io/tags/guide/</link>
         <pubDate>Thu, 07 Sep 2023 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/tags/guide/</guid>
+        <guid>https://yangzhaoxing90.github.io/tags/guide/</guid>
         <description></description>
         </item>
         

@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Python on Bluee&#39;s Blog</title>
-        <link>http://localhost:1313/tags/python/</link>
+        <link>https://yangzhaoxing90.github.io/tags/python/</link>
         <description>Recent content in Python on Bluee&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
-        <lastBuildDate>Tue, 21 Jan 2025 16:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/python/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 21 Jan 2025 16:00:00 +0000</lastBuildDate><atom:link href="https://yangzhaoxing90.github.io/tags/python/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>QFluentWidgets 教程</title>
-        <link>http://localhost:1313/p/qfluentwidgets-%E6%95%99%E7%A8%8B/</link>
+        <link>https://yangzhaoxing90.github.io/p/qfluentwidgets-%E6%95%99%E7%A8%8B/</link>
         <pubDate>Tue, 21 Jan 2025 16:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/p/qfluentwidgets-%E6%95%99%E7%A8%8B/</guid>
-        <description>&lt;img src="http://localhost:1313/p/qfluentwidgets-%E6%95%99%E7%A8%8B/fluent.png" alt="Featured image of post QFluentWidgets 教程" /&gt;&lt;h2 id=&#34;qfluent-资源站&#34;&gt;QFluent 资源站
+        <guid>https://yangzhaoxing90.github.io/p/qfluentwidgets-%E6%95%99%E7%A8%8B/</guid>
+        <description>&lt;img src="https://yangzhaoxing90.github.io/p/qfluentwidgets-%E6%95%99%E7%A8%8B/fluent.png" alt="Featured image of post QFluentWidgets 教程" /&gt;&lt;h2 id=&#34;qfluent-资源站&#34;&gt;QFluent 资源站
 &lt;/h2&gt;&lt;p&gt;github: &lt;a class=&#34;link&#34; href=&#34;https://github.com/zhiyiYo/PyQt-Fluent-Widgets&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://github.com/zhiyiYo/PyQt-Fluent-Widgets&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;官网: &lt;a class=&#34;link&#34; href=&#34;https://qfluentwidgets.com/zh/pages/install&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
@@ -66,11 +66,11 @@
         </item>
         <item>
         <title>PySide6 Tutorial</title>
-        <link>http://localhost:1313/p/pyside6-tutorial/</link>
+        <link>https://yangzhaoxing90.github.io/p/pyside6-tutorial/</link>
         <pubDate>Tue, 21 Jan 2025 14:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/p/pyside6-tutorial/</guid>
-        <description>&lt;img src="http://localhost:1313/p/pyside6-tutorial/pyside.png" alt="Featured image of post PySide6 Tutorial" /&gt;&lt;h2 id=&#34;getting-started-with-pyside6&#34;&gt;Getting started with PySide6
+        <guid>https://yangzhaoxing90.github.io/p/pyside6-tutorial/</guid>
+        <description>&lt;img src="https://yangzhaoxing90.github.io/p/pyside6-tutorial/pyside.png" alt="Featured image of post PySide6 Tutorial" /&gt;&lt;h2 id=&#34;getting-started-with-pyside6&#34;&gt;Getting started with PySide6
 &lt;/h2&gt;&lt;p&gt;reference: &lt;a class=&#34;link&#34; href=&#34;https://www.pythonguis.com/tutorials/pyside6-creating-your-first-window/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://www.pythonguis.com/tutorials/pyside6-creating-your-first-window/&lt;/a&gt;&lt;/p&gt;
 &lt;h3 id=&#34;creating-your-first-app-with-pyside6&#34;&gt;Creating your first app with PySide6
@@ -115,10 +115,10 @@
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;What&amp;rsquo;s the event loop?&lt;/p&gt;
 &lt;p&gt;QApplication object to function. This object holds the event loop of your application — the core loop which governs all user interaction with the GUI.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/pyside6-tutorial/loops.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://yangzhaoxing90.github.io/p/pyside6-tutorial/loops.png&#34;
 	width=&#34;1664&#34;
 	height=&#34;1070&#34;
-	srcset=&#34;http://localhost:1313/p/pyside6-tutorial/loops_hu10808138432604022718.png 480w, http://localhost:1313/p/pyside6-tutorial/loops_hu7149834653854322277.png 1024w&#34;
+	srcset=&#34;https://yangzhaoxing90.github.io/p/pyside6-tutorial/loops_hu10808138432604022718.png 480w, https://yangzhaoxing90.github.io/p/pyside6-tutorial/loops_hu7149834653854322277.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;event loop&#34;
@@ -222,10 +222,10 @@ In the event loop, the queue is checked on each iteration and if a waiting event
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;app&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;exec&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/pyside6-tutorial/example.png&#34;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://yangzhaoxing90.github.io/p/pyside6-tutorial/example.png&#34;
 	width=&#34;1278&#34;
 	height=&#34;474&#34;
-	srcset=&#34;http://localhost:1313/p/pyside6-tutorial/example_hu11705579669849843575.png 480w, http://localhost:1313/p/pyside6-tutorial/example_hu3077126559360970926.png 1024w&#34;
+	srcset=&#34;https://yangzhaoxing90.github.io/p/pyside6-tutorial/example_hu11705579669849843575.png 480w, https://yangzhaoxing90.github.io/p/pyside6-tutorial/example_hu3077126559360970926.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;example&#34;
