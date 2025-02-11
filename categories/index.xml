@@ -6,7 +6,23 @@
         <description>Recent content in Categories on Bluee&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
-        <lastBuildDate>Sat, 08 Feb 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://yangzhaoxing90.github.io/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 11 Feb 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://yangzhaoxing90.github.io/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Maven</title>
+        <link>https://yangzhaoxing90.github.io/categories/maven/</link>
+        <pubDate>Tue, 11 Feb 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://yangzhaoxing90.github.io/categories/maven/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Shiro</title>
+        <link>https://yangzhaoxing90.github.io/categories/shiro/</link>
+        <pubDate>Mon, 10 Feb 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://yangzhaoxing90.github.io/categories/shiro/</guid>
+        <description></description>
+        </item>
+        <item>
         <title>Contest</title>
         <link>https://yangzhaoxing90.github.io/categories/contest/</link>
         <pubDate>Sat, 08 Feb 2025 00:00:00 +0000</pubDate>

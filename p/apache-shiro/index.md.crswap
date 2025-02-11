@@ -1,0 +1,46 @@
+---
+title: Apache Shiro
+description: Apache Shiro focuses on ease-of-use, so you can rely on secure, stable authentication, authorization, cryptography, and session management. With Shiro’s easy-to-understand API, you can quickly and easily secure any application. Get started!
+date: 2025-02-10 00:00:00+0000
+image: cover.png
+tags: 
+    - Shiro
+categories:
+    - Shiro
+weight: 1
+---
+
+## The Basics
+
+### Introduction to the Apache Shiro Java Security Framework 
+
+Here are some things that you can do with Apache Shiro:
+
+- Authenticate a user to verify their identity
+- Perform access control for a user, such as:
+    - Determine if a user is assigned a certain security role or not
+    - Determine if a user is permitted to do something or not
+- Use a Session API in any environment, even without web or EJB containers.
+- React to events during authentication, access control, or during a session’s lifetime.
+- Aggregate 1 or more data sources of user security data and present this all as a single composite user 'view'.
+- Enable Single Sign On (SSO) functionality
+- Enable 'Remember Me' services for user association without login
+...
+
+![Shiro Features](feature.png)
+
+Apache Shiro Features:
+
+- Authentication: Sometimes referred to as 'login', this is the act of proving a user is who they say they are.
+- Authorization: The process of access control, i.e. determining 'who' has access to 'what'.
+- Session Management: Managing user-specific sessions, even in non-web or EJB applications.
+- Cryptography: Keeping data secure using cryptographic algorithms while still being easy to use.
+
+## Architecture
+
+![Shiro Architecture](architecture.png)
+
+- Subject: basically anything that is currently interacting with the software
+- SecurityManager: When you interact with a Subject, those interactions translate to subject-specific interactions with the SecurityManager
+- Realms:
+

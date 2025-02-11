@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Shiro on Bluee&#39;s Blog</title>
+        <link>https://yangzhaoxing90.github.io/categories/shiro/</link>
+        <description>Recent content in Shiro on Bluee&#39;s Blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en</language>
+        <lastBuildDate>Mon, 10 Feb 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://yangzhaoxing90.github.io/categories/shiro/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Apache Shiro</title>
+        <link>https://yangzhaoxing90.github.io/p/apache-shiro/</link>
+        <pubDate>Mon, 10 Feb 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://yangzhaoxing90.github.io/p/apache-shiro/</guid>
+        <description>&lt;img src="https://yangzhaoxing90.github.io/p/apache-shiro/cover.png" alt="Featured image of post Apache Shiro" /&gt;&lt;h2 id=&#34;the-basics&#34;&gt;The Basics
+&lt;/h2&gt;&lt;h3 id=&#34;introduction-to-the-apache-shiro-java-security-framework&#34;&gt;Introduction to the Apache Shiro Java Security Framework
+&lt;/h3&gt;&lt;p&gt;Here are some things that you can do with Apache Shiro:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Authenticate a user to verify their identity&lt;/li&gt;
+&lt;li&gt;Perform access control for a user, such as:
+&lt;ul&gt;
+&lt;li&gt;Determine if a user is assigned a certain security role or not&lt;/li&gt;
+&lt;li&gt;Determine if a user is permitted to do something or not&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Use a Session API in any environment, even without web or EJB containers.&lt;/li&gt;
+&lt;li&gt;React to events during authentication, access control, or during a session’s lifetime.&lt;/li&gt;
+&lt;li&gt;Aggregate 1 or more data sources of user security data and present this all as a single composite user &amp;lsquo;view&amp;rsquo;.&lt;/li&gt;
+&lt;li&gt;Enable Single Sign On (SSO) functionality&lt;/li&gt;
+&lt;li&gt;Enable &amp;lsquo;Remember Me&amp;rsquo; services for user association without login
+&amp;hellip;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://yangzhaoxing90.github.io/p/apache-shiro/feature.png&#34;
+	width=&#34;1306&#34;
+	height=&#34;596&#34;
+	srcset=&#34;https://yangzhaoxing90.github.io/p/apache-shiro/feature_hu11898070140705071554.png 480w, https://yangzhaoxing90.github.io/p/apache-shiro/feature_hu10419796657723842165.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Shiro Features&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;219&#34;
+		data-flex-basis=&#34;525px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Apache Shiro Features:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Authentication&lt;/strong&gt;: Sometimes referred to as &amp;rsquo;login&amp;rsquo;, this is the act of proving a user is who they say they are.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Authorization&lt;/strong&gt;: The process of access control, i.e. determining &amp;lsquo;who&amp;rsquo; has access to &amp;lsquo;what&amp;rsquo;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Session Management&lt;/strong&gt;: Managing user-specific sessions, even in non-web or EJB applications.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Cryptography&lt;/strong&gt;: Keeping data secure using cryptographic algorithms while still being easy to use.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;architecture&#34;&gt;Architecture
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://yangzhaoxing90.github.io/p/apache-shiro/architecture.png&#34;
+	width=&#34;1216&#34;
+	height=&#34;448&#34;
+	srcset=&#34;https://yangzhaoxing90.github.io/p/apache-shiro/architecture_hu8776039636896003035.png 480w, https://yangzhaoxing90.github.io/p/apache-shiro/architecture_hu7056703770364452730.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Shiro Architecture&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;271&#34;
+		data-flex-basis=&#34;651px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Subject&lt;/strong&gt;: basically anything that is currently interacting with the software&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;SecurityManager&lt;/strong&gt;: When you interact with a Subject, those interactions translate to subject-specific interactions with the SecurityManager&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Realms&lt;/strong&gt;: Realms act as the ‘bridge’ or ‘connector’ between Shiro and your application’s security data&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://yangzhaoxing90.github.io/p/apache-shiro/details.png&#34;
+	width=&#34;1472&#34;
+	height=&#34;950&#34;
+	srcset=&#34;https://yangzhaoxing90.github.io/p/apache-shiro/details_hu17433349230483996767.png 480w, https://yangzhaoxing90.github.io/p/apache-shiro/details_hu12972456181200075224.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Shiro Architecture Details&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;154&#34;
+		data-flex-basis=&#34;371px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;10-minute-tutorial-on-apache-shiro&#34;&gt;10 Minute Tutorial on Apache Shiro
+&lt;/h2&gt;</description>
+        </item>
+        
+    </channel>
+</rss>
