@@ -1,0 +1,152 @@
+---
+title: Java I/O
+description: Java I/O 读书笔记
+slug: Java I/O
+date: 2025-02-17 00:00:00+0000
+image: cover.png
+categories:
+    - Java
+tags:
+    - Java
+weight: 1       # You can add weight to some posts to override the default sorting (date descending)
+---
+
+## 准备资料
+
+《Java I/O》 O'Reilly
+
+## Preface 
+
+Java I/O endeavors to show you how to really use Java's I/O classes, allowing you to quickly and easily write programs that accomplish many common tasks. Some of these include:
+
+- Reading and writing files
+- Communicating over network connections
+- Filtering data
+- Interpreting a wide variety of formats for integer and floating-point numbers
+- Passing data between threads
+- Encrypting and decrypting data
+- Calculating digital signatures for streams
+- Compressing and decompressing data
+- Writing objects to streams
+- Copying, moving, renaming, and getting information about files and directories
+- Letting users choose files from a GUI interface
+- Reading and writing non-English text in a variety of character sets
+- Formatting integer and floating-point numbers as strings
+- Talking directly to modems and other serial port devices
+- Talking directly to printers and other parallel port devices
+
+### Organization of the Book
+
+![Orgnization](orgnize.png)
+
+## Part I: Basic I/O
+
+### Chapter I: Introducing I/O
+
+tips: For the most part I/O in Java is divided into two types: byte- and number-oriented I/O
+
+**1.1 What Is a Stream?**
+
+A stream is an ordered sequence of bytes of undetermined length
+
+The word stream is derived from an analogy with a stream of water.
+
+1.1.1 Where Do Streams Come From?
+
+The first source of input most programmers encounter is System.in.
+
+Files are another common source of input and destination for output. 
+
+Network connections provide streams too. 
+
+Java programs themselves produce streams.
+
+Perhaps a little surprisingly, AWT (and Swing) components like TextArea do not produce streams. 
+
+1.1.2 The Stream Classes
+
+The two main classes are java.io.InputStream and java.io.OutputStream.
+
+![java.io Pacakge](classes.png)
+
+![java.util.zip](zip.png)
+
+![java.util.jar](jar.png)
+
+![java.util.security](security.png)
+
+![Java Cryptography Extension](jce.png)
+
+**1.2 Numeric Data**
+
+Input streams read bytes and output streams write bytes. Readers read characters and writers write characters.
+
+1.2.1 Integer Data
+
+| type | size | range |
+| --- | --- | --- |
+| int | 4byte | -2,147,483,648 to 2,147,483,647 |
+| long | 8byte | -9,223,372,036,854,775,808 to 9,223,372,036,854,775,807 |
+| short | 2byte | -32,768 to 32,767 |
+| byte | 1byte| -128 to 127 |
+
+1.1.2 Conversions and Casts
+
+int To byte 
+
+```java
+int byteValue;
+int temp = intValue % 256; // 获取最后两个位的值 (0-255 加个符号)
+if (intValue < 0) {
+    byteValue = temp < -128? 256+temp : temp;
+} else {
+    byteValue = temp > 127? temp-256 : temp;
+}
+```
+
+**1.3 Character Data**
+
+Since computers only really understand numbers, characters are encoded by matching each character in a given script to a particular number.
+
+1.3.1 ASCII
+
+ASCII, the American Standard Code for Information Interchange, is a seven-bit character set.
+
+1.3.2 ISO Latin-1
+
+ISO Latin-1 suffices for most Western European languages, is an eight-bit character set that's a strict superset of ASCII.
+
+1.3.3 Unicode
+
+Unicode is a 2-byte, 16-bit character set with 216 or 65,536 different possible characters.
+
+Java streams do not do a good job of reading Unicode text.  
+
+Streams generally read a byte at a time, but each Unicode character occupies two bytes. 
+
+Thus, to read a Unicode character, you multiply the first byte read by 256, add it to the second byte read, and cast the result to a char. 
+
+```java
+int b1 = in.read();
+int b2 = in.read();
+char c = (char) (b1*256 + b2);
+```
+
+1.3.4 UTF-8
+
+A more efficient encoding would use fewer bits for the more common characters. This is what UTF-8 does.
+
+Java's .class files use UTF-8 internally to store string literals.
+
+Data input streams and data output streams also read and write strings in UTF-8.
+
+
+1.3.5 The char Data Type
+
+In Java, a char is a two-byte, unsigned integer, the only unsigned type in Java.
+
+**1.4 Readers and Writers**
+
+
+
+！

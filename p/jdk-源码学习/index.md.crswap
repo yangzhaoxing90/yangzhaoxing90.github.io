@@ -1,0 +1,77 @@
+---
+title: JDK 源码学习
+description: JDK 源码学习
+slug: JDK 源码学习
+date: 2025-02-14 00:00:00+0000
+image: cover.png
+categories:
+    - Java
+tags:
+    - Java
+weight: 1       # You can add weight to some posts to override the default sorting (date descending)
+---
+
+## 参考资料
+
+《深入理解Java虚拟机：JVM高级特性与最佳实践》
+《Java并发实现原理：JDK源码剖析》
+《The Java® Language Specification》
+
+## JDNI
+
+官方文档 <https://docs.oracle.com/javase/jndi/tutorial/?spm=5176.28103460.0.0.3e185d27mU1E2i>
+
+### Getting Started
+
+
+**Naming Concepts:**
+
+Naming Service:
+
+- which names are associated with objects and objects are found based on their names. 
+
+Naming convention:
+
+- The naming system determines the syntax that the name must follow. This syntax is sometimes called the naming system's naming convention.
+
+Bindings:
+
+- The association of a name with an object is called a binding.
+
+References (Addresses):
+
+-  A reference is information about how to access an object. 
+
+Context:
+
+- A context is a set of name-to-object bindings.
+
+Naming System:
+
+- A naming system is a connected set of contexts of the same type (they have the same naming convention) and provides a common set of operations.
+
+Namespace:
+
+- A namespace is the set of names in a naming system.
+
+
+**Directory Concepts**
+
+Directory Service:
+
+- A directory service associates names with objects and also allows such objects to have attributes.
+- A directory service is a service that provides operations for creating, adding, removing, and modifying the attributes associated with objects in a directory.
+
+
+Attributes:
+
+- A directory object can have attributes.
+- An attribute has an attribute identifier and a set of attribute values.
+
+Search Filter:
+
+- When you search, you can supply not a name but a query consisting of a logical expression in which you specify the attributes that the object or objects must have. The query is called a search filter. 
+
+### JNDI Overview
+
+package: javax.naming (Context,Names,Bindings,)

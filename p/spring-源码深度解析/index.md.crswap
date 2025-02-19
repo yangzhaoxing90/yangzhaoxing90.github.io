@@ -1,0 +1,227 @@
+---
+title: Spring 源码深度解析
+description: Spring 源码深度解析
+slug: Spring 源码深度解析
+date: 2025-02-14 00:00:00+0000
+image: cover.png
+categories:
+    - Spring
+tags:
+    - Spring
+weight: 1       # You can add weight to some posts to override the default sorting (date descending)
+---
+
+## Spring 的整体架构
+
+![Spring 整体架构](architecture.png)
+
+Core Container (核心容器):
+
+    - Beans (IOC相关组件)
+    - Core (核心工具类)
+    - Context (扩展)
+    - EL (表达式，用于运行时操作和查询对象)
+
+Data Access (数据访问)：
+
+    - JDBC (数据库访问)
+    - ORM (对象关系映射 API)
+    - OXM (Object/XML 映射)
+    - JMS (制造和消费消息)
+    - Transaction (编程和声明式事务)
+
+Web (网络):
+
+    - Web (Web集成特性)
+    - Servlet (Servlet MVC实现)
+    - Struts (Struts MVC实现)
+    - Portlet (Portlet MVC实现)
+
+AOP (切面编程):
+
+    - Aspects (AspectJ)
+    - Instrumentation (class instrumentation, classloader 实现)
+
+Test (测试):
+
+    - JUnit 和 TestNG 等
+
+
+## Spring 源码下载
+
+
+```xml
+    <properties>
+        ...
+        <spring.version>5.3.39</spring.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aspects</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-instrument</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-instrument-tomcat -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-instrument-tomcat</artifactId>
+            <version>4.3.30.RELEASE</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jms</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${spring.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-websocket</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.1</version>
+            <scope>test</scope>
+        </dependency>
+```
+
+
+## 容器的基本实现
+
+将一个简单的 MyTestBean注册到容器成 POJO
+
+```java
+public class MyTestBean {
+
+    private String testStr = "testStr";
+
+    public String getTestStr() {
+        return testStr;
+    }
+
+    public void setTestStr(String testStr) {
+        this.testStr = testStr;
+    }
+}
+```
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="myTestBean" class="com.xqls.bean.MyTestBean" />
+</beans>
+
+```
+
+```java
+public class BeanFactoryTest {
+
+    @Test
+    public void testSimpleLoad() {
+        BeanFactory bf = new XmlBeanFactory(new ClassPathResource("config.xml"));
+        MyTestBean bean = (MyTestBean) bf.getBean("myTestBean");
+        assertEquals("testStr", bean.getTestStr());
+    }
+}
+
+```
+
+### 总体流程
+
+实现流程:
+
+    文件 xml 路径 -> 文件封装成 Resource -> Bean 注册 -> Bean 实例化 -> 调用实例化的实例
+
+
+流程相关组件:
+
+    - XmlBeanFactory (读取 xml 资源， 实现了 Bean 的加载和注册)
+    - ClassPathResource (读取 classpath 下的资源)
+    - DefaultListableBeanFacotry (XmlBeanFactory 继承自它， 提供了 Bean 加载和注册的默认实现)
+    - XmlBeanDefinitionReader (XmlBeanFactory 使用它读取 xml 资源的配置)
+
+### Bean 注册 (加载) 流程
+
+实现流程:
+
+    Resource -> 进行编码封装 -> 获取输入流 -> 输入流封装成 InputSource （准备用 SAX 的方式解析 XML）-> 获取对 XML 文件的验证模式 -> 加载 XML 文件，得到对应的 Document -> 根据返回的 Document 注册 Bean 信息
+
+
+流程相关组件:
+
+    - EncodedResource (资源进行编码封装，调用 getReader 方法时会使用具体编码构造字符流)
+
+**获取 XML 文件验证模式流程**
+
+DTD 和 XSD 的区别:
+
+    - DTD (文档类型定义，XML约束语言，文档包含元素的定义规则、元素间关系的定义规则、元素可使用的属性、可使用的实体或符号规则)
+    
+    ```
+        <!DOCTYPE>
+    ```
+    
+    - 
+实现流程: 
+
+    DTD
+
