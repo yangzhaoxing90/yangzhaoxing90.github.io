@@ -12,7 +12,31 @@
         <pubDate>Wed, 05 Feb 2025 00:00:00 +0000</pubDate>
         
         <guid>https://yangzhaoxing90.github.io/p/linear-algebra/</guid>
-        <description>&lt;img src="https://yangzhaoxing90.github.io/p/linear-algebra/cover.png" alt="Featured image of post linear algebra" /&gt;</description>
+        <description>&lt;img src="https://yangzhaoxing90.github.io/p/linear-algebra/cover.png" alt="Featured image of post linear algebra" /&gt;&lt;h2 id=&#34;determninants&#34;&gt;Determninants
+&lt;/h2&gt;&lt;h3 id=&#34;number-fields&#34;&gt;Number Fields
+&lt;/h3&gt;&lt;p&gt;Number Field axioms:&lt;/p&gt;
+&lt;p&gt;$a$. To every pair of numbers $\alpha$ and $\beta$ in $K$ there corresponds a (unique) number $\alpha + \beta$ in $K$, called sum of $\alpha$ and $\beta$&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;$\alpha + \beta = \beta + \alpha$ for every $\alpha$ and $\beta$ in $K$ (&lt;em&gt;addition is commutative&lt;/em&gt;)&lt;/li&gt;
+&lt;li&gt;$(\alpha + \beta) + \gamma = \alpha + (\beta + \gamma) $ for every $ \alpha, \beta, \gamma $ in $K$ (&lt;em&gt;addition is associative&lt;/em&gt;)&lt;/li&gt;
+&lt;li&gt;There exists a number number $0$ (zero) in $K$ such that $ 0 + \alpha = \alpha $ for every $\alpha$ in $K$&lt;/li&gt;
+&lt;li&gt;For every $\alpha$ in $K$, there exists a number (&lt;em&gt;negative element&lt;/em&gt;) $\gamma$ in $K$ such that $\alpha + \gamma = 0$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;$b$. To every pair of numbers $\alpha$ and $\beta$ in $K$ there conrresponds a (unique) number $\alpha \cdot \beta$ (or $\alpha\beta$) in $K$, called the &lt;em&gt;product&lt;/em&gt; of $\alpha$ and $\beta$&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;$\alpha\beta = \beta\alpha$ for every $\alpha$ and $\beta$ in $K$ (&lt;em&gt;multiplication is commutative&lt;/em&gt;)&lt;/li&gt;
+&lt;li&gt;$(\alpha\beta)\gamma$ = $\alpha(\beta\gamma)$ for every $\alpha, \beta, \gamma$ in $K$ (&lt;em&gt;multiplication is associative&lt;/em&gt;)&lt;/li&gt;
+&lt;li&gt;There exits a number $1 (\not= 0)$ in $K$ such that $1 \cdot \alpha = \alpha$ for every $\alpha$ in $K$&lt;/li&gt;
+&lt;li&gt;For every $\alpha \not= 0$ in $K$ there exists a number (&lt;em&gt;reciprocal element&lt;/em&gt;) $\gamma$ in $K$ such that $\alpha\gamma = 1$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;$c$. &lt;em&gt;Multiplication is distributive over addition, i.e&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;$\alpha(\beta + \gamma)$ = $\alpha\beta$ + $\alpha\gamma$ for every $\alpha, \beta, \gamma$ in $K$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;em&gt;nattural&lt;/em&gt;: the numbers, 1, 1+1=2, 2+1=3, etc. It&amp;rsquo;s assumed that none of these numbers is zero.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;integers&lt;/em&gt;: the set of all natural numbers together with thier negatives and the number zero.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;rational&lt;/em&gt;: the set of all quotients, $\frac{p}{q}$, where $p$ and $q$ are integers and $q \not= 0$&lt;/p&gt;
+</description>
         </item>
         
     </channel>

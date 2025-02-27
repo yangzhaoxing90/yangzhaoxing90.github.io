@@ -1,0 +1,1436 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="根据 《跟闪电侠学Netty》记录的核心思想和案例实现">
+<title>Netty 单聊实现案例</title>
+
+<link rel='canonical' href='https://yangzhaoxing90.github.io/p/netty-%E5%8D%95%E8%81%8A%E5%AE%9E%E7%8E%B0%E6%A1%88%E4%BE%8B/'>
+
+<link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="Netty 单聊实现案例">
+<meta property='og:description' content="根据 《跟闪电侠学Netty》记录的核心思想和案例实现">
+<meta property='og:url' content='https://yangzhaoxing90.github.io/p/netty-%E5%8D%95%E8%81%8A%E5%AE%9E%E7%8E%B0%E6%A1%88%E4%BE%8B/'>
+<meta property='og:site_name' content='Bluee&#39;s Blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='netty' /><meta property='article:published_time' content='2025-02-20T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-02-20T00:00:00&#43;00:00'/><meta property='og:image' content='https://yangzhaoxing90.github.io/p/netty-%E5%8D%95%E8%81%8A%E5%AE%9E%E7%8E%B0%E6%A1%88%E4%BE%8B/cover.png' />
+<meta name="twitter:title" content="Netty 单聊实现案例">
+<meta name="twitter:description" content="根据 《跟闪电侠学Netty》记录的核心思想和案例实现"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://yangzhaoxing90.github.io/p/netty-%E5%8D%95%E8%81%8A%E5%AE%9E%E7%8E%B0%E6%A1%88%E4%BE%8B/cover.png' />
+    <link rel="shortcut icon" href="/favicon.png" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu5215941541195434152.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Bluee&#39;s Blog</a></h1>
+            <h2 class="site-description">blog with interests</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/yangzhaoxing90/yangzhaoxing90.github.io.git'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#单聊系统的实现">单聊系统的实现</a></li>
+    <li><a href="#单聊的指令">单聊的指令</a></li>
+    <li><a href="#netty">Netty</a></li>
+    <li><a href="#netty-server-基本结构">Netty Server 基本结构</a></li>
+    <li><a href="#netty-client-基本结构">Netty Client 基本结构</a></li>
+    <li><a href="#bytebuf-介绍">ByteBuf 介绍</a></li>
+    <li><a href="#客户端与服务端通信协议编解码">客户端与服务端通信协议编解码</a>
+      <ol>
+        <li><a href="#java-对象的实现">Java 对象的实现</a></li>
+        <li><a href="#序列化的实现">序列化的实现</a></li>
+        <li><a href="#编解码实现">编解码实现</a></li>
+        <li><a href="#实现客户端登录">实现客户端登录</a></li>
+        <li><a href="#实现客户端与服务端收发消息">实现客户端与服务端收发消息</a></li>
+      </ol>
+    </li>
+    <li><a href="#pipeline-与-channelhandler">Pipeline 与 ChannelHandler</a></li>
+    <li><a href="#特殊的-channelhandler">特殊的 ChannelHandler</a></li>
+    <li><a href="#拆包粘包理论与解决方案">拆包/粘包理论与解决方案</a></li>
+    <li><a href="#netty自带的拆包器">Netty自带的拆包器</a></li>
+    <li><a href="#如何使用lengthfieldbasedframedecoder">如何使用LengthFieldBasedFrameDecoder</a></li>
+    <li><a href="#拒绝非本协议连接">拒绝非本协议连接</a></li>
+    <li><a href="#客户端和服务端的pipeline结构">客户端和服务端的Pipeline结构</a></li>
+    <li><a href="#channelhandler-的生命周期">ChannelHandler 的生命周期</a></li>
+    <li><a href="#channelinitializer-的实现原理">ChannelInitializer 的实现原理</a></li>
+    <li><a href="#channelhandler的-热插拔机制">ChannelHandler的 热插拔机制</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/netty-%E5%8D%95%E8%81%8A%E5%AE%9E%E7%8E%B0%E6%A1%88%E4%BE%8B/">
+                <img src="/p/netty-%E5%8D%95%E8%81%8A%E5%AE%9E%E7%8E%B0%E6%A1%88%E4%BE%8B/cover_hu17564095906352664678.png"
+                        srcset="/p/netty-%E5%8D%95%E8%81%8A%E5%AE%9E%E7%8E%B0%E6%A1%88%E4%BE%8B/cover_hu17564095906352664678.png 800w, /p/netty-%E5%8D%95%E8%81%8A%E5%AE%9E%E7%8E%B0%E6%A1%88%E4%BE%8B/cover_hu15128078192476351664.png 1600w"
+                        width="800" 
+                        height="1134" 
+                        loading="lazy"
+                        alt="Featured image of post Netty 单聊实现案例" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/netty/" >
+                Netty
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/netty-%E5%8D%95%E8%81%8A%E5%AE%9E%E7%8E%B0%E6%A1%88%E4%BE%8B/">Netty 单聊实现案例</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            根据 《跟闪电侠学Netty》记录的核心思想和案例实现
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Feb 20, 2025</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    5 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="单聊系统的实现">单聊系统的实现
+</h2><p><img src="/p/netty-%E5%8D%95%E8%81%8A%E5%AE%9E%E7%8E%B0%E6%A1%88%E4%BE%8B/singlechat.png"
+	width="1476"
+	height="1002"
+	srcset="/p/netty-%E5%8D%95%E8%81%8A%E5%AE%9E%E7%8E%B0%E6%A1%88%E4%BE%8B/singlechat_hu1770158826446746484.png 480w, /p/netty-%E5%8D%95%E8%81%8A%E5%AE%9E%E7%8E%B0%E6%A1%88%E4%BE%8B/singlechat_hu17691895051837993816.png 1024w"
+	loading="lazy"
+	
+		alt="单聊流程图"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="147"
+		data-flex-basis="353px"
+	
+></p>
+<ul>
+<li>A 要和 B 聊天，首先 A 和 B 需要与服务端建立连接，然后进入登录流程，服务端保存用户标识和 TCP 连接的映射关系</li>
+<li>A 给 B 发消息，首先需要将带有 B 标识的消息数据包发送到服务端，然后服务端从消息数据包中获得 B 的标识，找到对应 B 的连接，将消息发送给 B</li>
+<li>任意一方发消息给对方，如果对方不在线，则需要将消息缓存，在对方上线之后再发送</li>
+</ul>
+<h2 id="单聊的指令">单聊的指令
+</h2><p><img src="/p/netty-%E5%8D%95%E8%81%8A%E5%AE%9E%E7%8E%B0%E6%A1%88%E4%BE%8B/command.png"
+	width="904"
+	height="850"
+	srcset="/p/netty-%E5%8D%95%E8%81%8A%E5%AE%9E%E7%8E%B0%E6%A1%88%E4%BE%8B/command_hu1865102117503130262.png 480w, /p/netty-%E5%8D%95%E8%81%8A%E5%AE%9E%E7%8E%B0%E6%A1%88%E4%BE%8B/command_hu9085570510854638674.png 1024w"
+	loading="lazy"
+	
+		alt="单聊的消息发送流程"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="106"
+		data-flex-basis="255px"
+	
+></p>
+<p><img src="/p/netty-%E5%8D%95%E8%81%8A%E5%AE%9E%E7%8E%B0%E6%A1%88%E4%BE%8B/list.png"
+	width="1692"
+	height="422"
+	srcset="/p/netty-%E5%8D%95%E8%81%8A%E5%AE%9E%E7%8E%B0%E6%A1%88%E4%BE%8B/list_hu4701653127587602312.png 480w, /p/netty-%E5%8D%95%E8%81%8A%E5%AE%9E%E7%8E%B0%E6%A1%88%E4%BE%8B/list_hu4664996879220526532.png 1024w"
+	loading="lazy"
+	
+		alt="指令列表"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="400"
+		data-flex-basis="962px"
+	
+></p>
+<h2 id="netty">Netty
+</h2><ul>
+<li>如何启动服务端？</li>
+<li>如何启动客户端？</li>
+<li>数据载体 ByteBuf</li>
+<li>如何设计长连接自定义协议？</li>
+<li>拆包/粘包原理与实践</li>
+<li>如何实现自定义编解码</li>
+<li>如何使用Pipeline与ChannelHandler</li>
+<li>如何定时发心跳数据包</li>
+<li>如何进行连接空闲检测</li>
+</ul>
+<p><img src="/p/netty-%E5%8D%95%E8%81%8A%E5%AE%9E%E7%8E%B0%E6%A1%88%E4%BE%8B/netty_client.png"
+	width="1632"
+	height="908"
+	srcset="/p/netty-%E5%8D%95%E8%81%8A%E5%AE%9E%E7%8E%B0%E6%A1%88%E4%BE%8B/netty_client_hu13265084715312731892.png 480w, /p/netty-%E5%8D%95%E8%81%8A%E5%AE%9E%E7%8E%B0%E6%A1%88%E4%BE%8B/netty_client_hu304144546728198775.png 1024w"
+	loading="lazy"
+	
+		alt="Netty 客户端"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="179"
+		data-flex-basis="431px"
+	
+></p>
+<p><img src="/p/netty-%E5%8D%95%E8%81%8A%E5%AE%9E%E7%8E%B0%E6%A1%88%E4%BE%8B/netty_server.png"
+	width="1698"
+	height="864"
+	srcset="/p/netty-%E5%8D%95%E8%81%8A%E5%AE%9E%E7%8E%B0%E6%A1%88%E4%BE%8B/netty_server_hu6730020552734392679.png 480w, /p/netty-%E5%8D%95%E8%81%8A%E5%AE%9E%E7%8E%B0%E6%A1%88%E4%BE%8B/netty_server_hu5046456469282035024.png 1024w"
+	loading="lazy"
+	
+		alt="Netty 服务端"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="196"
+		data-flex-basis="471px"
+	
+></p>
+<h2 id="netty-server-基本结构">Netty Server 基本结构
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// boss 线程, 监听 OP_ACCEPT 事件</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">NioEventLoopGroup</span><span class="w"> </span><span class="n">bossGroup</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">NioEventLoopGroup</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// worker 线程, 监听客户端连接的 OP_READ 和 OP_WRITE 事件, 处理 I/O 事件</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">NioEventLoopGroup</span><span class="w"> </span><span class="n">workerGroup</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">NioEventLoopGroup</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">ServerBootstrap</span><span class="w"> </span><span class="n">serverBootstrap</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ServerBootstrap</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">serverBootstrap</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">.</span><span class="na">group</span><span class="p">(</span><span class="n">bossGroup</span><span class="p">,</span><span class="w"> </span><span class="n">workerGroup</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">.</span><span class="na">channel</span><span class="p">(</span><span class="n">NioServerSocketChannel</span><span class="p">.</span><span class="na">class</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">.</span><span class="na">childHandler</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">ChannelInitializer</span><span class="o">&lt;</span><span class="n">NioSocketChannel</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nd">@Override</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="kd">protected</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">initChannel</span><span class="p">(</span><span class="n">NioSocketChannel</span><span class="w"> </span><span class="n">nioSocketChannel</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">});</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">serverBootstrap</span><span class="p">.</span><span class="na">bind</span><span class="p">(</span><span class="n">8000</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="netty-client-基本结构">Netty Client 基本结构
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">NioEventLoopGroup</span><span class="w"> </span><span class="n">workerGroup</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">NioEventLoopGroup</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Bootstrap</span><span class="w"> </span><span class="n">bootstrap</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Bootstrap</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">bootstrap</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">.</span><span class="na">group</span><span class="p">(</span><span class="n">workerGroup</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">.</span><span class="na">channel</span><span class="p">(</span><span class="n">NioSocketChannel</span><span class="p">.</span><span class="na">class</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">.</span><span class="na">handler</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">ChannelInitializer</span><span class="o">&lt;</span><span class="n">SocketChannel</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nd">@Override</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="kd">protected</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">initChannel</span><span class="p">(</span><span class="n">SocketChannel</span><span class="w"> </span><span class="n">socketChannel</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">});</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">bootstrap</span><span class="p">.</span><span class="na">connect</span><span class="p">(</span><span class="s">&#34;localhost&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">8000</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="bytebuf-介绍">ByteBuf 介绍
+</h2><p><img src="/p/netty-%E5%8D%95%E8%81%8A%E5%AE%9E%E7%8E%B0%E6%A1%88%E4%BE%8B/byteBuf.png"
+	width="1664"
+	height="594"
+	srcset="/p/netty-%E5%8D%95%E8%81%8A%E5%AE%9E%E7%8E%B0%E6%A1%88%E4%BE%8B/byteBuf_hu12726811838650855580.png 480w, /p/netty-%E5%8D%95%E8%81%8A%E5%AE%9E%E7%8E%B0%E6%A1%88%E4%BE%8B/byteBuf_hu3121153019331597826.png 1024w"
+	loading="lazy"
+	
+		alt="ByteBuf 结构介绍"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="280"
+		data-flex-basis="672px"
+	
+></p>
+<p>ByteBuf 是一个字节容器，容器里面的数据分为三部分:</p>
+<ul>
+<li>第一部分是已经丢弃的字节，这部分数据是无效的 (index &lt; readerIndex)</li>
+<li>第二部分是可读字节，这部分数据是 ByteBuf 的主体数据，从 ByteBuf 里读取的数据都来自这一部分 (index &gt;= readerIndex &amp;&amp; index &lt; writerIndex)</li>
+<li>最后一部分的数据是可写字节，所有写到 ByteBuf 的数据都会写到这一段 (index &gt; writerIndex)</li>
+<li>后面的虚线部分表示该 ByteBuffer 最多还能扩容多少容量</li>
+</ul>
+<p>容量相关 API 介绍:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">capacity</span><span class="p">()</span><span class="w">          </span><span class="c1">// 表示 ByteBuf 底层占用了多少字节的内存</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">maxCapacity</span><span class="p">()</span><span class="w">       </span><span class="c1">// 表示 ByteBuf 底层最大能够占用多少字节的内存</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">readableBytes</span><span class="p">()</span><span class="w">     </span><span class="c1">// ByteBuf当前可读的字节数 = writerIndex - readerIndex</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">isReadable</span><span class="p">()</span><span class="w">        </span><span class="c1">// 还有没有可读的字节, 返回 true 或 false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">writableBytes</span><span class="p">()</span><span class="w">     </span><span class="c1">// ByteBuf当前可写的字节数 = capacity - writerIndex</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">isWritable</span><span class="p">()</span><span class="w">        </span><span class="c1">// 还有没有可写的字节, 返回 true 或 false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">maxWritableBytes</span><span class="p">()</span><span class="w">  </span><span class="c1">// 可写的最大字节数 = maxCapatiy - writerIndex</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>读写指针相关的 API 介绍:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">readerIndex</span><span class="p">()</span><span class="w">           </span><span class="c1">// 返回当前的读指针 readerIndex</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">readerIndex</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="w">        </span><span class="c1">// 设置读指针</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">writeIndex</span><span class="p">()</span><span class="w">            </span><span class="c1">// 返回当前的写指针 writerIndex</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">writeIndex</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="w">         </span><span class="c1">// 设置写指针</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">markReaderIndex</span><span class="p">()</span><span class="w">       </span><span class="c1">// 把当前的读指针保存起来</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">resetReaderIndex</span><span class="p">()</span><span class="w">      </span><span class="c1">// 把当前的读指针恢复到之前保存的值</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">markWriterIndex</span><span class="p">()</span><span class="w">       </span><span class="c1">// 把当前的写指针保存起来</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">resetWriterIndex</span><span class="p">()</span><span class="w">      </span><span class="c1">// 把当前的写指针恢复到之前保存的值</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>读写 API 介绍:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">writeBytes</span><span class="p">(</span><span class="kt">byte</span><span class="o">[</span><span class="err">​</span><span class="o">]</span><span class="w"> </span><span class="n">src</span><span class="p">)</span><span class="w">     </span><span class="c1">// 把字节数组 src 里的数据全部写到 ByteBuf</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">readBytes</span><span class="p">(</span><span class="kt">byte</span><span class="o">[</span><span class="err">​</span><span class="o">]</span><span class="w"> </span><span class="n">dst</span><span class="p">)</span><span class="w">      </span><span class="c1">// 把 ByteBuf 里的数据全部读取到 dst</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">writeByte</span><span class="p">(</span><span class="kt">byte</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w">          </span><span class="c1">// 往 ByteBuf 中写一字节</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">readByte</span><span class="p">()</span><span class="w">                 </span><span class="c1">// 从 ByteBuf 中读取一字节</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">writeBoolean</span><span class="p">()</span><span class="err">、</span><span class="n">writeChar</span><span class="p">()</span><span class="err">、</span><span class="n">writeShort</span><span class="p">()</span><span class="err">、</span><span class="n">writeInt</span><span class="p">()</span><span class="err">、</span><span class="n">writeLong</span><span class="p">()</span><span class="err">、</span><span class="n">writeFloat</span><span class="p">()</span><span class="err">、</span><span class="n">writeDouble</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">readBoolean</span><span class="p">()</span><span class="err">、</span><span class="n">readChar</span><span class="p">()</span><span class="err">、</span><span class="n">readShort</span><span class="p">()</span><span class="err">、</span><span class="n">readInt</span><span class="p">()</span><span class="err">、</span><span class="n">readLong</span><span class="p">()</span><span class="err">、</span><span class="n">readFloat</span><span class="p">()</span><span class="err">、</span><span class="n">readDouble</span><span class="p">()</span><span class="w"> </span><span class="p">...</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>与读写 API 类似的 API 还有 getBytes()、getByte()与setBytes()、setByte()系列，唯一的区别就是get、set不会改变读写指针，而read、write会改变读写指针，这一点在解析数据的时候千万要注意</p>
+<p>由于Netty使用了堆外内存，而堆外内存是不被JVM直接管理的, 也就是说，申请到的内存无法被垃圾回收器直接回收，所以需要我们手动回收</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">release</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">retain</span><span class="p">()</span><span class="w"> 
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>在通常情况下，这三个方法会被放到一起比较，三者的返回值分别是一个新的ByteBuf对象</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">slice</span><span class="p">()</span><span class="w">             </span><span class="c1">// 从原始 ByteBuf 中截取一段，这段数据是从 readerIndex 到 writeIndex</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">duplicate</span><span class="p">()</span><span class="w">         </span><span class="c1">// 把整个ByteBuf都截取出来，包括所有的数据、指针信息</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">copy</span><span class="p">()</span><span class="w">              </span><span class="c1">// </span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="客户端与服务端通信协议编解码">客户端与服务端通信协议编解码
+</h2><p>协议指的就是客户端与服务端事先商量好的，每一个二进制数据包中的每一段字节分别代表什么含义的规则</p>
+<p><img src="/p/netty-%E5%8D%95%E8%81%8A%E5%AE%9E%E7%8E%B0%E6%A1%88%E4%BE%8B/protocol.png"
+	width="1638"
+	height="276"
+	srcset="/p/netty-%E5%8D%95%E8%81%8A%E5%AE%9E%E7%8E%B0%E6%A1%88%E4%BE%8B/protocol_hu7248080058917949540.png 480w, /p/netty-%E5%8D%95%E8%81%8A%E5%AE%9E%E7%8E%B0%E6%A1%88%E4%BE%8B/protocol_hu3053918912891941511.png 1024w"
+	loading="lazy"
+	
+		alt="协议设计"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="593"
+		data-flex-basis="1424px"
+	
+></p>
+<ul>
+<li>
+<p>第一个字段是魔数，通常情况下为固定的几字节（这里规定为4字节）有了这个魔数之后，服务端首先取出前面4字节进行比对，能够在第一时间识别出这个数据包并非是遵循自定义协议的，也就是无效数据包，出于安全考虑，可以直接关闭连接以节省资源</p>
+</li>
+<li>
+<p>接下来的1字节为版本号，通常情况下是预留字段，在协议升级的时候用到</p>
+</li>
+<li>
+<p>第三部分的序列化算法表示如何把Java对象转换为二进制数据及二进制数据如何转换回Java对象，比如Java自带的序列化、JSON、Hessian等序列化方式</p>
+</li>
+<li>
+<p>第四部分的字段表示指令，这里我们用1字节来表示，最高支持256种指令，对于这个即时聊天系统来说已经完全足够了</p>
+</li>
+<li>
+<p>第五部分的字段表示数据长度，占4字节</p>
+</li>
+<li>
+<p>最后一部分为数据内容，每一种指令对应的数据都是不一样的，比如登录的时候需要用户名和密码，收消息的时候需要用户标识和具体消息内容等</p>
+</li>
+</ul>
+<h3 id="java-对象的实现">Java 对象的实现
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Data</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kd">abstract</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Packet</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * 协议的版本
+</span></span></span><span class="line"><span class="cl"><span class="cm">     */</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Byte</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">1</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * 指令
+</span></span></span><span class="line"><span class="cl"><span class="cm">     */</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">abstract</span><span class="w"> </span><span class="n">Byte</span><span class="w"> </span><span class="nf">getCommand</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">LoginRequestPacket</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Packet</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Override</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Byte</span><span class="w"> </span><span class="nf">getCommand</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Command</span><span class="p">.</span><span class="na">LOGIN_REQUEST</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">Command</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Byte</span><span class="w"> </span><span class="n">LOGIN_REQUEST</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">1</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="序列化的实现">序列化的实现
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">Serializer</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * JSON 序列化
+</span></span></span><span class="line"><span class="cl"><span class="cm">     */</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kt">byte</span><span class="w"> </span><span class="n">JSON_SERIALIZER</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">1</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Serializer</span><span class="w"> </span><span class="n">DEFAULT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JsonSerializer</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kt">byte</span><span class="w"> </span><span class="nf">getSerializerAlgorithm</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kt">byte</span><span class="o">[]</span><span class="w"> </span><span class="nf">serialize</span><span class="p">(</span><span class="n">Object</span><span class="w"> </span><span class="n">object</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="nf">deserialize</span><span class="p">(</span><span class="n">Class</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">clazz</span><span class="p">,</span><span class="w"> </span><span class="kt">byte</span><span class="o">[]</span><span class="w"> </span><span class="n">bytes</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">JsonSerializer</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">Serializer</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Override</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">byte</span><span class="w"> </span><span class="nf">getSerializerAlgorithm</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">SerializerAlgorithm</span><span class="p">.</span><span class="na">JSON</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Override</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">byte</span><span class="o">[]</span><span class="w"> </span><span class="nf">serialize</span><span class="p">(</span><span class="n">Object</span><span class="w"> </span><span class="n">object</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">JSON</span><span class="p">.</span><span class="na">toJSONBytes</span><span class="p">(</span><span class="n">object</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Override</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="nf">deserialize</span><span class="p">(</span><span class="n">Class</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">clazz</span><span class="p">,</span><span class="w"> </span><span class="kt">byte</span><span class="o">[]</span><span class="w"> </span><span class="n">bytes</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">JSON</span><span class="p">.</span><span class="na">parseObject</span><span class="p">(</span><span class="n">bytes</span><span class="p">,</span><span class="w"> </span><span class="n">clazz</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="编解码实现">编解码实现
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">PacketCodeC</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">MAGIC_NUMBER</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">0x12345678</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">ByteBuf</span><span class="w"> </span><span class="nf">encode</span><span class="p">(</span><span class="n">Packet</span><span class="w"> </span><span class="n">packet</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">ByteBuf</span><span class="w"> </span><span class="n">byteBuf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ByteBufAllocator</span><span class="p">.</span><span class="na">DEFAULT</span><span class="p">.</span><span class="na">ioBuffer</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kt">byte</span><span class="o">[]</span><span class="w"> </span><span class="n">bytes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Serializer</span><span class="p">.</span><span class="na">DEFAULT</span><span class="p">.</span><span class="na">serialize</span><span class="p">(</span><span class="n">packet</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">// 1. 魔法数 4byte</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">byteBuf</span><span class="p">.</span><span class="na">writeInt</span><span class="p">(</span><span class="n">MAGIC_NUMBER</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">// 2. 版本 1byte</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">byteBuf</span><span class="p">.</span><span class="na">writeByte</span><span class="p">(</span><span class="n">packet</span><span class="p">.</span><span class="na">getVersion</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">// 3. 序列化算法 1byte</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">byteBuf</span><span class="p">.</span><span class="na">writeByte</span><span class="p">(</span><span class="n">Serializer</span><span class="p">.</span><span class="na">DEFAULT</span><span class="p">.</span><span class="na">getSerializerAlgorithm</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">// 4. 指令 1byte</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">byteBuf</span><span class="p">.</span><span class="na">writeByte</span><span class="p">(</span><span class="n">packet</span><span class="p">.</span><span class="na">getCommand</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">// 5. 数据长度 4byte</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">byteBuf</span><span class="p">.</span><span class="na">writeInt</span><span class="p">(</span><span class="n">bytes</span><span class="p">.</span><span class="na">length</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">// 6. 数据 N byte</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">byteBuf</span><span class="p">.</span><span class="na">writeBytes</span><span class="p">(</span><span class="n">bytes</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">byteBuf</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Packet</span><span class="w"> </span><span class="nf">decode</span><span class="p">(</span><span class="n">ByteBuf</span><span class="w"> </span><span class="n">byteBuf</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">// 跳过魔法数</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">byteBuf</span><span class="p">.</span><span class="na">skipBytes</span><span class="p">(</span><span class="n">4</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">// 跳过版本号</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">byteBuf</span><span class="p">.</span><span class="na">skipBytes</span><span class="p">(</span><span class="n">1</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">// 序列化算法标识</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kt">byte</span><span class="w"> </span><span class="n">serializeAlgorithm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">byteBuf</span><span class="p">.</span><span class="na">readByte</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">// 指令</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kt">byte</span><span class="w"> </span><span class="n">command</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">byteBuf</span><span class="p">.</span><span class="na">readByte</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">// 数据包长度</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">byteBuf</span><span class="p">.</span><span class="na">readInt</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kt">byte</span><span class="o">[]</span><span class="w"> </span><span class="n">bytes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">byte</span><span class="o">[</span><span class="n">length</span><span class="o">]</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">byteBuf</span><span class="p">.</span><span class="na">readBytes</span><span class="p">(</span><span class="n">bytes</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">Class</span><span class="o">&lt;?</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Packet</span><span class="o">&gt;</span><span class="w"> </span><span class="n">requestType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getRequestType</span><span class="p">(</span><span class="n">command</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">Serializer</span><span class="w"> </span><span class="n">serializer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getSerializer</span><span class="p">(</span><span class="n">serializeAlgorithm</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">requestType</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">serializer</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">serializer</span><span class="p">.</span><span class="na">deserialize</span><span class="p">(</span><span class="n">requestType</span><span class="p">,</span><span class="w"> </span><span class="n">bytes</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Class</span><span class="o">&lt;?</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Packet</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">getRequestType</span><span class="p">(</span><span class="kt">byte</span><span class="w"> </span><span class="n">command</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">LoginRequestPacket</span><span class="p">.</span><span class="na">class</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Serializer</span><span class="w"> </span><span class="nf">getSerializer</span><span class="p">(</span><span class="kt">byte</span><span class="w"> </span><span class="n">serializeAlgorithm</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Serializer</span><span class="p">.</span><span class="na">DEFAULT</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="实现客户端登录">实现客户端登录
+</h3><p><img src="/p/netty-%E5%8D%95%E8%81%8A%E5%AE%9E%E7%8E%B0%E6%A1%88%E4%BE%8B/login.png"
+	width="1644"
+	height="530"
+	srcset="/p/netty-%E5%8D%95%E8%81%8A%E5%AE%9E%E7%8E%B0%E6%A1%88%E4%BE%8B/login_hu16935752393092149840.png 480w, /p/netty-%E5%8D%95%E8%81%8A%E5%AE%9E%E7%8E%B0%E6%A1%88%E4%BE%8B/login_hu15366546592014563398.png 1024w"
+	loading="lazy"
+	
+		alt="登陆逻辑"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="310"
+		data-flex-basis="744px"
+	
+></p>
+<h3 id="实现客户端与服务端收发消息">实现客户端与服务端收发消息
+</h3><p>如何判断客户端是否已经登录？</p>
+<h2 id="pipeline-与-channelhandler">Pipeline 与 ChannelHandler
+</h2><p><img src="/p/netty-%E5%8D%95%E8%81%8A%E5%AE%9E%E7%8E%B0%E6%A1%88%E4%BE%8B/pipeline.png"
+	width="1670"
+	height="602"
+	srcset="/p/netty-%E5%8D%95%E8%81%8A%E5%AE%9E%E7%8E%B0%E6%A1%88%E4%BE%8B/pipeline_hu15262419660262449580.png 480w, /p/netty-%E5%8D%95%E8%81%8A%E5%AE%9E%E7%8E%B0%E6%A1%88%E4%BE%8B/pipeline_hu2540811890990804005.png 1024w"
+	loading="lazy"
+	
+		alt="pipeline"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="277"
+		data-flex-basis="665px"
+	
+></p>
+<p><img src="/p/netty-%E5%8D%95%E8%81%8A%E5%AE%9E%E7%8E%B0%E6%A1%88%E4%BE%8B/channelHandler.png"
+	width="1706"
+	height="656"
+	srcset="/p/netty-%E5%8D%95%E8%81%8A%E5%AE%9E%E7%8E%B0%E6%A1%88%E4%BE%8B/channelHandler_hu12541517088590717848.png 480w, /p/netty-%E5%8D%95%E8%81%8A%E5%AE%9E%E7%8E%B0%E6%A1%88%E4%BE%8B/channelHandler_hu6267428089890177685.png 1024w"
+	loading="lazy"
+	
+		alt="ChannelHandler分类"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="260"
+		data-flex-basis="624px"
+	
+></p>
+<p>ChannelInboundHandler: 它是处理读数据的逻辑</p>
+<p>ChannelOutboundHandler: 处理写数据的逻辑</p>
+<p>ChannelInboundHandlerAdapter 和 ChannelOutboundHandlerAdapter 是默认实现</p>
+<p>addLast() 能让 InHandler 的顺序与书面顺序保持一致</p>
+<p>addList() 让 OutHandler 的顺序与书面顺序相反</p>
+<p><img src="/p/netty-%E5%8D%95%E8%81%8A%E5%AE%9E%E7%8E%B0%E6%A1%88%E4%BE%8B/pcons.png"
+	width="1618"
+	height="192"
+	srcset="/p/netty-%E5%8D%95%E8%81%8A%E5%AE%9E%E7%8E%B0%E6%A1%88%E4%BE%8B/pcons_hu718687995443141248.png 480w, /p/netty-%E5%8D%95%E8%81%8A%E5%AE%9E%E7%8E%B0%E6%A1%88%E4%BE%8B/pcons_hu9082689879128212172.png 1024w"
+	loading="lazy"
+	
+		alt="pipeline 的结构"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="842"
+		data-flex-basis="2022px"
+	
+></p>
+<p>是一个双向链表</p>
+<h2 id="特殊的-channelhandler">特殊的 ChannelHandler
+</h2><ul>
+<li>ChannelInboundHandlerAdapter (read)</li>
+<li>ChannelOutboundHandlerAdapter (write)</li>
+<li>ByteToMessageDecoder (decode) (好处，netty 会自动帮我们释放 ByteBuf 用到的堆外内存)</li>
+<li>MessageToByteEncoder<T> (encode)</li>
+<li>SimpleChannelInboundHandler<T> (channelRead0)</li>
+</ul>
+<h2 id="拆包粘包理论与解决方案">拆包/粘包理论与解决方案
+</h2><p><strong>存在3种类型的输出</strong>:</p>
+<ul>
+<li>一种是正常的字符串输出</li>
+<li>一种是多个字符串“粘”在了一起，我们定义这种ByteBuf为粘包</li>
+<li>一种是一个字符串被“拆”开，形成一个破碎的包，我们定义这种ByteBuf为半包</li>
+</ul>
+<p><strong>为什么会有粘包、半包现象</strong>:</p>
+<p>尽管我们的应用层按照ByteBuf为单位来发送数据，但是到了底层操作系统，仍然是按照字节流发送数据的</p>
+<p>因此，数据到了服务端，也按照字节流的方式读入，然后到了Netty应用层面，重新拼装成ByteBuf</p>
+<p>这里的ByteBuf与客户端按照顺序发送的ByteBuf可能是不对等的</p>
+<p>因此，我们需要在客户端根据自定义协议来组装应用层的数据包，然后在服务端根据应用层的协议来组装数据包</p>
+<p>这个过程通常在服务端被称为拆包，而在客户端被称为粘包</p>
+<p>拆包和粘包是相对的，一端粘了包，另外一端就需要将粘过的包拆开</p>
+<p>举个例子，发送端将三个数据包粘成两个TCP数据包发送到接收端，接收端就需要根据应用协议将两个数据包重新拆分成三个数据包</p>
+<p><strong>拆包的原理</strong></p>
+<p>在没有Netty的情况下，用户如果自己需要拆包，基本原理就是不断地从TCP缓冲区中读取数据，每次读取完都需要判断是否是一个完整的数据包</p>
+<ul>
+<li>
+<p>如果当前读取的数据不足以拼接成一个完整的业务数据包，那就保留该数据，继续从TCP缓冲区中读取，直到得到一个完整的数据包</p>
+</li>
+<li>
+<p>如果当前读到的数据加上已经读取的数据足够拼接成一个数据包，那就将已经读取的数据拼接上本次读取的数据，构成一个完整的业务数据包传递到业务逻辑，多余的数据仍然保留，以便和下次读到的数据尝试拼接</p>
+</li>
+</ul>
+<h2 id="netty自带的拆包器">Netty自带的拆包器
+</h2><p>固定长度的拆包器 FixedLengthFrameDecoder</p>
+<ul>
+<li>
+<p>如果应用层协议非常简单，每个数据包的长度都是固定的, 比如100</p>
+</li>
+<li>
+<p>那么只需要把这个拆包器加到Pipeline中，Netty就会把一个个长度为100的数据包（ByteBuf）传递到下一个ChannelHandler</p>
+</li>
+</ul>
+<p>行拆包器LineBasedFrameDecoder</p>
+<ul>
+<li>
+<p>发送端发送数据包的时候，每个数据包之间以换行符作为分隔</p>
+</li>
+<li>
+<p>接收端通过 LineBasedFrameDecoder 将粘过的ByteBuf拆分成一个个完整的应用层数据包</p>
+</li>
+</ul>
+<p>分隔符拆包器 DelimiterBasedFrameDecoder</p>
+<ul>
+<li>行拆包器的通用版本，只不过我们可以自定义分隔符</li>
+</ul>
+<p>基于长度域的拆包器 LengthFieldBasedFrameDecoder</p>
+<ul>
+<li>最后一种拆包器是最通用的一种拆包器，只要你的自定义协议中包含长度域字段，均可以使用这个拆包器来实现应用层拆包</li>
+</ul>
+<h2 id="如何使用lengthfieldbasedframedecoder">如何使用LengthFieldBasedFrameDecoder
+</h2><p>关于拆包，我们只需要关注以下3点：</p>
+<ul>
+<li>
+<p>在我们的自定义协议中，长度域在整个数据包的哪个地方。用专业术语来说，就是长度域相对整个数据包的偏移量是多少，这里显然是4+1+1+1=7</p>
+</li>
+<li>
+<p>另外需要关注的就是，长度域的长度是多少，这里显然是4</p>
+</li>
+<li>
+<p>有了长度域偏移量和长度域的长度，我们就可以构造一个拆包器</p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="k">new</span><span class="w"> </span><span class="n">LengthFieldBasedFrameDecoder</span><span class="p">(</span><span class="n">Integer</span><span class="p">.</span><span class="na">MAX_VALUE</span><span class="p">,</span><span class="w"> </span><span class="n">7</span><span class="p">,</span><span class="w"> </span><span class="n">4</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="拒绝非本协议连接">拒绝非本协议连接
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">in</span><span class="p">.</span><span class="na">getInt</span><span class="p">(</span><span class="n">in</span><span class="p">.</span><span class="na">readerIndex</span><span class="p">())</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">PacketCodeC</span><span class="p">.</span><span class="na">MAGIC_NUMBER</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">ctx</span><span class="p">.</span><span class="na">channel</span><span class="p">().</span><span class="na">close</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="客户端和服务端的pipeline结构">客户端和服务端的Pipeline结构
+</h2><p><img src="/p/netty-%E5%8D%95%E8%81%8A%E5%AE%9E%E7%8E%B0%E6%A1%88%E4%BE%8B/pipeline_cons.png"
+	width="1694"
+	height="438"
+	srcset="/p/netty-%E5%8D%95%E8%81%8A%E5%AE%9E%E7%8E%B0%E6%A1%88%E4%BE%8B/pipeline_cons_hu5162618914571394310.png 480w, /p/netty-%E5%8D%95%E8%81%8A%E5%AE%9E%E7%8E%B0%E6%A1%88%E4%BE%8B/pipeline_cons_hu12118216657326190146.png 1024w"
+	loading="lazy"
+	
+		alt="pipeline 结构"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="386"
+		data-flex-basis="928px"
+	
+></p>
+<h2 id="channelhandler-的生命周期">ChannelHandler 的生命周期
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">handlerAdded</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">channelRegister</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">channelActive</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">channelRead</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">channelReadComplete</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">channelInactive</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">channelUnregistered</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">handlerRemove</span><span class="p">()</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="/p/netty-%E5%8D%95%E8%81%8A%E5%AE%9E%E7%8E%B0%E6%A1%88%E4%BE%8B/lifecycle.png"
+	width="1652"
+	height="536"
+	srcset="/p/netty-%E5%8D%95%E8%81%8A%E5%AE%9E%E7%8E%B0%E6%A1%88%E4%BE%8B/lifecycle_hu16628847954710042274.png 480w, /p/netty-%E5%8D%95%E8%81%8A%E5%AE%9E%E7%8E%B0%E6%A1%88%E4%BE%8B/lifecycle_hu9827541692519696062.png 1024w"
+	loading="lazy"
+	
+		alt="ChannelHandler 生命周期"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="308"
+		data-flex-basis="739px"
+	
+></p>
+<h2 id="channelinitializer-的实现原理">ChannelInitializer 的实现原理
+</h2><ul>
+<li>
+<p>ChannelInitializer 定义了一个抽象的 initChannel() 方法，这个抽象方法由我们自行实现。我们在服务端启动流程里的实现逻辑就是往 Pipeline 里组织我们的 Handler 链</p>
+</li>
+<li>
+<p>handlerAdded() 方法和c hannelRegistered() 方法都会尝试调用 initChannel() 方法，initChannel() 方法使用p utIfAbsent() 方法来防止initChannel() 方法被调用多次</p>
+</li>
+<li>
+<p>channelRegistered() 方法里还有机会再调一次 initChannel() 方法，把自定义的 Handler 都添加到 Pipeline 中去</p>
+</li>
+</ul>
+<h2 id="channelhandler的-热插拔机制">ChannelHandler的 热插拔机制
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">AuthHandler</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">ChannelInboundHandlerAdapter</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Override</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">channelRead</span><span class="p">(</span><span class="n">ChannelHandlerContext</span><span class="w"> </span><span class="n">ctx</span><span class="p">,</span><span class="w"> </span><span class="n">Object</span><span class="w"> </span><span class="n">msg</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">Exception</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">LoginUtils</span><span class="p">.</span><span class="na">hasLogin</span><span class="p">(</span><span class="n">ctx</span><span class="p">.</span><span class="na">channel</span><span class="p">()))</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">ctx</span><span class="p">.</span><span class="na">channel</span><span class="p">().</span><span class="na">close</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">ctx</span><span class="p">.</span><span class="na">pipeline</span><span class="p">().</span><span class="na">remove</span><span class="p">(</span><span class="k">this</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="kd">super</span><span class="p">.</span><span class="na">channelRead</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span><span class="w"> </span><span class="n">msg</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Override</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">handlerRemoved</span><span class="p">(</span><span class="n">ChannelHandlerContext</span><span class="w"> </span><span class="n">ctx</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">Exception</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">LoginUtils</span><span class="p">.</span><span class="na">hasLogin</span><span class="p">(</span><span class="n">ctx</span><span class="p">.</span><span class="na">channel</span><span class="p">()))</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&#34;当前登陆验证完毕，无需再次验证， AuthHandler 被移除&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&#34;无登陆验证，强制关闭连接！&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/netty/">Netty</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    <section class="article-lastmod">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <span>
+            Last updated on Feb 20, 2025 00:00 UTC
+        </span>
+    </section></footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/netty-%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90%E4%B8%8E%E5%BA%94%E7%94%A8/">
+        
+        
+            <div class="article-image">
+                <img src="/p/netty-%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90%E4%B8%8E%E5%BA%94%E7%94%A8/cover.4e9a8d293ddf23bb5852e0b74c402572_hu9374989977287613023.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Netty 源码剖析与应用"
+                        data-key="Netty 源码剖析与应用" 
+                        data-hash="md5-TpqNKT3fI7tYUuC3TEAlcg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Netty 源码剖析与应用</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2025 Bluee&#39;s Blog
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.29.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

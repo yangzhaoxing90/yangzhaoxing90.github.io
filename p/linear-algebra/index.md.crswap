@@ -1,0 +1,44 @@
+---
+title: linear algebra
+description: 线性代数
+slug: linear algebra
+date: 2025-02-05 00:00:00+0000
+image: cover.png
+math: true
+categories:
+    - 线性代数
+tags:
+    - 线性代数
+weight: 1       # You can add weight to some posts to override the default sorting (date descending)
+---
+
+## Determninants
+
+### Number Fields
+
+Number Field axioms:
+
+$a$. To every pair of numbers $\alpha$ and $\beta$ in $K$ there corresponds a (unique) number $\alpha + \beta$ in $K$, called sum of $\alpha$ and $\beta$ 
+
+- $\alpha + \beta = \beta + \alpha$ for every $\alpha$ and $\beta$ in $K$ (*addition is commutative*)
+- $(\alpha + \beta) + \gamma = \alpha + (\beta + \gamma) $ for every $ \alpha, \beta, \gamma $ in $K$ (*addition is associative*)
+- There exists a number number $0$ (zero) in $K$ such that $ 0 + \alpha = \alpha $ for every $\alpha$ in $K$ 
+- For every $\alpha$ in $K$, there exists a number (*negative element*) $\gamma$ in $K$ such that $\alpha + \gamma = 0$
+
+$b$. To every pair of numbers $\alpha$ and $\beta$ in $K$ there conrresponds a (unique) number $\alpha \cdot \beta$ (or $\alpha\beta$) in $K$, called the *product* of $\alpha$ and $\beta$ 
+
+- $\alpha\beta = \beta\alpha$ for every $\alpha$ and $\beta$ in $K$ (*multiplication is commutative*)
+- $(\alpha\beta)\gamma$ = $\alpha(\beta\gamma)$ for every $\alpha, \beta, \gamma$ in $K$ (*multiplication is associative*)
+- There exits a number $1 (\not= 0)$ in $K$ such that $1 \cdot \alpha = \alpha$ for every $\alpha$ in $K$
+- For every $\alpha \not= 0$ in $K$ there exists a number (*reciprocal element*) $\gamma$ in $K$ such that $\alpha\gamma = 1$
+
+$c$. *Multiplication is distributive over addition, i.e*
+
+- $\alpha(\beta + \gamma)$ = $\alpha\beta$ + $\alpha\gamma$ for every $\alpha, \beta, \gamma$ in $K$ 
+
+*nattural*: the numbers, 1, 1+1=2, 2+1=3, etc. It's assumed that none of these numbers is zero.
+
+*integers*: the set of all natural numbers together with thier negatives and the number zero.
+
+*rational*: the set of all quotients, $\frac{p}{q}$, where $p$ and $q$ are integers and $q \not= 0$
+

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>NIO on Bluee&#39;s Blog</title>
+        <link>https://yangzhaoxing90.github.io/tags/nio/</link>
+        <description>Recent content in NIO on Bluee&#39;s Blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en</language>
+        <lastBuildDate>Wed, 26 Feb 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://yangzhaoxing90.github.io/tags/nio/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Java NIO</title>
+        <link>https://yangzhaoxing90.github.io/p/java-nio/</link>
+        <pubDate>Wed, 26 Feb 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://yangzhaoxing90.github.io/p/java-nio/</guid>
+        <description>&lt;img src="https://yangzhaoxing90.github.io/p/java-nio/cover.png" alt="Featured image of post Java NIO" /&gt;&lt;h2 id=&#34;准备资料&#34;&gt;准备资料
+&lt;/h2&gt;&lt;p&gt;《Java NIO》 O‘Reilly&lt;/p&gt;
+&lt;h2 id=&#34;heading&#34;&gt;
+&lt;/h2&gt;</description>
+        </item>
+        
+    </channel>
+</rss>

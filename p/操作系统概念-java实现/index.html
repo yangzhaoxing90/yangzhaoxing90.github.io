@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="《操作系统概念-Java实现》 读书笔记">
+<title>操作系统概念-Java实现</title>
+
+<link rel='canonical' href='https://yangzhaoxing90.github.io/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/'>
+
+<link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="操作系统概念-Java实现">
+<meta property='og:description' content="《操作系统概念-Java实现》 读书笔记">
+<meta property='og:url' content='https://yangzhaoxing90.github.io/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/'>
+<meta property='og:site_name' content='Bluee&#39;s Blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='操作系统' /><meta property='article:published_time' content='2025-02-27T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-02-27T00:00:00&#43;00:00'/><meta property='og:image' content='https://yangzhaoxing90.github.io/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/cover.png' />
+<meta name="twitter:title" content="操作系统概念-Java实现">
+<meta name="twitter:description" content="《操作系统概念-Java实现》 读书笔记"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://yangzhaoxing90.github.io/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/cover.png' />
+    <link rel="shortcut icon" href="/favicon.png" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu5215941541195434152.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Bluee&#39;s Blog</a></h1>
+            <h2 class="site-description">blog with interests</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/yangzhaoxing90/yangzhaoxing90.github.io.git'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#概述">概述</a>
+      <ol>
+        <li><a href="#第1章-导论">第1章 导论</a></li>
+        <li><a href="#11-操作系统做什么">1.1 操作系统做什么</a></li>
+        <li><a href="#12-计算机系统组织">1.2 计算机系统组织</a></li>
+        <li><a href="#13-计算机系统体系结构">1.3 计算机系统体系结构</a></li>
+        <li><a href="#14-操作系统结构">1.4 操作系统结构</a></li>
+        <li><a href="#15-操作系统操作">1.5 操作系统操作</a></li>
+        <li><a href="#16-进程管理">1.6 进程管理</a></li>
+        <li><a href="#17-内存管理">1.7 内存管理</a></li>
+        <li><a href="#18-存储管理">1.8 存储管理</a></li>
+        <li><a href="#19-保护和安全">1.9 保护和安全</a></li>
+        <li><a href="#110-分布式系统">1.10 分布式系统</a></li>
+        <li><a href="#111-专用系统">1.11 专用系统</a></li>
+        <li><a href="#112-计算环境">1.12 计算环境</a></li>
+      </ol>
+    </li>
+    <li><a href="#第-2-章-操作系统结构">第 2 章 操作系统结构</a>
+      <ol>
+        <li><a href="#21-操作系统服务">2.1 操作系统服务</a></li>
+        <li><a href="#22-操作系统的用户界面">2.2 操作系统的用户界面</a></li>
+        <li><a href="#23-系统调用">2.3 系统调用</a></li>
+        <li><a href="#24-系统调用类型">2.4 系统调用类型</a></li>
+        <li><a href="#25-系统程序">2.5 系统程序</a></li>
+        <li><a href="#26-操作系统设计和实现">2.6 操作系统设计和实现</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/">
+                <img src="/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/cover_hu808576104924630304.png"
+                        srcset="/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/cover_hu808576104924630304.png 800w, /p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/cover_hu13426426839031429114.png 1600w"
+                        width="800" 
+                        height="439" 
+                        loading="lazy"
+                        alt="Featured image of post 操作系统概念-Java实现" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/" >
+                计算机
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/">操作系统概念-Java实现</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            《操作系统概念-Java实现》 读书笔记
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Feb 27, 2025</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    2 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="概述">概述
+</h2><h3 id="第1章-导论">第1章 导论
+</h3><p><strong>操作系统</strong>是管理计算机硬件的程序,它还为应用程序提供基础，充当计算机硬件和用户之间的中介</p>
+<p>本章目标：</p>
+<ul>
+<li>概括介绍操作系统的主要组件</li>
+<li>概括介绍计算机系统的基本组织体系结构</li>
+</ul>
+<h3 id="11-操作系统做什么">1.1 操作系统做什么
+</h3><p>计算机系统可以粗分为 4 个组成部分：</p>
+<ul>
+<li>计算机硬件 （如CPU、内存、IO设备），为系统提供基本的计算资源</li>
+<li>操作系统  控制和协调用户的应用程序对硬件的使用</li>
+<li>系统程序、应用程序 （如 word、浏览器），规定了按照何种方式使用资源解决用户的问题</li>
+<li>用户</li>
+</ul>
+<h3 id="12-计算机系统组织">1.2 计算机系统组织
+</h3><p><strong>计算机系统操作</strong></p>
+<p><img src="/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/computer.png"
+	width="1818"
+	height="754"
+	srcset="/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/computer_hu6849697394904808510.png 480w, /p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/computer_hu15780207442248125220.png 1024w"
+	loading="lazy"
+	
+		alt="计算机系统"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="241"
+		data-flex-basis="578px"
+	
+></p>
+<p>电脑启动 -&gt; 初始化程序 (位于固件中) -&gt; 引导程序定位操作系统内核，并把它装入内存 -&gt; 操作系统执行第一个进程，如 init -&gt; 等待事件发生</p>
+<p>事件的发送：</p>
+<ul>
+<li>硬件中断 （随时通过系统总线向 CPU 发出信号，以触发中断）</li>
+<li>软件中断 （通过执行系统调用）</li>
+</ul>
+<p><img src="/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/break.png"
+	width="1522"
+	height="508"
+	srcset="/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/break_hu534678196616144984.png 480w, /p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/break_hu7880368997590487367.png 1024w"
+	loading="lazy"
+	
+		alt="中断"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="299"
+		data-flex-basis="719px"
+	
+></p>
+<p>CPU 执行 IO 中断，然后又恢复原来的进程执行</p>
+<p>不同的计算机有不同的中断机制，共同的点是，中断必须将控制权交给合适的<strong>中断服务历程</strong></p>
+<p><strong>存储结构</strong></p>
+<p><img src="/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/storage.png"
+	width="1722"
+	height="1212"
+	srcset="/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/storage_hu13254898650629388115.png 480w, /p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/storage_hu2680890449139550049.png 1024w"
+	loading="lazy"
+	
+		alt="存储设备的层次"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="142"
+		data-flex-basis="340px"
+	
+></p>
+<p><strong>IO结构</strong></p>
+<p>通用计算机系统由一个CPU和多个<strong>设备控制器组成</strong>，它们通过共同的总线连接起来。每个设备控制器负责特定类型的设备</p>
+<p>通常操作系统为每个设备控制器提供一个<strong>设备驱动程序</strong>，设备驱动程序理解设备控制器，提供设备和操作系统之间统一的接口</p>
+<p>为了开始 IO 操作，设备驱动程序在设备控制器中装载适当的寄存器，设备控制器检查这些寄存器的内容，以确定执行什么操作</p>
+<p>这种 IO 中断驱动适合移动少量数据，但对于大量数据的移动，会带来超载问题，<strong>DMA （直接内存访问）</strong> 就是为了解决这个问题设计的</p>
+<p><img src="/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/work.png"
+	width="1278"
+	height="1108"
+	srcset="/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/work_hu3538462290466228500.png 480w, /p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/work_hu115140314043453887.png 1024w"
+	loading="lazy"
+	
+		alt="计算机内部工作"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="115"
+		data-flex-basis="276px"
+	
+></p>
+<h3 id="13-计算机系统体系结构">1.3 计算机系统体系结构
+</h3><ul>
+<li>单处理器系统</li>
+<li>多处理器系统</li>
+</ul>
+<h3 id="14-操作系统结构">1.4 操作系统结构
+</h3><p>多道程序能力：</p>
+<ul>
+<li>分时系统 （CPU 来回切换执行任务）</li>
+</ul>
+<p>分时系统在主存储器中保存几个作业，作业最开始存在于磁盘的作业池中</p>
+<p>操作系统通过作业调度从作业池中选择作业加载入内存，这一决策过程叫做 CPU 调度</p>
+<p>分时操作系统中，操作系统必须保证合理的响应时间，这有时通过交换来得到，其中进程被换入内存或由内存换出到磁盘</p>
+<p>虚拟内存（主要优点是程序可以比物理内存大）</p>
+<p>分时系统也提供文件系统</p>
+<h3 id="15-操作系统操作">1.5 操作系统操作
+</h3><p><strong>双重模式操作</strong></p>
+<ul>
+<li>用户模式</li>
+<li>内核模式</li>
+</ul>
+<p>可以区分操作系统所执行的任务和用户所执行的任务</p>
+<p>双重模式操作为人们提供了保护操作系统和用户程序不受错误用户程序影响的手段</p>
+<p><img src="/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/double.png"
+	width="1638"
+	height="638"
+	srcset="/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/double_hu6574997663853925450.png 480w, /p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/double_hu16962525449283596043.png 1024w"
+	loading="lazy"
+	
+		alt="双重模式操作"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="256"
+		data-flex-basis="616px"
+	
+></p>
+<p>实现方式为：将能引起损害的机器指令作为<strong>特权指令</strong>， 硬件允许特权指令仅在内核模式下执行</p>
+<p>定时器：</p>
+<p>必须确保操作系统能维持对CPU的控制，也必须防止用户程序陷入死循环或不调用系统服务，并且不将控制权返回到操作系统</p>
+<p>可将定时器设置为在给定时间后中断计算机，时间可以是固定的，也可以是可变的</p>
+<h3 id="16-进程管理">1.6 进程管理
+</h3><p>处于执行中的程序被称为进程</p>
+<p>进程需要一定的资源，CPU时间、内存、文件、I/O设备来完成其任务</p>
+<p>操作系统负责管理进程的如下活动：</p>
+<ul>
+<li>创建和删除用户进程和系统进程</li>
+<li>挂起和重启进程</li>
+<li>提供进程同步机制</li>
+<li>提供进程通信机制</li>
+<li>提供死锁处理机制</li>
+</ul>
+<h3 id="17-内存管理">1.7 内存管理
+</h3><p>内存是一个大的字或字节的数组，每个字或字节都有自己的地址</p>
+<p>内存是可以被 CPU 和 I/O 设备所共同快速访问的数据仓库</p>
+<p>操作系统负责下列有关内存的活动：</p>
+<ul>
+<li>记录内存的哪部分正在被使用以及被谁使用</li>
+<li>当有内存空间时，决定哪些进程可以装入内存</li>
+<li>根据需要释放分配和释放内存空间</li>
+</ul>
+<h3 id="18-存储管理">1.8 存储管理
+</h3><p>操作系统对存储设备的物理属性进行了抽象，定义了逻辑存储单元，就是文件</p>
+<p>文件是由其创建者定义的一组相关信息的集合 （程序和数据）</p>
+<p>操作系统负责下列有关文件管理的活动：</p>
+<ul>
+<li>创建和删除文件</li>
+<li>创建和删除目录来组织文件</li>
+<li>提供操作文件和目录的原语</li>
+<li>将文件映射到二级存储上</li>
+<li>在稳定（非易失的）存储介质上备份文件</li>
+</ul>
+<p>现代大多数操作系统都采用硬盘作为主要在线存储介质来存储程序和数据</p>
+<p>操作系统负责下列有关硬盘管理的活动：</p>
+<ul>
+<li>空闲空间管理</li>
+<li>存储空间分配</li>
+<li>硬盘调度</li>
+</ul>
+<h3 id="19-保护和安全">1.9 保护和安全
+</h3><p>保护是一种控制进程或用户对计算机系统资源访问的机制</p>
+<p>绝大多数操作系统维护一种用户名和相关用户标识（UID）的链表，这些数值对用户来说是唯一的</p>
+<h3 id="110-分布式系统">1.10 分布式系统
+</h3><p>分布式系统是一组物理上分开的、可能各个异构的计算机系统通过网络连接在一起，为用户提供系统所维护的各种资源的计算机的集合</p>
+<h3 id="111-专用系统">1.11 专用系统
+</h3><ul>
+<li>实时嵌入系统 （运行实时操作系统，有明确切固定的时间约束）</li>
+<li>多媒体系统 （多媒体数据必须根据确定的时间限制来传输流）</li>
+<li>手持系统 （）</li>
+</ul>
+<h3 id="112-计算环境">1.12 计算环境
+</h3><ul>
+<li>传统环境
+<ul>
+<li>批处理计算机系统，以批量的方式处理作业</li>
+<li>分时系统采用定时器和调度算法，通过CPU迅速地循环进程，给其中每一个用户分配资源</li>
+</ul>
+</li>
+<li>客户-服务器计算</li>
+<li>对等计算</li>
+<li>基于 web 计算</li>
+</ul>
+<h2 id="第-2-章-操作系统结构">第 2 章 操作系统结构
+</h2><p>本章目标：</p>
+<ul>
+<li>介绍操作系统为用户、进程和其他系统提供的服务</li>
+<li>讨论组织操作系统的不同方法</li>
+<li>解释如何安装、定制操作系统，以及如何启动操作系统</li>
+</ul>
+<h3 id="21-操作系统服务">2.1 操作系统服务
+</h3><p>一组操作系统服务提供对用户很有用的功能：</p>
+<ul>
+<li>用户界面 （GUI、CLI、批界面）</li>
+<li>程序执行 （系统必须能将程序装入内存并运行该程序）</li>
+<li>I/O操作 （运行程序需要的 IO）</li>
+<li>文件系统操作 （读写文件和目录）</li>
+<li>通信 （进程间交换信息）</li>
+<li>错误检测</li>
+<li>资源分配 （多个用户或作业运行时，需要分配资源）</li>
+<li>统计 （记录哪些用户使用了哪些资源）</li>
+<li>保护和安全</li>
+</ul>
+<h3 id="22-操作系统的用户界面">2.2 操作系统的用户界面
+</h3><ul>
+<li>命令解释程序</li>
+<li>图形用户界面</li>
+</ul>
+<h3 id="23-系统调用">2.3 系统调用
+</h3><p>系统调用是获取操作系统所提供的服务的接口</p>
+<p>应用程序员最常用的 API 有三种：</p>
+<ul>
+<li>Win32 API （Windows 系统）</li>
+<li>POSIX API （Unix、Linux 和 Mac OS X）</li>
+<li>Java API （JVM）</li>
+</ul>
+<p>用 API 不用实际系统调用的好处：</p>
+<ul>
+<li>可移植性强</li>
+<li>实际的系统调用比 API 难用且更复杂</li>
+</ul>
+<p><img src="/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/systemcall.png"
+	width="1376"
+	height="732"
+	srcset="/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/systemcall_hu3433207362571292550.png 480w, /p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/systemcall_hu2611884753704626806.png 1024w"
+	loading="lazy"
+	
+		alt="系统调用"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="187"
+		data-flex-basis="451px"
+	
+></p>
+<h3 id="24-系统调用类型">2.4 系统调用类型
+</h3><p>系统调用可以分为 5 大类：</p>
+<ul>
+<li>进程控制 （结束、放弃、装入、执行、创建进程、终止进程、取得进程属性、设置进程属性、等待时间、等待事件、唤醒事件、分配和释放内存）</li>
+<li>文件管理 （创建文件、删除文件、打开、关闭、读、写、重定位、取得文件属性、设置文件属性）</li>
+<li>设备管理 （请求设备、释放设备、读、写、重定位、取得设备属性、设置设备属性、逻辑连接或断开设备）</li>
+<li>信息维护 （读取时间或日期、设置时间或日期、读取系统数据、设置系统数据、读取进程，文件或设备属性、设置进程，文件或设备属性）</li>
+<li>通信 （创建，删除通信连接、发送，接收消息、传递状态信息、连接或断开远程设备）</li>
+</ul>
+<p><strong>通信</strong></p>
+<p>两种常见的通信模型：</p>
+<ul>
+<li>消息传递模型 （通信进程通过交换消息来传递信息）</li>
+<li>共享内存模型 （通过 shared memory create 和 shared memory attach 系统调用来获得其他进程所拥有的内存区域访问权）</li>
+</ul>
+<h3 id="25-系统程序">2.5 系统程序
+</h3><p>可以分为分类：</p>
+<ul>
+<li>文件管理</li>
+<li>状态信息</li>
+<li>文件修改</li>
+<li>程序设计语言支持</li>
+<li>程序装入和执行</li>
+<li>通信</li>
+</ul>
+<h3 id="26-操作系统设计和实现">2.6 操作系统设计和实现
+</h3>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    <section class="article-lastmod">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <span>
+            Last updated on Feb 27, 2025 00:00 UTC
+        </span>
+    </section></footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2025 Bluee&#39;s Blog
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.29.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

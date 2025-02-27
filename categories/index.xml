@@ -6,12 +6,52 @@
         <description>Recent content in Categories on Bluee&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
-        <lastBuildDate>Tue, 18 Feb 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://yangzhaoxing90.github.io/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 27 Feb 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://yangzhaoxing90.github.io/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>计算机</title>
+        <link>https://yangzhaoxing90.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/</link>
+        <pubDate>Thu, 27 Feb 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://yangzhaoxing90.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/</guid>
+        <description></description>
+        </item>
+        <item>
         <title>Java</title>
         <link>https://yangzhaoxing90.github.io/categories/java/</link>
-        <pubDate>Tue, 18 Feb 2025 00:00:00 +0000</pubDate>
+        <pubDate>Wed, 26 Feb 2025 00:00:00 +0000</pubDate>
         
         <guid>https://yangzhaoxing90.github.io/categories/java/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Python</title>
+        <link>https://yangzhaoxing90.github.io/categories/python/</link>
+        <pubDate>Tue, 25 Feb 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://yangzhaoxing90.github.io/categories/python/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>前端</title>
+        <link>https://yangzhaoxing90.github.io/categories/%E5%89%8D%E7%AB%AF/</link>
+        <pubDate>Tue, 25 Feb 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://yangzhaoxing90.github.io/categories/%E5%89%8D%E7%AB%AF/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>指南</title>
+        <link>https://yangzhaoxing90.github.io/categories/%E6%8C%87%E5%8D%97/</link>
+        <pubDate>Mon, 24 Feb 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://yangzhaoxing90.github.io/categories/%E6%8C%87%E5%8D%97/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Netty</title>
+        <link>https://yangzhaoxing90.github.io/categories/netty/</link>
+        <pubDate>Thu, 20 Feb 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://yangzhaoxing90.github.io/categories/netty/</guid>
         <description></description>
         </item>
         <item>
@@ -60,14 +100,6 @@
         <pubDate>Sat, 08 Feb 2025 00:00:00 +0000</pubDate>
         
         <guid>https://yangzhaoxing90.github.io/categories/%E6%97%85%E6%B8%B8/</guid>
-        <description></description>
-        </item>
-        <item>
-        <title>Netty</title>
-        <link>https://yangzhaoxing90.github.io/categories/netty/</link>
-        <pubDate>Fri, 07 Feb 2025 00:00:00 +0000</pubDate>
-        
-        <guid>https://yangzhaoxing90.github.io/categories/netty/</guid>
         <description></description>
         </item>
         <item>

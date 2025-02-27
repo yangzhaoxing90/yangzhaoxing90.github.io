@@ -1,0 +1,487 @@
+---
+title: Netty 单聊实现案例
+description: 根据 《跟闪电侠学Netty》记录的核心思想和案例实现
+slug:  Netty 单聊实现案例
+date: 2025-02-20 00:00:00+0000
+image: cover.png
+categories:
+    - netty
+tags:
+    - netty
+weight: 1       # You can add weight to some posts to override the default sorting (date descending)
+---
+
+## 单聊系统的实现
+
+![单聊流程图](singlechat.png)
+
+- A 要和 B 聊天，首先 A 和 B 需要与服务端建立连接，然后进入登录流程，服务端保存用户标识和 TCP 连接的映射关系
+- A 给 B 发消息，首先需要将带有 B 标识的消息数据包发送到服务端，然后服务端从消息数据包中获得 B 的标识，找到对应 B 的连接，将消息发送给 B
+- 任意一方发消息给对方，如果对方不在线，则需要将消息缓存，在对方上线之后再发送
+
+## 单聊的指令
+
+![单聊的消息发送流程](command.png)
+
+![指令列表](list.png)
+
+## Netty
+
+- 如何启动服务端？
+- 如何启动客户端？
+- 数据载体 ByteBuf
+- 如何设计长连接自定义协议？
+- 拆包/粘包原理与实践
+- 如何实现自定义编解码
+- 如何使用Pipeline与ChannelHandler
+- 如何定时发心跳数据包
+- 如何进行连接空闲检测
+
+![Netty 客户端](netty_client.png)
+
+![Netty 服务端](netty_server.png)
+
+## Netty Server 基本结构
+
+```java
+// boss 线程, 监听 OP_ACCEPT 事件
+NioEventLoopGroup bossGroup = new NioEventLoopGroup();
+// worker 线程, 监听客户端连接的 OP_READ 和 OP_WRITE 事件, 处理 I/O 事件
+NioEventLoopGroup workerGroup = new NioEventLoopGroup();
+
+ServerBootstrap serverBootstrap = new ServerBootstrap();
+serverBootstrap
+        .group(bossGroup, workerGroup)
+        .channel(NioServerSocketChannel.class)
+        .childHandler(new ChannelInitializer<NioSocketChannel>() {
+            @Override
+            protected void initChannel(NioSocketChannel nioSocketChannel) {
+
+            }
+        });
+serverBootstrap.bind(8000);
+```
+
+## Netty Client 基本结构
+
+```java
+NioEventLoopGroup workerGroup = new NioEventLoopGroup();
+
+Bootstrap bootstrap = new Bootstrap();
+bootstrap
+        .group(workerGroup)
+        .channel(NioSocketChannel.class)
+        .handler(new ChannelInitializer<SocketChannel>() {
+            @Override
+            protected void initChannel(SocketChannel socketChannel) {
+
+            }
+        });
+bootstrap.connect("localhost", 8000);
+```
+
+
+## ByteBuf 介绍
+
+![ByteBuf 结构介绍](byteBuf.png)
+
+ByteBuf 是一个字节容器，容器里面的数据分为三部分:
+
+- 第一部分是已经丢弃的字节，这部分数据是无效的 (index < readerIndex)
+- 第二部分是可读字节，这部分数据是 ByteBuf 的主体数据，从 ByteBuf 里读取的数据都来自这一部分 (index >= readerIndex && index < writerIndex)
+- 最后一部分的数据是可写字节，所有写到 ByteBuf 的数据都会写到这一段 (index > writerIndex)
+- 后面的虚线部分表示该 ByteBuffer 最多还能扩容多少容量
+
+容量相关 API 介绍:
+
+```java
+capacity()          // 表示 ByteBuf 底层占用了多少字节的内存
+maxCapacity()       // 表示 ByteBuf 底层最大能够占用多少字节的内存
+
+readableBytes()     // ByteBuf当前可读的字节数 = writerIndex - readerIndex
+isReadable()        // 还有没有可读的字节, 返回 true 或 false
+
+writableBytes()     // ByteBuf当前可写的字节数 = capacity - writerIndex
+isWritable()        // 还有没有可写的字节, 返回 true 或 false
+maxWritableBytes()  // 可写的最大字节数 = maxCapatiy - writerIndex
+
+```
+
+读写指针相关的 API 介绍:
+
+```java
+
+readerIndex()           // 返回当前的读指针 readerIndex
+readerIndex(int)        // 设置读指针
+
+writeIndex()            // 返回当前的写指针 writerIndex
+writeIndex(int)         // 设置写指针
+
+markReaderIndex()       // 把当前的读指针保存起来
+resetReaderIndex()      // 把当前的读指针恢复到之前保存的值
+
+markWriterIndex()       // 把当前的写指针保存起来
+resetWriterIndex()      // 把当前的写指针恢复到之前保存的值
+```
+
+读写 API 介绍:
+
+```java
+
+writeBytes(byte[​] src)     // 把字节数组 src 里的数据全部写到 ByteBuf
+readBytes(byte[​] dst)      // 把 ByteBuf 里的数据全部读取到 dst
+
+writeByte(byte b)          // 往 ByteBuf 中写一字节
+readByte()                 // 从 ByteBuf 中读取一字节
+
+writeBoolean()、writeChar()、writeShort()、writeInt()、writeLong()、writeFloat()、writeDouble()
+readBoolean()、readChar()、readShort()、readInt()、readLong()、readFloat()、readDouble() ...
+
+```
+
+与读写 API 类似的 API 还有 getBytes()、getByte()与setBytes()、setByte()系列，唯一的区别就是get、set不会改变读写指针，而read、write会改变读写指针，这一点在解析数据的时候千万要注意
+
+由于Netty使用了堆外内存，而堆外内存是不被JVM直接管理的, 也就是说，申请到的内存无法被垃圾回收器直接回收，所以需要我们手动回收
+
+```java
+release()
+retain() 
+```
+
+在通常情况下，这三个方法会被放到一起比较，三者的返回值分别是一个新的ByteBuf对象
+
+```java
+slice()             // 从原始 ByteBuf 中截取一段，这段数据是从 readerIndex 到 writeIndex
+
+duplicate()         // 把整个ByteBuf都截取出来，包括所有的数据、指针信息
+
+copy()              // 
+
+```
+
+## 客户端与服务端通信协议编解码
+
+协议指的就是客户端与服务端事先商量好的，每一个二进制数据包中的每一段字节分别代表什么含义的规则
+
+![协议设计](protocol.png)
+
+- 第一个字段是魔数，通常情况下为固定的几字节（这里规定为4字节）有了这个魔数之后，服务端首先取出前面4字节进行比对，能够在第一时间识别出这个数据包并非是遵循自定义协议的，也就是无效数据包，出于安全考虑，可以直接关闭连接以节省资源
+
+- 接下来的1字节为版本号，通常情况下是预留字段，在协议升级的时候用到
+
+- 第三部分的序列化算法表示如何把Java对象转换为二进制数据及二进制数据如何转换回Java对象，比如Java自带的序列化、JSON、Hessian等序列化方式
+
+- 第四部分的字段表示指令，这里我们用1字节来表示，最高支持256种指令，对于这个即时聊天系统来说已经完全足够了
+
+- 第五部分的字段表示数据长度，占4字节
+
+- 最后一部分为数据内容，每一种指令对应的数据都是不一样的，比如登录的时候需要用户名和密码，收消息的时候需要用户标识和具体消息内容等
+
+### Java 对象的实现
+
+```java
+@Data
+public abstract class Packet {
+
+    /**
+     * 协议的版本
+     */
+    private Byte version = 1;
+
+    /**
+     * 指令
+     */
+    public abstract Byte getCommand();
+}
+
+public class LoginRequestPacket extends Packet {
+    @Override
+    public Byte getCommand() {
+        return Command.LOGIN_REQUEST;
+    }
+}
+
+public interface Command {
+
+    Byte LOGIN_REQUEST = 1;
+}
+```
+
+### 序列化的实现
+
+
+```java
+public interface Serializer {
+
+    /**
+     * JSON 序列化
+     */
+    byte JSON_SERIALIZER = 1;
+
+    Serializer DEFAULT = new JsonSerializer();
+
+    byte getSerializerAlgorithm();
+
+    byte[] serialize(Object object);
+
+    <T> T deserialize(Class<T> clazz, byte[] bytes);
+}
+
+
+public class JsonSerializer implements Serializer {
+    @Override
+    public byte getSerializerAlgorithm() {
+        return SerializerAlgorithm.JSON;
+    }
+
+    @Override
+    public byte[] serialize(Object object) {
+        return JSON.toJSONBytes(object);
+    }
+
+    @Override
+    public <T> T deserialize(Class<T> clazz, byte[] bytes) {
+        return JSON.parseObject(bytes, clazz);
+    }
+}
+
+```
+
+### 编解码实现
+
+```java
+public class PacketCodeC {
+
+    private static final int MAGIC_NUMBER = 0x12345678;
+
+    public ByteBuf encode(Packet packet) {
+        ByteBuf byteBuf = ByteBufAllocator.DEFAULT.ioBuffer();
+        byte[] bytes = Serializer.DEFAULT.serialize(packet);
+
+        // 1. 魔法数 4byte
+        byteBuf.writeInt(MAGIC_NUMBER);
+        // 2. 版本 1byte
+        byteBuf.writeByte(packet.getVersion());
+        // 3. 序列化算法 1byte
+        byteBuf.writeByte(Serializer.DEFAULT.getSerializerAlgorithm());
+        // 4. 指令 1byte
+        byteBuf.writeByte(packet.getCommand());
+        // 5. 数据长度 4byte
+        byteBuf.writeInt(bytes.length);
+        // 6. 数据 N byte
+        byteBuf.writeBytes(bytes);
+
+        return byteBuf;
+    }
+
+    public Packet decode(ByteBuf byteBuf) {
+        // 跳过魔法数
+        byteBuf.skipBytes(4);
+
+        // 跳过版本号
+        byteBuf.skipBytes(1);
+
+        // 序列化算法标识
+        byte serializeAlgorithm = byteBuf.readByte();
+
+        // 指令
+        byte command = byteBuf.readByte();
+
+        // 数据包长度
+        int length = byteBuf.readInt();
+
+        byte[] bytes = new byte[length];
+        byteBuf.readBytes(bytes);
+
+        Class<? extends Packet> requestType = getRequestType(command);
+        Serializer serializer = getSerializer(serializeAlgorithm);
+
+        if (requestType != null && serializer != null) {
+            return serializer.deserialize(requestType, bytes);
+        }
+
+        return null;
+    }
+
+    private Class<? extends Packet> getRequestType(byte command) {
+        return LoginRequestPacket.class;
+    }
+
+    private Serializer getSerializer(byte serializeAlgorithm) {
+        return Serializer.DEFAULT;
+    }
+}
+```
+
+### 实现客户端登录
+
+![登陆逻辑](login.png)
+
+
+### 实现客户端与服务端收发消息
+
+如何判断客户端是否已经登录？
+
+## Pipeline 与 ChannelHandler
+
+![pipeline](pipeline.png)
+
+![ChannelHandler分类](channelHandler.png)
+
+ChannelInboundHandler: 它是处理读数据的逻辑
+
+ChannelOutboundHandler: 处理写数据的逻辑
+
+ChannelInboundHandlerAdapter 和 ChannelOutboundHandlerAdapter 是默认实现
+
+addLast() 能让 InHandler 的顺序与书面顺序保持一致
+
+addList() 让 OutHandler 的顺序与书面顺序相反
+
+![pipeline 的结构](pcons.png)
+
+是一个双向链表
+
+## 特殊的 ChannelHandler 
+
+- ChannelInboundHandlerAdapter (read)
+- ChannelOutboundHandlerAdapter (write)
+- ByteToMessageDecoder (decode) (好处，netty 会自动帮我们释放 ByteBuf 用到的堆外内存)
+- MessageToByteEncoder<T> (encode)
+- SimpleChannelInboundHandler<T> (channelRead0)
+
+
+## 拆包/粘包理论与解决方案
+
+**存在3种类型的输出**:
+
+- 一种是正常的字符串输出
+- 一种是多个字符串“粘”在了一起，我们定义这种ByteBuf为粘包
+- 一种是一个字符串被“拆”开，形成一个破碎的包，我们定义这种ByteBuf为半包
+
+
+**为什么会有粘包、半包现象**:
+
+尽管我们的应用层按照ByteBuf为单位来发送数据，但是到了底层操作系统，仍然是按照字节流发送数据的
+
+因此，数据到了服务端，也按照字节流的方式读入，然后到了Netty应用层面，重新拼装成ByteBuf
+
+这里的ByteBuf与客户端按照顺序发送的ByteBuf可能是不对等的
+
+因此，我们需要在客户端根据自定义协议来组装应用层的数据包，然后在服务端根据应用层的协议来组装数据包
+
+这个过程通常在服务端被称为拆包，而在客户端被称为粘包
+
+拆包和粘包是相对的，一端粘了包，另外一端就需要将粘过的包拆开
+
+举个例子，发送端将三个数据包粘成两个TCP数据包发送到接收端，接收端就需要根据应用协议将两个数据包重新拆分成三个数据包
+
+**拆包的原理**
+
+在没有Netty的情况下，用户如果自己需要拆包，基本原理就是不断地从TCP缓冲区中读取数据，每次读取完都需要判断是否是一个完整的数据包
+
+- 如果当前读取的数据不足以拼接成一个完整的业务数据包，那就保留该数据，继续从TCP缓冲区中读取，直到得到一个完整的数据包
+
+- 如果当前读到的数据加上已经读取的数据足够拼接成一个数据包，那就将已经读取的数据拼接上本次读取的数据，构成一个完整的业务数据包传递到业务逻辑，多余的数据仍然保留，以便和下次读到的数据尝试拼接
+
+## Netty自带的拆包器
+
+固定长度的拆包器 FixedLengthFrameDecoder
+
+- 如果应用层协议非常简单，每个数据包的长度都是固定的, 比如100
+
+- 那么只需要把这个拆包器加到Pipeline中，Netty就会把一个个长度为100的数据包（ByteBuf）传递到下一个ChannelHandler
+
+行拆包器LineBasedFrameDecoder
+
+- 发送端发送数据包的时候，每个数据包之间以换行符作为分隔
+
+- 接收端通过 LineBasedFrameDecoder 将粘过的ByteBuf拆分成一个个完整的应用层数据包
+
+分隔符拆包器 DelimiterBasedFrameDecoder
+
+- 行拆包器的通用版本，只不过我们可以自定义分隔符
+
+基于长度域的拆包器 LengthFieldBasedFrameDecoder
+
+- 最后一种拆包器是最通用的一种拆包器，只要你的自定义协议中包含长度域字段，均可以使用这个拆包器来实现应用层拆包
+
+## 如何使用LengthFieldBasedFrameDecoder
+
+关于拆包，我们只需要关注以下3点：
+
+- 在我们的自定义协议中，长度域在整个数据包的哪个地方。用专业术语来说，就是长度域相对整个数据包的偏移量是多少，这里显然是4+1+1+1=7
+
+- 另外需要关注的就是，长度域的长度是多少，这里显然是4
+
+- 有了长度域偏移量和长度域的长度，我们就可以构造一个拆包器
+
+```java
+new LengthFieldBasedFrameDecoder(Integer.MAX_VALUE, 7, 4);
+```
+
+## 拒绝非本协议连接
+
+```java
+if (in.getInt(in.readerIndex()) != PacketCodeC.MAGIC_NUMBER) {
+    ctx.channel().close();
+    return null;
+}
+```
+
+## 客户端和服务端的Pipeline结构
+
+
+![pipeline 结构](pipeline_cons.png)
+
+
+## ChannelHandler 的生命周期
+
+```java
+handlerAdded()
+channelRegister()
+channelActive()
+channelRead()
+channelReadComplete()
+channelInactive()
+channelUnregistered()
+handlerRemove()
+```
+
+![ChannelHandler 生命周期](lifecycle.png)
+
+## ChannelInitializer 的实现原理
+
+- ChannelInitializer 定义了一个抽象的 initChannel() 方法，这个抽象方法由我们自行实现。我们在服务端启动流程里的实现逻辑就是往 Pipeline 里组织我们的 Handler 链
+
+- handlerAdded() 方法和c hannelRegistered() 方法都会尝试调用 initChannel() 方法，initChannel() 方法使用p utIfAbsent() 方法来防止initChannel() 方法被调用多次
+
+- channelRegistered() 方法里还有机会再调一次 initChannel() 方法，把自定义的 Handler 都添加到 Pipeline 中去
+
+## ChannelHandler的 热插拔机制
+
+```java
+public class AuthHandler extends ChannelInboundHandlerAdapter {
+
+    @Override
+    public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
+        if (!LoginUtils.hasLogin(ctx.channel())) {
+            ctx.channel().close();
+        } else {
+            ctx.pipeline().remove(this);
+            super.channelRead(ctx, msg);
+        }
+    }
+
+    @Override
+    public void handlerRemoved(ChannelHandlerContext ctx) throws Exception {
+        if (LoginUtils.hasLogin(ctx.channel())) {
+            System.out.println("当前登陆验证完毕，无需再次验证， AuthHandler 被移除");
+        } else {
+            System.out.println("无登陆验证，强制关闭连接！");
+        }
+    }
+
+}
+```
+

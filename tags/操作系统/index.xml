@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>操作系统 on Bluee&#39;s Blog</title>
+        <link>https://yangzhaoxing90.github.io/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</link>
+        <description>Recent content in 操作系统 on Bluee&#39;s Blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en</language>
+        <lastBuildDate>Thu, 27 Feb 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://yangzhaoxing90.github.io/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>操作系统概念-Java实现</title>
+        <link>https://yangzhaoxing90.github.io/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/</link>
+        <pubDate>Thu, 27 Feb 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://yangzhaoxing90.github.io/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/</guid>
+        <description>&lt;img src="https://yangzhaoxing90.github.io/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/cover.png" alt="Featured image of post 操作系统概念-Java实现" /&gt;&lt;h2 id=&#34;概述&#34;&gt;概述
+&lt;/h2&gt;&lt;h3 id=&#34;第1章-导论&#34;&gt;第1章 导论
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;操作系统&lt;/strong&gt;是管理计算机硬件的程序,它还为应用程序提供基础，充当计算机硬件和用户之间的中介&lt;/p&gt;
+&lt;p&gt;本章目标：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;概括介绍操作系统的主要组件&lt;/li&gt;
+&lt;li&gt;概括介绍计算机系统的基本组织体系结构&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;11-操作系统做什么&#34;&gt;1.1 操作系统做什么
+&lt;/h3&gt;&lt;p&gt;计算机系统可以粗分为 4 个组成部分：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;计算机硬件 （如CPU、内存、IO设备），为系统提供基本的计算资源&lt;/li&gt;
+&lt;li&gt;操作系统  控制和协调用户的应用程序对硬件的使用&lt;/li&gt;
+&lt;li&gt;系统程序、应用程序 （如 word、浏览器），规定了按照何种方式使用资源解决用户的问题&lt;/li&gt;
+&lt;li&gt;用户&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;12-计算机系统组织&#34;&gt;1.2 计算机系统组织
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;计算机系统操作&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yangzhaoxing90.github.io/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/computer.png&#34;
+	width=&#34;1818&#34;
+	height=&#34;754&#34;
+	srcset=&#34;https://yangzhaoxing90.github.io/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/computer_hu6849697394904808510.png 480w, https://yangzhaoxing90.github.io/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/computer_hu15780207442248125220.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;计算机系统&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;241&#34;
+		data-flex-basis=&#34;578px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;电脑启动 -&amp;gt; 初始化程序 (位于固件中) -&amp;gt; 引导程序定位操作系统内核，并把它装入内存 -&amp;gt; 操作系统执行第一个进程，如 init -&amp;gt; 等待事件发生&lt;/p&gt;
+&lt;p&gt;事件的发送：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;硬件中断 （随时通过系统总线向 CPU 发出信号，以触发中断）&lt;/li&gt;
+&lt;li&gt;软件中断 （通过执行系统调用）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://yangzhaoxing90.github.io/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/break.png&#34;
+	width=&#34;1522&#34;
+	height=&#34;508&#34;
+	srcset=&#34;https://yangzhaoxing90.github.io/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/break_hu534678196616144984.png 480w, https://yangzhaoxing90.github.io/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/break_hu7880368997590487367.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;中断&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;299&#34;
+		data-flex-basis=&#34;719px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;CPU 执行 IO 中断，然后又恢复原来的进程执行&lt;/p&gt;
+&lt;p&gt;不同的计算机有不同的中断机制，共同的点是，中断必须将控制权交给合适的&lt;strong&gt;中断服务历程&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;存储结构&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yangzhaoxing90.github.io/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/storage.png&#34;
+	width=&#34;1722&#34;
+	height=&#34;1212&#34;
+	srcset=&#34;https://yangzhaoxing90.github.io/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/storage_hu13254898650629388115.png 480w, https://yangzhaoxing90.github.io/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/storage_hu2680890449139550049.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;存储设备的层次&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;142&#34;
+		data-flex-basis=&#34;340px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;IO结构&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;通用计算机系统由一个CPU和多个&lt;strong&gt;设备控制器组成&lt;/strong&gt;，它们通过共同的总线连接起来。每个设备控制器负责特定类型的设备&lt;/p&gt;
+&lt;p&gt;通常操作系统为每个设备控制器提供一个&lt;strong&gt;设备驱动程序&lt;/strong&gt;，设备驱动程序理解设备控制器，提供设备和操作系统之间统一的接口&lt;/p&gt;
+&lt;p&gt;为了开始 IO 操作，设备驱动程序在设备控制器中装载适当的寄存器，设备控制器检查这些寄存器的内容，以确定执行什么操作&lt;/p&gt;
+&lt;p&gt;这种 IO 中断驱动适合移动少量数据，但对于大量数据的移动，会带来超载问题，&lt;strong&gt;DMA （直接内存访问）&lt;/strong&gt; 就是为了解决这个问题设计的&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yangzhaoxing90.github.io/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/work.png&#34;
+	width=&#34;1278&#34;
+	height=&#34;1108&#34;
+	srcset=&#34;https://yangzhaoxing90.github.io/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/work_hu3538462290466228500.png 480w, https://yangzhaoxing90.github.io/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/work_hu115140314043453887.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;计算机内部工作&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;115&#34;
+		data-flex-basis=&#34;276px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;13-计算机系统体系结构&#34;&gt;1.3 计算机系统体系结构
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;单处理器系统&lt;/li&gt;
+&lt;li&gt;多处理器系统&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;14-操作系统结构&#34;&gt;1.4 操作系统结构
+&lt;/h3&gt;&lt;p&gt;多道程序能力：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;分时系统 （CPU 来回切换执行任务）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;分时系统在主存储器中保存几个作业，作业最开始存在于磁盘的作业池中&lt;/p&gt;
+&lt;p&gt;操作系统通过作业调度从作业池中选择作业加载入内存，这一决策过程叫做 CPU 调度&lt;/p&gt;
+&lt;p&gt;分时操作系统中，操作系统必须保证合理的响应时间，这有时通过交换来得到，其中进程被换入内存或由内存换出到磁盘&lt;/p&gt;
+&lt;p&gt;虚拟内存（主要优点是程序可以比物理内存大）&lt;/p&gt;
+&lt;p&gt;分时系统也提供文件系统&lt;/p&gt;
+&lt;h3 id=&#34;15-操作系统操作&#34;&gt;1.5 操作系统操作
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;双重模式操作&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;用户模式&lt;/li&gt;
+&lt;li&gt;内核模式&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;可以区分操作系统所执行的任务和用户所执行的任务&lt;/p&gt;
+&lt;p&gt;双重模式操作为人们提供了保护操作系统和用户程序不受错误用户程序影响的手段&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yangzhaoxing90.github.io/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/double.png&#34;
+	width=&#34;1638&#34;
+	height=&#34;638&#34;
+	srcset=&#34;https://yangzhaoxing90.github.io/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/double_hu6574997663853925450.png 480w, https://yangzhaoxing90.github.io/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/double_hu16962525449283596043.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;双重模式操作&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;256&#34;
+		data-flex-basis=&#34;616px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;实现方式为：将能引起损害的机器指令作为&lt;strong&gt;特权指令&lt;/strong&gt;， 硬件允许特权指令仅在内核模式下执行&lt;/p&gt;
+&lt;p&gt;定时器：&lt;/p&gt;
+&lt;p&gt;必须确保操作系统能维持对CPU的控制，也必须防止用户程序陷入死循环或不调用系统服务，并且不将控制权返回到操作系统&lt;/p&gt;
+&lt;p&gt;可将定时器设置为在给定时间后中断计算机，时间可以是固定的，也可以是可变的&lt;/p&gt;
+&lt;h3 id=&#34;16-进程管理&#34;&gt;1.6 进程管理
+&lt;/h3&gt;&lt;p&gt;处于执行中的程序被称为进程&lt;/p&gt;
+&lt;p&gt;进程需要一定的资源，CPU时间、内存、文件、I/O设备来完成其任务&lt;/p&gt;
+&lt;p&gt;操作系统负责管理进程的如下活动：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;创建和删除用户进程和系统进程&lt;/li&gt;
+&lt;li&gt;挂起和重启进程&lt;/li&gt;
+&lt;li&gt;提供进程同步机制&lt;/li&gt;
+&lt;li&gt;提供进程通信机制&lt;/li&gt;
+&lt;li&gt;提供死锁处理机制&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;17-内存管理&#34;&gt;1.7 内存管理
+&lt;/h3&gt;&lt;p&gt;内存是一个大的字或字节的数组，每个字或字节都有自己的地址&lt;/p&gt;
+&lt;p&gt;内存是可以被 CPU 和 I/O 设备所共同快速访问的数据仓库&lt;/p&gt;
+&lt;p&gt;操作系统负责下列有关内存的活动：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;记录内存的哪部分正在被使用以及被谁使用&lt;/li&gt;
+&lt;li&gt;当有内存空间时，决定哪些进程可以装入内存&lt;/li&gt;
+&lt;li&gt;根据需要释放分配和释放内存空间&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;18-存储管理&#34;&gt;1.8 存储管理
+&lt;/h3&gt;&lt;p&gt;操作系统对存储设备的物理属性进行了抽象，定义了逻辑存储单元，就是文件&lt;/p&gt;
+&lt;p&gt;文件是由其创建者定义的一组相关信息的集合 （程序和数据）&lt;/p&gt;
+&lt;p&gt;操作系统负责下列有关文件管理的活动：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;创建和删除文件&lt;/li&gt;
+&lt;li&gt;创建和删除目录来组织文件&lt;/li&gt;
+&lt;li&gt;提供操作文件和目录的原语&lt;/li&gt;
+&lt;li&gt;将文件映射到二级存储上&lt;/li&gt;
+&lt;li&gt;在稳定（非易失的）存储介质上备份文件&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;现代大多数操作系统都采用硬盘作为主要在线存储介质来存储程序和数据&lt;/p&gt;
+&lt;p&gt;操作系统负责下列有关硬盘管理的活动：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;空闲空间管理&lt;/li&gt;
+&lt;li&gt;存储空间分配&lt;/li&gt;
+&lt;li&gt;硬盘调度&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;19-保护和安全&#34;&gt;1.9 保护和安全
+&lt;/h3&gt;&lt;p&gt;保护是一种控制进程或用户对计算机系统资源访问的机制&lt;/p&gt;
+&lt;p&gt;绝大多数操作系统维护一种用户名和相关用户标识（UID）的链表，这些数值对用户来说是唯一的&lt;/p&gt;
+&lt;h3 id=&#34;110-分布式系统&#34;&gt;1.10 分布式系统
+&lt;/h3&gt;&lt;p&gt;分布式系统是一组物理上分开的、可能各个异构的计算机系统通过网络连接在一起，为用户提供系统所维护的各种资源的计算机的集合&lt;/p&gt;
+&lt;h3 id=&#34;111-专用系统&#34;&gt;1.11 专用系统
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;实时嵌入系统 （运行实时操作系统，有明确切固定的时间约束）&lt;/li&gt;
+&lt;li&gt;多媒体系统 （多媒体数据必须根据确定的时间限制来传输流）&lt;/li&gt;
+&lt;li&gt;手持系统 （）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;112-计算环境&#34;&gt;1.12 计算环境
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;传统环境
+&lt;ul&gt;
+&lt;li&gt;批处理计算机系统，以批量的方式处理作业&lt;/li&gt;
+&lt;li&gt;分时系统采用定时器和调度算法，通过CPU迅速地循环进程，给其中每一个用户分配资源&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;客户-服务器计算&lt;/li&gt;
+&lt;li&gt;对等计算&lt;/li&gt;
+&lt;li&gt;基于 web 计算&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;第-2-章-操作系统结构&#34;&gt;第 2 章 操作系统结构
+&lt;/h2&gt;&lt;p&gt;本章目标：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;介绍操作系统为用户、进程和其他系统提供的服务&lt;/li&gt;
+&lt;li&gt;讨论组织操作系统的不同方法&lt;/li&gt;
+&lt;li&gt;解释如何安装、定制操作系统，以及如何启动操作系统&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;21-操作系统服务&#34;&gt;2.1 操作系统服务
+&lt;/h3&gt;&lt;p&gt;一组操作系统服务提供对用户很有用的功能：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;用户界面 （GUI、CLI、批界面）&lt;/li&gt;
+&lt;li&gt;程序执行 （系统必须能将程序装入内存并运行该程序）&lt;/li&gt;
+&lt;li&gt;I/O操作 （运行程序需要的 IO）&lt;/li&gt;
+&lt;li&gt;文件系统操作 （读写文件和目录）&lt;/li&gt;
+&lt;li&gt;通信 （进程间交换信息）&lt;/li&gt;
+&lt;li&gt;错误检测&lt;/li&gt;
+&lt;li&gt;资源分配 （多个用户或作业运行时，需要分配资源）&lt;/li&gt;
+&lt;li&gt;统计 （记录哪些用户使用了哪些资源）&lt;/li&gt;
+&lt;li&gt;保护和安全&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;22-操作系统的用户界面&#34;&gt;2.2 操作系统的用户界面
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;命令解释程序&lt;/li&gt;
+&lt;li&gt;图形用户界面&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;23-系统调用&#34;&gt;2.3 系统调用
+&lt;/h3&gt;&lt;p&gt;系统调用是获取操作系统所提供的服务的接口&lt;/p&gt;
+&lt;p&gt;应用程序员最常用的 API 有三种：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Win32 API （Windows 系统）&lt;/li&gt;
+&lt;li&gt;POSIX API （Unix、Linux 和 Mac OS X）&lt;/li&gt;
+&lt;li&gt;Java API （JVM）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;用 API 不用实际系统调用的好处：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;可移植性强&lt;/li&gt;
+&lt;li&gt;实际的系统调用比 API 难用且更复杂&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://yangzhaoxing90.github.io/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/systemcall.png&#34;
+	width=&#34;1376&#34;
+	height=&#34;732&#34;
+	srcset=&#34;https://yangzhaoxing90.github.io/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/systemcall_hu3433207362571292550.png 480w, https://yangzhaoxing90.github.io/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/systemcall_hu2611884753704626806.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;系统调用&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;187&#34;
+		data-flex-basis=&#34;451px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;24-系统调用类型&#34;&gt;2.4 系统调用类型
+&lt;/h3&gt;&lt;p&gt;系统调用可以分为 5 大类：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;进程控制 （结束、放弃、装入、执行、创建进程、终止进程、取得进程属性、设置进程属性、等待时间、等待事件、唤醒事件、分配和释放内存）&lt;/li&gt;
+&lt;li&gt;文件管理 （创建文件、删除文件、打开、关闭、读、写、重定位、取得文件属性、设置文件属性）&lt;/li&gt;
+&lt;li&gt;设备管理 （请求设备、释放设备、读、写、重定位、取得设备属性、设置设备属性、逻辑连接或断开设备）&lt;/li&gt;
+&lt;li&gt;信息维护 （读取时间或日期、设置时间或日期、读取系统数据、设置系统数据、读取进程，文件或设备属性、设置进程，文件或设备属性）&lt;/li&gt;
+&lt;li&gt;通信 （创建，删除通信连接、发送，接收消息、传递状态信息、连接或断开远程设备）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;通信&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;两种常见的通信模型：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;消息传递模型 （通信进程通过交换消息来传递信息）&lt;/li&gt;
+&lt;li&gt;共享内存模型 （通过 shared memory create 和 shared memory attach 系统调用来获得其他进程所拥有的内存区域访问权）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;25-系统程序&#34;&gt;2.5 系统程序
+&lt;/h3&gt;&lt;p&gt;可以分为分类：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;文件管理&lt;/li&gt;
+&lt;li&gt;状态信息&lt;/li&gt;
+&lt;li&gt;文件修改&lt;/li&gt;
+&lt;li&gt;程序设计语言支持&lt;/li&gt;
+&lt;li&gt;程序装入和执行&lt;/li&gt;
+&lt;li&gt;通信&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;26-操作系统设计和实现&#34;&gt;2.6 操作系统设计和实现
+&lt;/h3&gt;</description>
+        </item>
+        
+    </channel>
+</rss>

@@ -1,0 +1,114 @@
+---
+title: Vue
+description: The Progressive JavaScript Framework
+slug: Vue
+date: 2025-02-25 00:00:00+0000
+image: cover.png
+categories:
+    - 前端
+tags:
+    - Vue
+weight: 1       # You can add weight to some posts to override the default sorting (date descending)
+---
+
+## 资料
+
+<https://cn.vuejs.org/guide/introduction>
+
+## 什么是 Vue？
+
+
+```vue
+import { createApp, ref } from 'vue'
+
+createApp({
+  setup() {
+    return {
+      count: ref(0)
+    }
+  }
+}).mount('#app')
+```
+
+```vue
+<div id="app">
+  <button @click="count++">
+    Count is: {{ count }}
+  </button>
+</div>
+```
+
+Vue 的两个核心功能：
+
+- 声明式渲染：Vue 基于标准 HTML 拓展了一套模板语法，使得我们可以声明式地描述最终输出的 HTML 和 JavaScript 状态之间的关系
+- 响应性：Vue 会自动跟踪 JavaScript 状态并在其发生变化时响应式地更新 DOM
+
+## 渐进式框架
+
+根据你的需求场景，你可以用不同的方式使用 Vue：
+
+- 无需构建步骤，渐进式增强静态的 HTML
+- 在任何页面中作为 Web Components 嵌入
+- 单页应用 (SPA)
+- 全栈 / 服务端渲染 (SSR)
+- Jamstack / 静态站点生成 (SSG)
+- 开发桌面端、移动端、WebGL，甚至是命令行终端中的界面
+
+## 单文件组件
+
+我们可以使用一种类似 HTML 格式的文件来书写 Vue 组件，它被称为单文件组件 (也被称为 *.vue 文件，英文 Single-File Components，缩写为 SFC)
+
+顾名思义，Vue 的单文件组件会将一个组件的逻辑 (JavaScript)，模板 (HTML) 和样式 (CSS) 封装在同一个文件里。下面我们将用单文件组件的格式重写上面的计数器示例
+
+```vue
+
+<script setup>
+import { ref } from 'vue'
+const count = ref(0)
+</script>
+
+<template>
+  <button @click="count++">Count is: {{ count }}</button>
+</template>
+
+<style scoped>
+button {
+  font-weight: bold;
+}
+</style>
+
+```
+
+## API 风格
+
+Vue 的组件可以按两种不同的风格书写：选项式 API 和组合式 API
+
+
+## 互动教程
+
+<https://cn.vuejs.org/tutorial/#step-1>
+
+1. 声明式渲染
+2. Attribute 绑定 (v-bind, :id)
+3. 事件监听 (v-on, @click)
+4. 表单绑定 (v-model)
+5. 条件渲染 (v-if, v-else)
+6. 列表渲染 (v-for)
+7. 计算属性 (computed())
+8. 生命周期和模板引用 (ref, onMounted, onUpdated)
+
+生命周期图 <https://cn.vuejs.org/guide/essentials/lifecycle#lifecycle-diagram>
+
+9. 侦听器 (watch)
+10. 组件 (import ChildComp from './ChildComp.vue')
+11. Props (defineProps)
+12. Emits (defineEmits)
+13. 插槽 (slot)
+
+## 快速上手
+
+1. npm
+2. vue-official
+3. vite
+
+CDN <>

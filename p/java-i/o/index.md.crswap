@@ -147,6 +147,915 @@ In Java, a char is a two-byte, unsigned integer, the only unsigned type in Java.
 
 **1.4 Readers and Writers**
 
+![java.io package](io.png)
+
+**1.5 The Ubiquitous IOException**
+
+![java.io package](exceptions.png)
+
+java.util.zip (DataFormatException and ZipException)
+
+java.net (BindException, ConnectException, MalformedURLException, NoRouteToHostException, ProtocolException, SocketException, UnknownHostException, and UnknownServiceException).
+
+**1.6 The Console: System.out, System.in, and System.err**
+
+**1.7 Security Checks on I/O**
+
+### Chapter 2. Output Streams
+
+**2.1 The OutputStream Class**
+
+```java
+java.io.OutputStream
+
+public abstract void write(int b) throws IOException
+public void write(byte[] data) throws IOException
+public void write(byte[] data, int offset, int length) throws IOException
+public void flush() throws IOException
+public void close() throws IOException
+```
 
 
-！
+**2.2 Writing Bytes to Output Streams**
+
+```java
+public abstract void write(int b) throws IOException
+```
+
+超出的按照 b & 0xFF (0-255) 转换来输出
+
+
+**2.3 Writing Arrays of Bytes**
+
+
+```java
+public void write(byte[] data) throws IOException
+public void write(byte[] data, int offset, int length) throws IOException
+
+String s = "How are streams treating you?";
+byte[] data = s.getBytes();
+System.out.write(data);
+```
+
+**2.4 Flushing and Closing Output Streams**
+
+The flush() method forces the data to be written whether or not the buffer is full:
+```java
+public void flush() throws IOException
+```
+
+This should happen when the program exits or when you explicitly invoke the close() method:
+
+```java
+public void close() throws IOException
+```
+
+**2.5 Subclassing OutputStream**
+
+Recall that there are three overloaded variants of the write() method in OutputStream, one abstract, two concrete:
+
+```java
+public abstract void write(int b) throws IOException
+public void write(byte[] data) throws IOException
+public void write(byte[] data, int offset, int length) throws IOException
+
+public void write(byte[] data, int offset, int length) throws IOException {
+  for (int i = offset; i < offset+length; i++) write(data[i]);
+}
+
+```
+
+
+**2.6 A Graphical User Interface for Output Streams**
+
+pass
+
+### Chapter 3. Input Streams
+
+**3.1 The InputStream Class**
+
+The java.io.InputStream class is the abstract superclass for all input streams.
+
+```java
+public abstract int read() throws IOException
+public int read(byte[] data) throws IOException
+public int read(byte[] data, int offset, int length) throws IOException
+public long skip(long n) throws IOException
+public int available() throws IOException
+public void close() throws IOException
+public synchronized void mark(int readlimit)
+public synchronized void reset() throws IOException
+public boolean markSupported()
+```
+
+**3.2 The read( ) Method**
+
+```java
+public abstract int read() throws IOException
+```
+
+This is a number between and 255
+
+```java
+int[] data = new int[10];
+for (int i = 0; i < data.length; i++) {
+  data[i] = System.in.read();
+}
+```
+
+Notice that although read() is reading a byte, it returns an int. 
+
+If you want to store the raw bytes instead, you can cast the int to a byte. For example:
+
+```java
+byte[] b = new byte[10];
+for (int i = 0; i < b.length; i++) {
+  b[i] = (byte) System.in.read();
+}
+
+```
+
+That is, a byte in the range -128 to 127 instead of to 255
+
+
+**3.3 Reading Chunks of Data from a Stream**
+
+```java
+public int read(byte[] data) throws IOException
+public int read(byte[] data, int offset, int length) throws IOException
+```
+
+For example, to attempt to read 10 bytes from System.in, you could write the following code:
+
+```java
+try {
+  byte[] b = new byte[10];
+  System.in.read(b);
+} catch (IOException e) {
+    System.err.println("Couldn't read from System.in!");
+}
+```
+
+**3.4 Counting the Available Bytes**
+
+It's sometimes convenient to know how many bytes are available to be read before you attempt to read them. 
+
+```java
+public int available() throws IOException
+
+try {
+  byte[] b = new byte[System.in.available()];
+  System.in.read(b);
+}
+catch (IOException e) {System.err.println("Couldn't read from System.in!");}
+```
+
+**3.5 Skipping Bytes**
+
+The argument to skip() is the number of bytes to skip. The return value is the number of bytes actually skipped, which may be less than bytesToSkip. -1 is returned if the end of stream is encountered.
+
+```java
+public long skip(long bytesToSkip) throws IOException
+
+try {
+  long bytesSkipped = 0;
+  long bytesToSkip = 80;
+  while (bytesSkipped < bytesToSkip) {
+    long n = in.skip(bytesToSkip - bytesSkipped);
+    if (n == -1) break;
+    bytesSkipped += n;
+} }
+catch (IOException e) {System.err.println(e);}
+
+```
+
+**3.6 Closing Input Streams**
+
+```java
+public void close() throws IOException
+
+try {
+  URL u = new URL("http://www.javasoft.com/");
+  InputStream in = u.openStream();
+  // Read from the stream...
+  in.close();
+}
+catch (IOException e) {System.err.println(e);}
+```
+
+**3.7 Marking and Resetting**
+
+It's often useful to be able to read a few bytes and then back up and reread them. 
+
+```java
+public synchronized void mark(int readLimit)
+public synchronized void reset() throws IOException
+public boolean markSupported()
+
+```
+The boolean markSupported() method returns true if this stream supports marking and false if it doesn't.
+
+The only two input stream classes in java.io that always support marking are `BufferedInputStream` (of which System.in is an instance) and `ByteArrayInputStream`.
+
+**3.8 Subclassing InputStream**
+
+**3.9 An Efficient Stream Copier**
+
+```java
+byte[] buffer = new byte[256];
+while (true) {
+    int bytesRead = in.read(buffer);
+    if (bytesRead == -1) break;
+    out.write(buffer, 0, bytesRead);
+}
+```
+
+## Part II: Data Sources
+
+### Chapter 4. File Streams
+
+`FileInputStream` and `FileOutputStream` provide input and output streams that let you read and write files. 
+
+**4.1 Reading Files**
+
+```java
+public FileInputStream(String fileName) throws IOException
+public FileInputStream(File file) throws FileNotFoundException
+public FileInputStream(FileDescriptor fdObj)
+```
+
+Filenames are platform-dependent, so hardcoded file names should be avoided where possible. 
+
+Therefore, the second two constructors are much preferred. 
+
+```java
+try {
+  FileInputStream fis = new FileInputStream("README.TXT");
+  int n;
+  while ((n = fis.available()) > 0) {
+    byte[] b = new byte[n];
+    int result = fis.read(b);
+    if (result == -1) break;
+    String s = new String(b);
+    System.out.print(s);
+  } // End while
+} // End try
+catch (IOException e) {System.err.println(e);}
+System.out.println();
+```
+
+Java looks for files in the `current working directory`. 
+
+```java
+public final FileDescriptor getFD() throws IOException
+```
+This method returns the `java.io.FileDescriptor` object associated with this stream.
+
+```java
+protected void finalize() throws IOException
+```
+
+You don't normally need to invoke this method explicitly, but if you subclass FileInputStream (something I've never found a need for) 
+
+you must invoke super.finalize() from your subclass's finalize() method.
+
+It is possible to open multiple input streams to the same file at the same time, though it's rarely necessary to do so.
+
+Each stream maintains a separate pointer to the current position in the file. 
+
+Reading from the file does not change the file in any way. 
+
+**4.2 Writing Files**
+
+The java.io.FileOutputStream class is a concrete subclass of java.io.OutputStream that provides output streams connected to files
+
+```java
+public FileOutputStream(String filename) throws IOException
+public FileOutputStream(File file) throws IOException
+public FileOutputStream(FileDescriptor fd)
+```
+
+```java
+public FileOutputStream(String name, boolean append) throws IOException
+```
+
+**4.3 File Viewer, Part 1**
+
+### Chapter 5. Network Streams
+
+**5.1 URLs**
+
+The java.net.URL class represents a Uniform Resource Locator like http://metalab.unc.edu/javafaq/.
+
+```java
+public URL(String u) throws MalformedURLException
+public URL(String protocol, String host, String file)
+ throws MalformedURLException
+public URL(String protocol, String host, int port, String file)
+ throws MalformedURLException
+public URL(URL context, String u) throws MalformedURLException
+
+```
+
+Often this means a particular Java implementation does not have the right protocol handler installed. Thus, given a complete absolute URL
+
+```java
+URL u = null;
+try {
+u = new URL("http://www.poly.edu/schedule/fall97/bgrad.html#cs"); }
+catch (MalformedURLException e) { }
+```
+
+You can also construct the URL object by passing its pieces to the constructor:
+
+```java
+
+URL u = null;
+try {
+u = new URL("http", "www.poly.edu", "/schedule/fall97/bgrad.html#cs"); }
+catch (MalformedURLException e) { }
+
+```
+
+Once a URL object has been constructed, there are two ways to retrieve its data. 
+
+The `openStream()` method returns a raw stream of bytes from the source. 
+
+The `getContent()` method returns a Java object that represents the data. 
+
+```java
+try {
+  URL u = new URL("http://www.amnesty.org/");
+  InputStream in = u.openStream();
+  int b;
+  while ((b = in.read()) != -1) {
+    System.out.write(b);
+  }
+}
+catch (MalformedURLException e) {System.err.println(e);}
+catch (IOException e) {System.err.println(e);}
+```
+
+**5.2 URL Connections**
+
+URL connections are closely related to URLs, as their name implies.
+
+Indeed, you get a reference to a URLConnection by using the openConnection() method of a URL object
+
+in many ways, the URL class is only a wrapper around the URLConnection class.
+
+<mark>However, URL connections provide more control over the communication between the client and the server.</mark>
+
+**Reading Data from URL Connections**
+
+URL connections take place in five steps:
+
+- The `URL` object is constructed.
+
+- The `openConnection()` method of the URL object creates the URLConnection object.
+
+- The parameters for the connection and the request properties that the client sends to the server are set up.
+
+- The `connect()` method makes the connection to the server, perhaps using a socket for a network connection or a file input stream for a local connection. The response header information is read from the server.
+
+- Data is read from the connection by using the input stream returned by `getInputStream()` or through a content handler with `getContent()`. Data can be sent to the server using the output stream provided by `getOutputStream()`.
+
+```java
+
+try {
+  URL u = new URL("http://www.digitalthink.com/");
+  URLConnection uc = u.openConnection();
+  uc.connect();
+  InputStream in = uc.getInputStream();
+  //...
+}
+catch (IOException e) { //...
+```
+
+**Writing Data on URL Connections**
+
+Here are the steps for writing data on a URLConnection:
+
+- Construct the `URL` object.
+
+- Call the `openConnection()` method of the URL object to create the `URLConnection` object.
+
+- Pass true to `setDoOutput()` to indicate that this URLConnection will be used for output.
+
+- If you also want to read input from the stream, invoke `setDoInput(true)` to indicate that this `URLConnection` will be used for input.
+
+- Create the data you want to send, preferably as a byte array.
+
+- Call `getOutputStream()` to get an output stream object. Write the byte array calculated in step 5 onto the stream.
+
+- Close the output stream.
+
+- Call `getInputStream()` to get an input stream object. Read and write it as usual.
+
+**5.3 Sockets**
+
+Before data is sent across the Internet from one host to another, it is split into packets of varying but finite size called `datagrams`.
+
+Fortunately, packets are invisible to the Java programmer.
+
+The host's native networking software splits data into `packets` on the sending end and reassembles packets on the receiving end.
+
+Instead, the Java programmer is presented with a higher-level abstraction called a `socket`.
+
+The socket represents a reliable connection for the transmission of data between two hosts. 
+
+A socket performs four fundamental operations:
+
+- Connect to a remote machine
+- Send data
+- Receive data
+- Close the connection
+
+<mark>A socket may not be connected to more than one host at a time. However, a socket may both send data to and receive data from the host to which it's connected.</mark>
+
+The `java.net.Socket` class is Java's interface to a network socket and allows you to perform all `four` fundamental socket operations
+
+```java
+public Socket(String host, int port) throws UnknownHostException, IOException
+public Socket(InetAddress address, int port) throws IOException
+public Socket(String host, int port, InetAddress localAddr, int localPort)
+throws IOException
+public Socket(InetAddress address, int port, InetAddress localAddr, int localPort) throws IOException
+```
+
+Sending and receiving data across a socket is accomplished with output and input streams. These are the methods to get both streams for the socket:
+
+```java
+public InputStream getInputStream() throws IOException
+public OutputStream getOutputStream() throws IOException
+```
+
+There's also a method to close a socket:
+
+```java
+public synchronized void close() throws IOException
+```
+
+**5.4 Server Sockets**
+
+There are two ends to each connection: the `client`, which initiates the connection, and the `server`, which responds to the connection.
+
+No more than one server socket can listen to a particular port at one time. 
+
+Therefore, since a server may need to handle many connections at once, server programs tend to be heavily `multithreaded`.
+
+Incoming connections are stored in a queue until the server can accept them. 
+
+On most systems, the default queue length is between 5 and 50. 
+
+Once the queue fills up, further incoming connections are refused until space in the queue opens up.
+
+The `java.net.ServerSocket` class represents a server socket. 
+
+```java
+public ServerSocket(int port) throws IOException
+public ServerSocket(int port, int backlog) throws IOException
+public ServerSocket(int port, int backlog, InetAddress bindAddr) throws IOException
+```
+
+Normally, you specify only the port you want to listen on:
+
+```java
+try {
+  ServerSocket ss = new ServerSocket(80);
+}
+catch (IOException e) {System.err.println(e);}
+```
+
+0 is a special port number. 
+
+It tells Java to pick an available port.
+
+You can then find out what port it's picked with the getLocalPort() method:
+
+```java
+public int getLocalPort()
+```
+
+Once you have a ServerSocket, you need to wait for incoming connections. 
+
+You do this by calling the `accept()` method, which blocks until a connection attempt occurs and then returns a Socket that you can use to communicate with the client. 
+
+The `close()` method terminates the ServerSocket.
+
+```java
+public Socket accept() throws IOException
+public void close() throws IOException
+```
+
+Instead, accept() returns a Socket object: you call the Socket's getInputStream() or getOutputStream() method. 
+
+For example:
+
+```java
+try {
+  ServerSocket ss = new ServerSocket(2345);
+  Socket s = ss.accept();
+  OutputStream out = s.getOutputStream();
+  // Send data to the client.
+  s.close();
+}
+catch (IOException e) {System.err.println(e);}
+```
+
+Notice in this example, I closed the Socket s, not the ServerSocket ss.
+
+ss is still bound to port 2345. 
+
+You get a new socket for each connection and reuse the server socket. 
+
+For example, the next code fragment repeatedly accepts connections:
+
+```java
+try {
+  ServerSocket ss = new ServerSocket(2345);
+  while (true) {
+    Socket s = ss.accept();
+    OutputStream out = s.getOutputStream();
+    // send data to the client
+    s.close();
+} }
+catch (IOException e) {System.err.println(e);}
+```
+
+**5.5 URLViewer**
+
+pass
+
+## Part III: Filter Streams
+
+### Chapter 6. Filter Streams
+
+Filter streams are used for encryption, compression, translation, buffering, and much more.
+
+**6.1 The Filter Stream Classes**
+
+`java.io.FilterInputStream` and `java.io.FilterOutputStream` are concrete superclasses for input and output stream subclasses that somehow modify or manipulate data of an underlying stream
+
+Each of these classes has a single protected constructor that specifies the underlying stream from which the filter stream reads or writes data:
+
+```java
+protected FilterInputStream(InputStream in)
+protected FilterOutputStream(OutputStream out)
+```
+
+Since the constructors are protected, filter streams may only be created by subclasses.
+
+Each subclass implements a particular filtering operation. 
+
+**6.2 The Filter Stream Subclasses**
+
+The `BufferedInputStream` and `BufferedOutputStream` classes buffer reads and writes by first putting data into a buffer (an internal array of bytes). 
+
+The `java.io.PrintStream` class, which `System.out` and `System.err `are instances of, allows very simple printing of primitive values, objects, and string literals.
+
+The `PushbackInputStream` class has a one-byte pushback buffer so a program can "unread" the last character read.
+
+The `DataInputStream` and `DataOutputStream` classes read and write primitive Java data types and strings in a machine-independent way.
+
+The `ObjectInputStream` and `ObjectOutputStream` classes extend `DataInputStream` and `DataOutputStream` with methods to read and write arbitrary Java objects as well as primitive data types.
+
+The `java.util.zip` package also includes several filter stream classes.
+
+The `java.util.security` package contains the `DigestInputStream` and `DigestOutputStream` filter streams, these calculate message digests of the data that passes through them. 
+
+Installing the Java Cryptography Extension (JCE) adds two more filter streams to this package, `CipherInputStream` and `CipherOutputStream` , which can encrypt or decrypt data using a variety of algorithms.
+
+**6.3 Buffered Streams**
+
+There are two `BufferedInputStream` constructors and two `BufferedOutputStream` constructors:
+
+
+```java
+public BufferedInputStream(InputStream in)
+public BufferedInputStream(InputStream in, int size)
+public BufferedOutputStream(OutputStream out)
+public BufferedOutputStream(OutputStream out, int size)
+```
+
+For example:
+
+```java
+URL u = new URL("http://java.developer.com");
+BufferedInputStream bis = new BufferedInputStream(u.openStream(), 256);
+```
+
+**BufferedInputStream Details**
+
+```java
+protected byte[] buf            // the buffer itself is a byte array called buf
+protected int count             // the number of bytes in the buffer is an int named count
+protected int pos               // the index of the next byte that will be returned by read() is an int called pos
+protected int markpos           // the mark, if any, is an int called markpos
+protected int marklimit         // the read-ahead limit before the mark is invalidated is an int called marklimit
+```
+
+`BufferedInputStream` only overrides methods from InputStream.
+
+It does not declare any new methods of its own. Marking and resetting are supported.
+
+**BufferedOutputStream Details**
+
+```java
+protected byte buf[]            // stores the buffer in a protected byte array named buf 
+protected int pos               // the index of the next place in the array where a byte will be stored in an int field named pos
+```
+
+`BufferedOutputStream` only overrides three methods from OutputStream. 
+
+It does not declare any new methods.
+
+**6.4 PushbackInputStream**
+
+`The java.io.PushbackInputStream` class provides a pushback buffer so a program can "unread" the last several bytes read. 
+
+```java
+public void unread(int b) throws IOException
+public void unread(byte[] data, int offset, int length) throws IOException
+public void unread(byte[] data) throws IOException
+```
+
+However, you can change the default buffer size with the second constructor:
+
+```java
+public PushbackInputStream(InputStream in)
+public PushbackInputStream(InputStream in, int size)
+```
+
+**6.5 Print Streams**
+
+pass
+
+**6.6 Multitarget Output Streams**
+
+pass
+
+**6.7 File Viewer, Part 2**
+
+pass
+
+### Chapter 7. Data Streams
+
+Data streams read and write strings, integers, floating-point numbers, and other data that's commonly presented at a higher level than mere bytes.
+
+**7.1 The Data Stream Classes**
+
+```java
+public class DataInputStream extends FilterInputStream implements DataInput 
+```
+```java
+public class DataOutputStream extends FilterOutputStream implements DataOutput
+```
+
+**The DataInput and DataOutput Interfaces**
+
+The `java.io.DataInput` interface declares 15 methods that read various kinds of data:
+
+```java
+public abstract boolean readBoolean() throws IOException
+public abstract byte readByte() throws IOException
+public abstract int readUnsignedByte() throws IOException
+public abstract short readShort() throws IOException
+public abstract int readUnsignedShort() throws IOException
+public abstract char readChar() throws IOException
+public abstract int readInt() throws IOException
+public abstract long readLong() throws IOException
+public abstract float readFloat() throws IOException
+public abstract double readDouble() throws IOException
+public abstract String readLine() throws IOException
+public abstract String readUTF() throws IOException
+public void readFully(byte[] data) throws IOException
+public void readFully(byte[] data, int offset, int length) throws IOException
+public int skipBytes(int n) throws IOException
+```
+
+the `java.io.DataOutput` interface declares 14 methods, mostly complementary to those in DataInput:
+
+```java
+public abstract void write(int b) throws IOException
+public abstract void write(byte[] data) throws IOException
+public abstract void write(byte[] data, int offset, int length) throws IOException
+public abstract void writeBoolean(boolean v) throws IOException
+public abstract void writeByte(int b) throws IOException
+public abstract void writeShort(int s) throws IOException
+public abstract void writeChar(int c) throws IOException
+public abstract void writeInt(int i) throws IOException
+public abstract void writeLong(long l) throws IOException
+public abstract void writeFloat(float f) throws IOException
+public abstract void writeDouble(double d) throws IOException
+public abstract void writeBytes(String s) throws IOException
+public abstract void writeChars(String s) throws IOException
+public abstract void writeUTF(String s) throws IOException
+```
+
+**Constructors**
+
+```java
+public DataInputStream(InputStream in)
+public DataOutputStream(OutputStream out)
+```
+
+**7.2 Reading and Writing Integers**
+
+pass
+
+**7.3 Reading and Writing Floating-Point Numbers**
+
+pass
+
+**7.4 Reading and Writing Booleans**
+
+pass
+
+**7.5 Reading Byte Arrays**
+
+pass
+
+**7.6 Reading and Writing Text**
+
+pass
+
+**7.7 Miscellaneous Methods**
+
+pass
+
+**7.8 Reading and Writing Little-Endian Numbers**
+
+pass
+
+**7.9 Thread Safety**
+
+pass
+
+**7.10 File Viewer, Part 3**
+
+pass
+
+### Chapter 8. Streams in Memory
+
+## 8.1 Sequence Input Streams
+
+```java
+public SequenceInputStream(Enumeration e)
+public SequenceInputStream(InputStream in1, InputStream in2)
+```
+
+For example, to read the home pages of both JavaSoft and AltaVista, you might do this:
+
+```java
+try {
+  URL u1 = new URL("http://java.sun.com/");
+  URL u2 = new URL("http://www.altavista.com");
+  SequenceInputStream sin = new SequenceInputStream(u1.openStream(),
+    u2.openStream());
+}
+catch (IOException e) { //...
+```
+
+## 8.2 Byte Array Streams
+
+Byte array input and output streams are commonly used when sending and receiving UDP data over the Internet.
+
+```java
+public ByteArrayInputStream(byte[] buffer)
+public ByteArrayInputStream(byte[] buffer, int offset, int length)
+```
+
+```java
+public ByteArrayOutputStream()
+public ByteArrayOutputStream(int size)
+```
+
+## 8.3 Communicating Between Threads with Piped Streams
+
+The `java.io.PipedInputStream` class and `java.io.PipedOutputStream` class provide a convenient means to move streaming data from one thread to another.
+
+![piped](piped.png)
+
+```java
+public PipedInputStream()
+public PipedInputStream(PipedOutputStream source) throws IOException
+```
+
+```java
+public PipedOutputStream(PipedInputStream sink) throws IOException
+public PipedOutputStream()
+```
+
+The piped input stream also has four protected fields and one protected method that are used to implement the piping:
+
+```java
+protected static final int PIPE_SIZE
+protected byte[] buffer
+protected int in
+protected int out
+protected synchronized void receive(int b) throws IOException
+```
+
+## Chapter 9. Compressing Streams
+
+![java.util.zip](zip_copy.png)
+
+**9.1 Inflaters and Deflaters**
+
+The `java.util.zip.Deflater` and `java.util.zip.Inflater` classes provide compression and decompression services for all other classes.
+
+There are nine steps to deflating data with the `Deflater` class:
+
+- Construct a Deflater object.
+- Choose the strategy (optional).
+- Set the compression level (optional).
+- Preset the dictionary (optional).
+- Set the input.
+- Deflate the data repeatedly until needsInput() returns true.
+- If more input is available, go back to step 5 to provide additional input data.
+Otherwise, go to step 8.
+- Finish the data.
+- If there are more streams to be deflated, reset the deflater.
+
+**Construct a Deflater object**
+
+```java
+public Deflater(int level, boolean useGzip)
+public Deflater(int level)
+public Deflater()
+```
+
+**Choose a strategy**
+
+```java
+public static final int DEFAULT_STRATEGY = 0;
+public static final int FILTERED = 1;
+public static final int HUFFMAN_ONLY = 2;
+
+public synchronized void setStrategy(int strategy)
+```
+
+**Set the compression level**
+
+```java
+public synchronized void setLevel(int Level)
+```
+
+**Set the dictionary**
+
+```java
+public void setDictionary(byte[] data)
+```
+
+**Set the input**
+
+```java
+public void setInput(byte[] input)
+public synchronized void setInput(byte[] input, int offset, int length)
+```
+
+**Deflate the data repeatedly until needsInput( ) returns true**
+
+```java
+public int deflate(byte[] output)
+public native synchronized int deflate(byte[] output, int offset, int
+length)
+```
+
+**Finish the deflation**
+
+```java
+public synchronized void finish()
+```
+
+**Reset the deflater and start over**
+
+```java
+public native synchronized void reset()
+```
+
+### Chapter 10. Cryptographic Streams
+
+pass
+
+## Part IV: Advanced and Miscellaneous Topics
+
+## Chapter 11. Object Serialization
+
+**11.1 Reading and Writing Objects**
+
+Object serialization saves an object's state in a sequence of bytes so that the object can be reconstituted from those bytes at a later time. 
+
+The customized beans are stored in a `.ser` file, which is often placed inside a JAR archive. 
+
+**11.2 Object Streams**
+
+Objects are serialized by object output streams. They are deserialized by object input streams.
+
+These are instances of `java.io.ObjectOutputStream` and `java.io.ObjectInputStream`
+
+The `ObjectOutput` interface is a subinterface of `java.io.DataOutput` that declares the basic methods used to write objects and data.
+
+The `ObjectInput` interface is a subinterface of `java.io.DataInput` that declares the basic methods used to read objects and data
+

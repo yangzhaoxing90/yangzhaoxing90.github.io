@@ -1,0 +1,80 @@
+---
+title: 自学指南
+description: 自学指南
+date: 2025-02-24 00:00:00+0000
+image: cover.jpg
+tags: 
+    - 指南
+categories:
+    - 指南
+weight: 1
+---
+
+
+## 自学成为数学大师 
+
+| 课程内容 | 资料 |  学习情况 | 预计完成 |
+| ------ | ------ | ------ | ------ |
+| 线性代数 | georgi-shilov-linear-algebra4、《Linear Algebra Done Right》Axler | 未完成 | 03-24 |
+| 数学分析 | 《Understanding Analysis》Abbott + 《Baby Rudin》 | ... | ... |
+| 抽象代数 | 《A Book of Abstract Algebra》Pinter |
+| 概率论 | ... | ... | ... |
+| 测度论 | 《Real Analysis》Stein | ... | ... |
+| 泛函分析 | 《Functional Analysis》Rudin | ... | ... |
+| 范畴论 | 《Category Theory in Context》Riehl | ... | ... |
+| 交换代数 | Atiyah-MacDonald | ... | ... |
+| 几何拓扑 | 《拓扑学》（Munkres）、《微分几何》Do Carmo| ... | ... |
+| 数值分析 | 《Numerical Recipes》+ SciPy实践 | ... | ... |
+| 数学物理 | 《物理学家的几何方法》Frankel | ... | ... |
+
+参与 Project Euler 解决数学编程问题
+每周完成 3-5 道 ProofWiki 挑战题
+
+
+## 自学成为计算机科学家
+
+<https://github.com/izackwu/TeachYourselfCS-CN/blob/master/TeachYourselfCS-CN.md>
+
+| 课程内容 | 资料 |  学习情况 | 预计完成 |
+| ------ | ------ | ------ | ------ |
+| 编程 | 《计算机程序的构造和解释》 | ... | ... |
+| 计算机系统结构 | 《深入理解计算机系统》 | ... | ... |
+| 算法与数据结构 | 《算法设计手册》| ... | ... |
+| 数学知识 | 《计算机科学中的数学》 | ... | ... |
+| 操作系统 | 《操作系统导论》 | ... | ... |
+| 计算机网络 | 《计算机网络：自顶向下方法》 | ... | ... |
+| 数据库 | Readings in Database Systems | ... | ... |
+| 编程语言与编译器 | 	Crafting Interpreters | ... | ... |
+| 分布式系统 | 《数据密集型应用系统设计》 | ... | ... |
+
+
+## 自学成为算法大师
+
+<https://blog.shahjalalshohag.com/topic-list/>
+
+<https://youkn0wwho.academy/topic-list>
+
+| 课程内容 | 资料  |  学习情况 | 预计完成 |
+| ---- | ---- | ---- | ---- |
+| Basics | ... | ... | ... |
+| Data Structures (DS) | ... | ... | ... |
+| Graph Theory | ... | ... | ... |
+| Number Theory | ... | ... | ... |
+| Combinatorics | ... | ... | ... |
+| Math | ... | ... | ... |
+| Strings | ... | ... | ... |
+| Dynamic Programming (DP) | ... | ... | ... |
+| Game Theory | ... | ... | ... |
+| Geometry | ... | ... | ... |
+| Miscellaneous | ... | ... | ... |
+| Useful Links | ... | ... | ... |
+
+
+## 自学成为英语大师
+
+先坚持每日一篇文章吧
+
+<https://www.bbc.com/news>
+
+<https://news.ycombinator.com/>
+

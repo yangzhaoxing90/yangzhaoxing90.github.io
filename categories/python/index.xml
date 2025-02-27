@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Python on Bluee&#39;s Blog</title>
+        <link>https://yangzhaoxing90.github.io/categories/python/</link>
+        <description>Recent content in Python on Bluee&#39;s Blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en</language>
+        <lastBuildDate>Tue, 25 Feb 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://yangzhaoxing90.github.io/categories/python/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Flask</title>
+        <link>https://yangzhaoxing90.github.io/p/flask/</link>
+        <pubDate>Tue, 25 Feb 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://yangzhaoxing90.github.io/p/flask/</guid>
+        <description>&lt;img src="https://yangzhaoxing90.github.io/p/flask/cover.png" alt="Featured image of post Flask" /&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://flask.palletsprojects.com/en/stable/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://flask.palletsprojects.com/en/stable/&lt;/a&gt;&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>
