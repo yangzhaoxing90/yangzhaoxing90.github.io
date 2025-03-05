@@ -274,6 +274,31 @@
         <li><a href="#24-系统调用类型">2.4 系统调用类型</a></li>
         <li><a href="#25-系统程序">2.5 系统程序</a></li>
         <li><a href="#26-操作系统设计和实现">2.6 操作系统设计和实现</a></li>
+        <li><a href="#27-操作系统结构">2.7 操作系统结构</a></li>
+        <li><a href="#28-虚拟机">2.8 虚拟机</a></li>
+        <li><a href="#29-java">2.9 Java</a></li>
+        <li><a href="#210-操作系统生成">2.10 操作系统生成</a></li>
+        <li><a href="#211-系统启动">2.11 系统启动</a></li>
+      </ol>
+    </li>
+    <li><a href="#第二部分-进程管理">第二部分 进程管理</a>
+      <ol>
+        <li><a href="#第-3-章-进程">第 3 章 进程</a></li>
+        <li><a href="#31-进程概念">3.1 进程概念</a></li>
+        <li><a href="#32-进程调度">3.2 进程调度</a></li>
+        <li><a href="#33-进程操作">3.3 进程操作</a></li>
+        <li><a href="#34-进程间的通信">3.4 进程间的通信</a></li>
+        <li><a href="#35-ipc-系统的实例">3.5 IPC 系统的实例</a></li>
+        <li><a href="#36-客户机--服务器通信">3.6 客户机 —— 服务器通信</a></li>
+      </ol>
+    </li>
+    <li><a href="#第-4-章-线程">第 4 章 线程</a>
+      <ol>
+        <li><a href="#41-概述">4.1 概述</a></li>
+        <li><a href="#42-多线程模型">4.2 多线程模型</a></li>
+        <li><a href="#43-线程库">4.3 线程库</a></li>
+        <li><a href="#44-java-线程">4.4 Java 线程</a></li>
+        <li><a href="#45-多线程问题">4.5 多线程问题</a></li>
       </ol>
     </li>
   </ol>
@@ -356,7 +381,7 @@
 
 
                 <time class="article-time--reading">
-                    2 minute read
+                    3 minute read
                 </time>
             </div>
         
@@ -639,7 +664,470 @@
 <li>通信</li>
 </ul>
 <h3 id="26-操作系统设计和实现">2.6 操作系统设计和实现
-</h3>
+</h3><p><strong>策略和机制的分离</strong></p>
+<p>机制决定了如何做，策略决定做什么</p>
+<h3 id="27-操作系统结构">2.7 操作系统结构
+</h3><p>MS-DOS 结构</p>
+<p><img src="/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/msdos.png"
+	width="836"
+	height="748"
+	srcset="/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/msdos_hu12618634128600311745.png 480w, /p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/msdos_hu11719835852956730421.png 1024w"
+	loading="lazy"
+	
+		alt="MS-DOS结构"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="111"
+		data-flex-basis="268px"
+	
+></p>
+<p>分层结构</p>
+<p><img src="/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/layer.png"
+	width="1600"
+	height="790"
+	srcset="/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/layer_hu1691517810630166221.png 480w, /p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/layer_hu16489452714626111053.png 1024w"
+	loading="lazy"
+	
+		alt="分层结构"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="202"
+		data-flex-basis="486px"
+	
+></p>
+<p>模块结构</p>
+<ul>
+<li>调度类</li>
+<li>文件系统</li>
+<li>可加载的系统调用</li>
+<li>可执行的格式</li>
+<li>STREAMS 模块</li>
+<li>杂项模块</li>
+<li>设备和总线驱动程序</li>
+</ul>
+<h3 id="28-虚拟机">2.8 虚拟机
+</h3><p>虚拟机的基本思想是单个计算机的硬件抽象为几个不同的执行环境</p>
+<h3 id="29-java">2.9 Java
+</h3><p>Java 技术包含三个核心组件：</p>
+<ul>
+<li>编程语言规范</li>
+<li>应用程序接口 （API）</li>
+<li>虚拟机规范</li>
+</ul>
+<h3 id="210-操作系统生成">2.10 操作系统生成
+</h3><p>下面的信息必须确定下来：</p>
+<ul>
+<li>使用什么 CPU，安装什么选项，对于多 CPU 系统，必须描述每个 CPU</li>
+<li>有多少可用内存</li>
+<li>有什么可用设备</li>
+<li>需要什么操作系统选项或使用什么参数值</li>
+</ul>
+<h3 id="211-系统启动">2.11 系统启动
+</h3><h2 id="第二部分-进程管理">第二部分 进程管理
+</h2><h3 id="第-3-章-进程">第 3 章 进程
+</h3><p>本章目标：</p>
+<ul>
+<li>介绍进程的概念——执行中的程序，形成所有计算的基础</li>
+<li>介绍进程的不同特点，包括调度、创建和终止以及通信</li>
+<li>介绍客户机——服务机系统内的通信</li>
+</ul>
+<h3 id="31-进程概念">3.1 进程概念
+</h3><p>进程：</p>
+<ul>
+<li>程序代码 （文本段 text section）</li>
+<li>活动 （程序计数器的值和处理器寄存器的内容）</li>
+<li>进程栈（包括临时数据，函数参数、返回地址、局部变量）</li>
+<li>数据段 （data section）</li>
+<li>堆 （heap），进程在运行期间动态分配的内存</li>
+</ul>
+<p><img src="/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/heap.png"
+	width="522"
+	height="552"
+	srcset="/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/heap_hu4928036593075080253.png 480w, /p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/heap_hu17551832814287426295.png 1024w"
+	loading="lazy"
+	
+		alt="内存中的堆"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="94"
+		data-flex-basis="226px"
+	
+></p>
+<p>进程的状态：</p>
+<ul>
+<li>新建</li>
+<li>运行</li>
+<li>等待</li>
+<li>就绪</li>
+<li>终止</li>
+</ul>
+<p><img src="/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/status.png"
+	width="1372"
+	height="660"
+	srcset="/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/status_hu7910684051081812886.png 480w, /p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/status_hu4808616726937548567.png 1024w"
+	loading="lazy"
+	
+		alt="进程的状态"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="207"
+		data-flex-basis="498px"
+	
+></p>
+<p>进程控制块 (PCB)</p>
+<ul>
+<li>进程状态</li>
+<li>程序计数器 （表示下一个指令执行的地址）</li>
+<li>CPU 寄存器</li>
+<li>CPU 调度信息 （进程优先级、调度队列的指针和其他调度参数）</li>
+<li>内存管理信息 （基址和界限寄存器的值、页表或段表）</li>
+<li>记账信息 （CPU时间、实际使用时间、时间界限、记账数据、作业或进程数量）</li>
+<li>I/O 状态信息 （I/O设备列表、打开文件列表等）</li>
+</ul>
+<p><img src="/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/process.png"
+	width="1280"
+	height="1082"
+	srcset="/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/process_hu4023142540358606211.png 480w, /p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/process_hu2238570758860655504.png 1024w"
+	loading="lazy"
+	
+		alt="CPU进程间切换"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="118"
+		data-flex-basis="283px"
+	
+></p>
+<h3 id="32-进程调度">3.2 进程调度
+</h3><p>调度队列： 进程进入系统时，会被加到作业队列中，该队列中包含所有的进程</p>
+<p>新进程开始处于就绪队列，它就在队列中等待直到被选中执行或分派</p>
+<p>当进程分配到 CPU 并执行时，可能发生下面几种事件中的一种：</p>
+<ul>
+<li>进程可能发出一个 I/O 请求，并被放到 I/O 队列中</li>
+<li>进程可能创建一个新的子进程，并等待结束</li>
+<li>进程可能会由于中断而强制释放 CPU， 并被放回就绪队列</li>
+</ul>
+<p><img src="/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/queue.png"
+	width="1322"
+	height="714"
+	srcset="/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/queue_hu2814358614238604182.png 480w, /p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/queue_hu3082134546595529680.png 1024w"
+	loading="lazy"
+	
+		alt="队列图"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="185"
+		data-flex-basis="444px"
+	
+></p>
+<p>调度程序：从队列中选择进程的程序</p>
+<p>上下文切换：CPU从一个进程切换到另一个进程</p>
+<ul>
+<li>内核将旧进程的内容保存到 PCB 中</li>
+<li>装入经调度要执行的已保存的新进程的上下文</li>
+</ul>
+<h3 id="33-进程操作">3.3 进程操作
+</h3><p>进程创建：</p>
+<ul>
+<li>系统调用创建进程，父子进程，进程树，进程唯一标识</li>
+</ul>
+<p><img src="/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/tree.png"
+	width="1318"
+	height="1350"
+	srcset="/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/tree_hu14806127153921503826.png 480w, /p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/tree_hu4176469756405395675.png 1024w"
+	loading="lazy"
+	
+		alt="进程树"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="97"
+		data-flex-basis="234px"
+	
+></p>
+<p>当进程创建进程时，有两种可能：</p>
+<ul>
+<li>父进程与子进程并发执行</li>
+<li>父进程等待，直到某个或全部子进程执行完毕</li>
+</ul>
+<p>新进程的地址空间也有两种可能：</p>
+<ul>
+<li>子进程是父进程的副本</li>
+<li>子进程装入一个新程序</li>
+</ul>
+<p>进程终止：</p>
+<ul>
+<li>exit()请求操作系统删除自身</li>
+<li>子进程可以返回状态到父进程</li>
+</ul>
+<p>父进程终止子进程的原因：</p>
+<ul>
+<li>子进程使用了超过它所分配到的一些资源</li>
+<li>分配给子进程的任务已不再需要</li>
+<li>父进程结束，若父进程终止，操作系统将不允许子进程继续</li>
+</ul>
+<h3 id="34-进程间的通信">3.4 进程间的通信
+</h3><p>允许进程协作的理由：</p>
+<ul>
+<li>信息共享 （并发访问一个资源）</li>
+<li>加快计算</li>
+<li>模块化</li>
+<li>方便 （单用户可以执行多任务）</li>
+</ul>
+<p>进程通信的两个基本模型：</p>
+<ul>
+<li>共享内存</li>
+<li>消息传递</li>
+</ul>
+<p><img src="/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/model.png"
+	width="1456"
+	height="828"
+	srcset="/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/model_hu15983377007450947302.png 480w, /p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/model_hu402519677480880288.png 1024w"
+	loading="lazy"
+	
+		alt="通信模型"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="175"
+		data-flex-basis="422px"
+	
+></p>
+<p>共享内存模型：</p>
+<ul>
+<li>生产者 —— 消费者问题</li>
+<li>无限缓冲区 （消费者要等待新的项，生产者总可以产生新的项）</li>
+<li>有限缓冲区 （如果缓冲区为空，消费者必须等待。如果缓冲区满，生产者必须等待）</li>
+</ul>
+<p>消息传递模型：</p>
+<ul>
+<li>消息传递工具 （必须提供发送和接收功能）</li>
+<li>若进程间要彼此发送消息和接收消息，它们间必须有通信链路</li>
+</ul>
+<p>实现链路发送和接收操作的方法：</p>
+<ul>
+<li>直接或间接通信</li>
+<li>同步或异步通信</li>
+<li>自动或显式缓冲</li>
+</ul>
+<p>直接通信：</p>
+<ul>
+<li>必须明确的命名通信的接收者或者发送者 （对称寻址）
+<ul>
+<li>send(P, message): 发送消息到 P</li>
+<li>receive(Q, message): 接收来自 Q 的消息</li>
+<li>通信链路要求
+<ul>
+<li>在需要通信的每队进程间自动建立通信链路，进程只需要知道互相的标识符</li>
+<li>一个通信链路只与两个进程相关</li>
+<li>每队进程间只有一个通信链路</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>只需要发送者命名接收者，不需要接收者命名发送者 （非对称寻址）
+<ul>
+<li>send(P, message): 发送消息到 P</li>
+<li>receive(id, message): 接收来自任何进程的消息，变量 id 设置成与其通信的进程名称</li>
+</ul>
+</li>
+</ul>
+<p>间接通信：</p>
+<ul>
+<li>通过邮箱和端口来发送和接收消息</li>
+<li>邮箱可以抽象成一个对象，进程可以向其中存放消息，也可以从中删除消息</li>
+<li>每个邮箱都有一个唯一标识
+<ul>
+<li>send(A, message): 发送一个消息到邮箱 A</li>
+<li>receive(A, message): 接收来自邮箱 A 的消息</li>
+<li>通信链路要求
+<ul>
+<li>只有在两个进程共享一个邮箱的时候才能建立通信链路</li>
+<li>一个链路可以和两个或者更多的进程相关联</li>
+<li>两个通信进程之间可以有多条不同的链路，每条链路对应于一个邮箱</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>假设 P1、P2、P3 都共享邮箱，P1 发送消息到邮箱，P2 和 P3 谁能接收到信息，由系统定义决定：</p>
+<ul>
+<li>允许一个链路最多只能与两个进程相关联</li>
+<li>允许一次最多一个进程执行 receive() 操作</li>
+<li>允许系统随意选择一个进程接收消息</li>
+</ul>
+<p>邮箱可以为进程所拥有：</p>
+<ul>
+<li>进程地址空间的一部分</li>
+<li>进程终止时，邮箱消失，往邮箱发送消息会被通知邮箱不存在</li>
+</ul>
+<p>邮箱也可以为操作系统所拥有，操作系统必须提供的机制：</p>
+<ul>
+<li>创建新邮箱 （创建的进程默认为进程拥有者）</li>
+<li>通过邮箱发送和接收消息</li>
+<li>删除邮箱</li>
+</ul>
+<p>send、receive 原语实现有不同的设计选项（同步-阻塞、异步-非阻塞）：</p>
+<ul>
+<li>阻塞发送</li>
+<li>非阻塞发送</li>
+<li>阻塞接收</li>
+<li>非阻塞接收</li>
+</ul>
+<p>通信进程所交换的消息都驻留在临时队列中，队列实现的3个方法：</p>
+<ul>
+<li>零容量</li>
+<li>有限容量</li>
+<li>无限容量</li>
+</ul>
+<h3 id="35-ipc-系统的实例">3.5 IPC 系统的实例
+</h3><h3 id="36-客户机--服务器通信">3.6 客户机 —— 服务器通信
+</h3><p>三种客户机——服务器通信方法：</p>
+<ul>
+<li>套接字 （socket），比较低级的分布式进程通信，只允许通信线程交换无结构字节流。</li>
+<li>远程过程调用 （RPC）</li>
+<li>Java的远程方法调用（RMI）</li>
+</ul>
+<h2 id="第-4-章-线程">第 4 章 线程
+</h2><p>本章目标：</p>
+<ul>
+<li>引入线程的概念 —— 一种 CPU 利用的基本单元，它是形成多线程计算机的基础</li>
+<li>讨论 Pthread API 、Win32 API 和 Java 线程库</li>
+<li>研究有关多线程编程的几个问题</li>
+</ul>
+<h3 id="41-概述">4.1 概述
+</h3><p>线程是 CPU 使用的基本单元，由线程ID、程序计数器、寄存器集合和栈组成</p>
+<p><img src="/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/thread.png"
+	width="1336"
+	height="872"
+	srcset="/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/thread_hu8836499595604687741.png 480w, /p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/thread_hu8213581157549727341.png 1024w"
+	loading="lazy"
+	
+		alt="线程"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="153"
+		data-flex-basis="367px"
+	
+></p>
+<h3 id="42-多线程模型">4.2 多线程模型
+</h3><p>线程支持的两种方法：</p>
+<ul>
+<li>用户层的用户线程</li>
+<li>内核层的内核线程</li>
+</ul>
+<p><img src="/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/user_model.png"
+	width="1014"
+	height="880"
+	srcset="/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/user_model_hu3657407336175590310.png 480w, /p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/user_model_hu2201384556491566176.png 1024w"
+	loading="lazy"
+	
+		alt="一对多"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="115"
+		data-flex-basis="276px"
+	
+></p>
+<p><img src="/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/one_model.png"
+	width="1074"
+	height="554"
+	srcset="/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/one_model_hu5515158560676147043.png 480w, /p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/one_model_hu8753273545752124837.png 1024w"
+	loading="lazy"
+	
+		alt="一对一模型"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="193"
+		data-flex-basis="465px"
+	
+></p>
+<p><img src="/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/multiple.png"
+	width="1316"
+	height="826"
+	srcset="/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/multiple_hu3234788864136826945.png 480w, /p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/multiple_hu2899893586841915415.png 1024w"
+	loading="lazy"
+	
+		alt="多对多模型"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="159"
+		data-flex-basis="382px"
+	
+></p>
+<h3 id="43-线程库">4.3 线程库
+</h3><p>线程库为程序员提供创建和管理线程的 API</p>
+<p>两种方法实现线程库：</p>
+<ul>
+<li>在用户空间中提供一个没有内核支持的库</li>
+<li>执行一个由操作系统直接支持的内核级的库</li>
+</ul>
+<p>三种线程库：</p>
+<ul>
+<li>POSIX Pthread （Unix/Linux）</li>
+<li>Win32 （Windows）</li>
+<li>Java （利用前两个）</li>
+</ul>
+<h3 id="44-java-线程">4.4 Java 线程
+</h3><p>Java 线程状态：</p>
+<ul>
+<li>新建</li>
+<li>可运行</li>
+<li>阻塞</li>
+<li>死亡</li>
+</ul>
+<p><img src="/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/java_thread.png"
+	width="1366"
+	height="504"
+	srcset="/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/java_thread_hu4932649409454669476.png 480w, /p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/java_thread_hu17676211541619722600.png 1024w"
+	loading="lazy"
+	
+		alt="java 线程"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="271"
+		data-flex-basis="650px"
+	
+></p>
+<h3 id="45-多线程问题">4.5 多线程问题
+</h3><p>线程取消：</p>
+<ul>
+<li>是在线程完成之前终止线程的任务</li>
+<li>异步取消 （立即终止目标线程）</li>
+<li>延迟取消 （目标线程不断的检查它是否应终止）</li>
+</ul>
+<p>信号处理：</p>
+<ul>
+<li>信号在 Unix 中用于通知进程某个特定事件的发生</li>
+<li>信号模式：
+<ul>
+<li>信号是由特定事件的发生所产生的</li>
+<li>产生的信号要发送到进程</li>
+<li>一旦发送，信号必须加以处理</li>
+</ul>
+</li>
+</ul>
+<p>线程池：</p>
+<ul>
+<li>单线程执行器 （大小为 1 的线程池）</li>
+<li>固定线程执行器 （大小固定的线程池）</li>
+<li>缓冲线程执行器 （无限制的线程池）</li>
+</ul>
+<p>线程特定数据：</p>
+<ul>
+<li>每个线程需要一定的数据自我副本 （ThreadLocal）</li>
+</ul>
+
 </section>
 
 
@@ -685,6 +1173,87 @@
     
 
     
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AF%BC%E8%AE%BA/">
+        
+        
+            <div class="article-image">
+                <img src="/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AF%BC%E8%AE%BA/cover.36fd2040ea166a9e66fa026e984b6593_hu744549854073225800.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 操作系统导论"
+                        data-key="操作系统导论" 
+                        data-hash="md5-Nv0gQOoWap5m&#43;gJumEtlkw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">操作系统导论</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E7%8E%B0%E4%BB%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+        
+        
+            <div class="article-image">
+                <img src="/p/%E7%8E%B0%E4%BB%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/cover.92134c4d8bcab9a60150288eb64a9c32_hu12467156211957679368.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 现代操作系统"
+                        data-key="现代操作系统" 
+                        data-hash="md5-khNMTYvKuaYBUCiOtkqcMg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">现代操作系统</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%9E%84%E9%80%A0%E5%92%8C%E8%A7%A3%E9%87%8A/">
+        
+        
+            <div class="article-image">
+                <img src="/p/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%9E%84%E9%80%A0%E5%92%8C%E8%A7%A3%E9%87%8A/cover.fed38215ecafc232307ea43f6d9d9477_hu9022330153449593686.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 计算机程序的构造和解释"
+                        data-key="计算机程序的构造和解释" 
+                        data-hash="md5-/tOCFeyvwjIwfqQ/bZ2Udw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">计算机程序的构造和解释</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
 
      
     

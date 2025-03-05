@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Lisp on Bluee&#39;s Blog</title>
+        <link>https://yangzhaoxing90.github.io/tags/lisp/</link>
+        <description>Recent content in Lisp on Bluee&#39;s Blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en</language>
+        <lastBuildDate>Tue, 04 Mar 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://yangzhaoxing90.github.io/tags/lisp/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>计算机程序的构造和解释</title>
+        <link>https://yangzhaoxing90.github.io/p/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%9E%84%E9%80%A0%E5%92%8C%E8%A7%A3%E9%87%8A/</link>
+        <pubDate>Tue, 04 Mar 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://yangzhaoxing90.github.io/p/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%9E%84%E9%80%A0%E5%92%8C%E8%A7%A3%E9%87%8A/</guid>
+        <description>&lt;img src="https://yangzhaoxing90.github.io/p/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%9E%84%E9%80%A0%E5%92%8C%E8%A7%A3%E9%87%8A/cover.png" alt="Featured image of post 计算机程序的构造和解释" /&gt;&lt;h2 id=&#34;资料&#34;&gt;资料
+&lt;/h2&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://mitp-content-server.mit.edu/books/content/sectbyfn/books_pres_0/6515/sicp.zip/index.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://mitp-content-server.mit.edu/books/content/sectbyfn/books_pres_0/6515/sicp.zip/index.html&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;第-1-章-构造过程抽象&#34;&gt;第 1 章 构造过程抽象
+&lt;/h2&gt;&lt;h3 id=&#34;11-程序设计的基本元素&#34;&gt;1.1 程序设计的基本元素
+&lt;/h3&gt;&lt;p&gt;三种机制：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;基本表达形式，用于表示语言所关心的最简单的个体&lt;/li&gt;
+&lt;li&gt;组合的方法，通过它们可以从较简单的东西出发构造出复合的元素&lt;/li&gt;
+&lt;li&gt;抽象的方法，通过它们可以为复合对象命名，并将它们当作单元去操作&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;表达式：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;前缀表达式 (+ 1 2)&lt;/li&gt;
+&lt;li&gt;组合式 (+ (+ 1 2) 3)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;命名和环境：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;变量 (define size 2)&lt;/li&gt;
+&lt;li&gt;环境(全局环境) (值和符号的关联，需要的存储能力)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;组合式求解：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;求值该组合式的各个子表达式&lt;/li&gt;
+&lt;li&gt;将最左子表达式的值的那个过程应用于相应的实际参数，就是其他子表达式的值&lt;/li&gt;
+&lt;li&gt;树形累积 （如图）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://yangzhaoxing90.github.io/p/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%9E%84%E9%80%A0%E5%92%8C%E8%A7%A3%E9%87%8A/tree.png&#34;
+	width=&#34;1166&#34;
+	height=&#34;888&#34;
+	srcset=&#34;https://yangzhaoxing90.github.io/p/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%9E%84%E9%80%A0%E5%92%8C%E8%A7%A3%E9%87%8A/tree_hu17679860312013536639.png 480w, https://yangzhaoxing90.github.io/p/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%9E%84%E9%80%A0%E5%92%8C%E8%A7%A3%E9%87%8A/tree_hu1061947781682330198.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;树形累积&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;131&#34;
+		data-flex-basis=&#34;315px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;特殊形式：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;define&lt;/li&gt;
+&lt;li&gt;每种特殊形式都有自身的求值规则&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;复合过程：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;数和运算是基本的数据和过程&lt;/li&gt;
+&lt;li&gt;组合式的嵌套提供了一种组织起多个操作的方法&lt;/li&gt;
+&lt;li&gt;定义是一种受限抽象手段，它为名字关联相应的值&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;过程定义:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;威力更强大的抽象技术&lt;/li&gt;
+&lt;li&gt;通过它可以为复合操作提供名字&lt;/li&gt;
+&lt;li&gt;(define (square x) (* x x))&lt;/li&gt;
+&lt;li&gt;(square 3)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;代换模型 （解释器的代换模型）&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;将实参代入过程运算，转换为组合式的运算&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;正则序和应用序：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;正则序（完全展开后归约）&lt;/li&gt;
+&lt;li&gt;应用序 (先求值参数而后应用)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;条件表达式和谓词&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;cond&lt;/li&gt;
+&lt;li&gt;cond 后跟着对偶式，(p e)&lt;/li&gt;
+&lt;li&gt;else&lt;/li&gt;
+&lt;li&gt;if (if p consequent alternative)&lt;/li&gt;
+&lt;li&gt;and (e1, e2, &amp;hellip;, en)&lt;/li&gt;
+&lt;li&gt;or (e1, e2, &amp;hellip;, en)&lt;/li&gt;
+&lt;li&gt;not (e)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;内部定义和块结构&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;define 嵌套&lt;/li&gt;
+&lt;li&gt;词法作用域&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;12-过程与它们所产生的计算&#34;&gt;1.2 过程与它们所产生的计算
+&lt;/h3&gt;&lt;p&gt;线性的递归和迭代：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;线性递归过程 （计算长度随轨迹线性增长）&lt;/li&gt;
+&lt;li&gt;线性迭代过程 （计算长度不会随轨迹增长，状态可以用固定数目的状态变量描述的计算过程）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;树形递归：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;斐波那契数的例子&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;增长的阶:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;不同的计算过程在消耗资源和计算资源的速率上可能存在巨大差异，用增长的阶来描述这种差异&lt;/li&gt;
+&lt;li&gt;$n$ 做为问题规模的度量，$R(n)$ 是一个计算过程在处理规模为 $n$ 的问题时所需的资源量&lt;/li&gt;
+&lt;li&gt;我们称 $R(n)$ 具有 $\theta(f(n))$ 的增长阶，记为 $R(n) = \theta(f(n))$,若存在 $k1$ 和 $k2$ 使得 $k1f(n) $&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

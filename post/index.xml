@@ -6,7 +6,159 @@
         <description>Recent content in Posts on Bluee&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
-        <lastBuildDate>Thu, 27 Feb 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://yangzhaoxing90.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 04 Mar 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://yangzhaoxing90.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>操作系统导论</title>
+        <link>https://yangzhaoxing90.github.io/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AF%BC%E8%AE%BA/</link>
+        <pubDate>Tue, 04 Mar 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://yangzhaoxing90.github.io/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AF%BC%E8%AE%BA/</guid>
+        <description>&lt;img src="https://yangzhaoxing90.github.io/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AF%BC%E8%AE%BA/cover.png" alt="Featured image of post 操作系统导论" /&gt;&lt;h2 id=&#34;第-1-章-关于本书的对话&#34;&gt;第 1 章 关于本书的对话
+&lt;/h2&gt;&lt;p&gt;三个关键概念：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;虚拟化（virtualization）、并发（concurrency）、持久性（persistence）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;理解：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;操作系统是如何工作的&lt;/li&gt;
+&lt;li&gt;操作系统决定解下来哪个程序使用 CPU&lt;/li&gt;
+&lt;li&gt;如何在虚拟内存系统中处理内存使用过载&lt;/li&gt;
+&lt;li&gt;虚拟机监控器如何工作&lt;/li&gt;
+&lt;li&gt;如何管理磁盘上的数据&lt;/li&gt;
+&lt;li&gt;如果构建在部分节点失败时仍能正常工作的分布式系统&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
+        <title>现代操作系统</title>
+        <link>https://yangzhaoxing90.github.io/p/%E7%8E%B0%E4%BB%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</link>
+        <pubDate>Tue, 04 Mar 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://yangzhaoxing90.github.io/p/%E7%8E%B0%E4%BB%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</guid>
+        <description>&lt;img src="https://yangzhaoxing90.github.io/p/%E7%8E%B0%E4%BB%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/cover.png" alt="Featured image of post 现代操作系统" /&gt;&lt;h2 id=&#34;第-1-章-引论&#34;&gt;第 1 章 引论
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://yangzhaoxing90.github.io/p/%E7%8E%B0%E4%BB%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/op.png&#34;
+	width=&#34;988&#34;
+	height=&#34;690&#34;
+	srcset=&#34;https://yangzhaoxing90.github.io/p/%E7%8E%B0%E4%BB%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/op_hu1603221673318287124.png 480w, https://yangzhaoxing90.github.io/p/%E7%8E%B0%E4%BB%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/op_hu17484228795666731706.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;操作系统&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;143&#34;
+		data-flex-basis=&#34;343px&#34;
+	
+&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>计算机程序的构造和解释</title>
+        <link>https://yangzhaoxing90.github.io/p/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%9E%84%E9%80%A0%E5%92%8C%E8%A7%A3%E9%87%8A/</link>
+        <pubDate>Tue, 04 Mar 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://yangzhaoxing90.github.io/p/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%9E%84%E9%80%A0%E5%92%8C%E8%A7%A3%E9%87%8A/</guid>
+        <description>&lt;img src="https://yangzhaoxing90.github.io/p/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%9E%84%E9%80%A0%E5%92%8C%E8%A7%A3%E9%87%8A/cover.png" alt="Featured image of post 计算机程序的构造和解释" /&gt;&lt;h2 id=&#34;资料&#34;&gt;资料
+&lt;/h2&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://mitp-content-server.mit.edu/books/content/sectbyfn/books_pres_0/6515/sicp.zip/index.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://mitp-content-server.mit.edu/books/content/sectbyfn/books_pres_0/6515/sicp.zip/index.html&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;第-1-章-构造过程抽象&#34;&gt;第 1 章 构造过程抽象
+&lt;/h2&gt;&lt;h3 id=&#34;11-程序设计的基本元素&#34;&gt;1.1 程序设计的基本元素
+&lt;/h3&gt;&lt;p&gt;三种机制：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;基本表达形式，用于表示语言所关心的最简单的个体&lt;/li&gt;
+&lt;li&gt;组合的方法，通过它们可以从较简单的东西出发构造出复合的元素&lt;/li&gt;
+&lt;li&gt;抽象的方法，通过它们可以为复合对象命名，并将它们当作单元去操作&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;表达式：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;前缀表达式 (+ 1 2)&lt;/li&gt;
+&lt;li&gt;组合式 (+ (+ 1 2) 3)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;命名和环境：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;变量 (define size 2)&lt;/li&gt;
+&lt;li&gt;环境(全局环境) (值和符号的关联，需要的存储能力)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;组合式求解：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;求值该组合式的各个子表达式&lt;/li&gt;
+&lt;li&gt;将最左子表达式的值的那个过程应用于相应的实际参数，就是其他子表达式的值&lt;/li&gt;
+&lt;li&gt;树形累积 （如图）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://yangzhaoxing90.github.io/p/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%9E%84%E9%80%A0%E5%92%8C%E8%A7%A3%E9%87%8A/tree.png&#34;
+	width=&#34;1166&#34;
+	height=&#34;888&#34;
+	srcset=&#34;https://yangzhaoxing90.github.io/p/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%9E%84%E9%80%A0%E5%92%8C%E8%A7%A3%E9%87%8A/tree_hu17679860312013536639.png 480w, https://yangzhaoxing90.github.io/p/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%9E%84%E9%80%A0%E5%92%8C%E8%A7%A3%E9%87%8A/tree_hu1061947781682330198.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;树形累积&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;131&#34;
+		data-flex-basis=&#34;315px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;特殊形式：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;define&lt;/li&gt;
+&lt;li&gt;每种特殊形式都有自身的求值规则&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;复合过程：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;数和运算是基本的数据和过程&lt;/li&gt;
+&lt;li&gt;组合式的嵌套提供了一种组织起多个操作的方法&lt;/li&gt;
+&lt;li&gt;定义是一种受限抽象手段，它为名字关联相应的值&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;过程定义:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;威力更强大的抽象技术&lt;/li&gt;
+&lt;li&gt;通过它可以为复合操作提供名字&lt;/li&gt;
+&lt;li&gt;(define (square x) (* x x))&lt;/li&gt;
+&lt;li&gt;(square 3)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;代换模型 （解释器的代换模型）&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;将实参代入过程运算，转换为组合式的运算&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;正则序和应用序：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;正则序（完全展开后归约）&lt;/li&gt;
+&lt;li&gt;应用序 (先求值参数而后应用)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;条件表达式和谓词&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;cond&lt;/li&gt;
+&lt;li&gt;cond 后跟着对偶式，(p e)&lt;/li&gt;
+&lt;li&gt;else&lt;/li&gt;
+&lt;li&gt;if (if p consequent alternative)&lt;/li&gt;
+&lt;li&gt;and (e1, e2, &amp;hellip;, en)&lt;/li&gt;
+&lt;li&gt;or (e1, e2, &amp;hellip;, en)&lt;/li&gt;
+&lt;li&gt;not (e)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;内部定义和块结构&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;define 嵌套&lt;/li&gt;
+&lt;li&gt;词法作用域&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;12-过程与它们所产生的计算&#34;&gt;1.2 过程与它们所产生的计算
+&lt;/h3&gt;&lt;p&gt;线性的递归和迭代：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;线性递归过程 （计算长度随轨迹线性增长）&lt;/li&gt;
+&lt;li&gt;线性迭代过程 （计算长度不会随轨迹增长，状态可以用固定数目的状态变量描述的计算过程）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;树形递归：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;斐波那契数的例子&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;增长的阶:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;不同的计算过程在消耗资源和计算资源的速率上可能存在巨大差异，用增长的阶来描述这种差异&lt;/li&gt;
+&lt;li&gt;$n$ 做为问题规模的度量，$R(n)$ 是一个计算过程在处理规模为 $n$ 的问题时所需的资源量&lt;/li&gt;
+&lt;li&gt;我们称 $R(n)$ 具有 $\theta(f(n))$ 的增长阶，记为 $R(n) = \theta(f(n))$,若存在 $k1$ 和 $k2$ 使得 $k1f(n) $&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
         <title>操作系统概念-Java实现</title>
         <link>https://yangzhaoxing90.github.io/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/</link>
         <pubDate>Thu, 27 Feb 2025 00:00:00 +0000</pubDate>
@@ -280,7 +432,470 @@
 &lt;li&gt;通信&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;26-操作系统设计和实现&#34;&gt;2.6 操作系统设计和实现
-&lt;/h3&gt;</description>
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;策略和机制的分离&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;机制决定了如何做，策略决定做什么&lt;/p&gt;
+&lt;h3 id=&#34;27-操作系统结构&#34;&gt;2.7 操作系统结构
+&lt;/h3&gt;&lt;p&gt;MS-DOS 结构&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yangzhaoxing90.github.io/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/msdos.png&#34;
+	width=&#34;836&#34;
+	height=&#34;748&#34;
+	srcset=&#34;https://yangzhaoxing90.github.io/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/msdos_hu12618634128600311745.png 480w, https://yangzhaoxing90.github.io/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/msdos_hu11719835852956730421.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;MS-DOS结构&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;111&#34;
+		data-flex-basis=&#34;268px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;分层结构&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yangzhaoxing90.github.io/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/layer.png&#34;
+	width=&#34;1600&#34;
+	height=&#34;790&#34;
+	srcset=&#34;https://yangzhaoxing90.github.io/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/layer_hu1691517810630166221.png 480w, https://yangzhaoxing90.github.io/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/layer_hu16489452714626111053.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;分层结构&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;202&#34;
+		data-flex-basis=&#34;486px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;模块结构&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;调度类&lt;/li&gt;
+&lt;li&gt;文件系统&lt;/li&gt;
+&lt;li&gt;可加载的系统调用&lt;/li&gt;
+&lt;li&gt;可执行的格式&lt;/li&gt;
+&lt;li&gt;STREAMS 模块&lt;/li&gt;
+&lt;li&gt;杂项模块&lt;/li&gt;
+&lt;li&gt;设备和总线驱动程序&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;28-虚拟机&#34;&gt;2.8 虚拟机
+&lt;/h3&gt;&lt;p&gt;虚拟机的基本思想是单个计算机的硬件抽象为几个不同的执行环境&lt;/p&gt;
+&lt;h3 id=&#34;29-java&#34;&gt;2.9 Java
+&lt;/h3&gt;&lt;p&gt;Java 技术包含三个核心组件：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;编程语言规范&lt;/li&gt;
+&lt;li&gt;应用程序接口 （API）&lt;/li&gt;
+&lt;li&gt;虚拟机规范&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;210-操作系统生成&#34;&gt;2.10 操作系统生成
+&lt;/h3&gt;&lt;p&gt;下面的信息必须确定下来：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;使用什么 CPU，安装什么选项，对于多 CPU 系统，必须描述每个 CPU&lt;/li&gt;
+&lt;li&gt;有多少可用内存&lt;/li&gt;
+&lt;li&gt;有什么可用设备&lt;/li&gt;
+&lt;li&gt;需要什么操作系统选项或使用什么参数值&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;211-系统启动&#34;&gt;2.11 系统启动
+&lt;/h3&gt;&lt;h2 id=&#34;第二部分-进程管理&#34;&gt;第二部分 进程管理
+&lt;/h2&gt;&lt;h3 id=&#34;第-3-章-进程&#34;&gt;第 3 章 进程
+&lt;/h3&gt;&lt;p&gt;本章目标：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;介绍进程的概念——执行中的程序，形成所有计算的基础&lt;/li&gt;
+&lt;li&gt;介绍进程的不同特点，包括调度、创建和终止以及通信&lt;/li&gt;
+&lt;li&gt;介绍客户机——服务机系统内的通信&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;31-进程概念&#34;&gt;3.1 进程概念
+&lt;/h3&gt;&lt;p&gt;进程：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;程序代码 （文本段 text section）&lt;/li&gt;
+&lt;li&gt;活动 （程序计数器的值和处理器寄存器的内容）&lt;/li&gt;
+&lt;li&gt;进程栈（包括临时数据，函数参数、返回地址、局部变量）&lt;/li&gt;
+&lt;li&gt;数据段 （data section）&lt;/li&gt;
+&lt;li&gt;堆 （heap），进程在运行期间动态分配的内存&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://yangzhaoxing90.github.io/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/heap.png&#34;
+	width=&#34;522&#34;
+	height=&#34;552&#34;
+	srcset=&#34;https://yangzhaoxing90.github.io/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/heap_hu4928036593075080253.png 480w, https://yangzhaoxing90.github.io/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/heap_hu17551832814287426295.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;内存中的堆&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;94&#34;
+		data-flex-basis=&#34;226px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;进程的状态：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;新建&lt;/li&gt;
+&lt;li&gt;运行&lt;/li&gt;
+&lt;li&gt;等待&lt;/li&gt;
+&lt;li&gt;就绪&lt;/li&gt;
+&lt;li&gt;终止&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://yangzhaoxing90.github.io/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/status.png&#34;
+	width=&#34;1372&#34;
+	height=&#34;660&#34;
+	srcset=&#34;https://yangzhaoxing90.github.io/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/status_hu7910684051081812886.png 480w, https://yangzhaoxing90.github.io/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/status_hu4808616726937548567.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;进程的状态&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;207&#34;
+		data-flex-basis=&#34;498px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;进程控制块 (PCB)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;进程状态&lt;/li&gt;
+&lt;li&gt;程序计数器 （表示下一个指令执行的地址）&lt;/li&gt;
+&lt;li&gt;CPU 寄存器&lt;/li&gt;
+&lt;li&gt;CPU 调度信息 （进程优先级、调度队列的指针和其他调度参数）&lt;/li&gt;
+&lt;li&gt;内存管理信息 （基址和界限寄存器的值、页表或段表）&lt;/li&gt;
+&lt;li&gt;记账信息 （CPU时间、实际使用时间、时间界限、记账数据、作业或进程数量）&lt;/li&gt;
+&lt;li&gt;I/O 状态信息 （I/O设备列表、打开文件列表等）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://yangzhaoxing90.github.io/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/process.png&#34;
+	width=&#34;1280&#34;
+	height=&#34;1082&#34;
+	srcset=&#34;https://yangzhaoxing90.github.io/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/process_hu4023142540358606211.png 480w, https://yangzhaoxing90.github.io/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/process_hu2238570758860655504.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;CPU进程间切换&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;118&#34;
+		data-flex-basis=&#34;283px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;32-进程调度&#34;&gt;3.2 进程调度
+&lt;/h3&gt;&lt;p&gt;调度队列： 进程进入系统时，会被加到作业队列中，该队列中包含所有的进程&lt;/p&gt;
+&lt;p&gt;新进程开始处于就绪队列，它就在队列中等待直到被选中执行或分派&lt;/p&gt;
+&lt;p&gt;当进程分配到 CPU 并执行时，可能发生下面几种事件中的一种：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;进程可能发出一个 I/O 请求，并被放到 I/O 队列中&lt;/li&gt;
+&lt;li&gt;进程可能创建一个新的子进程，并等待结束&lt;/li&gt;
+&lt;li&gt;进程可能会由于中断而强制释放 CPU， 并被放回就绪队列&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://yangzhaoxing90.github.io/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/queue.png&#34;
+	width=&#34;1322&#34;
+	height=&#34;714&#34;
+	srcset=&#34;https://yangzhaoxing90.github.io/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/queue_hu2814358614238604182.png 480w, https://yangzhaoxing90.github.io/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/queue_hu3082134546595529680.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;队列图&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;185&#34;
+		data-flex-basis=&#34;444px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;调度程序：从队列中选择进程的程序&lt;/p&gt;
+&lt;p&gt;上下文切换：CPU从一个进程切换到另一个进程&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;内核将旧进程的内容保存到 PCB 中&lt;/li&gt;
+&lt;li&gt;装入经调度要执行的已保存的新进程的上下文&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;33-进程操作&#34;&gt;3.3 进程操作
+&lt;/h3&gt;&lt;p&gt;进程创建：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;系统调用创建进程，父子进程，进程树，进程唯一标识&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://yangzhaoxing90.github.io/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/tree.png&#34;
+	width=&#34;1318&#34;
+	height=&#34;1350&#34;
+	srcset=&#34;https://yangzhaoxing90.github.io/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/tree_hu14806127153921503826.png 480w, https://yangzhaoxing90.github.io/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/tree_hu4176469756405395675.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;进程树&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;97&#34;
+		data-flex-basis=&#34;234px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;当进程创建进程时，有两种可能：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;父进程与子进程并发执行&lt;/li&gt;
+&lt;li&gt;父进程等待，直到某个或全部子进程执行完毕&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;新进程的地址空间也有两种可能：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;子进程是父进程的副本&lt;/li&gt;
+&lt;li&gt;子进程装入一个新程序&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;进程终止：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;exit()请求操作系统删除自身&lt;/li&gt;
+&lt;li&gt;子进程可以返回状态到父进程&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;父进程终止子进程的原因：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;子进程使用了超过它所分配到的一些资源&lt;/li&gt;
+&lt;li&gt;分配给子进程的任务已不再需要&lt;/li&gt;
+&lt;li&gt;父进程结束，若父进程终止，操作系统将不允许子进程继续&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;34-进程间的通信&#34;&gt;3.4 进程间的通信
+&lt;/h3&gt;&lt;p&gt;允许进程协作的理由：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;信息共享 （并发访问一个资源）&lt;/li&gt;
+&lt;li&gt;加快计算&lt;/li&gt;
+&lt;li&gt;模块化&lt;/li&gt;
+&lt;li&gt;方便 （单用户可以执行多任务）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;进程通信的两个基本模型：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;共享内存&lt;/li&gt;
+&lt;li&gt;消息传递&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://yangzhaoxing90.github.io/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/model.png&#34;
+	width=&#34;1456&#34;
+	height=&#34;828&#34;
+	srcset=&#34;https://yangzhaoxing90.github.io/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/model_hu15983377007450947302.png 480w, https://yangzhaoxing90.github.io/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/model_hu402519677480880288.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;通信模型&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;175&#34;
+		data-flex-basis=&#34;422px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;共享内存模型：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;生产者 —— 消费者问题&lt;/li&gt;
+&lt;li&gt;无限缓冲区 （消费者要等待新的项，生产者总可以产生新的项）&lt;/li&gt;
+&lt;li&gt;有限缓冲区 （如果缓冲区为空，消费者必须等待。如果缓冲区满，生产者必须等待）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;消息传递模型：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;消息传递工具 （必须提供发送和接收功能）&lt;/li&gt;
+&lt;li&gt;若进程间要彼此发送消息和接收消息，它们间必须有通信链路&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;实现链路发送和接收操作的方法：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;直接或间接通信&lt;/li&gt;
+&lt;li&gt;同步或异步通信&lt;/li&gt;
+&lt;li&gt;自动或显式缓冲&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;直接通信：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;必须明确的命名通信的接收者或者发送者 （对称寻址）
+&lt;ul&gt;
+&lt;li&gt;send(P, message): 发送消息到 P&lt;/li&gt;
+&lt;li&gt;receive(Q, message): 接收来自 Q 的消息&lt;/li&gt;
+&lt;li&gt;通信链路要求
+&lt;ul&gt;
+&lt;li&gt;在需要通信的每队进程间自动建立通信链路，进程只需要知道互相的标识符&lt;/li&gt;
+&lt;li&gt;一个通信链路只与两个进程相关&lt;/li&gt;
+&lt;li&gt;每队进程间只有一个通信链路&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;只需要发送者命名接收者，不需要接收者命名发送者 （非对称寻址）
+&lt;ul&gt;
+&lt;li&gt;send(P, message): 发送消息到 P&lt;/li&gt;
+&lt;li&gt;receive(id, message): 接收来自任何进程的消息，变量 id 设置成与其通信的进程名称&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;间接通信：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;通过邮箱和端口来发送和接收消息&lt;/li&gt;
+&lt;li&gt;邮箱可以抽象成一个对象，进程可以向其中存放消息，也可以从中删除消息&lt;/li&gt;
+&lt;li&gt;每个邮箱都有一个唯一标识
+&lt;ul&gt;
+&lt;li&gt;send(A, message): 发送一个消息到邮箱 A&lt;/li&gt;
+&lt;li&gt;receive(A, message): 接收来自邮箱 A 的消息&lt;/li&gt;
+&lt;li&gt;通信链路要求
+&lt;ul&gt;
+&lt;li&gt;只有在两个进程共享一个邮箱的时候才能建立通信链路&lt;/li&gt;
+&lt;li&gt;一个链路可以和两个或者更多的进程相关联&lt;/li&gt;
+&lt;li&gt;两个通信进程之间可以有多条不同的链路，每条链路对应于一个邮箱&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;假设 P1、P2、P3 都共享邮箱，P1 发送消息到邮箱，P2 和 P3 谁能接收到信息，由系统定义决定：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;允许一个链路最多只能与两个进程相关联&lt;/li&gt;
+&lt;li&gt;允许一次最多一个进程执行 receive() 操作&lt;/li&gt;
+&lt;li&gt;允许系统随意选择一个进程接收消息&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;邮箱可以为进程所拥有：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;进程地址空间的一部分&lt;/li&gt;
+&lt;li&gt;进程终止时，邮箱消失，往邮箱发送消息会被通知邮箱不存在&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;邮箱也可以为操作系统所拥有，操作系统必须提供的机制：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;创建新邮箱 （创建的进程默认为进程拥有者）&lt;/li&gt;
+&lt;li&gt;通过邮箱发送和接收消息&lt;/li&gt;
+&lt;li&gt;删除邮箱&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;send、receive 原语实现有不同的设计选项（同步-阻塞、异步-非阻塞）：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;阻塞发送&lt;/li&gt;
+&lt;li&gt;非阻塞发送&lt;/li&gt;
+&lt;li&gt;阻塞接收&lt;/li&gt;
+&lt;li&gt;非阻塞接收&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;通信进程所交换的消息都驻留在临时队列中，队列实现的3个方法：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;零容量&lt;/li&gt;
+&lt;li&gt;有限容量&lt;/li&gt;
+&lt;li&gt;无限容量&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;35-ipc-系统的实例&#34;&gt;3.5 IPC 系统的实例
+&lt;/h3&gt;&lt;h3 id=&#34;36-客户机--服务器通信&#34;&gt;3.6 客户机 —— 服务器通信
+&lt;/h3&gt;&lt;p&gt;三种客户机——服务器通信方法：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;套接字 （socket），比较低级的分布式进程通信，只允许通信线程交换无结构字节流。&lt;/li&gt;
+&lt;li&gt;远程过程调用 （RPC）&lt;/li&gt;
+&lt;li&gt;Java的远程方法调用（RMI）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;第-4-章-线程&#34;&gt;第 4 章 线程
+&lt;/h2&gt;&lt;p&gt;本章目标：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;引入线程的概念 —— 一种 CPU 利用的基本单元，它是形成多线程计算机的基础&lt;/li&gt;
+&lt;li&gt;讨论 Pthread API 、Win32 API 和 Java 线程库&lt;/li&gt;
+&lt;li&gt;研究有关多线程编程的几个问题&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;41-概述&#34;&gt;4.1 概述
+&lt;/h3&gt;&lt;p&gt;线程是 CPU 使用的基本单元，由线程ID、程序计数器、寄存器集合和栈组成&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yangzhaoxing90.github.io/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/thread.png&#34;
+	width=&#34;1336&#34;
+	height=&#34;872&#34;
+	srcset=&#34;https://yangzhaoxing90.github.io/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/thread_hu8836499595604687741.png 480w, https://yangzhaoxing90.github.io/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/thread_hu8213581157549727341.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;线程&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;153&#34;
+		data-flex-basis=&#34;367px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;42-多线程模型&#34;&gt;4.2 多线程模型
+&lt;/h3&gt;&lt;p&gt;线程支持的两种方法：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;用户层的用户线程&lt;/li&gt;
+&lt;li&gt;内核层的内核线程&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://yangzhaoxing90.github.io/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/user_model.png&#34;
+	width=&#34;1014&#34;
+	height=&#34;880&#34;
+	srcset=&#34;https://yangzhaoxing90.github.io/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/user_model_hu3657407336175590310.png 480w, https://yangzhaoxing90.github.io/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/user_model_hu2201384556491566176.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;一对多&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;115&#34;
+		data-flex-basis=&#34;276px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yangzhaoxing90.github.io/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/one_model.png&#34;
+	width=&#34;1074&#34;
+	height=&#34;554&#34;
+	srcset=&#34;https://yangzhaoxing90.github.io/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/one_model_hu5515158560676147043.png 480w, https://yangzhaoxing90.github.io/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/one_model_hu8753273545752124837.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;一对一模型&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;193&#34;
+		data-flex-basis=&#34;465px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yangzhaoxing90.github.io/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/multiple.png&#34;
+	width=&#34;1316&#34;
+	height=&#34;826&#34;
+	srcset=&#34;https://yangzhaoxing90.github.io/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/multiple_hu3234788864136826945.png 480w, https://yangzhaoxing90.github.io/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/multiple_hu2899893586841915415.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;多对多模型&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;159&#34;
+		data-flex-basis=&#34;382px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;43-线程库&#34;&gt;4.3 线程库
+&lt;/h3&gt;&lt;p&gt;线程库为程序员提供创建和管理线程的 API&lt;/p&gt;
+&lt;p&gt;两种方法实现线程库：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;在用户空间中提供一个没有内核支持的库&lt;/li&gt;
+&lt;li&gt;执行一个由操作系统直接支持的内核级的库&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;三种线程库：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;POSIX Pthread （Unix/Linux）&lt;/li&gt;
+&lt;li&gt;Win32 （Windows）&lt;/li&gt;
+&lt;li&gt;Java （利用前两个）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;44-java-线程&#34;&gt;4.4 Java 线程
+&lt;/h3&gt;&lt;p&gt;Java 线程状态：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;新建&lt;/li&gt;
+&lt;li&gt;可运行&lt;/li&gt;
+&lt;li&gt;阻塞&lt;/li&gt;
+&lt;li&gt;死亡&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://yangzhaoxing90.github.io/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/java_thread.png&#34;
+	width=&#34;1366&#34;
+	height=&#34;504&#34;
+	srcset=&#34;https://yangzhaoxing90.github.io/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/java_thread_hu4932649409454669476.png 480w, https://yangzhaoxing90.github.io/p/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-java%E5%AE%9E%E7%8E%B0/java_thread_hu17676211541619722600.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;java 线程&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;271&#34;
+		data-flex-basis=&#34;650px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;45-多线程问题&#34;&gt;4.5 多线程问题
+&lt;/h3&gt;&lt;p&gt;线程取消：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;是在线程完成之前终止线程的任务&lt;/li&gt;
+&lt;li&gt;异步取消 （立即终止目标线程）&lt;/li&gt;
+&lt;li&gt;延迟取消 （目标线程不断的检查它是否应终止）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;信号处理：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;信号在 Unix 中用于通知进程某个特定事件的发生&lt;/li&gt;
+&lt;li&gt;信号模式：
+&lt;ul&gt;
+&lt;li&gt;信号是由特定事件的发生所产生的&lt;/li&gt;
+&lt;li&gt;产生的信号要发送到进程&lt;/li&gt;
+&lt;li&gt;一旦发送，信号必须加以处理&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;线程池：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;单线程执行器 （大小为 1 的线程池）&lt;/li&gt;
+&lt;li&gt;固定线程执行器 （大小固定的线程池）&lt;/li&gt;
+&lt;li&gt;缓冲线程执行器 （无限制的线程池）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;线程特定数据：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;每个线程需要一定的数据自我副本 （ThreadLocal）&lt;/li&gt;
+&lt;/ul&gt;
+</description>
         </item>
         <item>
         <title>Java NIO</title>
